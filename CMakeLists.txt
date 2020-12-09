@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.8 )
 
-project( AXL_GLFL VERSION 1.3.6 DESCRIPTION "OpenGL function loader library." )
+project( AXL_GLFL VERSION 1.3.7 DESCRIPTION "OpenGL function loader library." )
 
 set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED true )

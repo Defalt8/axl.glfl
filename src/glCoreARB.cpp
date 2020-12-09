@@ -1,3 +1,4 @@
+#include <string.h>
 #include <axl.glfl/platform.h>
 
 #if PLATFORM==PLATFORM_WINDOWS
@@ -4268,8 +4269,6 @@ bool load()
 	return (initialized = true) && checkExtensions();
 }
 
-#include <stdio.h>
-#include <string.h>
 bool checkExtensions()
 {
 	static bool initialized = false;
