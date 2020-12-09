@@ -23,6 +23,8 @@ An organized multiplatform OpenGL function loader.
 
 - Clone this repository: `git clone https://github.com/defalt8/axl.glfl.git`
 - Initialize CMake build directory.
+  - `cd axl.glfl`
+  - `mkdir out`
   - `mkdir out/build`
   - `cd out/build`
   - `cmake -S ../../`
