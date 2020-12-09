@@ -4,10 +4,12 @@ set( AXLGLFL_TYPE "STATIC" CACHE STRING "{STATIC|SHARED}" )
 if( BUILD_SHARED_LIBS )
 	set( AXLGLFL_TYPE "SHARED" )
 endif()
+set( AXLGLFL_LIB_SUFFIX "" )
 
 add_library( axl.glfl ${AXLGLFL_TYPE}
 	"glfl.cpp"
 	"Dummy.cpp"
+	"glCoreARB.cpp"
 )
 target_include_directories( axl.glfl PUBLIC "${CMAKE_SOURCE_DIR}/include" )
 target_compile_definitions( axl.glfl
@@ -16,10 +18,11 @@ target_compile_definitions( axl.glfl
 	PRIVATE AXLGLFL_VERSION_MINOR=${PROJECT_VERSION_MINOR}
 	PRIVATE AXLGLFL_VERSION_PATCH=${PROJECT_VERSION_PATCH}
 )
-if( "AXLGLFL_TYPE" MATCHES "^[Ss][Hh][Aa][Rr][Ee][Dd]$" )
-	target_compile_definitions( axl.glfl PRIVATE AXLGLFL_SHARED )
+if( "${AXLGLFL_TYPE}" MATCHES "^[Ss][Hh][Aa][Rr][Ee][Dd]$" )
+	target_compile_definitions( axl.glfl PUBLIC AXLGLFL_SHARED=1 )
 else()
-	target_compile_definitions( axl.glfl PRIVATE AXLGLFL_STATIC )
+	target_compile_definitions( axl.glfl PUBLIC AXLGLFL_STATIC=1 )
+	set( AXLGLFL_LIB_SUFFIX s )
 endif()
 if( WIN32 )
 	if(MSVC)
@@ -28,3 +31,12 @@ if( WIN32 )
 		target_link_libraries( axl.glfl PUBLIC -lgdi32 -lopengl32 )
 	endif()
 endif()
+if( "${CMAKE_BUILD_TYPE}" MATCHES "^[Dd][Ee][Bb][Uu][Gg]$" )
+	set( AXLGLFL_LIB_SUFFIX "${AXLGLFL_LIB_SUFFIX}d" )
+endif()
+set_target_properties( axl.glfl PROPERTIES
+	ARCHIVE_OUTPUT_NAME "axl.glfl${AXLGLFL_LIB_SUFFIX}"
+	RUNTIME_OUTPUT_NAME "axl.glfl${AXLGLFL_LIB_SUFFIX}"
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)

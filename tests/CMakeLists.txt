@@ -4,3 +4,4 @@ link_libraries( axl.glfl )
 include_directories( "${CMAKE_SOURCE_DIR}/include" )
 
 add_executable( "axl.glfl.Dummy" "Dummy.cpp" )
+add_executable( "axl.glfl.glcorearb" "glCoreARB.cpp" )

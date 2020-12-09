@@ -6,5 +6,5 @@ set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED true )
 set( CMAKE_BUILD_TYPE Debug CACHE STRING "" )
 
-add_subdirectory( "axl_glfl" "axl_glfl" )
-add_subdirectory( "tests" "axl_glfl_tests" )
+add_subdirectory( "src" "axl_glfl" )
+add_subdirectory( "tests" "${CMAKE_BINARY_DIR}/bin" )

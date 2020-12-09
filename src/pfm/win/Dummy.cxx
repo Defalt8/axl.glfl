@@ -100,7 +100,7 @@ void Dummy::destroy()
 	data->context = NULL;
 }
 
-Dummy GlobalDummy(true);
+Dummy GLOBAL_DUMMY(true);
 
 } // namespace axl::glfl
 } // namespace axl

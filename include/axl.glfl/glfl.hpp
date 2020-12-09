@@ -1,7 +1,26 @@
 #pragma once
 
-#define AXLGLFLAPI extern
-#define AXLGLFLCXXAPI
+#ifdef AXLGLFL_SHARED
+#	if defined(WIN32)
+#		if defined(AXLGLFL_BUILD)
+#			define AXLGLFLAPI extern __declspec(dllexport)
+#			define AXLGLFLCXXAPI __declspec(dllexport)
+#		else
+#			define AXLGLFLAPI extern __declspec(dllimport)
+#			define AXLGLFLCXXAPI __declspec(dllexport)
+#		endif
+#	elif defined(__GNUC__) && __GNUC__ > 4
+#		define AXLGLFLAPI __attribute__((visibility("default")))
+#		define AXLGLFLCXXAPI __attribute__((visibility("default")))
+#	else
+#   	error("Don't know how to export shared object libraries")
+#		define AXLGLFLAPI extern
+#		define AXLGLFLCXXAPI
+#	endif
+#elif defined(AXLGLFL_STATIC)
+#	define AXLGLFLAPI extern
+#	define AXLGLFLCXXAPI
+#endif
 
 #if __cplusplus >= 201103L
 #	define AXLGLFLCONSTMODIFIER constexpr

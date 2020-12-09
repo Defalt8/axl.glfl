@@ -6,7 +6,7 @@ namespace glfl {
 
 class AXLGLFLCXXAPI Dummy {
 	public:
-		enum InitError {
+		ENUM_CLASS InitError {
 			IERR_UNKNOWN = -1,
 			IERR_NONE = 0,
 			IERR_WINDOW_CLASS,
@@ -35,7 +35,7 @@ class AXLGLFLCXXAPI Dummy {
 		void *reserved;
 };
 
-AXLGLFLAPI Dummy GlobalDummy;
+AXLGLFLAPI Dummy GLOBAL_DUMMY;
 
 } // namespace axl::glfl
 } // namespace axl

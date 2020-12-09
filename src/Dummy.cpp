@@ -3,5 +3,5 @@
 #if PLATFORM==PLATFORM_WINDOWS
 #	include "pfm/win/Dummy.cxx" 
 #else
-#	error Unsupported platform!
+#	error("Unsupported platform!")
 #endif

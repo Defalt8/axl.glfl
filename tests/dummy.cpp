@@ -12,10 +12,10 @@ int main(int argc, char *argv[])
 	printf(">> axl.glfl %u.%u.%u %s - Dummy test\n", VERSION.major, VERSION.minor, VERSION.patch, (BUILD == Build::SHARED ? "SHARED" : "STATIC"));
 	puts("----------------------------------------");
 	{
-		Assertve(GlobalDummy.isInitialized(), verbose);
-		Assertve(GlobalDummy.makeCurrent(), verbose);
+		Assertve(GLOBAL_DUMMY.isInitialized(), verbose);
+		Assertve(GLOBAL_DUMMY.makeCurrent(), verbose);
 		Assertve(Dummy::clearCurrent(), verbose);
-		Assertve(!GlobalDummy.isCurrent(), verbose);
+		Assertve(!GLOBAL_DUMMY.isCurrent(), verbose);
 	}
 	{
 		Dummy::InitError error;
