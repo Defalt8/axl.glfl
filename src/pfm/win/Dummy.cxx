@@ -30,7 +30,7 @@ Dummy::InitError Dummy::init()
 	if(!this->reserved) this->reserved = (void*)calloc(1, sizeof(DummyData));
 	DummyData* data = ((DummyData*)this->reserved);
 	BOOL init = FALSE;
-	if(init == TRUE && data->hwnd && data->hdc && data->context) return IERR_NONE;
+	if(init == TRUE && data->hwnd && data->hdc && data->context) return InitError::NONE;
 	HINSTANCE hinst = GetModuleHandle(0);
 	static BOOL registered = FALSE;
 	if(!registered)
@@ -44,11 +44,11 @@ Dummy::InitError Dummy::init()
 		wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
 		registered = (0 != RegisterClassA(&wc));
 	}
-	if(!registered) return IERR_WINDOW_CLASS;
+	if(!registered) return InitError::WINDOW_CLASS;
 	if(!data->hwnd)
 	{
 		data->hwnd = CreateWindowA(DUMMY_CLASSNAME,"",0,0,0,0,0,NULL,NULL, hinst, 0);
-		if(!data->hwnd) return IERR_WINDOW;
+		if(!data->hwnd) return InitError::WINDOW;
 		data->hdc = GetDC(data->hwnd);
 	}
 	PIXELFORMATDESCRIPTOR pfd;
@@ -60,12 +60,12 @@ Dummy::InitError Dummy::init()
 	pfd.cColorBits = 32;
 	pfd.cDepthBits = 24;
 	pfd.cStencilBits = 8;
-	if(!SetPixelFormat(data->hdc, ChoosePixelFormat(data->hdc, &pfd), &pfd)) return IERR_PIXEL_FORMAT;
+	if(!SetPixelFormat(data->hdc, ChoosePixelFormat(data->hdc, &pfd), &pfd)) return InitError::PIXEL_FORMAT;
 	if(!data->context) wglDeleteContext(data->context);
 	data->context = wglCreateContext(data->hdc);
-	if(!data->context) return IERR_CONTEXT;
+	if(!data->context) return InitError::CONTEXT;
 	init = TRUE;
-	return IERR_NONE;
+	return InitError::NONE;
 }
 bool Dummy::isInitialized() const
 {

@@ -3,7 +3,7 @@
 #include "gl.hpp"
 #include "glfl.hpp"
 
-#define AXLGLFL_DECL_GLPROC(Name) AXLGLFLAPI PFN::##Name Name
+// #define AXLGLFLAPI PFN::Name Name AXLGLFLAPI PFN::##Name Name
 
 namespace axl {
 namespace glfl {
@@ -236,54 +236,54 @@ typedef GLboolean (APIENTRYP glIsEnabled) (GLenum cap);
 typedef void (APIENTRYP glDepthRange) (GLdouble n, GLdouble f);
 typedef void (APIENTRYP glViewport) (GLint x, GLint y, GLsizei width, GLsizei height);
 }
-AXLGLFL_DECL_GLPROC(glCullFace);
-AXLGLFL_DECL_GLPROC(glFrontFace);
-AXLGLFL_DECL_GLPROC(glHint);
-AXLGLFL_DECL_GLPROC(glLineWidth);
-AXLGLFL_DECL_GLPROC(glPointSize);
-AXLGLFL_DECL_GLPROC(glPolygonMode);
-AXLGLFL_DECL_GLPROC(glScissor);
-AXLGLFL_DECL_GLPROC(glTexParameterf);
-AXLGLFL_DECL_GLPROC(glTexParameterfv);
-AXLGLFL_DECL_GLPROC(glTexParameteri);
-AXLGLFL_DECL_GLPROC(glTexParameteriv);
-AXLGLFL_DECL_GLPROC(glTexImage1D);
-AXLGLFL_DECL_GLPROC(glTexImage2D);
-AXLGLFL_DECL_GLPROC(glDrawBuffer);
-AXLGLFL_DECL_GLPROC(glClear);
-AXLGLFL_DECL_GLPROC(glClearColor);
-AXLGLFL_DECL_GLPROC(glClearStencil);
-AXLGLFL_DECL_GLPROC(glClearDepth);
-AXLGLFL_DECL_GLPROC(glStencilMask);
-AXLGLFL_DECL_GLPROC(glColorMask);
-AXLGLFL_DECL_GLPROC(glDepthMask);
-AXLGLFL_DECL_GLPROC(glDisable);
-AXLGLFL_DECL_GLPROC(glEnable);
-AXLGLFL_DECL_GLPROC(glFinish);
-AXLGLFL_DECL_GLPROC(glFlush);
-AXLGLFL_DECL_GLPROC(glBlendFunc);
-AXLGLFL_DECL_GLPROC(glLogicOp);
-AXLGLFL_DECL_GLPROC(glStencilFunc);
-AXLGLFL_DECL_GLPROC(glStencilOp);
-AXLGLFL_DECL_GLPROC(glDepthFunc);
-AXLGLFL_DECL_GLPROC(glPixelStoref);
-AXLGLFL_DECL_GLPROC(glPixelStorei);
-AXLGLFL_DECL_GLPROC(glReadBuffer);
-AXLGLFL_DECL_GLPROC(glReadPixels);
-AXLGLFL_DECL_GLPROC(glGetBooleanv);
-AXLGLFL_DECL_GLPROC(glGetDoublev);
-AXLGLFL_DECL_GLPROC(glGetError);
-AXLGLFL_DECL_GLPROC(glGetFloatv);
-AXLGLFL_DECL_GLPROC(glGetIntegerv);
-AXLGLFL_DECL_GLPROC(glGetString);
-AXLGLFL_DECL_GLPROC(glGetTexImage);
-AXLGLFL_DECL_GLPROC(glGetTexParameterfv);
-AXLGLFL_DECL_GLPROC(glGetTexParameteriv);
-AXLGLFL_DECL_GLPROC(glGetTexLevelParameterfv);
-AXLGLFL_DECL_GLPROC(glGetTexLevelParameteriv);
-AXLGLFL_DECL_GLPROC(glIsEnabled);
-AXLGLFL_DECL_GLPROC(glDepthRange);
-AXLGLFL_DECL_GLPROC(glViewport);
+AXLGLFLAPI PFN::glCullFace glCullFace;
+AXLGLFLAPI PFN::glFrontFace glFrontFace;
+AXLGLFLAPI PFN::glHint glHint;
+AXLGLFLAPI PFN::glLineWidth glLineWidth;
+AXLGLFLAPI PFN::glPointSize glPointSize;
+AXLGLFLAPI PFN::glPolygonMode glPolygonMode;
+AXLGLFLAPI PFN::glScissor glScissor;
+AXLGLFLAPI PFN::glTexParameterf glTexParameterf;
+AXLGLFLAPI PFN::glTexParameterfv glTexParameterfv;
+AXLGLFLAPI PFN::glTexParameteri glTexParameteri;
+AXLGLFLAPI PFN::glTexParameteriv glTexParameteriv;
+AXLGLFLAPI PFN::glTexImage1D glTexImage1D;
+AXLGLFLAPI PFN::glTexImage2D glTexImage2D;
+AXLGLFLAPI PFN::glDrawBuffer glDrawBuffer;
+AXLGLFLAPI PFN::glClear glClear;
+AXLGLFLAPI PFN::glClearColor glClearColor;
+AXLGLFLAPI PFN::glClearStencil glClearStencil;
+AXLGLFLAPI PFN::glClearDepth glClearDepth;
+AXLGLFLAPI PFN::glStencilMask glStencilMask;
+AXLGLFLAPI PFN::glColorMask glColorMask;
+AXLGLFLAPI PFN::glDepthMask glDepthMask;
+AXLGLFLAPI PFN::glDisable glDisable;
+AXLGLFLAPI PFN::glEnable glEnable;
+AXLGLFLAPI PFN::glFinish glFinish;
+AXLGLFLAPI PFN::glFlush glFlush;
+AXLGLFLAPI PFN::glBlendFunc glBlendFunc;
+AXLGLFLAPI PFN::glLogicOp glLogicOp;
+AXLGLFLAPI PFN::glStencilFunc glStencilFunc;
+AXLGLFLAPI PFN::glStencilOp glStencilOp;
+AXLGLFLAPI PFN::glDepthFunc glDepthFunc;
+AXLGLFLAPI PFN::glPixelStoref glPixelStoref;
+AXLGLFLAPI PFN::glPixelStorei glPixelStorei;
+AXLGLFLAPI PFN::glReadBuffer glReadBuffer;
+AXLGLFLAPI PFN::glReadPixels glReadPixels;
+AXLGLFLAPI PFN::glGetBooleanv glGetBooleanv;
+AXLGLFLAPI PFN::glGetDoublev glGetDoublev;
+AXLGLFLAPI PFN::glGetError glGetError;
+AXLGLFLAPI PFN::glGetFloatv glGetFloatv;
+AXLGLFLAPI PFN::glGetIntegerv glGetIntegerv;
+AXLGLFLAPI PFN::glGetString glGetString;
+AXLGLFLAPI PFN::glGetTexImage glGetTexImage;
+AXLGLFLAPI PFN::glGetTexParameterfv glGetTexParameterfv;
+AXLGLFLAPI PFN::glGetTexParameteriv glGetTexParameteriv;
+AXLGLFLAPI PFN::glGetTexLevelParameterfv glGetTexLevelParameterfv;
+AXLGLFLAPI PFN::glGetTexLevelParameteriv glGetTexLevelParameteriv;
+AXLGLFLAPI PFN::glIsEnabled glIsEnabled;
+AXLGLFLAPI PFN::glDepthRange glDepthRange;
+AXLGLFLAPI PFN::glViewport glViewport;
 // GL_VERSION_1_0
 
 // GL_VERSION_1_1
@@ -335,20 +335,20 @@ typedef void (APIENTRYP glDeleteTextures) (GLsizei n, const GLuint *textures);
 typedef void (APIENTRYP glGenTextures) (GLsizei n, GLuint *textures);
 typedef GLboolean (APIENTRYP glIsTexture) (GLuint texture);
 }
-AXLGLFL_DECL_GLPROC(glDrawArrays);
-AXLGLFL_DECL_GLPROC(glDrawElements);
-AXLGLFL_DECL_GLPROC(glGetPointerv);
-AXLGLFL_DECL_GLPROC(glPolygonOffset);
-AXLGLFL_DECL_GLPROC(glCopyTexImage1D);
-AXLGLFL_DECL_GLPROC(glCopyTexImage2D);
-AXLGLFL_DECL_GLPROC(glCopyTexSubImage1D);
-AXLGLFL_DECL_GLPROC(glCopyTexSubImage2D);
-AXLGLFL_DECL_GLPROC(glTexSubImage1D);
-AXLGLFL_DECL_GLPROC(glTexSubImage2D);
-AXLGLFL_DECL_GLPROC(glBindTexture);
-AXLGLFL_DECL_GLPROC(glDeleteTextures);
-AXLGLFL_DECL_GLPROC(glGenTextures);
-AXLGLFL_DECL_GLPROC(glIsTexture);
+AXLGLFLAPI PFN::glDrawArrays glDrawArrays;
+AXLGLFLAPI PFN::glDrawElements glDrawElements;
+AXLGLFLAPI PFN::glGetPointerv glGetPointerv;
+AXLGLFLAPI PFN::glPolygonOffset glPolygonOffset;
+AXLGLFLAPI PFN::glCopyTexImage1D glCopyTexImage1D;
+AXLGLFLAPI PFN::glCopyTexImage2D glCopyTexImage2D;
+AXLGLFLAPI PFN::glCopyTexSubImage1D glCopyTexSubImage1D;
+AXLGLFLAPI PFN::glCopyTexSubImage2D glCopyTexSubImage2D;
+AXLGLFLAPI PFN::glTexSubImage1D glTexSubImage1D;
+AXLGLFLAPI PFN::glTexSubImage2D glTexSubImage2D;
+AXLGLFLAPI PFN::glBindTexture glBindTexture;
+AXLGLFLAPI PFN::glDeleteTextures glDeleteTextures;
+AXLGLFLAPI PFN::glGenTextures glGenTextures;
+AXLGLFLAPI PFN::glIsTexture glIsTexture;
 // GL_VERSION_1_1
 
 // GL_VERSION_1_2
@@ -395,10 +395,10 @@ typedef void (APIENTRYP glTexImage3D) (GLenum target, GLint level, GLint interna
 typedef void (APIENTRYP glTexSubImage3D) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels);
 typedef void (APIENTRYP glCopyTexSubImage3D) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
 }
-AXLGLFL_DECL_GLPROC(glDrawRangeElements);
-AXLGLFL_DECL_GLPROC(glTexImage3D);
-AXLGLFL_DECL_GLPROC(glTexSubImage3D);
-AXLGLFL_DECL_GLPROC(glCopyTexSubImage3D);
+AXLGLFLAPI PFN::glDrawRangeElements glDrawRangeElements;
+AXLGLFLAPI PFN::glTexImage3D glTexImage3D;
+AXLGLFLAPI PFN::glTexSubImage3D glTexSubImage3D;
+AXLGLFLAPI PFN::glCopyTexSubImage3D glCopyTexSubImage3D;
 // GL_VERSION_1_2
 
 // GL_VERSION_1_3
@@ -473,15 +473,15 @@ typedef void (APIENTRYP glCompressedTexSubImage2D) (GLenum target, GLint level, 
 typedef void (APIENTRYP glCompressedTexSubImage1D) (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *data);
 typedef void (APIENTRYP glGetCompressedTexImage) (GLenum target, GLint level, void *img);
 }
-AXLGLFL_DECL_GLPROC(glActiveTexture);
-AXLGLFL_DECL_GLPROC(glSampleCoverage);
-AXLGLFL_DECL_GLPROC(glCompressedTexImage3D);
-AXLGLFL_DECL_GLPROC(glCompressedTexImage2D);
-AXLGLFL_DECL_GLPROC(glCompressedTexImage1D);
-AXLGLFL_DECL_GLPROC(glCompressedTexSubImage3D);
-AXLGLFL_DECL_GLPROC(glCompressedTexSubImage2D);
-AXLGLFL_DECL_GLPROC(glCompressedTexSubImage1D);
-AXLGLFL_DECL_GLPROC(glGetCompressedTexImage);
+AXLGLFLAPI PFN::glActiveTexture glActiveTexture;
+AXLGLFLAPI PFN::glSampleCoverage glSampleCoverage;
+AXLGLFLAPI PFN::glCompressedTexImage3D glCompressedTexImage3D;
+AXLGLFLAPI PFN::glCompressedTexImage2D glCompressedTexImage2D;
+AXLGLFLAPI PFN::glCompressedTexImage1D glCompressedTexImage1D;
+AXLGLFLAPI PFN::glCompressedTexSubImage3D glCompressedTexSubImage3D;
+AXLGLFLAPI PFN::glCompressedTexSubImage2D glCompressedTexSubImage2D;
+AXLGLFLAPI PFN::glCompressedTexSubImage1D glCompressedTexSubImage1D;
+AXLGLFLAPI PFN::glGetCompressedTexImage glGetCompressedTexImage;
 // GL_VERSION_1_3
 
 // GL_VERSION_1_4
@@ -524,15 +524,15 @@ typedef void (APIENTRYP glPointParameteriv) (GLenum pname, const GLint *params);
 typedef void (APIENTRYP glBlendColor) (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
 typedef void (APIENTRYP glBlendEquation) (GLenum mode);
 }
-AXLGLFL_DECL_GLPROC(glBlendFuncSeparate);
-AXLGLFL_DECL_GLPROC(glMultiDrawArrays);
-AXLGLFL_DECL_GLPROC(glMultiDrawElements);
-AXLGLFL_DECL_GLPROC(glPointParameterf);
-AXLGLFL_DECL_GLPROC(glPointParameterfv);
-AXLGLFL_DECL_GLPROC(glPointParameteri);
-AXLGLFL_DECL_GLPROC(glPointParameteriv);
-AXLGLFL_DECL_GLPROC(glBlendColor);
-AXLGLFL_DECL_GLPROC(glBlendEquation);
+AXLGLFLAPI PFN::glBlendFuncSeparate glBlendFuncSeparate;
+AXLGLFLAPI PFN::glMultiDrawArrays glMultiDrawArrays;
+AXLGLFLAPI PFN::glMultiDrawElements glMultiDrawElements;
+AXLGLFLAPI PFN::glPointParameterf glPointParameterf;
+AXLGLFLAPI PFN::glPointParameterfv glPointParameterfv;
+AXLGLFLAPI PFN::glPointParameteri glPointParameteri;
+AXLGLFLAPI PFN::glPointParameteriv glPointParameteriv;
+AXLGLFLAPI PFN::glBlendColor glBlendColor;
+AXLGLFLAPI PFN::glBlendEquation glBlendEquation;
 // GL_VERSION_1_4
 
 // GL_VERSION_1_5
@@ -586,25 +586,25 @@ typedef GLboolean (APIENTRYP glUnmapBuffer) (GLenum target);
 typedef void (APIENTRYP glGetBufferParameteriv) (GLenum target, GLenum pname, GLint *params);
 typedef void (APIENTRYP glGetBufferPointerv) (GLenum target, GLenum pname, void **params);
 }
-AXLGLFL_DECL_GLPROC(glGenQueries);
-AXLGLFL_DECL_GLPROC(glDeleteQueries);
-AXLGLFL_DECL_GLPROC(glIsQuery);
-AXLGLFL_DECL_GLPROC(glBeginQuery);
-AXLGLFL_DECL_GLPROC(glEndQuery);
-AXLGLFL_DECL_GLPROC(glGetQueryiv);
-AXLGLFL_DECL_GLPROC(glGetQueryObjectiv);
-AXLGLFL_DECL_GLPROC(glGetQueryObjectuiv);
-AXLGLFL_DECL_GLPROC(glBindBuffer);
-AXLGLFL_DECL_GLPROC(glDeleteBuffers);
-AXLGLFL_DECL_GLPROC(glGenBuffers);
-AXLGLFL_DECL_GLPROC(glIsBuffer);
-AXLGLFL_DECL_GLPROC(glBufferData);
-AXLGLFL_DECL_GLPROC(glBufferSubData);
-AXLGLFL_DECL_GLPROC(glGetBufferSubData);
-AXLGLFL_DECL_GLPROC(glMapBuffer);
-AXLGLFL_DECL_GLPROC(glUnmapBuffer);
-AXLGLFL_DECL_GLPROC(glGetBufferParameteriv);
-AXLGLFL_DECL_GLPROC(glGetBufferPointerv);
+AXLGLFLAPI PFN::glGenQueries glGenQueries;
+AXLGLFLAPI PFN::glDeleteQueries glDeleteQueries;
+AXLGLFLAPI PFN::glIsQuery glIsQuery;
+AXLGLFLAPI PFN::glBeginQuery glBeginQuery;
+AXLGLFLAPI PFN::glEndQuery glEndQuery;
+AXLGLFLAPI PFN::glGetQueryiv glGetQueryiv;
+AXLGLFLAPI PFN::glGetQueryObjectiv glGetQueryObjectiv;
+AXLGLFLAPI PFN::glGetQueryObjectuiv glGetQueryObjectuiv;
+AXLGLFLAPI PFN::glBindBuffer glBindBuffer;
+AXLGLFLAPI PFN::glDeleteBuffers glDeleteBuffers;
+AXLGLFLAPI PFN::glGenBuffers glGenBuffers;
+AXLGLFLAPI PFN::glIsBuffer glIsBuffer;
+AXLGLFLAPI PFN::glBufferData glBufferData;
+AXLGLFLAPI PFN::glBufferSubData glBufferSubData;
+AXLGLFLAPI PFN::glGetBufferSubData glGetBufferSubData;
+AXLGLFLAPI PFN::glMapBuffer glMapBuffer;
+AXLGLFLAPI PFN::glUnmapBuffer glUnmapBuffer;
+AXLGLFLAPI PFN::glGetBufferParameteriv glGetBufferParameteriv;
+AXLGLFLAPI PFN::glGetBufferPointerv glGetBufferPointerv;
 // GL_VERSION_1_5
 
 } // namespace GL1
@@ -788,99 +788,99 @@ typedef void (APIENTRYP glVertexAttrib4uiv) (GLuint index, const GLuint *v);
 typedef void (APIENTRYP glVertexAttrib4usv) (GLuint index, const GLushort *v);
 typedef void (APIENTRYP glVertexAttribPointer) (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
 }
-AXLGLFL_DECL_GLPROC(glBlendEquationSeparate);
-AXLGLFL_DECL_GLPROC(glDrawBuffers);
-AXLGLFL_DECL_GLPROC(glStencilOpSeparate);
-AXLGLFL_DECL_GLPROC(glStencilFuncSeparate);
-AXLGLFL_DECL_GLPROC(glStencilMaskSeparate);
-AXLGLFL_DECL_GLPROC(glAttachShader);
-AXLGLFL_DECL_GLPROC(glBindAttribLocation);
-AXLGLFL_DECL_GLPROC(glCompileShader);
-AXLGLFL_DECL_GLPROC(glCreateProgram);
-AXLGLFL_DECL_GLPROC(glCreateShader);
-AXLGLFL_DECL_GLPROC(glDeleteProgram);
-AXLGLFL_DECL_GLPROC(glDeleteShader);
-AXLGLFL_DECL_GLPROC(glDetachShader);
-AXLGLFL_DECL_GLPROC(glDisableVertexAttribArray);
-AXLGLFL_DECL_GLPROC(glEnableVertexAttribArray);
-AXLGLFL_DECL_GLPROC(glGetActiveAttrib);
-AXLGLFL_DECL_GLPROC(glGetActiveUniform);
-AXLGLFL_DECL_GLPROC(glGetAttachedShaders);
-AXLGLFL_DECL_GLPROC(glGetAttribLocation);
-AXLGLFL_DECL_GLPROC(glGetProgramiv);
-AXLGLFL_DECL_GLPROC(glGetProgramInfoLog);
-AXLGLFL_DECL_GLPROC(glGetShaderiv);
-AXLGLFL_DECL_GLPROC(glGetShaderInfoLog);
-AXLGLFL_DECL_GLPROC(glGetShaderSource);
-AXLGLFL_DECL_GLPROC(glGetUniformLocation);
-AXLGLFL_DECL_GLPROC(glGetUniformfv);
-AXLGLFL_DECL_GLPROC(glGetUniformiv);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribdv);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribfv);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribiv);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribPointerv);
-AXLGLFL_DECL_GLPROC(glIsProgram);
-AXLGLFL_DECL_GLPROC(glIsShader);
-AXLGLFL_DECL_GLPROC(glLinkProgram);
-AXLGLFL_DECL_GLPROC(glShaderSource);
-AXLGLFL_DECL_GLPROC(glUseProgram);
-AXLGLFL_DECL_GLPROC(glUniform1f);
-AXLGLFL_DECL_GLPROC(glUniform2f);
-AXLGLFL_DECL_GLPROC(glUniform3f);
-AXLGLFL_DECL_GLPROC(glUniform4f);
-AXLGLFL_DECL_GLPROC(glUniform1i);
-AXLGLFL_DECL_GLPROC(glUniform2i);
-AXLGLFL_DECL_GLPROC(glUniform3i);
-AXLGLFL_DECL_GLPROC(glUniform4i);
-AXLGLFL_DECL_GLPROC(glUniform1fv);
-AXLGLFL_DECL_GLPROC(glUniform2fv);
-AXLGLFL_DECL_GLPROC(glUniform3fv);
-AXLGLFL_DECL_GLPROC(glUniform4fv);
-AXLGLFL_DECL_GLPROC(glUniform1iv);
-AXLGLFL_DECL_GLPROC(glUniform2iv);
-AXLGLFL_DECL_GLPROC(glUniform3iv);
-AXLGLFL_DECL_GLPROC(glUniform4iv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix2fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix3fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix4fv);
-AXLGLFL_DECL_GLPROC(glValidateProgram);
-AXLGLFL_DECL_GLPROC(glVertexAttrib1d);
-AXLGLFL_DECL_GLPROC(glVertexAttrib1dv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib1f);
-AXLGLFL_DECL_GLPROC(glVertexAttrib1fv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib1s);
-AXLGLFL_DECL_GLPROC(glVertexAttrib1sv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib2d);
-AXLGLFL_DECL_GLPROC(glVertexAttrib2dv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib2f);
-AXLGLFL_DECL_GLPROC(glVertexAttrib2fv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib2s);
-AXLGLFL_DECL_GLPROC(glVertexAttrib2sv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib3d);
-AXLGLFL_DECL_GLPROC(glVertexAttrib3dv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib3f);
-AXLGLFL_DECL_GLPROC(glVertexAttrib3fv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib3s);
-AXLGLFL_DECL_GLPROC(glVertexAttrib3sv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Nbv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Niv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Nsv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Nub);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Nubv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Nuiv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4Nusv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4bv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4d);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4dv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4f);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4fv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4iv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4s);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4sv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4ubv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttrib4usv);
-AXLGLFL_DECL_GLPROC(glVertexAttribPointer);
+AXLGLFLAPI PFN::glBlendEquationSeparate glBlendEquationSeparate;
+AXLGLFLAPI PFN::glDrawBuffers glDrawBuffers;
+AXLGLFLAPI PFN::glStencilOpSeparate glStencilOpSeparate;
+AXLGLFLAPI PFN::glStencilFuncSeparate glStencilFuncSeparate;
+AXLGLFLAPI PFN::glStencilMaskSeparate glStencilMaskSeparate;
+AXLGLFLAPI PFN::glAttachShader glAttachShader;
+AXLGLFLAPI PFN::glBindAttribLocation glBindAttribLocation;
+AXLGLFLAPI PFN::glCompileShader glCompileShader;
+AXLGLFLAPI PFN::glCreateProgram glCreateProgram;
+AXLGLFLAPI PFN::glCreateShader glCreateShader;
+AXLGLFLAPI PFN::glDeleteProgram glDeleteProgram;
+AXLGLFLAPI PFN::glDeleteShader glDeleteShader;
+AXLGLFLAPI PFN::glDetachShader glDetachShader;
+AXLGLFLAPI PFN::glDisableVertexAttribArray glDisableVertexAttribArray;
+AXLGLFLAPI PFN::glEnableVertexAttribArray glEnableVertexAttribArray;
+AXLGLFLAPI PFN::glGetActiveAttrib glGetActiveAttrib;
+AXLGLFLAPI PFN::glGetActiveUniform glGetActiveUniform;
+AXLGLFLAPI PFN::glGetAttachedShaders glGetAttachedShaders;
+AXLGLFLAPI PFN::glGetAttribLocation glGetAttribLocation;
+AXLGLFLAPI PFN::glGetProgramiv glGetProgramiv;
+AXLGLFLAPI PFN::glGetProgramInfoLog glGetProgramInfoLog;
+AXLGLFLAPI PFN::glGetShaderiv glGetShaderiv;
+AXLGLFLAPI PFN::glGetShaderInfoLog glGetShaderInfoLog;
+AXLGLFLAPI PFN::glGetShaderSource glGetShaderSource;
+AXLGLFLAPI PFN::glGetUniformLocation glGetUniformLocation;
+AXLGLFLAPI PFN::glGetUniformfv glGetUniformfv;
+AXLGLFLAPI PFN::glGetUniformiv glGetUniformiv;
+AXLGLFLAPI PFN::glGetVertexAttribdv glGetVertexAttribdv;
+AXLGLFLAPI PFN::glGetVertexAttribfv glGetVertexAttribfv;
+AXLGLFLAPI PFN::glGetVertexAttribiv glGetVertexAttribiv;
+AXLGLFLAPI PFN::glGetVertexAttribPointerv glGetVertexAttribPointerv;
+AXLGLFLAPI PFN::glIsProgram glIsProgram;
+AXLGLFLAPI PFN::glIsShader glIsShader;
+AXLGLFLAPI PFN::glLinkProgram glLinkProgram;
+AXLGLFLAPI PFN::glShaderSource glShaderSource;
+AXLGLFLAPI PFN::glUseProgram glUseProgram;
+AXLGLFLAPI PFN::glUniform1f glUniform1f;
+AXLGLFLAPI PFN::glUniform2f glUniform2f;
+AXLGLFLAPI PFN::glUniform3f glUniform3f;
+AXLGLFLAPI PFN::glUniform4f glUniform4f;
+AXLGLFLAPI PFN::glUniform1i glUniform1i;
+AXLGLFLAPI PFN::glUniform2i glUniform2i;
+AXLGLFLAPI PFN::glUniform3i glUniform3i;
+AXLGLFLAPI PFN::glUniform4i glUniform4i;
+AXLGLFLAPI PFN::glUniform1fv glUniform1fv;
+AXLGLFLAPI PFN::glUniform2fv glUniform2fv;
+AXLGLFLAPI PFN::glUniform3fv glUniform3fv;
+AXLGLFLAPI PFN::glUniform4fv glUniform4fv;
+AXLGLFLAPI PFN::glUniform1iv glUniform1iv;
+AXLGLFLAPI PFN::glUniform2iv glUniform2iv;
+AXLGLFLAPI PFN::glUniform3iv glUniform3iv;
+AXLGLFLAPI PFN::glUniform4iv glUniform4iv;
+AXLGLFLAPI PFN::glUniformMatrix2fv glUniformMatrix2fv;
+AXLGLFLAPI PFN::glUniformMatrix3fv glUniformMatrix3fv;
+AXLGLFLAPI PFN::glUniformMatrix4fv glUniformMatrix4fv;
+AXLGLFLAPI PFN::glValidateProgram glValidateProgram;
+AXLGLFLAPI PFN::glVertexAttrib1d glVertexAttrib1d;
+AXLGLFLAPI PFN::glVertexAttrib1dv glVertexAttrib1dv;
+AXLGLFLAPI PFN::glVertexAttrib1f glVertexAttrib1f;
+AXLGLFLAPI PFN::glVertexAttrib1fv glVertexAttrib1fv;
+AXLGLFLAPI PFN::glVertexAttrib1s glVertexAttrib1s;
+AXLGLFLAPI PFN::glVertexAttrib1sv glVertexAttrib1sv;
+AXLGLFLAPI PFN::glVertexAttrib2d glVertexAttrib2d;
+AXLGLFLAPI PFN::glVertexAttrib2dv glVertexAttrib2dv;
+AXLGLFLAPI PFN::glVertexAttrib2f glVertexAttrib2f;
+AXLGLFLAPI PFN::glVertexAttrib2fv glVertexAttrib2fv;
+AXLGLFLAPI PFN::glVertexAttrib2s glVertexAttrib2s;
+AXLGLFLAPI PFN::glVertexAttrib2sv glVertexAttrib2sv;
+AXLGLFLAPI PFN::glVertexAttrib3d glVertexAttrib3d;
+AXLGLFLAPI PFN::glVertexAttrib3dv glVertexAttrib3dv;
+AXLGLFLAPI PFN::glVertexAttrib3f glVertexAttrib3f;
+AXLGLFLAPI PFN::glVertexAttrib3fv glVertexAttrib3fv;
+AXLGLFLAPI PFN::glVertexAttrib3s glVertexAttrib3s;
+AXLGLFLAPI PFN::glVertexAttrib3sv glVertexAttrib3sv;
+AXLGLFLAPI PFN::glVertexAttrib4Nbv glVertexAttrib4Nbv;
+AXLGLFLAPI PFN::glVertexAttrib4Niv glVertexAttrib4Niv;
+AXLGLFLAPI PFN::glVertexAttrib4Nsv glVertexAttrib4Nsv;
+AXLGLFLAPI PFN::glVertexAttrib4Nub glVertexAttrib4Nub;
+AXLGLFLAPI PFN::glVertexAttrib4Nubv glVertexAttrib4Nubv;
+AXLGLFLAPI PFN::glVertexAttrib4Nuiv glVertexAttrib4Nuiv;
+AXLGLFLAPI PFN::glVertexAttrib4Nusv glVertexAttrib4Nusv;
+AXLGLFLAPI PFN::glVertexAttrib4bv glVertexAttrib4bv;
+AXLGLFLAPI PFN::glVertexAttrib4d glVertexAttrib4d;
+AXLGLFLAPI PFN::glVertexAttrib4dv glVertexAttrib4dv;
+AXLGLFLAPI PFN::glVertexAttrib4f glVertexAttrib4f;
+AXLGLFLAPI PFN::glVertexAttrib4fv glVertexAttrib4fv;
+AXLGLFLAPI PFN::glVertexAttrib4iv glVertexAttrib4iv;
+AXLGLFLAPI PFN::glVertexAttrib4s glVertexAttrib4s;
+AXLGLFLAPI PFN::glVertexAttrib4sv glVertexAttrib4sv;
+AXLGLFLAPI PFN::glVertexAttrib4ubv glVertexAttrib4ubv;
+AXLGLFLAPI PFN::glVertexAttrib4uiv glVertexAttrib4uiv;
+AXLGLFLAPI PFN::glVertexAttrib4usv glVertexAttrib4usv;
+AXLGLFLAPI PFN::glVertexAttribPointer glVertexAttribPointer;
 // GL_VERSION_2_0
 
 // GL_VERSION_2_1
@@ -909,12 +909,12 @@ typedef void (APIENTRYP glUniformMatrix4x2fv) (GLint location, GLsizei count, GL
 typedef void (APIENTRYP glUniformMatrix3x4fv) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
 typedef void (APIENTRYP glUniformMatrix4x3fv) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
 }
-AXLGLFL_DECL_GLPROC(glUniformMatrix2x3fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix3x2fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix2x4fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix4x2fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix3x4fv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix4x3fv);
+AXLGLFLAPI PFN::glUniformMatrix2x3fv glUniformMatrix2x3fv;
+AXLGLFLAPI PFN::glUniformMatrix3x2fv glUniformMatrix3x2fv;
+AXLGLFLAPI PFN::glUniformMatrix2x4fv glUniformMatrix2x4fv;
+AXLGLFLAPI PFN::glUniformMatrix4x2fv glUniformMatrix4x2fv;
+AXLGLFLAPI PFN::glUniformMatrix3x4fv glUniformMatrix3x4fv;
+AXLGLFLAPI PFN::glUniformMatrix4x3fv glUniformMatrix4x3fv;
 // GL_VERSION_2_1
 
 } // namespace GL2
@@ -1240,90 +1240,90 @@ typedef void (APIENTRYP glDeleteVertexArrays) (GLsizei n, const GLuint *arrays);
 typedef void (APIENTRYP glGenVertexArrays) (GLsizei n, GLuint *arrays);
 typedef GLboolean (APIENTRYP glIsVertexArray) (GLuint array);
 }
-AXLGLFL_DECL_GLPROC(glColorMaski);
-AXLGLFL_DECL_GLPROC(glGetBooleani_v);
-AXLGLFL_DECL_GLPROC(glGetIntegeri_v);
-AXLGLFL_DECL_GLPROC(glEnablei);
-AXLGLFL_DECL_GLPROC(glDisablei);
-AXLGLFL_DECL_GLPROC(glIsEnabledi);
-AXLGLFL_DECL_GLPROC(glBeginTransformFeedback);
-AXLGLFL_DECL_GLPROC(glEndTransformFeedback);
-AXLGLFL_DECL_GLPROC(glBindBufferRange);
-AXLGLFL_DECL_GLPROC(glBindBufferBase);
-AXLGLFL_DECL_GLPROC(glTransformFeedbackVaryings);
-AXLGLFL_DECL_GLPROC(glGetTransformFeedbackVarying);
-AXLGLFL_DECL_GLPROC(glClampColor);
-AXLGLFL_DECL_GLPROC(glBeginConditionalRender);
-AXLGLFL_DECL_GLPROC(glEndConditionalRender);
-AXLGLFL_DECL_GLPROC(glVertexAttribIPointer);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribIiv);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribIuiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI1i);
-AXLGLFL_DECL_GLPROC(glVertexAttribI2i);
-AXLGLFL_DECL_GLPROC(glVertexAttribI3i);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4i);
-AXLGLFL_DECL_GLPROC(glVertexAttribI1ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribI2ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribI3ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribI1iv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI2iv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI3iv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4iv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI1uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI2uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI3uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4bv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4sv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4ubv);
-AXLGLFL_DECL_GLPROC(glVertexAttribI4usv);
-AXLGLFL_DECL_GLPROC(glGetUniformuiv);
-AXLGLFL_DECL_GLPROC(glBindFragDataLocation);
-AXLGLFL_DECL_GLPROC(glGetFragDataLocation);
-AXLGLFL_DECL_GLPROC(glUniform1ui);
-AXLGLFL_DECL_GLPROC(glUniform2ui);
-AXLGLFL_DECL_GLPROC(glUniform3ui);
-AXLGLFL_DECL_GLPROC(glUniform4ui);
-AXLGLFL_DECL_GLPROC(glUniform1uiv);
-AXLGLFL_DECL_GLPROC(glUniform2uiv);
-AXLGLFL_DECL_GLPROC(glUniform3uiv);
-AXLGLFL_DECL_GLPROC(glUniform4uiv);
-AXLGLFL_DECL_GLPROC(glTexParameterIiv);
-AXLGLFL_DECL_GLPROC(glTexParameterIuiv);
-AXLGLFL_DECL_GLPROC(glGetTexParameterIiv);
-AXLGLFL_DECL_GLPROC(glGetTexParameterIuiv);
-AXLGLFL_DECL_GLPROC(glClearBufferiv);
-AXLGLFL_DECL_GLPROC(glClearBufferuiv);
-AXLGLFL_DECL_GLPROC(glClearBufferfv);
-AXLGLFL_DECL_GLPROC(glClearBufferfi);
-AXLGLFL_DECL_GLPROC(glGetStringi);
-AXLGLFL_DECL_GLPROC(glIsRenderbuffer);
-AXLGLFL_DECL_GLPROC(glBindRenderbuffer);
-AXLGLFL_DECL_GLPROC(glDeleteRenderbuffers);
-AXLGLFL_DECL_GLPROC(glGenRenderbuffers);
-AXLGLFL_DECL_GLPROC(glRenderbufferStorage);
-AXLGLFL_DECL_GLPROC(glGetRenderbufferParameteriv);
-AXLGLFL_DECL_GLPROC(glIsFramebuffer);
-AXLGLFL_DECL_GLPROC(glBindFramebuffer);
-AXLGLFL_DECL_GLPROC(glDeleteFramebuffers);
-AXLGLFL_DECL_GLPROC(glGenFramebuffers);
-AXLGLFL_DECL_GLPROC(glCheckFramebufferStatus);
-AXLGLFL_DECL_GLPROC(glFramebufferTexture1D);
-AXLGLFL_DECL_GLPROC(glFramebufferTexture2D);
-AXLGLFL_DECL_GLPROC(glFramebufferTexture3D);
-AXLGLFL_DECL_GLPROC(glFramebufferRenderbuffer);
-AXLGLFL_DECL_GLPROC(glGetFramebufferAttachmentParameteriv);
-AXLGLFL_DECL_GLPROC(glGenerateMipmap);
-AXLGLFL_DECL_GLPROC(glBlitFramebuffer);
-AXLGLFL_DECL_GLPROC(glRenderbufferStorageMultisample);
-AXLGLFL_DECL_GLPROC(glFramebufferTextureLayer);
-AXLGLFL_DECL_GLPROC(glMapBufferRange);
-AXLGLFL_DECL_GLPROC(glFlushMappedBufferRange);
-AXLGLFL_DECL_GLPROC(glBindVertexArray);
-AXLGLFL_DECL_GLPROC(glDeleteVertexArrays);
-AXLGLFL_DECL_GLPROC(glGenVertexArrays);
-AXLGLFL_DECL_GLPROC(glIsVertexArray);
+AXLGLFLAPI PFN::glColorMaski glColorMaski;
+AXLGLFLAPI PFN::glGetBooleani_v glGetBooleani_v;
+AXLGLFLAPI PFN::glGetIntegeri_v glGetIntegeri_v;
+AXLGLFLAPI PFN::glEnablei glEnablei;
+AXLGLFLAPI PFN::glDisablei glDisablei;
+AXLGLFLAPI PFN::glIsEnabledi glIsEnabledi;
+AXLGLFLAPI PFN::glBeginTransformFeedback glBeginTransformFeedback;
+AXLGLFLAPI PFN::glEndTransformFeedback glEndTransformFeedback;
+AXLGLFLAPI PFN::glBindBufferRange glBindBufferRange;
+AXLGLFLAPI PFN::glBindBufferBase glBindBufferBase;
+AXLGLFLAPI PFN::glTransformFeedbackVaryings glTransformFeedbackVaryings;
+AXLGLFLAPI PFN::glGetTransformFeedbackVarying glGetTransformFeedbackVarying;
+AXLGLFLAPI PFN::glClampColor glClampColor;
+AXLGLFLAPI PFN::glBeginConditionalRender glBeginConditionalRender;
+AXLGLFLAPI PFN::glEndConditionalRender glEndConditionalRender;
+AXLGLFLAPI PFN::glVertexAttribIPointer glVertexAttribIPointer;
+AXLGLFLAPI PFN::glGetVertexAttribIiv glGetVertexAttribIiv;
+AXLGLFLAPI PFN::glGetVertexAttribIuiv glGetVertexAttribIuiv;
+AXLGLFLAPI PFN::glVertexAttribI1i glVertexAttribI1i;
+AXLGLFLAPI PFN::glVertexAttribI2i glVertexAttribI2i;
+AXLGLFLAPI PFN::glVertexAttribI3i glVertexAttribI3i;
+AXLGLFLAPI PFN::glVertexAttribI4i glVertexAttribI4i;
+AXLGLFLAPI PFN::glVertexAttribI1ui glVertexAttribI1ui;
+AXLGLFLAPI PFN::glVertexAttribI2ui glVertexAttribI2ui;
+AXLGLFLAPI PFN::glVertexAttribI3ui glVertexAttribI3ui;
+AXLGLFLAPI PFN::glVertexAttribI4ui glVertexAttribI4ui;
+AXLGLFLAPI PFN::glVertexAttribI1iv glVertexAttribI1iv;
+AXLGLFLAPI PFN::glVertexAttribI2iv glVertexAttribI2iv;
+AXLGLFLAPI PFN::glVertexAttribI3iv glVertexAttribI3iv;
+AXLGLFLAPI PFN::glVertexAttribI4iv glVertexAttribI4iv;
+AXLGLFLAPI PFN::glVertexAttribI1uiv glVertexAttribI1uiv;
+AXLGLFLAPI PFN::glVertexAttribI2uiv glVertexAttribI2uiv;
+AXLGLFLAPI PFN::glVertexAttribI3uiv glVertexAttribI3uiv;
+AXLGLFLAPI PFN::glVertexAttribI4uiv glVertexAttribI4uiv;
+AXLGLFLAPI PFN::glVertexAttribI4bv glVertexAttribI4bv;
+AXLGLFLAPI PFN::glVertexAttribI4sv glVertexAttribI4sv;
+AXLGLFLAPI PFN::glVertexAttribI4ubv glVertexAttribI4ubv;
+AXLGLFLAPI PFN::glVertexAttribI4usv glVertexAttribI4usv;
+AXLGLFLAPI PFN::glGetUniformuiv glGetUniformuiv;
+AXLGLFLAPI PFN::glBindFragDataLocation glBindFragDataLocation;
+AXLGLFLAPI PFN::glGetFragDataLocation glGetFragDataLocation;
+AXLGLFLAPI PFN::glUniform1ui glUniform1ui;
+AXLGLFLAPI PFN::glUniform2ui glUniform2ui;
+AXLGLFLAPI PFN::glUniform3ui glUniform3ui;
+AXLGLFLAPI PFN::glUniform4ui glUniform4ui;
+AXLGLFLAPI PFN::glUniform1uiv glUniform1uiv;
+AXLGLFLAPI PFN::glUniform2uiv glUniform2uiv;
+AXLGLFLAPI PFN::glUniform3uiv glUniform3uiv;
+AXLGLFLAPI PFN::glUniform4uiv glUniform4uiv;
+AXLGLFLAPI PFN::glTexParameterIiv glTexParameterIiv;
+AXLGLFLAPI PFN::glTexParameterIuiv glTexParameterIuiv;
+AXLGLFLAPI PFN::glGetTexParameterIiv glGetTexParameterIiv;
+AXLGLFLAPI PFN::glGetTexParameterIuiv glGetTexParameterIuiv;
+AXLGLFLAPI PFN::glClearBufferiv glClearBufferiv;
+AXLGLFLAPI PFN::glClearBufferuiv glClearBufferuiv;
+AXLGLFLAPI PFN::glClearBufferfv glClearBufferfv;
+AXLGLFLAPI PFN::glClearBufferfi glClearBufferfi;
+AXLGLFLAPI PFN::glGetStringi glGetStringi;
+AXLGLFLAPI PFN::glIsRenderbuffer glIsRenderbuffer;
+AXLGLFLAPI PFN::glBindRenderbuffer glBindRenderbuffer;
+AXLGLFLAPI PFN::glDeleteRenderbuffers glDeleteRenderbuffers;
+AXLGLFLAPI PFN::glGenRenderbuffers glGenRenderbuffers;
+AXLGLFLAPI PFN::glRenderbufferStorage glRenderbufferStorage;
+AXLGLFLAPI PFN::glGetRenderbufferParameteriv glGetRenderbufferParameteriv;
+AXLGLFLAPI PFN::glIsFramebuffer glIsFramebuffer;
+AXLGLFLAPI PFN::glBindFramebuffer glBindFramebuffer;
+AXLGLFLAPI PFN::glDeleteFramebuffers glDeleteFramebuffers;
+AXLGLFLAPI PFN::glGenFramebuffers glGenFramebuffers;
+AXLGLFLAPI PFN::glCheckFramebufferStatus glCheckFramebufferStatus;
+AXLGLFLAPI PFN::glFramebufferTexture1D glFramebufferTexture1D;
+AXLGLFLAPI PFN::glFramebufferTexture2D glFramebufferTexture2D;
+AXLGLFLAPI PFN::glFramebufferTexture3D glFramebufferTexture3D;
+AXLGLFLAPI PFN::glFramebufferRenderbuffer glFramebufferRenderbuffer;
+AXLGLFLAPI PFN::glGetFramebufferAttachmentParameteriv glGetFramebufferAttachmentParameteriv;
+AXLGLFLAPI PFN::glGenerateMipmap glGenerateMipmap;
+AXLGLFLAPI PFN::glBlitFramebuffer glBlitFramebuffer;
+AXLGLFLAPI PFN::glRenderbufferStorageMultisample glRenderbufferStorageMultisample;
+AXLGLFLAPI PFN::glFramebufferTextureLayer glFramebufferTextureLayer;
+AXLGLFLAPI PFN::glMapBufferRange glMapBufferRange;
+AXLGLFLAPI PFN::glFlushMappedBufferRange glFlushMappedBufferRange;
+AXLGLFLAPI PFN::glBindVertexArray glBindVertexArray;
+AXLGLFLAPI PFN::glDeleteVertexArrays glDeleteVertexArrays;
+AXLGLFLAPI PFN::glGenVertexArrays glGenVertexArrays;
+AXLGLFLAPI PFN::glIsVertexArray glIsVertexArray;
 // GL_VERSION_3_0
 
 // GL_VERSION_3_1
@@ -1403,18 +1403,18 @@ typedef void (APIENTRYP glGetActiveUniformBlockiv) (GLuint program, GLuint unifo
 typedef void (APIENTRYP glGetActiveUniformBlockName) (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName);
 typedef void (APIENTRYP glUniformBlockBinding) (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding);
 }
-AXLGLFL_DECL_GLPROC(glDrawArraysInstanced);
-AXLGLFL_DECL_GLPROC(glDrawElementsInstanced);
-AXLGLFL_DECL_GLPROC(glTexBuffer);
-AXLGLFL_DECL_GLPROC(glPrimitiveRestartIndex);
-AXLGLFL_DECL_GLPROC(glCopyBufferSubData);
-AXLGLFL_DECL_GLPROC(glGetUniformIndices);
-AXLGLFL_DECL_GLPROC(glGetActiveUniformsiv);
-AXLGLFL_DECL_GLPROC(glGetActiveUniformName);
-AXLGLFL_DECL_GLPROC(glGetUniformBlockIndex);
-AXLGLFL_DECL_GLPROC(glGetActiveUniformBlockiv);
-AXLGLFL_DECL_GLPROC(glGetActiveUniformBlockName);
-AXLGLFL_DECL_GLPROC(glUniformBlockBinding);
+AXLGLFLAPI PFN::glDrawArraysInstanced glDrawArraysInstanced;
+AXLGLFLAPI PFN::glDrawElementsInstanced glDrawElementsInstanced;
+AXLGLFLAPI PFN::glTexBuffer glTexBuffer;
+AXLGLFLAPI PFN::glPrimitiveRestartIndex glPrimitiveRestartIndex;
+AXLGLFLAPI PFN::glCopyBufferSubData glCopyBufferSubData;
+AXLGLFLAPI PFN::glGetUniformIndices glGetUniformIndices;
+AXLGLFLAPI PFN::glGetActiveUniformsiv glGetActiveUniformsiv;
+AXLGLFLAPI PFN::glGetActiveUniformName glGetActiveUniformName;
+AXLGLFLAPI PFN::glGetUniformBlockIndex glGetUniformBlockIndex;
+AXLGLFLAPI PFN::glGetActiveUniformBlockiv glGetActiveUniformBlockiv;
+AXLGLFLAPI PFN::glGetActiveUniformBlockName glGetActiveUniformBlockName;
+AXLGLFLAPI PFN::glUniformBlockBinding glUniformBlockBinding;
 // GL_VERSION_3_1
 
 // GL_VERSION_3_2
@@ -1504,25 +1504,25 @@ typedef void (APIENTRYP glTexImage3DMultisample) (GLenum target, GLsizei samples
 typedef void (APIENTRYP glGetMultisamplefv) (GLenum pname, GLuint index, GLfloat *val);
 typedef void (APIENTRYP glSampleMaski) (GLuint maskNumber, GLbitfield mask);
 }
-AXLGLFL_DECL_GLPROC(glDrawElementsBaseVertex);
-AXLGLFL_DECL_GLPROC(glDrawRangeElementsBaseVertex);
-AXLGLFL_DECL_GLPROC(glDrawElementsInstancedBaseVertex);
-AXLGLFL_DECL_GLPROC(glMultiDrawElementsBaseVertex);
-AXLGLFL_DECL_GLPROC(glProvokingVertex);
-AXLGLFL_DECL_GLPROC(glFenceSync);
-AXLGLFL_DECL_GLPROC(glIsSync);
-AXLGLFL_DECL_GLPROC(glDeleteSync);
-AXLGLFL_DECL_GLPROC(glClientWaitSync);
-AXLGLFL_DECL_GLPROC(glWaitSync);
-AXLGLFL_DECL_GLPROC(glGetInteger64v);
-AXLGLFL_DECL_GLPROC(glGetSynciv);
-AXLGLFL_DECL_GLPROC(glGetInteger64i_v);
-AXLGLFL_DECL_GLPROC(glGetBufferParameteri64v);
-AXLGLFL_DECL_GLPROC(glFramebufferTexture);
-AXLGLFL_DECL_GLPROC(glTexImage2DMultisample);
-AXLGLFL_DECL_GLPROC(glTexImage3DMultisample);
-AXLGLFL_DECL_GLPROC(glGetMultisamplefv);
-AXLGLFL_DECL_GLPROC(glSampleMaski);
+AXLGLFLAPI PFN::glDrawElementsBaseVertex glDrawElementsBaseVertex;
+AXLGLFLAPI PFN::glDrawRangeElementsBaseVertex glDrawRangeElementsBaseVertex;
+AXLGLFLAPI PFN::glDrawElementsInstancedBaseVertex glDrawElementsInstancedBaseVertex;
+AXLGLFLAPI PFN::glMultiDrawElementsBaseVertex glMultiDrawElementsBaseVertex;
+AXLGLFLAPI PFN::glProvokingVertex glProvokingVertex;
+AXLGLFLAPI PFN::glFenceSync glFenceSync;
+AXLGLFLAPI PFN::glIsSync glIsSync;
+AXLGLFLAPI PFN::glDeleteSync glDeleteSync;
+AXLGLFLAPI PFN::glClientWaitSync glClientWaitSync;
+AXLGLFLAPI PFN::glWaitSync glWaitSync;
+AXLGLFLAPI PFN::glGetInteger64v glGetInteger64v;
+AXLGLFLAPI PFN::glGetSynciv glGetSynciv;
+AXLGLFLAPI PFN::glGetInteger64i_v glGetInteger64i_v;
+AXLGLFLAPI PFN::glGetBufferParameteri64v glGetBufferParameteri64v;
+AXLGLFLAPI PFN::glFramebufferTexture glFramebufferTexture;
+AXLGLFLAPI PFN::glTexImage2DMultisample glTexImage2DMultisample;
+AXLGLFLAPI PFN::glTexImage3DMultisample glTexImage3DMultisample;
+AXLGLFLAPI PFN::glGetMultisamplefv glGetMultisamplefv;
+AXLGLFLAPI PFN::glSampleMaski glSampleMaski;
 // GL_VERSION_3_2
 
 // GL_VERSION_3_3
@@ -1573,34 +1573,34 @@ typedef void (APIENTRYP glVertexAttribP3uiv) (GLuint index, GLenum type, GLboole
 typedef void (APIENTRYP glVertexAttribP4ui) (GLuint index, GLenum type, GLboolean normalized, GLuint value);
 typedef void (APIENTRYP glVertexAttribP4uiv) (GLuint index, GLenum type, GLboolean normalized, const GLuint *value);
 }
-AXLGLFL_DECL_GLPROC(glBindFragDataLocationIndexed);
-AXLGLFL_DECL_GLPROC(glGetFragDataIndex);
-AXLGLFL_DECL_GLPROC(glGenSamplers);
-AXLGLFL_DECL_GLPROC(glDeleteSamplers);
-AXLGLFL_DECL_GLPROC(glIsSampler);
-AXLGLFL_DECL_GLPROC(glBindSampler);
-AXLGLFL_DECL_GLPROC(glSamplerParameteri);
-AXLGLFL_DECL_GLPROC(glSamplerParameteriv);
-AXLGLFL_DECL_GLPROC(glSamplerParameterf);
-AXLGLFL_DECL_GLPROC(glSamplerParameterfv);
-AXLGLFL_DECL_GLPROC(glSamplerParameterIiv);
-AXLGLFL_DECL_GLPROC(glSamplerParameterIuiv);
-AXLGLFL_DECL_GLPROC(glGetSamplerParameteriv);
-AXLGLFL_DECL_GLPROC(glGetSamplerParameterIiv);
-AXLGLFL_DECL_GLPROC(glGetSamplerParameterfv);
-AXLGLFL_DECL_GLPROC(glGetSamplerParameterIuiv);
-AXLGLFL_DECL_GLPROC(glQueryCounter);
-AXLGLFL_DECL_GLPROC(glGetQueryObjecti64v);
-AXLGLFL_DECL_GLPROC(glGetQueryObjectui64v);
-AXLGLFL_DECL_GLPROC(glVertexAttribDivisor);
-AXLGLFL_DECL_GLPROC(glVertexAttribP1ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribP1uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribP2ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribP2uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribP3ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribP3uiv);
-AXLGLFL_DECL_GLPROC(glVertexAttribP4ui);
-AXLGLFL_DECL_GLPROC(glVertexAttribP4uiv);
+AXLGLFLAPI PFN::glBindFragDataLocationIndexed glBindFragDataLocationIndexed;
+AXLGLFLAPI PFN::glGetFragDataIndex glGetFragDataIndex;
+AXLGLFLAPI PFN::glGenSamplers glGenSamplers;
+AXLGLFLAPI PFN::glDeleteSamplers glDeleteSamplers;
+AXLGLFLAPI PFN::glIsSampler glIsSampler;
+AXLGLFLAPI PFN::glBindSampler glBindSampler;
+AXLGLFLAPI PFN::glSamplerParameteri glSamplerParameteri;
+AXLGLFLAPI PFN::glSamplerParameteriv glSamplerParameteriv;
+AXLGLFLAPI PFN::glSamplerParameterf glSamplerParameterf;
+AXLGLFLAPI PFN::glSamplerParameterfv glSamplerParameterfv;
+AXLGLFLAPI PFN::glSamplerParameterIiv glSamplerParameterIiv;
+AXLGLFLAPI PFN::glSamplerParameterIuiv glSamplerParameterIuiv;
+AXLGLFLAPI PFN::glGetSamplerParameteriv glGetSamplerParameteriv;
+AXLGLFLAPI PFN::glGetSamplerParameterIiv glGetSamplerParameterIiv;
+AXLGLFLAPI PFN::glGetSamplerParameterfv glGetSamplerParameterfv;
+AXLGLFLAPI PFN::glGetSamplerParameterIuiv glGetSamplerParameterIuiv;
+AXLGLFLAPI PFN::glQueryCounter glQueryCounter;
+AXLGLFLAPI PFN::glGetQueryObjecti64v glGetQueryObjecti64v;
+AXLGLFLAPI PFN::glGetQueryObjectui64v glGetQueryObjectui64v;
+AXLGLFLAPI PFN::glVertexAttribDivisor glVertexAttribDivisor;
+AXLGLFLAPI PFN::glVertexAttribP1ui glVertexAttribP1ui;
+AXLGLFLAPI PFN::glVertexAttribP1uiv glVertexAttribP1uiv;
+AXLGLFLAPI PFN::glVertexAttribP2ui glVertexAttribP2ui;
+AXLGLFLAPI PFN::glVertexAttribP2uiv glVertexAttribP2uiv;
+AXLGLFLAPI PFN::glVertexAttribP3ui glVertexAttribP3ui;
+AXLGLFLAPI PFN::glVertexAttribP3uiv glVertexAttribP3uiv;
+AXLGLFLAPI PFN::glVertexAttribP4ui glVertexAttribP4ui;
+AXLGLFLAPI PFN::glVertexAttribP4uiv glVertexAttribP4uiv;
 // GL_VERSION_3_3
 
 } // namespace GL3
@@ -1734,52 +1734,52 @@ typedef void (APIENTRYP glBeginQueryIndexed) (GLenum target, GLuint index, GLuin
 typedef void (APIENTRYP glEndQueryIndexed) (GLenum target, GLuint index);
 typedef void (APIENTRYP glGetQueryIndexediv) (GLenum target, GLuint index, GLenum pname, GLint *params);
 }
-AXLGLFL_DECL_GLPROC(glMinSampleShading);
-AXLGLFL_DECL_GLPROC(glBlendEquationi);
-AXLGLFL_DECL_GLPROC(glBlendEquationSeparatei);
-AXLGLFL_DECL_GLPROC(glBlendFunci);
-AXLGLFL_DECL_GLPROC(glBlendFuncSeparatei);
-AXLGLFL_DECL_GLPROC(glDrawArraysIndirect);
-AXLGLFL_DECL_GLPROC(glDrawElementsIndirect);
-AXLGLFL_DECL_GLPROC(glUniform1d);
-AXLGLFL_DECL_GLPROC(glUniform2d);
-AXLGLFL_DECL_GLPROC(glUniform3d);
-AXLGLFL_DECL_GLPROC(glUniform4d);
-AXLGLFL_DECL_GLPROC(glUniform1dv);
-AXLGLFL_DECL_GLPROC(glUniform2dv);
-AXLGLFL_DECL_GLPROC(glUniform3dv);
-AXLGLFL_DECL_GLPROC(glUniform4dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix2dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix3dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix4dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix2x3dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix2x4dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix3x2dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix3x4dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix4x2dv);
-AXLGLFL_DECL_GLPROC(glUniformMatrix4x3dv);
-AXLGLFL_DECL_GLPROC(glGetUniformdv);
-AXLGLFL_DECL_GLPROC(glGetSubroutineUniformLocation);
-AXLGLFL_DECL_GLPROC(glGetSubroutineIndex);
-AXLGLFL_DECL_GLPROC(glGetActiveSubroutineUniformiv);
-AXLGLFL_DECL_GLPROC(glGetActiveSubroutineUniformName);
-AXLGLFL_DECL_GLPROC(glGetActiveSubroutineName);
-AXLGLFL_DECL_GLPROC(glUniformSubroutinesuiv);
-AXLGLFL_DECL_GLPROC(glGetUniformSubroutineuiv);
-AXLGLFL_DECL_GLPROC(glGetProgramStageiv);
-AXLGLFL_DECL_GLPROC(glPatchParameteri);
-AXLGLFL_DECL_GLPROC(glPatchParameterfv);
-AXLGLFL_DECL_GLPROC(glBindTransformFeedback);
-AXLGLFL_DECL_GLPROC(glDeleteTransformFeedbacks);
-AXLGLFL_DECL_GLPROC(glGenTransformFeedbacks);
-AXLGLFL_DECL_GLPROC(glIsTransformFeedback);
-AXLGLFL_DECL_GLPROC(glPauseTransformFeedback);
-AXLGLFL_DECL_GLPROC(glResumeTransformFeedback);
-AXLGLFL_DECL_GLPROC(glDrawTransformFeedback);
-AXLGLFL_DECL_GLPROC(glDrawTransformFeedbackStream);
-AXLGLFL_DECL_GLPROC(glBeginQueryIndexed);
-AXLGLFL_DECL_GLPROC(glEndQueryIndexed);
-AXLGLFL_DECL_GLPROC(glGetQueryIndexediv);
+AXLGLFLAPI PFN::glMinSampleShading glMinSampleShading;
+AXLGLFLAPI PFN::glBlendEquationi glBlendEquationi;
+AXLGLFLAPI PFN::glBlendEquationSeparatei glBlendEquationSeparatei;
+AXLGLFLAPI PFN::glBlendFunci glBlendFunci;
+AXLGLFLAPI PFN::glBlendFuncSeparatei glBlendFuncSeparatei;
+AXLGLFLAPI PFN::glDrawArraysIndirect glDrawArraysIndirect;
+AXLGLFLAPI PFN::glDrawElementsIndirect glDrawElementsIndirect;
+AXLGLFLAPI PFN::glUniform1d glUniform1d;
+AXLGLFLAPI PFN::glUniform2d glUniform2d;
+AXLGLFLAPI PFN::glUniform3d glUniform3d;
+AXLGLFLAPI PFN::glUniform4d glUniform4d;
+AXLGLFLAPI PFN::glUniform1dv glUniform1dv;
+AXLGLFLAPI PFN::glUniform2dv glUniform2dv;
+AXLGLFLAPI PFN::glUniform3dv glUniform3dv;
+AXLGLFLAPI PFN::glUniform4dv glUniform4dv;
+AXLGLFLAPI PFN::glUniformMatrix2dv glUniformMatrix2dv;
+AXLGLFLAPI PFN::glUniformMatrix3dv glUniformMatrix3dv;
+AXLGLFLAPI PFN::glUniformMatrix4dv glUniformMatrix4dv;
+AXLGLFLAPI PFN::glUniformMatrix2x3dv glUniformMatrix2x3dv;
+AXLGLFLAPI PFN::glUniformMatrix2x4dv glUniformMatrix2x4dv;
+AXLGLFLAPI PFN::glUniformMatrix3x2dv glUniformMatrix3x2dv;
+AXLGLFLAPI PFN::glUniformMatrix3x4dv glUniformMatrix3x4dv;
+AXLGLFLAPI PFN::glUniformMatrix4x2dv glUniformMatrix4x2dv;
+AXLGLFLAPI PFN::glUniformMatrix4x3dv glUniformMatrix4x3dv;
+AXLGLFLAPI PFN::glGetUniformdv glGetUniformdv;
+AXLGLFLAPI PFN::glGetSubroutineUniformLocation glGetSubroutineUniformLocation;
+AXLGLFLAPI PFN::glGetSubroutineIndex glGetSubroutineIndex;
+AXLGLFLAPI PFN::glGetActiveSubroutineUniformiv glGetActiveSubroutineUniformiv;
+AXLGLFLAPI PFN::glGetActiveSubroutineUniformName glGetActiveSubroutineUniformName;
+AXLGLFLAPI PFN::glGetActiveSubroutineName glGetActiveSubroutineName;
+AXLGLFLAPI PFN::glUniformSubroutinesuiv glUniformSubroutinesuiv;
+AXLGLFLAPI PFN::glGetUniformSubroutineuiv glGetUniformSubroutineuiv;
+AXLGLFLAPI PFN::glGetProgramStageiv glGetProgramStageiv;
+AXLGLFLAPI PFN::glPatchParameteri glPatchParameteri;
+AXLGLFLAPI PFN::glPatchParameterfv glPatchParameterfv;
+AXLGLFLAPI PFN::glBindTransformFeedback glBindTransformFeedback;
+AXLGLFLAPI PFN::glDeleteTransformFeedbacks glDeleteTransformFeedbacks;
+AXLGLFLAPI PFN::glGenTransformFeedbacks glGenTransformFeedbacks;
+AXLGLFLAPI PFN::glIsTransformFeedback glIsTransformFeedback;
+AXLGLFLAPI PFN::glPauseTransformFeedback glPauseTransformFeedback;
+AXLGLFLAPI PFN::glResumeTransformFeedback glResumeTransformFeedback;
+AXLGLFLAPI PFN::glDrawTransformFeedback glDrawTransformFeedback;
+AXLGLFLAPI PFN::glDrawTransformFeedbackStream glDrawTransformFeedbackStream;
+AXLGLFLAPI PFN::glBeginQueryIndexed glBeginQueryIndexed;
+AXLGLFLAPI PFN::glEndQueryIndexed glEndQueryIndexed;
+AXLGLFLAPI PFN::glGetQueryIndexediv glGetQueryIndexediv;
 // GL_VERSION_4_0
 
 // GL_VERSION_4_1
@@ -1909,94 +1909,94 @@ typedef void (APIENTRYP glDepthRangeIndexed) (GLuint index, GLdouble n, GLdouble
 typedef void (APIENTRYP glGetFloati_v) (GLenum target, GLuint index, GLfloat *data);
 typedef void (APIENTRYP glGetDoublei_v) (GLenum target, GLuint index, GLdouble *data);
 }
-AXLGLFL_DECL_GLPROC(glReleaseShaderCompiler);
-AXLGLFL_DECL_GLPROC(glShaderBinary);
-AXLGLFL_DECL_GLPROC(glGetShaderPrecisionFormat);
-AXLGLFL_DECL_GLPROC(glDepthRangef);
-AXLGLFL_DECL_GLPROC(glClearDepthf);
-AXLGLFL_DECL_GLPROC(glGetProgramBinary);
-AXLGLFL_DECL_GLPROC(glProgramBinary);
-AXLGLFL_DECL_GLPROC(glProgramParameteri);
-AXLGLFL_DECL_GLPROC(glUseProgramStages);
-AXLGLFL_DECL_GLPROC(glActiveShaderProgram);
-AXLGLFL_DECL_GLPROC(glCreateShaderProgramv);
-AXLGLFL_DECL_GLPROC(glBindProgramPipeline);
-AXLGLFL_DECL_GLPROC(glDeleteProgramPipelines);
-AXLGLFL_DECL_GLPROC(glGenProgramPipelines);
-AXLGLFL_DECL_GLPROC(glIsProgramPipeline);
-AXLGLFL_DECL_GLPROC(glGetProgramPipelineiv);
-AXLGLFL_DECL_GLPROC(glProgramUniform1i);
-AXLGLFL_DECL_GLPROC(glProgramUniform1iv);
-AXLGLFL_DECL_GLPROC(glProgramUniform1f);
-AXLGLFL_DECL_GLPROC(glProgramUniform1fv);
-AXLGLFL_DECL_GLPROC(glProgramUniform1d);
-AXLGLFL_DECL_GLPROC(glProgramUniform1dv);
-AXLGLFL_DECL_GLPROC(glProgramUniform1ui);
-AXLGLFL_DECL_GLPROC(glProgramUniform1uiv);
-AXLGLFL_DECL_GLPROC(glProgramUniform2i);
-AXLGLFL_DECL_GLPROC(glProgramUniform2iv);
-AXLGLFL_DECL_GLPROC(glProgramUniform2f);
-AXLGLFL_DECL_GLPROC(glProgramUniform2fv);
-AXLGLFL_DECL_GLPROC(glProgramUniform2d);
-AXLGLFL_DECL_GLPROC(glProgramUniform2dv);
-AXLGLFL_DECL_GLPROC(glProgramUniform2ui);
-AXLGLFL_DECL_GLPROC(glProgramUniform2uiv);
-AXLGLFL_DECL_GLPROC(glProgramUniform3i);
-AXLGLFL_DECL_GLPROC(glProgramUniform3iv);
-AXLGLFL_DECL_GLPROC(glProgramUniform3f);
-AXLGLFL_DECL_GLPROC(glProgramUniform3fv);
-AXLGLFL_DECL_GLPROC(glProgramUniform3d);
-AXLGLFL_DECL_GLPROC(glProgramUniform3dv);
-AXLGLFL_DECL_GLPROC(glProgramUniform3ui);
-AXLGLFL_DECL_GLPROC(glProgramUniform3uiv);
-AXLGLFL_DECL_GLPROC(glProgramUniform4i);
-AXLGLFL_DECL_GLPROC(glProgramUniform4iv);
-AXLGLFL_DECL_GLPROC(glProgramUniform4f);
-AXLGLFL_DECL_GLPROC(glProgramUniform4fv);
-AXLGLFL_DECL_GLPROC(glProgramUniform4d);
-AXLGLFL_DECL_GLPROC(glProgramUniform4dv);
-AXLGLFL_DECL_GLPROC(glProgramUniform4ui);
-AXLGLFL_DECL_GLPROC(glProgramUniform4uiv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x3fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x2fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x4fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x2fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x4fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x3fv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x3dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x2dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x4dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x2dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x4dv);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x3dv);
-AXLGLFL_DECL_GLPROC(glValidateProgramPipeline);
-AXLGLFL_DECL_GLPROC(glGetProgramPipelineInfoLog);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1d);
-AXLGLFL_DECL_GLPROC(glVertexAttribL2d);
-AXLGLFL_DECL_GLPROC(glVertexAttribL3d);
-AXLGLFL_DECL_GLPROC(glVertexAttribL4d);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1dv);
-AXLGLFL_DECL_GLPROC(glVertexAttribL2dv);
-AXLGLFL_DECL_GLPROC(glVertexAttribL3dv);
-AXLGLFL_DECL_GLPROC(glVertexAttribL4dv);
-AXLGLFL_DECL_GLPROC(glVertexAttribLPointer);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribLdv);
-AXLGLFL_DECL_GLPROC(glViewportArrayv);
-AXLGLFL_DECL_GLPROC(glViewportIndexedf);
-AXLGLFL_DECL_GLPROC(glViewportIndexedfv);
-AXLGLFL_DECL_GLPROC(glScissorArrayv);
-AXLGLFL_DECL_GLPROC(glScissorIndexed);
-AXLGLFL_DECL_GLPROC(glScissorIndexedv);
-AXLGLFL_DECL_GLPROC(glDepthRangeArrayv);
-AXLGLFL_DECL_GLPROC(glDepthRangeIndexed);
-AXLGLFL_DECL_GLPROC(glGetFloati_v);
-AXLGLFL_DECL_GLPROC(glGetDoublei_v);
+AXLGLFLAPI PFN::glReleaseShaderCompiler glReleaseShaderCompiler;
+AXLGLFLAPI PFN::glShaderBinary glShaderBinary;
+AXLGLFLAPI PFN::glGetShaderPrecisionFormat glGetShaderPrecisionFormat;
+AXLGLFLAPI PFN::glDepthRangef glDepthRangef;
+AXLGLFLAPI PFN::glClearDepthf glClearDepthf;
+AXLGLFLAPI PFN::glGetProgramBinary glGetProgramBinary;
+AXLGLFLAPI PFN::glProgramBinary glProgramBinary;
+AXLGLFLAPI PFN::glProgramParameteri glProgramParameteri;
+AXLGLFLAPI PFN::glUseProgramStages glUseProgramStages;
+AXLGLFLAPI PFN::glActiveShaderProgram glActiveShaderProgram;
+AXLGLFLAPI PFN::glCreateShaderProgramv glCreateShaderProgramv;
+AXLGLFLAPI PFN::glBindProgramPipeline glBindProgramPipeline;
+AXLGLFLAPI PFN::glDeleteProgramPipelines glDeleteProgramPipelines;
+AXLGLFLAPI PFN::glGenProgramPipelines glGenProgramPipelines;
+AXLGLFLAPI PFN::glIsProgramPipeline glIsProgramPipeline;
+AXLGLFLAPI PFN::glGetProgramPipelineiv glGetProgramPipelineiv;
+AXLGLFLAPI PFN::glProgramUniform1i glProgramUniform1i;
+AXLGLFLAPI PFN::glProgramUniform1iv glProgramUniform1iv;
+AXLGLFLAPI PFN::glProgramUniform1f glProgramUniform1f;
+AXLGLFLAPI PFN::glProgramUniform1fv glProgramUniform1fv;
+AXLGLFLAPI PFN::glProgramUniform1d glProgramUniform1d;
+AXLGLFLAPI PFN::glProgramUniform1dv glProgramUniform1dv;
+AXLGLFLAPI PFN::glProgramUniform1ui glProgramUniform1ui;
+AXLGLFLAPI PFN::glProgramUniform1uiv glProgramUniform1uiv;
+AXLGLFLAPI PFN::glProgramUniform2i glProgramUniform2i;
+AXLGLFLAPI PFN::glProgramUniform2iv glProgramUniform2iv;
+AXLGLFLAPI PFN::glProgramUniform2f glProgramUniform2f;
+AXLGLFLAPI PFN::glProgramUniform2fv glProgramUniform2fv;
+AXLGLFLAPI PFN::glProgramUniform2d glProgramUniform2d;
+AXLGLFLAPI PFN::glProgramUniform2dv glProgramUniform2dv;
+AXLGLFLAPI PFN::glProgramUniform2ui glProgramUniform2ui;
+AXLGLFLAPI PFN::glProgramUniform2uiv glProgramUniform2uiv;
+AXLGLFLAPI PFN::glProgramUniform3i glProgramUniform3i;
+AXLGLFLAPI PFN::glProgramUniform3iv glProgramUniform3iv;
+AXLGLFLAPI PFN::glProgramUniform3f glProgramUniform3f;
+AXLGLFLAPI PFN::glProgramUniform3fv glProgramUniform3fv;
+AXLGLFLAPI PFN::glProgramUniform3d glProgramUniform3d;
+AXLGLFLAPI PFN::glProgramUniform3dv glProgramUniform3dv;
+AXLGLFLAPI PFN::glProgramUniform3ui glProgramUniform3ui;
+AXLGLFLAPI PFN::glProgramUniform3uiv glProgramUniform3uiv;
+AXLGLFLAPI PFN::glProgramUniform4i glProgramUniform4i;
+AXLGLFLAPI PFN::glProgramUniform4iv glProgramUniform4iv;
+AXLGLFLAPI PFN::glProgramUniform4f glProgramUniform4f;
+AXLGLFLAPI PFN::glProgramUniform4fv glProgramUniform4fv;
+AXLGLFLAPI PFN::glProgramUniform4d glProgramUniform4d;
+AXLGLFLAPI PFN::glProgramUniform4dv glProgramUniform4dv;
+AXLGLFLAPI PFN::glProgramUniform4ui glProgramUniform4ui;
+AXLGLFLAPI PFN::glProgramUniform4uiv glProgramUniform4uiv;
+AXLGLFLAPI PFN::glProgramUniformMatrix2fv glProgramUniformMatrix2fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix3fv glProgramUniformMatrix3fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix4fv glProgramUniformMatrix4fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix2dv glProgramUniformMatrix2dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix3dv glProgramUniformMatrix3dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix4dv glProgramUniformMatrix4dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x3fv glProgramUniformMatrix2x3fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x2fv glProgramUniformMatrix3x2fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x4fv glProgramUniformMatrix2x4fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x2fv glProgramUniformMatrix4x2fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x4fv glProgramUniformMatrix3x4fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x3fv glProgramUniformMatrix4x3fv;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x3dv glProgramUniformMatrix2x3dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x2dv glProgramUniformMatrix3x2dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x4dv glProgramUniformMatrix2x4dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x2dv glProgramUniformMatrix4x2dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x4dv glProgramUniformMatrix3x4dv;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x3dv glProgramUniformMatrix4x3dv;
+AXLGLFLAPI PFN::glValidateProgramPipeline glValidateProgramPipeline;
+AXLGLFLAPI PFN::glGetProgramPipelineInfoLog glGetProgramPipelineInfoLog;
+AXLGLFLAPI PFN::glVertexAttribL1d glVertexAttribL1d;
+AXLGLFLAPI PFN::glVertexAttribL2d glVertexAttribL2d;
+AXLGLFLAPI PFN::glVertexAttribL3d glVertexAttribL3d;
+AXLGLFLAPI PFN::glVertexAttribL4d glVertexAttribL4d;
+AXLGLFLAPI PFN::glVertexAttribL1dv glVertexAttribL1dv;
+AXLGLFLAPI PFN::glVertexAttribL2dv glVertexAttribL2dv;
+AXLGLFLAPI PFN::glVertexAttribL3dv glVertexAttribL3dv;
+AXLGLFLAPI PFN::glVertexAttribL4dv glVertexAttribL4dv;
+AXLGLFLAPI PFN::glVertexAttribLPointer glVertexAttribLPointer;
+AXLGLFLAPI PFN::glGetVertexAttribLdv glGetVertexAttribLdv;
+AXLGLFLAPI PFN::glViewportArrayv glViewportArrayv;
+AXLGLFLAPI PFN::glViewportIndexedf glViewportIndexedf;
+AXLGLFLAPI PFN::glViewportIndexedfv glViewportIndexedfv;
+AXLGLFLAPI PFN::glScissorArrayv glScissorArrayv;
+AXLGLFLAPI PFN::glScissorIndexed glScissorIndexed;
+AXLGLFLAPI PFN::glScissorIndexedv glScissorIndexedv;
+AXLGLFLAPI PFN::glDepthRangeArrayv glDepthRangeArrayv;
+AXLGLFLAPI PFN::glDepthRangeIndexed glDepthRangeIndexed;
+AXLGLFLAPI PFN::glGetFloati_v glGetFloati_v;
+AXLGLFLAPI PFN::glGetDoublei_v glGetDoublei_v;
 // GL_VERSION_4_1
 
 // GL_VERSION_4_2
@@ -2127,18 +2127,18 @@ typedef void (APIENTRYP glTexStorage3D) (GLenum target, GLsizei levels, GLenum i
 typedef void (APIENTRYP glDrawTransformFeedbackInstanced) (GLenum mode, GLuint id, GLsizei instancecount);
 typedef void (APIENTRYP glDrawTransformFeedbackStreamInstanced) (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount);
 }
-AXLGLFL_DECL_GLPROC(glDrawArraysInstancedBaseInstance);
-AXLGLFL_DECL_GLPROC(glDrawElementsInstancedBaseInstance);
-AXLGLFL_DECL_GLPROC(glDrawElementsInstancedBaseVertexBaseInstance);
-AXLGLFL_DECL_GLPROC(glGetInternalformativ);
-AXLGLFL_DECL_GLPROC(glGetActiveAtomicCounterBufferiv);
-AXLGLFL_DECL_GLPROC(glBindImageTexture);
-AXLGLFL_DECL_GLPROC(glMemoryBarrier);
-AXLGLFL_DECL_GLPROC(glTexStorage1D);
-AXLGLFL_DECL_GLPROC(glTexStorage2D);
-AXLGLFL_DECL_GLPROC(glTexStorage3D);
-AXLGLFL_DECL_GLPROC(glDrawTransformFeedbackInstanced);
-AXLGLFL_DECL_GLPROC(glDrawTransformFeedbackStreamInstanced);
+AXLGLFLAPI PFN::glDrawArraysInstancedBaseInstance glDrawArraysInstancedBaseInstance;
+AXLGLFLAPI PFN::glDrawElementsInstancedBaseInstance glDrawElementsInstancedBaseInstance;
+AXLGLFLAPI PFN::glDrawElementsInstancedBaseVertexBaseInstance glDrawElementsInstancedBaseVertexBaseInstance;
+AXLGLFLAPI PFN::glGetInternalformativ glGetInternalformativ;
+AXLGLFLAPI PFN::glGetActiveAtomicCounterBufferiv glGetActiveAtomicCounterBufferiv;
+AXLGLFLAPI PFN::glBindImageTexture glBindImageTexture;
+AXLGLFLAPI PFN::glMemoryBarrier glMemoryBarrier;
+AXLGLFLAPI PFN::glTexStorage1D glTexStorage1D;
+AXLGLFLAPI PFN::glTexStorage2D glTexStorage2D;
+AXLGLFLAPI PFN::glTexStorage3D glTexStorage3D;
+AXLGLFLAPI PFN::glDrawTransformFeedbackInstanced glDrawTransformFeedbackInstanced;
+AXLGLFLAPI PFN::glDrawTransformFeedbackStreamInstanced glDrawTransformFeedbackStreamInstanced;
 // GL_VERSION_4_2
 
 // GL_VERSION_4_3
@@ -2447,49 +2447,49 @@ typedef void (APIENTRYP glGetObjectLabel) (GLenum identifier, GLuint name, GLsiz
 typedef void (APIENTRYP glObjectPtrLabel) (const void *ptr, GLsizei length, const GLchar *label);
 typedef void (APIENTRYP glGetObjectPtrLabel) (const void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
 }
-AXLGLFL_DECL_GLPROC(glClearBufferData);
-AXLGLFL_DECL_GLPROC(glClearBufferSubData);
-AXLGLFL_DECL_GLPROC(glDispatchCompute);
-AXLGLFL_DECL_GLPROC(glDispatchComputeIndirect);
-AXLGLFL_DECL_GLPROC(glCopyImageSubData);
-AXLGLFL_DECL_GLPROC(glFramebufferParameteri);
-AXLGLFL_DECL_GLPROC(glGetFramebufferParameteriv);
-AXLGLFL_DECL_GLPROC(glGetInternalformati64v);
-AXLGLFL_DECL_GLPROC(glInvalidateTexSubImage);
-AXLGLFL_DECL_GLPROC(glInvalidateTexImage);
-AXLGLFL_DECL_GLPROC(glInvalidateBufferSubData);
-AXLGLFL_DECL_GLPROC(glInvalidateBufferData);
-AXLGLFL_DECL_GLPROC(glInvalidateFramebuffer);
-AXLGLFL_DECL_GLPROC(glInvalidateSubFramebuffer);
-AXLGLFL_DECL_GLPROC(glMultiDrawArraysIndirect);
-AXLGLFL_DECL_GLPROC(glMultiDrawElementsIndirect);
-AXLGLFL_DECL_GLPROC(glGetProgramInterfaceiv);
-AXLGLFL_DECL_GLPROC(glGetProgramResourceIndex);
-AXLGLFL_DECL_GLPROC(glGetProgramResourceName);
-AXLGLFL_DECL_GLPROC(glGetProgramResourceiv);
-AXLGLFL_DECL_GLPROC(glGetProgramResourceLocation);
-AXLGLFL_DECL_GLPROC(glGetProgramResourceLocationIndex);
-AXLGLFL_DECL_GLPROC(glShaderStorageBlockBinding);
-AXLGLFL_DECL_GLPROC(glTexBufferRange);
-AXLGLFL_DECL_GLPROC(glTexStorage2DMultisample);
-AXLGLFL_DECL_GLPROC(glTexStorage3DMultisample);
-AXLGLFL_DECL_GLPROC(glTextureView);
-AXLGLFL_DECL_GLPROC(glBindVertexBuffer);
-AXLGLFL_DECL_GLPROC(glVertexAttribFormat);
-AXLGLFL_DECL_GLPROC(glVertexAttribIFormat);
-AXLGLFL_DECL_GLPROC(glVertexAttribLFormat);
-AXLGLFL_DECL_GLPROC(glVertexAttribBinding);
-AXLGLFL_DECL_GLPROC(glVertexBindingDivisor);
-AXLGLFL_DECL_GLPROC(glDebugMessageControl);
-AXLGLFL_DECL_GLPROC(glDebugMessageInsert);
-AXLGLFL_DECL_GLPROC(glDebugMessageCallback);
-AXLGLFL_DECL_GLPROC(glGetDebugMessageLog);
-AXLGLFL_DECL_GLPROC(glPushDebugGroup);
-AXLGLFL_DECL_GLPROC(glPopDebugGroup);
-AXLGLFL_DECL_GLPROC(glObjectLabel);
-AXLGLFL_DECL_GLPROC(glGetObjectLabel);
-AXLGLFL_DECL_GLPROC(glObjectPtrLabel);
-AXLGLFL_DECL_GLPROC(glGetObjectPtrLabel);
+AXLGLFLAPI PFN::glClearBufferData glClearBufferData;
+AXLGLFLAPI PFN::glClearBufferSubData glClearBufferSubData;
+AXLGLFLAPI PFN::glDispatchCompute glDispatchCompute;
+AXLGLFLAPI PFN::glDispatchComputeIndirect glDispatchComputeIndirect;
+AXLGLFLAPI PFN::glCopyImageSubData glCopyImageSubData;
+AXLGLFLAPI PFN::glFramebufferParameteri glFramebufferParameteri;
+AXLGLFLAPI PFN::glGetFramebufferParameteriv glGetFramebufferParameteriv;
+AXLGLFLAPI PFN::glGetInternalformati64v glGetInternalformati64v;
+AXLGLFLAPI PFN::glInvalidateTexSubImage glInvalidateTexSubImage;
+AXLGLFLAPI PFN::glInvalidateTexImage glInvalidateTexImage;
+AXLGLFLAPI PFN::glInvalidateBufferSubData glInvalidateBufferSubData;
+AXLGLFLAPI PFN::glInvalidateBufferData glInvalidateBufferData;
+AXLGLFLAPI PFN::glInvalidateFramebuffer glInvalidateFramebuffer;
+AXLGLFLAPI PFN::glInvalidateSubFramebuffer glInvalidateSubFramebuffer;
+AXLGLFLAPI PFN::glMultiDrawArraysIndirect glMultiDrawArraysIndirect;
+AXLGLFLAPI PFN::glMultiDrawElementsIndirect glMultiDrawElementsIndirect;
+AXLGLFLAPI PFN::glGetProgramInterfaceiv glGetProgramInterfaceiv;
+AXLGLFLAPI PFN::glGetProgramResourceIndex glGetProgramResourceIndex;
+AXLGLFLAPI PFN::glGetProgramResourceName glGetProgramResourceName;
+AXLGLFLAPI PFN::glGetProgramResourceiv glGetProgramResourceiv;
+AXLGLFLAPI PFN::glGetProgramResourceLocation glGetProgramResourceLocation;
+AXLGLFLAPI PFN::glGetProgramResourceLocationIndex glGetProgramResourceLocationIndex;
+AXLGLFLAPI PFN::glShaderStorageBlockBinding glShaderStorageBlockBinding;
+AXLGLFLAPI PFN::glTexBufferRange glTexBufferRange;
+AXLGLFLAPI PFN::glTexStorage2DMultisample glTexStorage2DMultisample;
+AXLGLFLAPI PFN::glTexStorage3DMultisample glTexStorage3DMultisample;
+AXLGLFLAPI PFN::glTextureView glTextureView;
+AXLGLFLAPI PFN::glBindVertexBuffer glBindVertexBuffer;
+AXLGLFLAPI PFN::glVertexAttribFormat glVertexAttribFormat;
+AXLGLFLAPI PFN::glVertexAttribIFormat glVertexAttribIFormat;
+AXLGLFLAPI PFN::glVertexAttribLFormat glVertexAttribLFormat;
+AXLGLFLAPI PFN::glVertexAttribBinding glVertexAttribBinding;
+AXLGLFLAPI PFN::glVertexBindingDivisor glVertexBindingDivisor;
+AXLGLFLAPI PFN::glDebugMessageControl glDebugMessageControl;
+AXLGLFLAPI PFN::glDebugMessageInsert glDebugMessageInsert;
+AXLGLFLAPI PFN::glDebugMessageCallback glDebugMessageCallback;
+AXLGLFLAPI PFN::glGetDebugMessageLog glGetDebugMessageLog;
+AXLGLFLAPI PFN::glPushDebugGroup glPushDebugGroup;
+AXLGLFLAPI PFN::glPopDebugGroup glPopDebugGroup;
+AXLGLFLAPI PFN::glObjectLabel glObjectLabel;
+AXLGLFLAPI PFN::glGetObjectLabel glGetObjectLabel;
+AXLGLFLAPI PFN::glObjectPtrLabel glObjectPtrLabel;
+AXLGLFLAPI PFN::glGetObjectPtrLabel glGetObjectPtrLabel;
 // GL_VERSION_4_3
 
 // GL_VERSION_4_4
@@ -2524,15 +2524,15 @@ typedef void (APIENTRYP glBindSamplers) (GLuint first, GLsizei count, const GLui
 typedef void (APIENTRYP glBindImageTextures) (GLuint first, GLsizei count, const GLuint *textures);
 typedef void (APIENTRYP glBindVertexBuffers) (GLuint first, GLsizei count, const GLuint *buffers, const GLintptr *offsets, const GLsizei *strides);
 }
-AXLGLFL_DECL_GLPROC(glBufferStorage);
-AXLGLFL_DECL_GLPROC(glClearTexImage);
-AXLGLFL_DECL_GLPROC(glClearTexSubImage);
-AXLGLFL_DECL_GLPROC(glBindBuffersBase);
-AXLGLFL_DECL_GLPROC(glBindBuffersRange);
-AXLGLFL_DECL_GLPROC(glBindTextures);
-AXLGLFL_DECL_GLPROC(glBindSamplers);
-AXLGLFL_DECL_GLPROC(glBindImageTextures);
-AXLGLFL_DECL_GLPROC(glBindVertexBuffers);
+AXLGLFLAPI PFN::glBufferStorage glBufferStorage;
+AXLGLFLAPI PFN::glClearTexImage glClearTexImage;
+AXLGLFLAPI PFN::glClearTexSubImage glClearTexSubImage;
+AXLGLFLAPI PFN::glBindBuffersBase glBindBuffersBase;
+AXLGLFLAPI PFN::glBindBuffersRange glBindBuffersRange;
+AXLGLFLAPI PFN::glBindTextures glBindTextures;
+AXLGLFLAPI PFN::glBindSamplers glBindSamplers;
+AXLGLFLAPI PFN::glBindImageTextures glBindImageTextures;
+AXLGLFLAPI PFN::glBindVertexBuffers glBindVertexBuffers;
 // GL_VERSION_4_4
 
 // GL_VERSION_4_5
@@ -2671,116 +2671,116 @@ typedef void (APIENTRYP glGetnUniformuiv) (GLuint program, GLint location, GLsiz
 typedef void (APIENTRYP glReadnPixels) (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void *data);
 typedef void (APIENTRYP glTextureBarrier) (void);
 }
-AXLGLFL_DECL_GLPROC(glClipControl);
-AXLGLFL_DECL_GLPROC(glCreateTransformFeedbacks);
-AXLGLFL_DECL_GLPROC(glTransformFeedbackBufferBase);
-AXLGLFL_DECL_GLPROC(glTransformFeedbackBufferRange);
-AXLGLFL_DECL_GLPROC(glGetTransformFeedbackiv);
-AXLGLFL_DECL_GLPROC(glGetTransformFeedbacki_v);
-AXLGLFL_DECL_GLPROC(glGetTransformFeedbacki64_v);
-AXLGLFL_DECL_GLPROC(glCreateBuffers);
-AXLGLFL_DECL_GLPROC(glNamedBufferStorage);
-AXLGLFL_DECL_GLPROC(glNamedBufferData);
-AXLGLFL_DECL_GLPROC(glNamedBufferSubData);
-AXLGLFL_DECL_GLPROC(glCopyNamedBufferSubData);
-AXLGLFL_DECL_GLPROC(glClearNamedBufferData);
-AXLGLFL_DECL_GLPROC(glClearNamedBufferSubData);
-AXLGLFL_DECL_GLPROC(glMapNamedBuffer);
-AXLGLFL_DECL_GLPROC(glMapNamedBufferRange);
-AXLGLFL_DECL_GLPROC(glUnmapNamedBuffer);
-AXLGLFL_DECL_GLPROC(glFlushMappedNamedBufferRange);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferParameteriv);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferParameteri64v);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferPointerv);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferSubData);
-AXLGLFL_DECL_GLPROC(glCreateFramebuffers);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferRenderbuffer);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferParameteri);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTexture);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTextureLayer);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferDrawBuffer);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferDrawBuffers);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferReadBuffer);
-AXLGLFL_DECL_GLPROC(glInvalidateNamedFramebufferData);
-AXLGLFL_DECL_GLPROC(glInvalidateNamedFramebufferSubData);
-AXLGLFL_DECL_GLPROC(glClearNamedFramebufferiv);
-AXLGLFL_DECL_GLPROC(glClearNamedFramebufferuiv);
-AXLGLFL_DECL_GLPROC(glClearNamedFramebufferfv);
-AXLGLFL_DECL_GLPROC(glClearNamedFramebufferfi);
-AXLGLFL_DECL_GLPROC(glBlitNamedFramebuffer);
-AXLGLFL_DECL_GLPROC(glCheckNamedFramebufferStatus);
-AXLGLFL_DECL_GLPROC(glGetNamedFramebufferParameteriv);
-AXLGLFL_DECL_GLPROC(glGetNamedFramebufferAttachmentParameteriv);
-AXLGLFL_DECL_GLPROC(glCreateRenderbuffers);
-AXLGLFL_DECL_GLPROC(glNamedRenderbufferStorage);
-AXLGLFL_DECL_GLPROC(glNamedRenderbufferStorageMultisample);
-AXLGLFL_DECL_GLPROC(glGetNamedRenderbufferParameteriv);
-AXLGLFL_DECL_GLPROC(glCreateTextures);
-AXLGLFL_DECL_GLPROC(glTextureBuffer);
-AXLGLFL_DECL_GLPROC(glTextureBufferRange);
-AXLGLFL_DECL_GLPROC(glTextureStorage1D);
-AXLGLFL_DECL_GLPROC(glTextureStorage2D);
-AXLGLFL_DECL_GLPROC(glTextureStorage3D);
-AXLGLFL_DECL_GLPROC(glTextureStorage2DMultisample);
-AXLGLFL_DECL_GLPROC(glTextureStorage3DMultisample);
-AXLGLFL_DECL_GLPROC(glTextureSubImage1D);
-AXLGLFL_DECL_GLPROC(glTextureSubImage2D);
-AXLGLFL_DECL_GLPROC(glTextureSubImage3D);
-AXLGLFL_DECL_GLPROC(glCompressedTextureSubImage1D);
-AXLGLFL_DECL_GLPROC(glCompressedTextureSubImage2D);
-AXLGLFL_DECL_GLPROC(glCompressedTextureSubImage3D);
-AXLGLFL_DECL_GLPROC(glCopyTextureSubImage1D);
-AXLGLFL_DECL_GLPROC(glCopyTextureSubImage2D);
-AXLGLFL_DECL_GLPROC(glCopyTextureSubImage3D);
-AXLGLFL_DECL_GLPROC(glTextureParameterf);
-AXLGLFL_DECL_GLPROC(glTextureParameterfv);
-AXLGLFL_DECL_GLPROC(glTextureParameteri);
-AXLGLFL_DECL_GLPROC(glTextureParameterIiv);
-AXLGLFL_DECL_GLPROC(glTextureParameterIuiv);
-AXLGLFL_DECL_GLPROC(glTextureParameteriv);
-AXLGLFL_DECL_GLPROC(glGenerateTextureMipmap);
-AXLGLFL_DECL_GLPROC(glBindTextureUnit);
-AXLGLFL_DECL_GLPROC(glGetTextureImage);
-AXLGLFL_DECL_GLPROC(glGetCompressedTextureImage);
-AXLGLFL_DECL_GLPROC(glGetTextureLevelParameterfv);
-AXLGLFL_DECL_GLPROC(glGetTextureLevelParameteriv);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterfv);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterIiv);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterIuiv);
-AXLGLFL_DECL_GLPROC(glGetTextureParameteriv);
-AXLGLFL_DECL_GLPROC(glCreateVertexArrays);
-AXLGLFL_DECL_GLPROC(glDisableVertexArrayAttrib);
-AXLGLFL_DECL_GLPROC(glEnableVertexArrayAttrib);
-AXLGLFL_DECL_GLPROC(glVertexArrayElementBuffer);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexBuffer);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexBuffers);
-AXLGLFL_DECL_GLPROC(glVertexArrayAttribBinding);
-AXLGLFL_DECL_GLPROC(glVertexArrayAttribFormat);
-AXLGLFL_DECL_GLPROC(glVertexArrayAttribIFormat);
-AXLGLFL_DECL_GLPROC(glVertexArrayAttribLFormat);
-AXLGLFL_DECL_GLPROC(glVertexArrayBindingDivisor);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayiv);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayIndexediv);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayIndexed64iv);
-AXLGLFL_DECL_GLPROC(glCreateSamplers);
-AXLGLFL_DECL_GLPROC(glCreateProgramPipelines);
-AXLGLFL_DECL_GLPROC(glCreateQueries);
-AXLGLFL_DECL_GLPROC(glGetQueryBufferObjecti64v);
-AXLGLFL_DECL_GLPROC(glGetQueryBufferObjectiv);
-AXLGLFL_DECL_GLPROC(glGetQueryBufferObjectui64v);
-AXLGLFL_DECL_GLPROC(glGetQueryBufferObjectuiv);
-AXLGLFL_DECL_GLPROC(glMemoryBarrierByRegion);
-AXLGLFL_DECL_GLPROC(glGetTextureSubImage);
-AXLGLFL_DECL_GLPROC(glGetCompressedTextureSubImage);
-AXLGLFL_DECL_GLPROC(glGetGraphicsResetStatus);
-AXLGLFL_DECL_GLPROC(glGetnCompressedTexImage);
-AXLGLFL_DECL_GLPROC(glGetnTexImage);
-AXLGLFL_DECL_GLPROC(glGetnUniformdv);
-AXLGLFL_DECL_GLPROC(glGetnUniformfv);
-AXLGLFL_DECL_GLPROC(glGetnUniformiv);
-AXLGLFL_DECL_GLPROC(glGetnUniformuiv);
-AXLGLFL_DECL_GLPROC(glReadnPixels);
-AXLGLFL_DECL_GLPROC(glTextureBarrier);
+AXLGLFLAPI PFN::glClipControl glClipControl;
+AXLGLFLAPI PFN::glCreateTransformFeedbacks glCreateTransformFeedbacks;
+AXLGLFLAPI PFN::glTransformFeedbackBufferBase glTransformFeedbackBufferBase;
+AXLGLFLAPI PFN::glTransformFeedbackBufferRange glTransformFeedbackBufferRange;
+AXLGLFLAPI PFN::glGetTransformFeedbackiv glGetTransformFeedbackiv;
+AXLGLFLAPI PFN::glGetTransformFeedbacki_v glGetTransformFeedbacki_v;
+AXLGLFLAPI PFN::glGetTransformFeedbacki64_v glGetTransformFeedbacki64_v;
+AXLGLFLAPI PFN::glCreateBuffers glCreateBuffers;
+AXLGLFLAPI PFN::glNamedBufferStorage glNamedBufferStorage;
+AXLGLFLAPI PFN::glNamedBufferData glNamedBufferData;
+AXLGLFLAPI PFN::glNamedBufferSubData glNamedBufferSubData;
+AXLGLFLAPI PFN::glCopyNamedBufferSubData glCopyNamedBufferSubData;
+AXLGLFLAPI PFN::glClearNamedBufferData glClearNamedBufferData;
+AXLGLFLAPI PFN::glClearNamedBufferSubData glClearNamedBufferSubData;
+AXLGLFLAPI PFN::glMapNamedBuffer glMapNamedBuffer;
+AXLGLFLAPI PFN::glMapNamedBufferRange glMapNamedBufferRange;
+AXLGLFLAPI PFN::glUnmapNamedBuffer glUnmapNamedBuffer;
+AXLGLFLAPI PFN::glFlushMappedNamedBufferRange glFlushMappedNamedBufferRange;
+AXLGLFLAPI PFN::glGetNamedBufferParameteriv glGetNamedBufferParameteriv;
+AXLGLFLAPI PFN::glGetNamedBufferParameteri64v glGetNamedBufferParameteri64v;
+AXLGLFLAPI PFN::glGetNamedBufferPointerv glGetNamedBufferPointerv;
+AXLGLFLAPI PFN::glGetNamedBufferSubData glGetNamedBufferSubData;
+AXLGLFLAPI PFN::glCreateFramebuffers glCreateFramebuffers;
+AXLGLFLAPI PFN::glNamedFramebufferRenderbuffer glNamedFramebufferRenderbuffer;
+AXLGLFLAPI PFN::glNamedFramebufferParameteri glNamedFramebufferParameteri;
+AXLGLFLAPI PFN::glNamedFramebufferTexture glNamedFramebufferTexture;
+AXLGLFLAPI PFN::glNamedFramebufferTextureLayer glNamedFramebufferTextureLayer;
+AXLGLFLAPI PFN::glNamedFramebufferDrawBuffer glNamedFramebufferDrawBuffer;
+AXLGLFLAPI PFN::glNamedFramebufferDrawBuffers glNamedFramebufferDrawBuffers;
+AXLGLFLAPI PFN::glNamedFramebufferReadBuffer glNamedFramebufferReadBuffer;
+AXLGLFLAPI PFN::glInvalidateNamedFramebufferData glInvalidateNamedFramebufferData;
+AXLGLFLAPI PFN::glInvalidateNamedFramebufferSubData glInvalidateNamedFramebufferSubData;
+AXLGLFLAPI PFN::glClearNamedFramebufferiv glClearNamedFramebufferiv;
+AXLGLFLAPI PFN::glClearNamedFramebufferuiv glClearNamedFramebufferuiv;
+AXLGLFLAPI PFN::glClearNamedFramebufferfv glClearNamedFramebufferfv;
+AXLGLFLAPI PFN::glClearNamedFramebufferfi glClearNamedFramebufferfi;
+AXLGLFLAPI PFN::glBlitNamedFramebuffer glBlitNamedFramebuffer;
+AXLGLFLAPI PFN::glCheckNamedFramebufferStatus glCheckNamedFramebufferStatus;
+AXLGLFLAPI PFN::glGetNamedFramebufferParameteriv glGetNamedFramebufferParameteriv;
+AXLGLFLAPI PFN::glGetNamedFramebufferAttachmentParameteriv glGetNamedFramebufferAttachmentParameteriv;
+AXLGLFLAPI PFN::glCreateRenderbuffers glCreateRenderbuffers;
+AXLGLFLAPI PFN::glNamedRenderbufferStorage glNamedRenderbufferStorage;
+AXLGLFLAPI PFN::glNamedRenderbufferStorageMultisample glNamedRenderbufferStorageMultisample;
+AXLGLFLAPI PFN::glGetNamedRenderbufferParameteriv glGetNamedRenderbufferParameteriv;
+AXLGLFLAPI PFN::glCreateTextures glCreateTextures;
+AXLGLFLAPI PFN::glTextureBuffer glTextureBuffer;
+AXLGLFLAPI PFN::glTextureBufferRange glTextureBufferRange;
+AXLGLFLAPI PFN::glTextureStorage1D glTextureStorage1D;
+AXLGLFLAPI PFN::glTextureStorage2D glTextureStorage2D;
+AXLGLFLAPI PFN::glTextureStorage3D glTextureStorage3D;
+AXLGLFLAPI PFN::glTextureStorage2DMultisample glTextureStorage2DMultisample;
+AXLGLFLAPI PFN::glTextureStorage3DMultisample glTextureStorage3DMultisample;
+AXLGLFLAPI PFN::glTextureSubImage1D glTextureSubImage1D;
+AXLGLFLAPI PFN::glTextureSubImage2D glTextureSubImage2D;
+AXLGLFLAPI PFN::glTextureSubImage3D glTextureSubImage3D;
+AXLGLFLAPI PFN::glCompressedTextureSubImage1D glCompressedTextureSubImage1D;
+AXLGLFLAPI PFN::glCompressedTextureSubImage2D glCompressedTextureSubImage2D;
+AXLGLFLAPI PFN::glCompressedTextureSubImage3D glCompressedTextureSubImage3D;
+AXLGLFLAPI PFN::glCopyTextureSubImage1D glCopyTextureSubImage1D;
+AXLGLFLAPI PFN::glCopyTextureSubImage2D glCopyTextureSubImage2D;
+AXLGLFLAPI PFN::glCopyTextureSubImage3D glCopyTextureSubImage3D;
+AXLGLFLAPI PFN::glTextureParameterf glTextureParameterf;
+AXLGLFLAPI PFN::glTextureParameterfv glTextureParameterfv;
+AXLGLFLAPI PFN::glTextureParameteri glTextureParameteri;
+AXLGLFLAPI PFN::glTextureParameterIiv glTextureParameterIiv;
+AXLGLFLAPI PFN::glTextureParameterIuiv glTextureParameterIuiv;
+AXLGLFLAPI PFN::glTextureParameteriv glTextureParameteriv;
+AXLGLFLAPI PFN::glGenerateTextureMipmap glGenerateTextureMipmap;
+AXLGLFLAPI PFN::glBindTextureUnit glBindTextureUnit;
+AXLGLFLAPI PFN::glGetTextureImage glGetTextureImage;
+AXLGLFLAPI PFN::glGetCompressedTextureImage glGetCompressedTextureImage;
+AXLGLFLAPI PFN::glGetTextureLevelParameterfv glGetTextureLevelParameterfv;
+AXLGLFLAPI PFN::glGetTextureLevelParameteriv glGetTextureLevelParameteriv;
+AXLGLFLAPI PFN::glGetTextureParameterfv glGetTextureParameterfv;
+AXLGLFLAPI PFN::glGetTextureParameterIiv glGetTextureParameterIiv;
+AXLGLFLAPI PFN::glGetTextureParameterIuiv glGetTextureParameterIuiv;
+AXLGLFLAPI PFN::glGetTextureParameteriv glGetTextureParameteriv;
+AXLGLFLAPI PFN::glCreateVertexArrays glCreateVertexArrays;
+AXLGLFLAPI PFN::glDisableVertexArrayAttrib glDisableVertexArrayAttrib;
+AXLGLFLAPI PFN::glEnableVertexArrayAttrib glEnableVertexArrayAttrib;
+AXLGLFLAPI PFN::glVertexArrayElementBuffer glVertexArrayElementBuffer;
+AXLGLFLAPI PFN::glVertexArrayVertexBuffer glVertexArrayVertexBuffer;
+AXLGLFLAPI PFN::glVertexArrayVertexBuffers glVertexArrayVertexBuffers;
+AXLGLFLAPI PFN::glVertexArrayAttribBinding glVertexArrayAttribBinding;
+AXLGLFLAPI PFN::glVertexArrayAttribFormat glVertexArrayAttribFormat;
+AXLGLFLAPI PFN::glVertexArrayAttribIFormat glVertexArrayAttribIFormat;
+AXLGLFLAPI PFN::glVertexArrayAttribLFormat glVertexArrayAttribLFormat;
+AXLGLFLAPI PFN::glVertexArrayBindingDivisor glVertexArrayBindingDivisor;
+AXLGLFLAPI PFN::glGetVertexArrayiv glGetVertexArrayiv;
+AXLGLFLAPI PFN::glGetVertexArrayIndexediv glGetVertexArrayIndexediv;
+AXLGLFLAPI PFN::glGetVertexArrayIndexed64iv glGetVertexArrayIndexed64iv;
+AXLGLFLAPI PFN::glCreateSamplers glCreateSamplers;
+AXLGLFLAPI PFN::glCreateProgramPipelines glCreateProgramPipelines;
+AXLGLFLAPI PFN::glCreateQueries glCreateQueries;
+AXLGLFLAPI PFN::glGetQueryBufferObjecti64v glGetQueryBufferObjecti64v;
+AXLGLFLAPI PFN::glGetQueryBufferObjectiv glGetQueryBufferObjectiv;
+AXLGLFLAPI PFN::glGetQueryBufferObjectui64v glGetQueryBufferObjectui64v;
+AXLGLFLAPI PFN::glGetQueryBufferObjectuiv glGetQueryBufferObjectuiv;
+AXLGLFLAPI PFN::glMemoryBarrierByRegion glMemoryBarrierByRegion;
+AXLGLFLAPI PFN::glGetTextureSubImage glGetTextureSubImage;
+AXLGLFLAPI PFN::glGetCompressedTextureSubImage glGetCompressedTextureSubImage;
+AXLGLFLAPI PFN::glGetGraphicsResetStatus glGetGraphicsResetStatus;
+AXLGLFLAPI PFN::glGetnCompressedTexImage glGetnCompressedTexImage;
+AXLGLFLAPI PFN::glGetnTexImage glGetnTexImage;
+AXLGLFLAPI PFN::glGetnUniformdv glGetnUniformdv;
+AXLGLFLAPI PFN::glGetnUniformfv glGetnUniformfv;
+AXLGLFLAPI PFN::glGetnUniformiv glGetnUniformiv;
+AXLGLFLAPI PFN::glGetnUniformuiv glGetnUniformuiv;
+AXLGLFLAPI PFN::glReadnPixels glReadnPixels;
+AXLGLFLAPI PFN::glTextureBarrier glTextureBarrier;
 // GL_VERSION_4_5
 
 // GL_VERSION_4_6
@@ -2813,10 +2813,10 @@ typedef void (APIENTRYP glMultiDrawArraysIndirectCount) (GLenum mode, const void
 typedef void (APIENTRYP glMultiDrawElementsIndirectCount) (GLenum mode, GLenum type, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 typedef void (APIENTRYP glPolygonOffsetClamp) (GLfloat factor, GLfloat units, GLfloat clamp);
 }
-AXLGLFL_DECL_GLPROC(glSpecializeShader);
-AXLGLFL_DECL_GLPROC(glMultiDrawArraysIndirectCount);
-AXLGLFL_DECL_GLPROC(glMultiDrawElementsIndirectCount);
-AXLGLFL_DECL_GLPROC(glPolygonOffsetClamp);
+AXLGLFLAPI PFN::glSpecializeShader glSpecializeShader;
+AXLGLFLAPI PFN::glMultiDrawArraysIndirectCount glMultiDrawArraysIndirectCount;
+AXLGLFLAPI PFN::glMultiDrawElementsIndirectCount glMultiDrawElementsIndirectCount;
+AXLGLFLAPI PFN::glPolygonOffsetClamp glPolygonOffsetClamp;
 // GL_VERSION_4_6
 
 } // namespace GL4
@@ -2839,7 +2839,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_MULTISAMPLE_LINE_WIDTH_GRANULARITY_ARB = 0x93
 namespace PFN {
 typedef void (APIENTRYP glPrimitiveBoundingBoxARB) (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW);
 }
-AXLGLFL_DECL_GLPROC(glPrimitiveBoundingBoxARB);
+AXLGLFLAPI PFN::glPrimitiveBoundingBoxARB glPrimitiveBoundingBoxARB;
 // GL_ARB_ES3_2_compatibility
 
 // GL_ARB_ES3_compatibility
@@ -2875,22 +2875,22 @@ typedef void (APIENTRYP glVertexAttribL1ui64ARB) (GLuint index, GLuint64EXT x);
 typedef void (APIENTRYP glVertexAttribL1ui64vARB) (GLuint index, const GLuint64EXT *v);
 typedef void (APIENTRYP glGetVertexAttribLui64vARB) (GLuint index, GLenum pname, GLuint64EXT *params);
 }
-AXLGLFL_DECL_GLPROC(glGetTextureHandleARB);
-AXLGLFL_DECL_GLPROC(glGetTextureSamplerHandleARB);
-AXLGLFL_DECL_GLPROC(glMakeTextureHandleResidentARB);
-AXLGLFL_DECL_GLPROC(glMakeTextureHandleNonResidentARB);
-AXLGLFL_DECL_GLPROC(glGetImageHandleARB);
-AXLGLFL_DECL_GLPROC(glMakeImageHandleResidentARB);
-AXLGLFL_DECL_GLPROC(glMakeImageHandleNonResidentARB);
-AXLGLFL_DECL_GLPROC(glUniformHandleui64ARB);
-AXLGLFL_DECL_GLPROC(glUniformHandleui64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniformHandleui64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniformHandleui64vARB);
-AXLGLFL_DECL_GLPROC(glIsTextureHandleResidentARB);
-AXLGLFL_DECL_GLPROC(glIsImageHandleResidentARB);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1ui64ARB);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1ui64vARB);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribLui64vARB);
+AXLGLFLAPI PFN::glGetTextureHandleARB glGetTextureHandleARB;
+AXLGLFLAPI PFN::glGetTextureSamplerHandleARB glGetTextureSamplerHandleARB;
+AXLGLFLAPI PFN::glMakeTextureHandleResidentARB glMakeTextureHandleResidentARB;
+AXLGLFLAPI PFN::glMakeTextureHandleNonResidentARB glMakeTextureHandleNonResidentARB;
+AXLGLFLAPI PFN::glGetImageHandleARB glGetImageHandleARB;
+AXLGLFLAPI PFN::glMakeImageHandleResidentARB glMakeImageHandleResidentARB;
+AXLGLFLAPI PFN::glMakeImageHandleNonResidentARB glMakeImageHandleNonResidentARB;
+AXLGLFLAPI PFN::glUniformHandleui64ARB glUniformHandleui64ARB;
+AXLGLFLAPI PFN::glUniformHandleui64vARB glUniformHandleui64vARB;
+AXLGLFLAPI PFN::glProgramUniformHandleui64ARB glProgramUniformHandleui64ARB;
+AXLGLFLAPI PFN::glProgramUniformHandleui64vARB glProgramUniformHandleui64vARB;
+AXLGLFLAPI PFN::glIsTextureHandleResidentARB glIsTextureHandleResidentARB;
+AXLGLFLAPI PFN::glIsImageHandleResidentARB glIsImageHandleResidentARB;
+AXLGLFLAPI PFN::glVertexAttribL1ui64ARB glVertexAttribL1ui64ARB;
+AXLGLFLAPI PFN::glVertexAttribL1ui64vARB glVertexAttribL1ui64vARB;
+AXLGLFLAPI PFN::glGetVertexAttribLui64vARB glGetVertexAttribLui64vARB;
 // GL_ARB_bindless_texture
 
 // GL_ARB_blend_func_extended
@@ -2910,7 +2910,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_SYNC_CL_EVENT_COMPLETE_ARB = 0x8241;
 namespace PFN {
 typedef GLsync (APIENTRYP glCreateSyncFromCLeventARB) (struct _cl_context *context, struct _cl_event *event, GLbitfield flags);
 }
-AXLGLFL_DECL_GLPROC(glCreateSyncFromCLeventARB);
+AXLGLFLAPI PFN::glCreateSyncFromCLeventARB glCreateSyncFromCLeventARB;
 
 // GL_ARB_cl_event
 
@@ -2943,7 +2943,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_MAX_COMPUTE_FIXED_GROUP_SIZE_ARB = 0x91BF;
 namespace PFN {
 typedef void (APIENTRYP glDispatchComputeGroupSizeARB) (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z, GLuint group_size_x, GLuint group_size_y, GLuint group_size_z);
 }
-AXLGLFL_DECL_GLPROC(glDispatchComputeGroupSizeARB);
+AXLGLFLAPI PFN::glDispatchComputeGroupSizeARB glDispatchComputeGroupSizeARB;
 // GL_ARB_compute_variable_group_size
 
 // GL_ARB_conditional_render_inverted
@@ -2997,10 +2997,10 @@ typedef void (APIENTRYP glDebugMessageInsertARB) (GLenum source, GLenum type, GL
 typedef void (APIENTRYP glDebugMessageCallbackARB) (GLDEBUGPROCARB callback, const void *userParam);
 typedef GLuint (APIENTRYP glGetDebugMessageLogARB) (GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog);
 }
-AXLGLFL_DECL_GLPROC(glDebugMessageControlARB);
-AXLGLFL_DECL_GLPROC(glDebugMessageInsertARB);
-AXLGLFL_DECL_GLPROC(glDebugMessageCallbackARB);
-AXLGLFL_DECL_GLPROC(glGetDebugMessageLogARB);
+AXLGLFLAPI PFN::glDebugMessageControlARB glDebugMessageControlARB;
+AXLGLFLAPI PFN::glDebugMessageInsertARB glDebugMessageInsertARB;
+AXLGLFLAPI PFN::glDebugMessageCallbackARB glDebugMessageCallbackARB;
+AXLGLFLAPI PFN::glGetDebugMessageLogARB glGetDebugMessageLogARB;
 // GL_ARB_debug_output
 
 // GL_ARB_depth_buffer_float
@@ -3027,10 +3027,10 @@ typedef void (APIENTRYP glBlendEquationSeparateiARB) (GLuint buf, GLenum modeRGB
 typedef void (APIENTRYP glBlendFunciARB) (GLuint buf, GLenum src, GLenum dst);
 typedef void (APIENTRYP glBlendFuncSeparateiARB) (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
 }
-AXLGLFL_DECL_GLPROC(glBlendEquationiARB);
-AXLGLFL_DECL_GLPROC(glBlendEquationSeparateiARB);
-AXLGLFL_DECL_GLPROC(glBlendFunciARB);
-AXLGLFL_DECL_GLPROC(glBlendFuncSeparateiARB);
+AXLGLFLAPI PFN::glBlendEquationiARB glBlendEquationiARB;
+AXLGLFLAPI PFN::glBlendEquationSeparateiARB glBlendEquationSeparateiARB;
+AXLGLFLAPI PFN::glBlendFunciARB glBlendFunciARB;
+AXLGLFLAPI PFN::glBlendFuncSeparateiARB glBlendFuncSeparateiARB;
 // GL_ARB_draw_buffers_blend
 
 // GL_ARB_draw_elements_base_vertex
@@ -3047,8 +3047,8 @@ namespace PFN {
 typedef void (APIENTRYP glDrawArraysInstancedARB) (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
 typedef void (APIENTRYP glDrawElementsInstancedARB) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
 }
-AXLGLFL_DECL_GLPROC(glDrawArraysInstancedARB);
-AXLGLFL_DECL_GLPROC(glDrawElementsInstancedARB);
+AXLGLFLAPI PFN::glDrawArraysInstancedARB glDrawArraysInstancedARB;
+AXLGLFLAPI PFN::glDrawElementsInstancedARB glDrawElementsInstancedARB;
 // GL_ARB_draw_instanced
 
 // GL_ARB_enhanced_layouts
@@ -3113,10 +3113,10 @@ typedef void (APIENTRYP glFramebufferTextureARB) (GLenum target, GLenum attachme
 typedef void (APIENTRYP glFramebufferTextureLayerARB) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer);
 typedef void (APIENTRYP glFramebufferTextureFaceARB) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLenum face);
 }
-AXLGLFL_DECL_GLPROC(glProgramParameteriARB);
-AXLGLFL_DECL_GLPROC(glFramebufferTextureARB);
-AXLGLFL_DECL_GLPROC(glFramebufferTextureLayerARB);
-AXLGLFL_DECL_GLPROC(glFramebufferTextureFaceARB);
+AXLGLFLAPI PFN::glProgramParameteriARB glProgramParameteriARB;
+AXLGLFLAPI PFN::glFramebufferTextureARB glFramebufferTextureARB;
+AXLGLFLAPI PFN::glFramebufferTextureLayerARB glFramebufferTextureLayerARB;
+AXLGLFLAPI PFN::glFramebufferTextureFaceARB glFramebufferTextureFaceARB;
 // GL_ARB_geometry_shader4
 
 // GL_ARB_get_program_binary
@@ -3134,7 +3134,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_SPIR_V_BINARY_ARB = 0x9552;
 namespace PFN {
 typedef void (APIENTRYP glSpecializeShaderARB) (GLuint shader, const GLchar *pEntryPoint, GLuint numSpecializationConstants, const GLuint *pConstantIndex, const GLuint *pConstantValue);
 }
-AXLGLFL_DECL_GLPROC(glSpecializeShaderARB);
+AXLGLFLAPI PFN::glSpecializeShaderARB glSpecializeShaderARB;
 // GL_ARB_gl_spirv
 
 // GL_ARB_gpu_shader5
@@ -3192,42 +3192,42 @@ typedef void (APIENTRYP glProgramUniform2ui64vARB) (GLuint program, GLint locati
 typedef void (APIENTRYP glProgramUniform3ui64vARB) (GLuint program, GLint location, GLsizei count, const GLuint64 *value);
 typedef void (APIENTRYP glProgramUniform4ui64vARB) (GLuint program, GLint location, GLsizei count, const GLuint64 *value);
 }
-AXLGLFL_DECL_GLPROC(glUniform1i64ARB);
-AXLGLFL_DECL_GLPROC(glUniform2i64ARB);
-AXLGLFL_DECL_GLPROC(glUniform3i64ARB);
-AXLGLFL_DECL_GLPROC(glUniform4i64ARB);
-AXLGLFL_DECL_GLPROC(glUniform1i64vARB);
-AXLGLFL_DECL_GLPROC(glUniform2i64vARB);
-AXLGLFL_DECL_GLPROC(glUniform3i64vARB);
-AXLGLFL_DECL_GLPROC(glUniform4i64vARB);
-AXLGLFL_DECL_GLPROC(glUniform1ui64ARB);
-AXLGLFL_DECL_GLPROC(glUniform2ui64ARB);
-AXLGLFL_DECL_GLPROC(glUniform3ui64ARB);
-AXLGLFL_DECL_GLPROC(glUniform4ui64ARB);
-AXLGLFL_DECL_GLPROC(glUniform1ui64vARB);
-AXLGLFL_DECL_GLPROC(glUniform2ui64vARB);
-AXLGLFL_DECL_GLPROC(glUniform3ui64vARB);
-AXLGLFL_DECL_GLPROC(glUniform4ui64vARB);
-AXLGLFL_DECL_GLPROC(glGetUniformi64vARB);
-AXLGLFL_DECL_GLPROC(glGetUniformui64vARB);
-AXLGLFL_DECL_GLPROC(glGetnUniformi64vARB);
-AXLGLFL_DECL_GLPROC(glGetnUniformui64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform1i64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform2i64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform3i64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform4i64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform1i64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform2i64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform3i64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform4i64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform1ui64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform2ui64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform3ui64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform4ui64ARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform1ui64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform2ui64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform3ui64vARB);
-AXLGLFL_DECL_GLPROC(glProgramUniform4ui64vARB);
+AXLGLFLAPI PFN::glUniform1i64ARB glUniform1i64ARB;
+AXLGLFLAPI PFN::glUniform2i64ARB glUniform2i64ARB;
+AXLGLFLAPI PFN::glUniform3i64ARB glUniform3i64ARB;
+AXLGLFLAPI PFN::glUniform4i64ARB glUniform4i64ARB;
+AXLGLFLAPI PFN::glUniform1i64vARB glUniform1i64vARB;
+AXLGLFLAPI PFN::glUniform2i64vARB glUniform2i64vARB;
+AXLGLFLAPI PFN::glUniform3i64vARB glUniform3i64vARB;
+AXLGLFLAPI PFN::glUniform4i64vARB glUniform4i64vARB;
+AXLGLFLAPI PFN::glUniform1ui64ARB glUniform1ui64ARB;
+AXLGLFLAPI PFN::glUniform2ui64ARB glUniform2ui64ARB;
+AXLGLFLAPI PFN::glUniform3ui64ARB glUniform3ui64ARB;
+AXLGLFLAPI PFN::glUniform4ui64ARB glUniform4ui64ARB;
+AXLGLFLAPI PFN::glUniform1ui64vARB glUniform1ui64vARB;
+AXLGLFLAPI PFN::glUniform2ui64vARB glUniform2ui64vARB;
+AXLGLFLAPI PFN::glUniform3ui64vARB glUniform3ui64vARB;
+AXLGLFLAPI PFN::glUniform4ui64vARB glUniform4ui64vARB;
+AXLGLFLAPI PFN::glGetUniformi64vARB glGetUniformi64vARB;
+AXLGLFLAPI PFN::glGetUniformui64vARB glGetUniformui64vARB;
+AXLGLFLAPI PFN::glGetnUniformi64vARB glGetnUniformi64vARB;
+AXLGLFLAPI PFN::glGetnUniformui64vARB glGetnUniformui64vARB;
+AXLGLFLAPI PFN::glProgramUniform1i64ARB glProgramUniform1i64ARB;
+AXLGLFLAPI PFN::glProgramUniform2i64ARB glProgramUniform2i64ARB;
+AXLGLFLAPI PFN::glProgramUniform3i64ARB glProgramUniform3i64ARB;
+AXLGLFLAPI PFN::glProgramUniform4i64ARB glProgramUniform4i64ARB;
+AXLGLFLAPI PFN::glProgramUniform1i64vARB glProgramUniform1i64vARB;
+AXLGLFLAPI PFN::glProgramUniform2i64vARB glProgramUniform2i64vARB;
+AXLGLFLAPI PFN::glProgramUniform3i64vARB glProgramUniform3i64vARB;
+AXLGLFLAPI PFN::glProgramUniform4i64vARB glProgramUniform4i64vARB;
+AXLGLFLAPI PFN::glProgramUniform1ui64ARB glProgramUniform1ui64ARB;
+AXLGLFLAPI PFN::glProgramUniform2ui64ARB glProgramUniform2ui64ARB;
+AXLGLFLAPI PFN::glProgramUniform3ui64ARB glProgramUniform3ui64ARB;
+AXLGLFLAPI PFN::glProgramUniform4ui64ARB glProgramUniform4ui64ARB;
+AXLGLFLAPI PFN::glProgramUniform1ui64vARB glProgramUniform1ui64vARB;
+AXLGLFLAPI PFN::glProgramUniform2ui64vARB glProgramUniform2ui64vARB;
+AXLGLFLAPI PFN::glProgramUniform3ui64vARB glProgramUniform3ui64vARB;
+AXLGLFLAPI PFN::glProgramUniform4ui64vARB glProgramUniform4ui64vARB;
 // GL_ARB_gpu_shader_int64
 
 // GL_ARB_half_float_vertex
@@ -3246,8 +3246,8 @@ namespace PFN {
 typedef void (APIENTRYP glMultiDrawArraysIndirectCountARB) (GLenum mode, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 typedef void (APIENTRYP glMultiDrawElementsIndirectCountARB) (GLenum mode, GLenum type, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 }
-AXLGLFL_DECL_GLPROC(glMultiDrawArraysIndirectCountARB);
-AXLGLFL_DECL_GLPROC(glMultiDrawElementsIndirectCountARB);
+AXLGLFLAPI PFN::glMultiDrawArraysIndirectCountARB glMultiDrawArraysIndirectCountARB;
+AXLGLFLAPI PFN::glMultiDrawElementsIndirectCountARB glMultiDrawElementsIndirectCountARB;
 // GL_ARB_indirect_parameters
 
 // GL_ARB_instanced_arrays
@@ -3256,7 +3256,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_VERTEX_ATTRIB_ARRAY_DIVISOR_ARB = 0x88FE;
 namespace PFN {
 typedef void (APIENTRYP glVertexAttribDivisorARB) (GLuint index, GLuint divisor);
 }
-AXLGLFL_DECL_GLPROC(glVertexAttribDivisorARB);
+AXLGLFLAPI PFN::glVertexAttribDivisorARB glVertexAttribDivisorARB;
 // GL_ARB_instanced_arrays
 
 // GL_ARB_internalformat_query
@@ -3318,7 +3318,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_COMPLETION_STATUS_ARB = 0x91B1;
 namespace PFN {
 typedef void (APIENTRYP glMaxShaderCompilerThreadsARB) (GLuint count);
 }
-AXLGLFL_DECL_GLPROC(glMaxShaderCompilerThreadsARB);
+AXLGLFLAPI PFN::glMaxShaderCompilerThreadsARB glMaxShaderCompilerThreadsARB;
 // GL_ARB_parallel_shader_compile
 
 // GL_ARB_pipeline_statistics_query
@@ -3386,14 +3386,14 @@ typedef void (APIENTRYP glGetnUniformivARB) (GLuint program, GLint location, GLs
 typedef void (APIENTRYP glGetnUniformuivARB) (GLuint program, GLint location, GLsizei bufSize, GLuint *params);
 typedef void (APIENTRYP glGetnUniformdvARB) (GLuint program, GLint location, GLsizei bufSize, GLdouble *params);
 }
-AXLGLFL_DECL_GLPROC(glGetGraphicsResetStatusARB);
-AXLGLFL_DECL_GLPROC(glGetnTexImageARB);
-AXLGLFL_DECL_GLPROC(glReadnPixelsARB);
-AXLGLFL_DECL_GLPROC(glGetnCompressedTexImageARB);
-AXLGLFL_DECL_GLPROC(glGetnUniformfvARB);
-AXLGLFL_DECL_GLPROC(glGetnUniformivARB);
-AXLGLFL_DECL_GLPROC(glGetnUniformuivARB);
-AXLGLFL_DECL_GLPROC(glGetnUniformdvARB);
+AXLGLFLAPI PFN::glGetGraphicsResetStatusARB glGetGraphicsResetStatusARB;
+AXLGLFLAPI PFN::glGetnTexImageARB glGetnTexImageARB;
+AXLGLFLAPI PFN::glReadnPixelsARB glReadnPixelsARB;
+AXLGLFLAPI PFN::glGetnCompressedTexImageARB glGetnCompressedTexImageARB;
+AXLGLFLAPI PFN::glGetnUniformfvARB glGetnUniformfvARB;
+AXLGLFLAPI PFN::glGetnUniformivARB glGetnUniformivARB;
+AXLGLFLAPI PFN::glGetnUniformuivARB glGetnUniformuivARB;
+AXLGLFLAPI PFN::glGetnUniformdvARB glGetnUniformdvARB;
 // GL_ARB_robustness
 
 // GL_ARB_robustness_isolation
@@ -3415,9 +3415,9 @@ typedef void (APIENTRYP glFramebufferSampleLocationsfvARB) (GLenum target, GLuin
 typedef void (APIENTRYP glNamedFramebufferSampleLocationsfvARB) (GLuint framebuffer, GLuint start, GLsizei count, const GLfloat *v);
 typedef void (APIENTRYP glEvaluateDepthValuesARB) (void);
 }
-AXLGLFL_DECL_GLPROC(glFramebufferSampleLocationsfvARB);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferSampleLocationsfvARB);
-AXLGLFL_DECL_GLPROC(glEvaluateDepthValuesARB);
+AXLGLFLAPI PFN::glFramebufferSampleLocationsfvARB glFramebufferSampleLocationsfvARB;
+AXLGLFLAPI PFN::glNamedFramebufferSampleLocationsfvARB glNamedFramebufferSampleLocationsfvARB;
+AXLGLFLAPI PFN::glEvaluateDepthValuesARB glEvaluateDepthValuesARB;
 // GL_ARB_sample_locations
 
 // GL_ARB_sample_shading
@@ -3427,7 +3427,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_MIN_SAMPLE_SHADING_VALUE_ARB = 0x8C37;
 namespace PFN {
 typedef void (APIENTRYP glMinSampleShadingARB) (GLfloat value);
 }
-AXLGLFL_DECL_GLPROC(glMinSampleShadingARB);
+AXLGLFLAPI PFN::glMinSampleShadingARB glMinSampleShadingARB;
 // GL_ARB_sample_shading
 
 // GL_ARB_sampler_objects
@@ -3523,12 +3523,12 @@ typedef GLboolean (APIENTRYP glIsNamedStringARB) (GLint namelen, const GLchar *n
 typedef void (APIENTRYP glGetNamedStringARB) (GLint namelen, const GLchar *name, GLsizei bufSize, GLint *stringlen, GLchar *string);
 typedef void (APIENTRYP glGetNamedStringivARB) (GLint namelen, const GLchar *name, GLenum pname, GLint *params);
 }
-AXLGLFL_DECL_GLPROC(glNamedStringARB);
-AXLGLFL_DECL_GLPROC(glDeleteNamedStringARB);
-AXLGLFL_DECL_GLPROC(glCompileShaderIncludeARB);
-AXLGLFL_DECL_GLPROC(glIsNamedStringARB);
-AXLGLFL_DECL_GLPROC(glGetNamedStringARB);
-AXLGLFL_DECL_GLPROC(glGetNamedStringivARB);
+AXLGLFLAPI PFN::glNamedStringARB glNamedStringARB;
+AXLGLFLAPI PFN::glDeleteNamedStringARB glDeleteNamedStringARB;
+AXLGLFLAPI PFN::glCompileShaderIncludeARB glCompileShaderIncludeARB;
+AXLGLFLAPI PFN::glIsNamedStringARB glIsNamedStringARB;
+AXLGLFLAPI PFN::glGetNamedStringARB glGetNamedStringARB;
+AXLGLFLAPI PFN::glGetNamedStringivARB glGetNamedStringivARB;
 // GL_ARB_shading_language_include
 
 // GL_ARB_shading_language_packing
@@ -3544,9 +3544,9 @@ typedef void (APIENTRYP glBufferPageCommitmentARB) (GLenum target, GLintptr offs
 typedef void (APIENTRYP glNamedBufferPageCommitmentEXT) (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit);
 typedef void (APIENTRYP glNamedBufferPageCommitmentARB) (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit);
 }
-AXLGLFL_DECL_GLPROC(glBufferPageCommitmentARB);
-AXLGLFL_DECL_GLPROC(glNamedBufferPageCommitmentEXT);
-AXLGLFL_DECL_GLPROC(glNamedBufferPageCommitmentARB);
+AXLGLFLAPI PFN::glBufferPageCommitmentARB glBufferPageCommitmentARB;
+AXLGLFLAPI PFN::glNamedBufferPageCommitmentEXT glNamedBufferPageCommitmentEXT;
+AXLGLFLAPI PFN::glNamedBufferPageCommitmentARB glNamedBufferPageCommitmentARB;
 // GL_ARB_sparse_buffer
 
 // GL_ARB_sparse_texture
@@ -3565,7 +3565,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_SPARSE_TEXTURE_FULL_ARRAY_CUBE_MIPMAPS_ARB = 
 namespace PFN {
 typedef void (APIENTRYP glTexPageCommitmentARB) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
 }
-AXLGLFL_DECL_GLPROC(glTexPageCommitmentARB);
+AXLGLFLAPI PFN::glTexPageCommitmentARB glTexPageCommitmentARB;
 // GL_ARB_sparse_texture
 
 // GL_ARB_sparse_texture2
@@ -3611,7 +3611,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_TEXTURE_BUFFER_FORMAT_ARB = 0x8C2E;
 namespace PFN {
 typedef void (APIENTRYP glTexBufferARB) (GLenum target, GLenum internalformat, GLuint buffer);
 }
-AXLGLFL_DECL_GLPROC(glTexBufferARB);
+AXLGLFLAPI PFN::glTexBufferARB glTexBufferARB;
 // GL_ARB_texture_buffer_object
 
 // GL_ARB_texture_buffer_object_rgb32
@@ -3771,8 +3771,8 @@ namespace PFN {
 typedef void (APIENTRYP glDepthRangeArraydvNV) (GLuint first, GLsizei count, const GLdouble *v);
 typedef void (APIENTRYP glDepthRangeIndexeddNV) (GLuint index, GLdouble n, GLdouble f);
 }
-AXLGLFL_DECL_GLPROC(glDepthRangeArraydvNV);
-AXLGLFL_DECL_GLPROC(glDepthRangeIndexeddNV);
+AXLGLFLAPI PFN::glDepthRangeArraydvNV glDepthRangeArraydvNV;
+AXLGLFLAPI PFN::glDepthRangeIndexeddNV glDepthRangeIndexeddNV;
 // GL_ARB_viewport_array
 
 } // namespace GLARB
@@ -3799,7 +3799,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_HSL_LUMINOSITY_KHR = 0x92B0;
 namespace PFN {
 typedef void (APIENTRYP glBlendBarrierKHR) (void);
 }
-AXLGLFL_DECL_GLPROC(glBlendBarrierKHR);
+AXLGLFLAPI PFN::glBlendBarrierKHR glBlendBarrierKHR;
 // GL_KHR_blend_equation_advanced
 
 // GL_KHR_blend_equation_advanced_coherent
@@ -3827,7 +3827,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_COMPLETION_STATUS_KHR = 0x91B1;
 namespace PFN {
 typedef void (APIENTRYP glMaxShaderCompilerThreadsKHR) (GLuint count);
 }
-AXLGLFL_DECL_GLPROC(glMaxShaderCompilerThreadsKHR);
+AXLGLFLAPI PFN::glMaxShaderCompilerThreadsKHR glMaxShaderCompilerThreadsKHR;
 // GL_KHR_parallel_shader_compile
 
 // GL_KHR_robust_buffer_access_behavior
@@ -3911,8 +3911,8 @@ namespace PFN {
 typedef void (APIENTRYP glRenderbufferStorageMultisampleAdvancedAMD) (GLenum target, GLsizei samples, GLsizei storageSamples, GLenum internalformat, GLsizei width, GLsizei height);
 typedef void (APIENTRYP glNamedRenderbufferStorageMultisampleAdvancedAMD) (GLuint renderbuffer, GLsizei samples, GLsizei storageSamples, GLenum internalformat, GLsizei width, GLsizei height);
 }
-AXLGLFL_DECL_GLPROC(glRenderbufferStorageMultisampleAdvancedAMD);
-AXLGLFL_DECL_GLPROC(glNamedRenderbufferStorageMultisampleAdvancedAMD);
+AXLGLFLAPI PFN::glRenderbufferStorageMultisampleAdvancedAMD glRenderbufferStorageMultisampleAdvancedAMD;
+AXLGLFLAPI PFN::glNamedRenderbufferStorageMultisampleAdvancedAMD glNamedRenderbufferStorageMultisampleAdvancedAMD;
 // GL_AMD_framebuffer_multisample_advanced
 
 // GL_AMD_performance_monitor
@@ -3937,17 +3937,17 @@ typedef void (APIENTRYP glBeginPerfMonitorAMD) (GLuint monitor);
 typedef void (APIENTRYP glEndPerfMonitorAMD) (GLuint monitor);
 typedef void (APIENTRYP glGetPerfMonitorCounterDataAMD) (GLuint monitor, GLenum pname, GLsizei dataSize, GLuint *data, GLint *bytesWritten);
 }
-AXLGLFL_DECL_GLPROC(glGetPerfMonitorGroupsAMD);
-AXLGLFL_DECL_GLPROC(glGetPerfMonitorCountersAMD);
-AXLGLFL_DECL_GLPROC(glGetPerfMonitorGroupStringAMD);
-AXLGLFL_DECL_GLPROC(glGetPerfMonitorCounterStringAMD);
-AXLGLFL_DECL_GLPROC(glGetPerfMonitorCounterInfoAMD);
-AXLGLFL_DECL_GLPROC(glGenPerfMonitorsAMD);
-AXLGLFL_DECL_GLPROC(glDeletePerfMonitorsAMD);
-AXLGLFL_DECL_GLPROC(glSelectPerfMonitorCountersAMD);
-AXLGLFL_DECL_GLPROC(glBeginPerfMonitorAMD);
-AXLGLFL_DECL_GLPROC(glEndPerfMonitorAMD);
-AXLGLFL_DECL_GLPROC(glGetPerfMonitorCounterDataAMD);
+AXLGLFLAPI PFN::glGetPerfMonitorGroupsAMD glGetPerfMonitorGroupsAMD;
+AXLGLFLAPI PFN::glGetPerfMonitorCountersAMD glGetPerfMonitorCountersAMD;
+AXLGLFLAPI PFN::glGetPerfMonitorGroupStringAMD glGetPerfMonitorGroupStringAMD;
+AXLGLFLAPI PFN::glGetPerfMonitorCounterStringAMD glGetPerfMonitorCounterStringAMD;
+AXLGLFLAPI PFN::glGetPerfMonitorCounterInfoAMD glGetPerfMonitorCounterInfoAMD;
+AXLGLFLAPI PFN::glGenPerfMonitorsAMD glGenPerfMonitorsAMD;
+AXLGLFLAPI PFN::glDeletePerfMonitorsAMD glDeletePerfMonitorsAMD;
+AXLGLFLAPI PFN::glSelectPerfMonitorCountersAMD glSelectPerfMonitorCountersAMD;
+AXLGLFLAPI PFN::glBeginPerfMonitorAMD glBeginPerfMonitorAMD;
+AXLGLFLAPI PFN::glEndPerfMonitorAMD glEndPerfMonitorAMD;
+AXLGLFLAPI PFN::glGetPerfMonitorCounterDataAMD glGetPerfMonitorCounterDataAMD;
 // GL_AMD_performance_monitor
 
 } // namespace GLAMD
@@ -3973,8 +3973,8 @@ typedef void *GLeglImageOES;
 typedef void (APIENTRYP glEGLImageTargetTexStorageEXT) (GLenum target, GLeglImageOES image, const GLint* attrib_list);
 typedef void (APIENTRYP glEGLImageTargetTextureStorageEXT) (GLuint texture, GLeglImageOES image, const GLint* attrib_list);
 }
-AXLGLFL_DECL_GLPROC(glEGLImageTargetTexStorageEXT);
-AXLGLFL_DECL_GLPROC(glEGLImageTargetTextureStorageEXT);
+AXLGLFLAPI PFN::glEGLImageTargetTexStorageEXT glEGLImageTargetTexStorageEXT;
+AXLGLFLAPI PFN::glEGLImageTargetTextureStorageEXT glEGLImageTargetTextureStorageEXT;
 // GL_EXT_EGL_image_storage
 
 // GL_EXT_EGL_sync
@@ -3993,8 +3993,8 @@ namespace PFN {
 typedef void (APIENTRYP glLabelObjectEXT) (GLenum type, GLuint object, GLsizei length, const GLchar *label);
 typedef void (APIENTRYP glGetObjectLabelEXT) (GLenum type, GLuint object, GLsizei bufSize, GLsizei *length, GLchar *label);
 }
-AXLGLFL_DECL_GLPROC(glLabelObjectEXT);
-AXLGLFL_DECL_GLPROC(glGetObjectLabelEXT);
+AXLGLFLAPI PFN::glLabelObjectEXT glLabelObjectEXT;
+AXLGLFLAPI PFN::glGetObjectLabelEXT glGetObjectLabelEXT;
 // GL_EXT_debug_label
 
 // GL_EXT_debug_marker
@@ -4004,9 +4004,9 @@ typedef void (APIENTRYP glInsertEventMarkerEXT) (GLsizei length, const GLchar *m
 typedef void (APIENTRYP glPushGroupMarkerEXT) (GLsizei length, const GLchar *marker);
 typedef void (APIENTRYP glPopGroupMarkerEXT) (void);
 }
-AXLGLFL_DECL_GLPROC(glInsertEventMarkerEXT);
-AXLGLFL_DECL_GLPROC(glPushGroupMarkerEXT);
-AXLGLFL_DECL_GLPROC(glPopGroupMarkerEXT);
+AXLGLFLAPI PFN::glInsertEventMarkerEXT glInsertEventMarkerEXT;
+AXLGLFLAPI PFN::glPushGroupMarkerEXT glPushGroupMarkerEXT;
+AXLGLFLAPI PFN::glPopGroupMarkerEXT glPopGroupMarkerEXT;
 // GL_EXT_debug_marker
 
 // GL_EXT_direct_state_access
@@ -4271,261 +4271,261 @@ typedef void (APIENTRYP glVertexArrayVertexAttribLOffsetEXT) (GLuint vaobj, GLui
 typedef void (APIENTRYP glTexturePageCommitmentEXT) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
 typedef void (APIENTRYP glVertexArrayVertexAttribDivisorEXT) (GLuint vaobj, GLuint index, GLuint divisor);
 }
-AXLGLFL_DECL_GLPROC(glMatrixLoadfEXT);
-AXLGLFL_DECL_GLPROC(glMatrixLoaddEXT);
-AXLGLFL_DECL_GLPROC(glMatrixMultfEXT);
-AXLGLFL_DECL_GLPROC(glMatrixMultdEXT);
-AXLGLFL_DECL_GLPROC(glMatrixLoadIdentityEXT);
-AXLGLFL_DECL_GLPROC(glMatrixRotatefEXT);
-AXLGLFL_DECL_GLPROC(glMatrixRotatedEXT);
-AXLGLFL_DECL_GLPROC(glMatrixScalefEXT);
-AXLGLFL_DECL_GLPROC(glMatrixScaledEXT);
-AXLGLFL_DECL_GLPROC(glMatrixTranslatefEXT);
-AXLGLFL_DECL_GLPROC(glMatrixTranslatedEXT);
-AXLGLFL_DECL_GLPROC(glMatrixFrustumEXT);
-AXLGLFL_DECL_GLPROC(glMatrixOrthoEXT);
-AXLGLFL_DECL_GLPROC(glMatrixPopEXT);
-AXLGLFL_DECL_GLPROC(glMatrixPushEXT);
-AXLGLFL_DECL_GLPROC(glClientAttribDefaultEXT);
-AXLGLFL_DECL_GLPROC(glPushClientAttribDefaultEXT);
-AXLGLFL_DECL_GLPROC(glTextureParameterfEXT);
-AXLGLFL_DECL_GLPROC(glTextureParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glTextureParameteriEXT);
-AXLGLFL_DECL_GLPROC(glTextureParameterivEXT);
-AXLGLFL_DECL_GLPROC(glTextureImage1DEXT);
-AXLGLFL_DECL_GLPROC(glTextureImage2DEXT);
-AXLGLFL_DECL_GLPROC(glTextureSubImage1DEXT);
-AXLGLFL_DECL_GLPROC(glTextureSubImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCopyTextureImage1DEXT);
-AXLGLFL_DECL_GLPROC(glCopyTextureImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCopyTextureSubImage1DEXT);
-AXLGLFL_DECL_GLPROC(glCopyTextureSubImage2DEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureImageEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterivEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureLevelParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureLevelParameterivEXT);
-AXLGLFL_DECL_GLPROC(glTextureImage3DEXT);
-AXLGLFL_DECL_GLPROC(glTextureSubImage3DEXT);
-AXLGLFL_DECL_GLPROC(glCopyTextureSubImage3DEXT);
-AXLGLFL_DECL_GLPROC(glBindMultiTextureEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexCoordPointerEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexEnvfEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexEnvfvEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexEnviEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexEnvivEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexGendEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexGendvEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexGenfEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexGenfvEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexGeniEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexGenivEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexEnvfvEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexEnvivEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexGendvEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexGenfvEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexGenivEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexParameteriEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexParameterivEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexParameterfEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexImage1DEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexImage2DEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexSubImage1DEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexSubImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCopyMultiTexImage1DEXT);
-AXLGLFL_DECL_GLPROC(glCopyMultiTexImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCopyMultiTexSubImage1DEXT);
-AXLGLFL_DECL_GLPROC(glCopyMultiTexSubImage2DEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexImageEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexParameterivEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexLevelParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexLevelParameterivEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexImage3DEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexSubImage3DEXT);
-AXLGLFL_DECL_GLPROC(glCopyMultiTexSubImage3DEXT);
-AXLGLFL_DECL_GLPROC(glEnableClientStateIndexedEXT);
-AXLGLFL_DECL_GLPROC(glDisableClientStateIndexedEXT);
-AXLGLFL_DECL_GLPROC(glGetFloatIndexedvEXT);
-AXLGLFL_DECL_GLPROC(glGetDoubleIndexedvEXT);
-AXLGLFL_DECL_GLPROC(glGetPointerIndexedvEXT);
-AXLGLFL_DECL_GLPROC(glEnableIndexedEXT);
-AXLGLFL_DECL_GLPROC(glDisableIndexedEXT);
-AXLGLFL_DECL_GLPROC(glIsEnabledIndexedEXT);
-AXLGLFL_DECL_GLPROC(glGetIntegerIndexedvEXT);
-AXLGLFL_DECL_GLPROC(glGetBooleanIndexedvEXT);
-AXLGLFL_DECL_GLPROC(glCompressedTextureImage3DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedTextureImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedTextureImage1DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedTextureSubImage3DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedTextureSubImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedTextureSubImage1DEXT);
-AXLGLFL_DECL_GLPROC(glGetCompressedTextureImageEXT);
-AXLGLFL_DECL_GLPROC(glCompressedMultiTexImage3DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedMultiTexImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedMultiTexImage1DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedMultiTexSubImage3DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedMultiTexSubImage2DEXT);
-AXLGLFL_DECL_GLPROC(glCompressedMultiTexSubImage1DEXT);
-AXLGLFL_DECL_GLPROC(glGetCompressedMultiTexImageEXT);
-AXLGLFL_DECL_GLPROC(glMatrixLoadTransposefEXT);
-AXLGLFL_DECL_GLPROC(glMatrixLoadTransposedEXT);
-AXLGLFL_DECL_GLPROC(glMatrixMultTransposefEXT);
-AXLGLFL_DECL_GLPROC(glMatrixMultTransposedEXT);
-AXLGLFL_DECL_GLPROC(glNamedBufferDataEXT);
-AXLGLFL_DECL_GLPROC(glNamedBufferSubDataEXT);
-AXLGLFL_DECL_GLPROC(glMapNamedBufferEXT);
-AXLGLFL_DECL_GLPROC(glUnmapNamedBufferEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferParameterivEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferPointervEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferSubDataEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1fEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2fEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3fEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4fEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1iEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2iEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3iEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4iEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1ivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2ivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3ivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4ivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x3fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x2fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x4fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x2fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x4fvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x3fvEXT);
-AXLGLFL_DECL_GLPROC(glTextureBufferEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexBufferEXT);
-AXLGLFL_DECL_GLPROC(glTextureParameterIivEXT);
-AXLGLFL_DECL_GLPROC(glTextureParameterIuivEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterIivEXT);
-AXLGLFL_DECL_GLPROC(glGetTextureParameterIuivEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexParameterIivEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexParameterIuivEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexParameterIivEXT);
-AXLGLFL_DECL_GLPROC(glGetMultiTexParameterIuivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1uiEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2uiEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3uiEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4uiEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1uivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2uivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3uivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4uivEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameters4fvEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameterI4iEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameterI4ivEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParametersI4ivEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameterI4uiEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameterI4uivEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParametersI4uivEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedProgramLocalParameterIivEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedProgramLocalParameterIuivEXT);
-AXLGLFL_DECL_GLPROC(glEnableClientStateiEXT);
-AXLGLFL_DECL_GLPROC(glDisableClientStateiEXT);
-AXLGLFL_DECL_GLPROC(glGetFloati_vEXT);
-AXLGLFL_DECL_GLPROC(glGetDoublei_vEXT);
-AXLGLFL_DECL_GLPROC(glGetPointeri_vEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramStringEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameter4dEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameter4dvEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameter4fEXT);
-AXLGLFL_DECL_GLPROC(glNamedProgramLocalParameter4fvEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedProgramLocalParameterdvEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedProgramLocalParameterfvEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedProgramivEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedProgramStringEXT);
-AXLGLFL_DECL_GLPROC(glNamedRenderbufferStorageEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedRenderbufferParameterivEXT);
-AXLGLFL_DECL_GLPROC(glNamedRenderbufferStorageMultisampleEXT);
-AXLGLFL_DECL_GLPROC(glNamedRenderbufferStorageMultisampleCoverageEXT);
-AXLGLFL_DECL_GLPROC(glCheckNamedFramebufferStatusEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTexture1DEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTexture2DEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTexture3DEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferRenderbufferEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedFramebufferAttachmentParameterivEXT);
-AXLGLFL_DECL_GLPROC(glGenerateTextureMipmapEXT);
-AXLGLFL_DECL_GLPROC(glGenerateMultiTexMipmapEXT);
-AXLGLFL_DECL_GLPROC(glFramebufferDrawBufferEXT);
-AXLGLFL_DECL_GLPROC(glFramebufferDrawBuffersEXT);
-AXLGLFL_DECL_GLPROC(glFramebufferReadBufferEXT);
-AXLGLFL_DECL_GLPROC(glGetFramebufferParameterivEXT);
-AXLGLFL_DECL_GLPROC(glNamedCopyBufferSubDataEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTextureEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTextureLayerEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferTextureFaceEXT);
-AXLGLFL_DECL_GLPROC(glTextureRenderbufferEXT);
-AXLGLFL_DECL_GLPROC(glMultiTexRenderbufferEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayColorOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayEdgeFlagOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayIndexOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayNormalOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayTexCoordOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayMultiTexCoordOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayFogCoordOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArraySecondaryColorOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribOffsetEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribIOffsetEXT);
-AXLGLFL_DECL_GLPROC(glEnableVertexArrayEXT);
-AXLGLFL_DECL_GLPROC(glDisableVertexArrayEXT);
-AXLGLFL_DECL_GLPROC(glEnableVertexArrayAttribEXT);
-AXLGLFL_DECL_GLPROC(glDisableVertexArrayAttribEXT);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayIntegervEXT);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayPointervEXT);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayIntegeri_vEXT);
-AXLGLFL_DECL_GLPROC(glGetVertexArrayPointeri_vEXT);
-AXLGLFL_DECL_GLPROC(glMapNamedBufferRangeEXT);
-AXLGLFL_DECL_GLPROC(glFlushMappedNamedBufferRangeEXT);
-AXLGLFL_DECL_GLPROC(glNamedBufferStorageEXT);
-AXLGLFL_DECL_GLPROC(glClearNamedBufferDataEXT);
-AXLGLFL_DECL_GLPROC(glClearNamedBufferSubDataEXT);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferParameteriEXT);
-AXLGLFL_DECL_GLPROC(glGetNamedFramebufferParameterivEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1dEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2dEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3dEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4dEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform1dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform2dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform3dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniform4dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x3dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix2x4dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x2dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix3x4dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x2dvEXT);
-AXLGLFL_DECL_GLPROC(glProgramUniformMatrix4x3dvEXT);
-AXLGLFL_DECL_GLPROC(glTextureBufferRangeEXT);
-AXLGLFL_DECL_GLPROC(glTextureStorage1DEXT);
-AXLGLFL_DECL_GLPROC(glTextureStorage2DEXT);
-AXLGLFL_DECL_GLPROC(glTextureStorage3DEXT);
-AXLGLFL_DECL_GLPROC(glTextureStorage2DMultisampleEXT);
-AXLGLFL_DECL_GLPROC(glTextureStorage3DMultisampleEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayBindVertexBufferEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribFormatEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribIFormatEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribLFormatEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribBindingEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexBindingDivisorEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribLOffsetEXT);
-AXLGLFL_DECL_GLPROC(glTexturePageCommitmentEXT);
-AXLGLFL_DECL_GLPROC(glVertexArrayVertexAttribDivisorEXT);
+AXLGLFLAPI PFN::glMatrixLoadfEXT glMatrixLoadfEXT;
+AXLGLFLAPI PFN::glMatrixLoaddEXT glMatrixLoaddEXT;
+AXLGLFLAPI PFN::glMatrixMultfEXT glMatrixMultfEXT;
+AXLGLFLAPI PFN::glMatrixMultdEXT glMatrixMultdEXT;
+AXLGLFLAPI PFN::glMatrixLoadIdentityEXT glMatrixLoadIdentityEXT;
+AXLGLFLAPI PFN::glMatrixRotatefEXT glMatrixRotatefEXT;
+AXLGLFLAPI PFN::glMatrixRotatedEXT glMatrixRotatedEXT;
+AXLGLFLAPI PFN::glMatrixScalefEXT glMatrixScalefEXT;
+AXLGLFLAPI PFN::glMatrixScaledEXT glMatrixScaledEXT;
+AXLGLFLAPI PFN::glMatrixTranslatefEXT glMatrixTranslatefEXT;
+AXLGLFLAPI PFN::glMatrixTranslatedEXT glMatrixTranslatedEXT;
+AXLGLFLAPI PFN::glMatrixFrustumEXT glMatrixFrustumEXT;
+AXLGLFLAPI PFN::glMatrixOrthoEXT glMatrixOrthoEXT;
+AXLGLFLAPI PFN::glMatrixPopEXT glMatrixPopEXT;
+AXLGLFLAPI PFN::glMatrixPushEXT glMatrixPushEXT;
+AXLGLFLAPI PFN::glClientAttribDefaultEXT glClientAttribDefaultEXT;
+AXLGLFLAPI PFN::glPushClientAttribDefaultEXT glPushClientAttribDefaultEXT;
+AXLGLFLAPI PFN::glTextureParameterfEXT glTextureParameterfEXT;
+AXLGLFLAPI PFN::glTextureParameterfvEXT glTextureParameterfvEXT;
+AXLGLFLAPI PFN::glTextureParameteriEXT glTextureParameteriEXT;
+AXLGLFLAPI PFN::glTextureParameterivEXT glTextureParameterivEXT;
+AXLGLFLAPI PFN::glTextureImage1DEXT glTextureImage1DEXT;
+AXLGLFLAPI PFN::glTextureImage2DEXT glTextureImage2DEXT;
+AXLGLFLAPI PFN::glTextureSubImage1DEXT glTextureSubImage1DEXT;
+AXLGLFLAPI PFN::glTextureSubImage2DEXT glTextureSubImage2DEXT;
+AXLGLFLAPI PFN::glCopyTextureImage1DEXT glCopyTextureImage1DEXT;
+AXLGLFLAPI PFN::glCopyTextureImage2DEXT glCopyTextureImage2DEXT;
+AXLGLFLAPI PFN::glCopyTextureSubImage1DEXT glCopyTextureSubImage1DEXT;
+AXLGLFLAPI PFN::glCopyTextureSubImage2DEXT glCopyTextureSubImage2DEXT;
+AXLGLFLAPI PFN::glGetTextureImageEXT glGetTextureImageEXT;
+AXLGLFLAPI PFN::glGetTextureParameterfvEXT glGetTextureParameterfvEXT;
+AXLGLFLAPI PFN::glGetTextureParameterivEXT glGetTextureParameterivEXT;
+AXLGLFLAPI PFN::glGetTextureLevelParameterfvEXT glGetTextureLevelParameterfvEXT;
+AXLGLFLAPI PFN::glGetTextureLevelParameterivEXT glGetTextureLevelParameterivEXT;
+AXLGLFLAPI PFN::glTextureImage3DEXT glTextureImage3DEXT;
+AXLGLFLAPI PFN::glTextureSubImage3DEXT glTextureSubImage3DEXT;
+AXLGLFLAPI PFN::glCopyTextureSubImage3DEXT glCopyTextureSubImage3DEXT;
+AXLGLFLAPI PFN::glBindMultiTextureEXT glBindMultiTextureEXT;
+AXLGLFLAPI PFN::glMultiTexCoordPointerEXT glMultiTexCoordPointerEXT;
+AXLGLFLAPI PFN::glMultiTexEnvfEXT glMultiTexEnvfEXT;
+AXLGLFLAPI PFN::glMultiTexEnvfvEXT glMultiTexEnvfvEXT;
+AXLGLFLAPI PFN::glMultiTexEnviEXT glMultiTexEnviEXT;
+AXLGLFLAPI PFN::glMultiTexEnvivEXT glMultiTexEnvivEXT;
+AXLGLFLAPI PFN::glMultiTexGendEXT glMultiTexGendEXT;
+AXLGLFLAPI PFN::glMultiTexGendvEXT glMultiTexGendvEXT;
+AXLGLFLAPI PFN::glMultiTexGenfEXT glMultiTexGenfEXT;
+AXLGLFLAPI PFN::glMultiTexGenfvEXT glMultiTexGenfvEXT;
+AXLGLFLAPI PFN::glMultiTexGeniEXT glMultiTexGeniEXT;
+AXLGLFLAPI PFN::glMultiTexGenivEXT glMultiTexGenivEXT;
+AXLGLFLAPI PFN::glGetMultiTexEnvfvEXT glGetMultiTexEnvfvEXT;
+AXLGLFLAPI PFN::glGetMultiTexEnvivEXT glGetMultiTexEnvivEXT;
+AXLGLFLAPI PFN::glGetMultiTexGendvEXT glGetMultiTexGendvEXT;
+AXLGLFLAPI PFN::glGetMultiTexGenfvEXT glGetMultiTexGenfvEXT;
+AXLGLFLAPI PFN::glGetMultiTexGenivEXT glGetMultiTexGenivEXT;
+AXLGLFLAPI PFN::glMultiTexParameteriEXT glMultiTexParameteriEXT;
+AXLGLFLAPI PFN::glMultiTexParameterivEXT glMultiTexParameterivEXT;
+AXLGLFLAPI PFN::glMultiTexParameterfEXT glMultiTexParameterfEXT;
+AXLGLFLAPI PFN::glMultiTexParameterfvEXT glMultiTexParameterfvEXT;
+AXLGLFLAPI PFN::glMultiTexImage1DEXT glMultiTexImage1DEXT;
+AXLGLFLAPI PFN::glMultiTexImage2DEXT glMultiTexImage2DEXT;
+AXLGLFLAPI PFN::glMultiTexSubImage1DEXT glMultiTexSubImage1DEXT;
+AXLGLFLAPI PFN::glMultiTexSubImage2DEXT glMultiTexSubImage2DEXT;
+AXLGLFLAPI PFN::glCopyMultiTexImage1DEXT glCopyMultiTexImage1DEXT;
+AXLGLFLAPI PFN::glCopyMultiTexImage2DEXT glCopyMultiTexImage2DEXT;
+AXLGLFLAPI PFN::glCopyMultiTexSubImage1DEXT glCopyMultiTexSubImage1DEXT;
+AXLGLFLAPI PFN::glCopyMultiTexSubImage2DEXT glCopyMultiTexSubImage2DEXT;
+AXLGLFLAPI PFN::glGetMultiTexImageEXT glGetMultiTexImageEXT;
+AXLGLFLAPI PFN::glGetMultiTexParameterfvEXT glGetMultiTexParameterfvEXT;
+AXLGLFLAPI PFN::glGetMultiTexParameterivEXT glGetMultiTexParameterivEXT;
+AXLGLFLAPI PFN::glGetMultiTexLevelParameterfvEXT glGetMultiTexLevelParameterfvEXT;
+AXLGLFLAPI PFN::glGetMultiTexLevelParameterivEXT glGetMultiTexLevelParameterivEXT;
+AXLGLFLAPI PFN::glMultiTexImage3DEXT glMultiTexImage3DEXT;
+AXLGLFLAPI PFN::glMultiTexSubImage3DEXT glMultiTexSubImage3DEXT;
+AXLGLFLAPI PFN::glCopyMultiTexSubImage3DEXT glCopyMultiTexSubImage3DEXT;
+AXLGLFLAPI PFN::glEnableClientStateIndexedEXT glEnableClientStateIndexedEXT;
+AXLGLFLAPI PFN::glDisableClientStateIndexedEXT glDisableClientStateIndexedEXT;
+AXLGLFLAPI PFN::glGetFloatIndexedvEXT glGetFloatIndexedvEXT;
+AXLGLFLAPI PFN::glGetDoubleIndexedvEXT glGetDoubleIndexedvEXT;
+AXLGLFLAPI PFN::glGetPointerIndexedvEXT glGetPointerIndexedvEXT;
+AXLGLFLAPI PFN::glEnableIndexedEXT glEnableIndexedEXT;
+AXLGLFLAPI PFN::glDisableIndexedEXT glDisableIndexedEXT;
+AXLGLFLAPI PFN::glIsEnabledIndexedEXT glIsEnabledIndexedEXT;
+AXLGLFLAPI PFN::glGetIntegerIndexedvEXT glGetIntegerIndexedvEXT;
+AXLGLFLAPI PFN::glGetBooleanIndexedvEXT glGetBooleanIndexedvEXT;
+AXLGLFLAPI PFN::glCompressedTextureImage3DEXT glCompressedTextureImage3DEXT;
+AXLGLFLAPI PFN::glCompressedTextureImage2DEXT glCompressedTextureImage2DEXT;
+AXLGLFLAPI PFN::glCompressedTextureImage1DEXT glCompressedTextureImage1DEXT;
+AXLGLFLAPI PFN::glCompressedTextureSubImage3DEXT glCompressedTextureSubImage3DEXT;
+AXLGLFLAPI PFN::glCompressedTextureSubImage2DEXT glCompressedTextureSubImage2DEXT;
+AXLGLFLAPI PFN::glCompressedTextureSubImage1DEXT glCompressedTextureSubImage1DEXT;
+AXLGLFLAPI PFN::glGetCompressedTextureImageEXT glGetCompressedTextureImageEXT;
+AXLGLFLAPI PFN::glCompressedMultiTexImage3DEXT glCompressedMultiTexImage3DEXT;
+AXLGLFLAPI PFN::glCompressedMultiTexImage2DEXT glCompressedMultiTexImage2DEXT;
+AXLGLFLAPI PFN::glCompressedMultiTexImage1DEXT glCompressedMultiTexImage1DEXT;
+AXLGLFLAPI PFN::glCompressedMultiTexSubImage3DEXT glCompressedMultiTexSubImage3DEXT;
+AXLGLFLAPI PFN::glCompressedMultiTexSubImage2DEXT glCompressedMultiTexSubImage2DEXT;
+AXLGLFLAPI PFN::glCompressedMultiTexSubImage1DEXT glCompressedMultiTexSubImage1DEXT;
+AXLGLFLAPI PFN::glGetCompressedMultiTexImageEXT glGetCompressedMultiTexImageEXT;
+AXLGLFLAPI PFN::glMatrixLoadTransposefEXT glMatrixLoadTransposefEXT;
+AXLGLFLAPI PFN::glMatrixLoadTransposedEXT glMatrixLoadTransposedEXT;
+AXLGLFLAPI PFN::glMatrixMultTransposefEXT glMatrixMultTransposefEXT;
+AXLGLFLAPI PFN::glMatrixMultTransposedEXT glMatrixMultTransposedEXT;
+AXLGLFLAPI PFN::glNamedBufferDataEXT glNamedBufferDataEXT;
+AXLGLFLAPI PFN::glNamedBufferSubDataEXT glNamedBufferSubDataEXT;
+AXLGLFLAPI PFN::glMapNamedBufferEXT glMapNamedBufferEXT;
+AXLGLFLAPI PFN::glUnmapNamedBufferEXT glUnmapNamedBufferEXT;
+AXLGLFLAPI PFN::glGetNamedBufferParameterivEXT glGetNamedBufferParameterivEXT;
+AXLGLFLAPI PFN::glGetNamedBufferPointervEXT glGetNamedBufferPointervEXT;
+AXLGLFLAPI PFN::glGetNamedBufferSubDataEXT glGetNamedBufferSubDataEXT;
+AXLGLFLAPI PFN::glProgramUniform1fEXT glProgramUniform1fEXT;
+AXLGLFLAPI PFN::glProgramUniform2fEXT glProgramUniform2fEXT;
+AXLGLFLAPI PFN::glProgramUniform3fEXT glProgramUniform3fEXT;
+AXLGLFLAPI PFN::glProgramUniform4fEXT glProgramUniform4fEXT;
+AXLGLFLAPI PFN::glProgramUniform1iEXT glProgramUniform1iEXT;
+AXLGLFLAPI PFN::glProgramUniform2iEXT glProgramUniform2iEXT;
+AXLGLFLAPI PFN::glProgramUniform3iEXT glProgramUniform3iEXT;
+AXLGLFLAPI PFN::glProgramUniform4iEXT glProgramUniform4iEXT;
+AXLGLFLAPI PFN::glProgramUniform1fvEXT glProgramUniform1fvEXT;
+AXLGLFLAPI PFN::glProgramUniform2fvEXT glProgramUniform2fvEXT;
+AXLGLFLAPI PFN::glProgramUniform3fvEXT glProgramUniform3fvEXT;
+AXLGLFLAPI PFN::glProgramUniform4fvEXT glProgramUniform4fvEXT;
+AXLGLFLAPI PFN::glProgramUniform1ivEXT glProgramUniform1ivEXT;
+AXLGLFLAPI PFN::glProgramUniform2ivEXT glProgramUniform2ivEXT;
+AXLGLFLAPI PFN::glProgramUniform3ivEXT glProgramUniform3ivEXT;
+AXLGLFLAPI PFN::glProgramUniform4ivEXT glProgramUniform4ivEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix2fvEXT glProgramUniformMatrix2fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix3fvEXT glProgramUniformMatrix3fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix4fvEXT glProgramUniformMatrix4fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x3fvEXT glProgramUniformMatrix2x3fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x2fvEXT glProgramUniformMatrix3x2fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x4fvEXT glProgramUniformMatrix2x4fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x2fvEXT glProgramUniformMatrix4x2fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x4fvEXT glProgramUniformMatrix3x4fvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x3fvEXT glProgramUniformMatrix4x3fvEXT;
+AXLGLFLAPI PFN::glTextureBufferEXT glTextureBufferEXT;
+AXLGLFLAPI PFN::glMultiTexBufferEXT glMultiTexBufferEXT;
+AXLGLFLAPI PFN::glTextureParameterIivEXT glTextureParameterIivEXT;
+AXLGLFLAPI PFN::glTextureParameterIuivEXT glTextureParameterIuivEXT;
+AXLGLFLAPI PFN::glGetTextureParameterIivEXT glGetTextureParameterIivEXT;
+AXLGLFLAPI PFN::glGetTextureParameterIuivEXT glGetTextureParameterIuivEXT;
+AXLGLFLAPI PFN::glMultiTexParameterIivEXT glMultiTexParameterIivEXT;
+AXLGLFLAPI PFN::glMultiTexParameterIuivEXT glMultiTexParameterIuivEXT;
+AXLGLFLAPI PFN::glGetMultiTexParameterIivEXT glGetMultiTexParameterIivEXT;
+AXLGLFLAPI PFN::glGetMultiTexParameterIuivEXT glGetMultiTexParameterIuivEXT;
+AXLGLFLAPI PFN::glProgramUniform1uiEXT glProgramUniform1uiEXT;
+AXLGLFLAPI PFN::glProgramUniform2uiEXT glProgramUniform2uiEXT;
+AXLGLFLAPI PFN::glProgramUniform3uiEXT glProgramUniform3uiEXT;
+AXLGLFLAPI PFN::glProgramUniform4uiEXT glProgramUniform4uiEXT;
+AXLGLFLAPI PFN::glProgramUniform1uivEXT glProgramUniform1uivEXT;
+AXLGLFLAPI PFN::glProgramUniform2uivEXT glProgramUniform2uivEXT;
+AXLGLFLAPI PFN::glProgramUniform3uivEXT glProgramUniform3uivEXT;
+AXLGLFLAPI PFN::glProgramUniform4uivEXT glProgramUniform4uivEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameters4fvEXT glNamedProgramLocalParameters4fvEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameterI4iEXT glNamedProgramLocalParameterI4iEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameterI4ivEXT glNamedProgramLocalParameterI4ivEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParametersI4ivEXT glNamedProgramLocalParametersI4ivEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameterI4uiEXT glNamedProgramLocalParameterI4uiEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameterI4uivEXT glNamedProgramLocalParameterI4uivEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParametersI4uivEXT glNamedProgramLocalParametersI4uivEXT;
+AXLGLFLAPI PFN::glGetNamedProgramLocalParameterIivEXT glGetNamedProgramLocalParameterIivEXT;
+AXLGLFLAPI PFN::glGetNamedProgramLocalParameterIuivEXT glGetNamedProgramLocalParameterIuivEXT;
+AXLGLFLAPI PFN::glEnableClientStateiEXT glEnableClientStateiEXT;
+AXLGLFLAPI PFN::glDisableClientStateiEXT glDisableClientStateiEXT;
+AXLGLFLAPI PFN::glGetFloati_vEXT glGetFloati_vEXT;
+AXLGLFLAPI PFN::glGetDoublei_vEXT glGetDoublei_vEXT;
+AXLGLFLAPI PFN::glGetPointeri_vEXT glGetPointeri_vEXT;
+AXLGLFLAPI PFN::glNamedProgramStringEXT glNamedProgramStringEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameter4dEXT glNamedProgramLocalParameter4dEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameter4dvEXT glNamedProgramLocalParameter4dvEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameter4fEXT glNamedProgramLocalParameter4fEXT;
+AXLGLFLAPI PFN::glNamedProgramLocalParameter4fvEXT glNamedProgramLocalParameter4fvEXT;
+AXLGLFLAPI PFN::glGetNamedProgramLocalParameterdvEXT glGetNamedProgramLocalParameterdvEXT;
+AXLGLFLAPI PFN::glGetNamedProgramLocalParameterfvEXT glGetNamedProgramLocalParameterfvEXT;
+AXLGLFLAPI PFN::glGetNamedProgramivEXT glGetNamedProgramivEXT;
+AXLGLFLAPI PFN::glGetNamedProgramStringEXT glGetNamedProgramStringEXT;
+AXLGLFLAPI PFN::glNamedRenderbufferStorageEXT glNamedRenderbufferStorageEXT;
+AXLGLFLAPI PFN::glGetNamedRenderbufferParameterivEXT glGetNamedRenderbufferParameterivEXT;
+AXLGLFLAPI PFN::glNamedRenderbufferStorageMultisampleEXT glNamedRenderbufferStorageMultisampleEXT;
+AXLGLFLAPI PFN::glNamedRenderbufferStorageMultisampleCoverageEXT glNamedRenderbufferStorageMultisampleCoverageEXT;
+AXLGLFLAPI PFN::glCheckNamedFramebufferStatusEXT glCheckNamedFramebufferStatusEXT;
+AXLGLFLAPI PFN::glNamedFramebufferTexture1DEXT glNamedFramebufferTexture1DEXT;
+AXLGLFLAPI PFN::glNamedFramebufferTexture2DEXT glNamedFramebufferTexture2DEXT;
+AXLGLFLAPI PFN::glNamedFramebufferTexture3DEXT glNamedFramebufferTexture3DEXT;
+AXLGLFLAPI PFN::glNamedFramebufferRenderbufferEXT glNamedFramebufferRenderbufferEXT;
+AXLGLFLAPI PFN::glGetNamedFramebufferAttachmentParameterivEXT glGetNamedFramebufferAttachmentParameterivEXT;
+AXLGLFLAPI PFN::glGenerateTextureMipmapEXT glGenerateTextureMipmapEXT;
+AXLGLFLAPI PFN::glGenerateMultiTexMipmapEXT glGenerateMultiTexMipmapEXT;
+AXLGLFLAPI PFN::glFramebufferDrawBufferEXT glFramebufferDrawBufferEXT;
+AXLGLFLAPI PFN::glFramebufferDrawBuffersEXT glFramebufferDrawBuffersEXT;
+AXLGLFLAPI PFN::glFramebufferReadBufferEXT glFramebufferReadBufferEXT;
+AXLGLFLAPI PFN::glGetFramebufferParameterivEXT glGetFramebufferParameterivEXT;
+AXLGLFLAPI PFN::glNamedCopyBufferSubDataEXT glNamedCopyBufferSubDataEXT;
+AXLGLFLAPI PFN::glNamedFramebufferTextureEXT glNamedFramebufferTextureEXT;
+AXLGLFLAPI PFN::glNamedFramebufferTextureLayerEXT glNamedFramebufferTextureLayerEXT;
+AXLGLFLAPI PFN::glNamedFramebufferTextureFaceEXT glNamedFramebufferTextureFaceEXT;
+AXLGLFLAPI PFN::glTextureRenderbufferEXT glTextureRenderbufferEXT;
+AXLGLFLAPI PFN::glMultiTexRenderbufferEXT glMultiTexRenderbufferEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexOffsetEXT glVertexArrayVertexOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayColorOffsetEXT glVertexArrayColorOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayEdgeFlagOffsetEXT glVertexArrayEdgeFlagOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayIndexOffsetEXT glVertexArrayIndexOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayNormalOffsetEXT glVertexArrayNormalOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayTexCoordOffsetEXT glVertexArrayTexCoordOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayMultiTexCoordOffsetEXT glVertexArrayMultiTexCoordOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayFogCoordOffsetEXT glVertexArrayFogCoordOffsetEXT;
+AXLGLFLAPI PFN::glVertexArraySecondaryColorOffsetEXT glVertexArraySecondaryColorOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribOffsetEXT glVertexArrayVertexAttribOffsetEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribIOffsetEXT glVertexArrayVertexAttribIOffsetEXT;
+AXLGLFLAPI PFN::glEnableVertexArrayEXT glEnableVertexArrayEXT;
+AXLGLFLAPI PFN::glDisableVertexArrayEXT glDisableVertexArrayEXT;
+AXLGLFLAPI PFN::glEnableVertexArrayAttribEXT glEnableVertexArrayAttribEXT;
+AXLGLFLAPI PFN::glDisableVertexArrayAttribEXT glDisableVertexArrayAttribEXT;
+AXLGLFLAPI PFN::glGetVertexArrayIntegervEXT glGetVertexArrayIntegervEXT;
+AXLGLFLAPI PFN::glGetVertexArrayPointervEXT glGetVertexArrayPointervEXT;
+AXLGLFLAPI PFN::glGetVertexArrayIntegeri_vEXT glGetVertexArrayIntegeri_vEXT;
+AXLGLFLAPI PFN::glGetVertexArrayPointeri_vEXT glGetVertexArrayPointeri_vEXT;
+AXLGLFLAPI PFN::glMapNamedBufferRangeEXT glMapNamedBufferRangeEXT;
+AXLGLFLAPI PFN::glFlushMappedNamedBufferRangeEXT glFlushMappedNamedBufferRangeEXT;
+AXLGLFLAPI PFN::glNamedBufferStorageEXT glNamedBufferStorageEXT;
+AXLGLFLAPI PFN::glClearNamedBufferDataEXT glClearNamedBufferDataEXT;
+AXLGLFLAPI PFN::glClearNamedBufferSubDataEXT glClearNamedBufferSubDataEXT;
+AXLGLFLAPI PFN::glNamedFramebufferParameteriEXT glNamedFramebufferParameteriEXT;
+AXLGLFLAPI PFN::glGetNamedFramebufferParameterivEXT glGetNamedFramebufferParameterivEXT;
+AXLGLFLAPI PFN::glProgramUniform1dEXT glProgramUniform1dEXT;
+AXLGLFLAPI PFN::glProgramUniform2dEXT glProgramUniform2dEXT;
+AXLGLFLAPI PFN::glProgramUniform3dEXT glProgramUniform3dEXT;
+AXLGLFLAPI PFN::glProgramUniform4dEXT glProgramUniform4dEXT;
+AXLGLFLAPI PFN::glProgramUniform1dvEXT glProgramUniform1dvEXT;
+AXLGLFLAPI PFN::glProgramUniform2dvEXT glProgramUniform2dvEXT;
+AXLGLFLAPI PFN::glProgramUniform3dvEXT glProgramUniform3dvEXT;
+AXLGLFLAPI PFN::glProgramUniform4dvEXT glProgramUniform4dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix2dvEXT glProgramUniformMatrix2dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix3dvEXT glProgramUniformMatrix3dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix4dvEXT glProgramUniformMatrix4dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x3dvEXT glProgramUniformMatrix2x3dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix2x4dvEXT glProgramUniformMatrix2x4dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x2dvEXT glProgramUniformMatrix3x2dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix3x4dvEXT glProgramUniformMatrix3x4dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x2dvEXT glProgramUniformMatrix4x2dvEXT;
+AXLGLFLAPI PFN::glProgramUniformMatrix4x3dvEXT glProgramUniformMatrix4x3dvEXT;
+AXLGLFLAPI PFN::glTextureBufferRangeEXT glTextureBufferRangeEXT;
+AXLGLFLAPI PFN::glTextureStorage1DEXT glTextureStorage1DEXT;
+AXLGLFLAPI PFN::glTextureStorage2DEXT glTextureStorage2DEXT;
+AXLGLFLAPI PFN::glTextureStorage3DEXT glTextureStorage3DEXT;
+AXLGLFLAPI PFN::glTextureStorage2DMultisampleEXT glTextureStorage2DMultisampleEXT;
+AXLGLFLAPI PFN::glTextureStorage3DMultisampleEXT glTextureStorage3DMultisampleEXT;
+AXLGLFLAPI PFN::glVertexArrayBindVertexBufferEXT glVertexArrayBindVertexBufferEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribFormatEXT glVertexArrayVertexAttribFormatEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribIFormatEXT glVertexArrayVertexAttribIFormatEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribLFormatEXT glVertexArrayVertexAttribLFormatEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribBindingEXT glVertexArrayVertexAttribBindingEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexBindingDivisorEXT glVertexArrayVertexBindingDivisorEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribLOffsetEXT glVertexArrayVertexAttribLOffsetEXT;
+AXLGLFLAPI PFN::glTexturePageCommitmentEXT glTexturePageCommitmentEXT;
+AXLGLFLAPI PFN::glVertexArrayVertexAttribDivisorEXT glVertexArrayVertexAttribDivisorEXT;
 // GL_EXT_direct_state_access
 
 // GL_EXT_draw_instanced
@@ -4534,8 +4534,8 @@ namespace PFN {
 typedef void (APIENTRYP glDrawArraysInstancedEXT) (GLenum mode, GLint start, GLsizei count, GLsizei primcount);
 typedef void (APIENTRYP glDrawElementsInstancedEXT) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
 }
-AXLGLFL_DECL_GLPROC(glDrawArraysInstancedEXT);
-AXLGLFL_DECL_GLPROC(glDrawElementsInstancedEXT);
+AXLGLFLAPI PFN::glDrawArraysInstancedEXT glDrawArraysInstancedEXT;
+AXLGLFLAPI PFN::glDrawElementsInstancedEXT glDrawElementsInstancedEXT;
 // GL_EXT_draw_instanced
 
 // GL_EXT_multiview_tessellation_geometry_shader
@@ -4556,7 +4556,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_POLYGON_OFFSET_CLAMP_EXT = 0x8E1B;
 namespace PFN {
 typedef void (APIENTRYP glPolygonOffsetClampEXT) (GLfloat factor, GLfloat units, GLfloat clamp);
 }
-AXLGLFL_DECL_GLPROC(glPolygonOffsetClampEXT);
+AXLGLFLAPI PFN::glPolygonOffsetClampEXT glPolygonOffsetClampEXT;
 // GL_EXT_polygon_offset_clamp
 
 // GL_EXT_post_depth_coverage
@@ -4574,7 +4574,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_EFFECTIVE_RASTER_SAMPLES_EXT = 0x932C;
 namespace PFN {
 typedef void (APIENTRYP glRasterSamplesEXT) (GLuint samples, GLboolean fixedsamplelocations);
 }
-AXLGLFL_DECL_GLPROC(glRasterSamplesEXT);
+AXLGLFLAPI PFN::glRasterSamplesEXT glRasterSamplesEXT;
 // GL_EXT_raster_multisample
 
 // GL_EXT_separate_shader_objects
@@ -4585,9 +4585,9 @@ typedef void (APIENTRYP glUseShaderProgramEXT) (GLenum type, GLuint program);
 typedef void (APIENTRYP glActiveProgramEXT) (GLuint program);
 typedef GLuint (APIENTRYP glCreateShaderProgramEXT) (GLenum type, const GLchar *string);
 }
-AXLGLFL_DECL_GLPROC(glUseShaderProgramEXT);
-AXLGLFL_DECL_GLPROC(glActiveProgramEXT);
-AXLGLFL_DECL_GLPROC(glCreateShaderProgramEXT);
+AXLGLFLAPI PFN::glUseShaderProgramEXT glUseShaderProgramEXT;
+AXLGLFLAPI PFN::glActiveProgramEXT glActiveProgramEXT;
+AXLGLFLAPI PFN::glCreateShaderProgramEXT glCreateShaderProgramEXT;
 // GL_EXT_separate_shader_objects
 
 // GL_EXT_shader_framebuffer_fetch
@@ -4600,7 +4600,7 @@ AXLGLFLAPI const bool& GL_EXT_shader_framebuffer_fetch_non_coherent;
 namespace PFN {
 typedef void (APIENTRYP glFramebufferFetchBarrierEXT) (void);
 }
-AXLGLFL_DECL_GLPROC(glFramebufferFetchBarrierEXT);
+AXLGLFLAPI PFN::glFramebufferFetchBarrierEXT glFramebufferFetchBarrierEXT;
 // GL_EXT_shader_framebuffer_fetch_non_coherent
 
 // GL_EXT_shader_integer_mix
@@ -4648,7 +4648,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_NUM_WINDOW_RECTANGLES_EXT = 0x8F15;
 namespace PFN {
 typedef void (APIENTRYP glWindowRectanglesEXT) (GLenum mode, GLsizei count, const GLint *box);
 }
-AXLGLFL_DECL_GLPROC(glWindowRectanglesEXT);
+AXLGLFLAPI PFN::glWindowRectanglesEXT glWindowRectanglesEXT;
 // GL_EXT_window_rectangles
 
 } // namespace GLEXT
@@ -4670,7 +4670,7 @@ AXLGLFLAPI const bool& GL_INTEL_framebuffer_CMAA;
 namespace PFN {
 typedef void (APIENTRYP glApplyFramebufferAttachmentCMAAINTEL) (void);
 }
-AXLGLFL_DECL_GLPROC(glApplyFramebufferAttachmentCMAAINTEL);
+AXLGLFLAPI PFN::glApplyFramebufferAttachmentCMAAINTEL glApplyFramebufferAttachmentCMAAINTEL;
 // GL_INTEL_framebuffer_CMAA
 
 // GL_INTEL_performance_query
@@ -4707,16 +4707,16 @@ typedef void (APIENTRYP glGetPerfQueryDataINTEL) (GLuint queryHandle, GLuint fla
 typedef void (APIENTRYP glGetPerfQueryIdByNameINTEL) (GLchar *queryName, GLuint *queryId);
 typedef void (APIENTRYP glGetPerfQueryInfoINTEL) (GLuint queryId, GLuint queryNameLength, GLchar *queryName, GLuint *dataSize, GLuint *noCounters, GLuint *noInstances, GLuint *capsMask);
 }
-AXLGLFL_DECL_GLPROC(glBeginPerfQueryINTEL);
-AXLGLFL_DECL_GLPROC(glCreatePerfQueryINTEL);
-AXLGLFL_DECL_GLPROC(glDeletePerfQueryINTEL);
-AXLGLFL_DECL_GLPROC(glEndPerfQueryINTEL);
-AXLGLFL_DECL_GLPROC(glGetFirstPerfQueryIdINTEL);
-AXLGLFL_DECL_GLPROC(glGetNextPerfQueryIdINTEL);
-AXLGLFL_DECL_GLPROC(glGetPerfCounterInfoINTEL);
-AXLGLFL_DECL_GLPROC(glGetPerfQueryDataINTEL);
-AXLGLFL_DECL_GLPROC(glGetPerfQueryIdByNameINTEL);
-AXLGLFL_DECL_GLPROC(glGetPerfQueryInfoINTEL);
+AXLGLFLAPI PFN::glBeginPerfQueryINTEL glBeginPerfQueryINTEL;
+AXLGLFLAPI PFN::glCreatePerfQueryINTEL glCreatePerfQueryINTEL;
+AXLGLFLAPI PFN::glDeletePerfQueryINTEL glDeletePerfQueryINTEL;
+AXLGLFLAPI PFN::glEndPerfQueryINTEL glEndPerfQueryINTEL;
+AXLGLFLAPI PFN::glGetFirstPerfQueryIdINTEL glGetFirstPerfQueryIdINTEL;
+AXLGLFLAPI PFN::glGetNextPerfQueryIdINTEL glGetNextPerfQueryIdINTEL;
+AXLGLFLAPI PFN::glGetPerfCounterInfoINTEL glGetPerfCounterInfoINTEL;
+AXLGLFLAPI PFN::glGetPerfQueryDataINTEL glGetPerfQueryDataINTEL;
+AXLGLFLAPI PFN::glGetPerfQueryIdByNameINTEL glGetPerfQueryIdByNameINTEL;
+AXLGLFLAPI PFN::glGetPerfQueryInfoINTEL glGetPerfQueryInfoINTEL;
 // GL_INTEL_performance_query
 
 } // namespace GLINTEL
@@ -4735,8 +4735,8 @@ namespace PFN {
 typedef void (APIENTRYP glFramebufferParameteriMESA) (GLenum target, GLenum pname, GLint param);
 typedef void (APIENTRYP glGetFramebufferParameterivMESA) (GLenum target, GLenum pname, GLint *params);
 }
-AXLGLFL_DECL_GLPROC(glFramebufferParameteriMESA);
-AXLGLFL_DECL_GLPROC(glGetFramebufferParameterivMESA);
+AXLGLFLAPI PFN::glFramebufferParameteriMESA glFramebufferParameteriMESA;
+AXLGLFLAPI PFN::glGetFramebufferParameterivMESA glGetFramebufferParameterivMESA;
 // GL_MESA_framebuffer_flip_y
 
 // GL_MESA_framebuffer_swap_xy
@@ -4754,8 +4754,8 @@ namespace PFN {
 typedef void (APIENTRYP glMultiDrawArraysIndirectBindlessNV) (GLenum mode, const void *indirect, GLsizei drawCount, GLsizei stride, GLint vertexBufferCount);
 typedef void (APIENTRYP glMultiDrawElementsIndirectBindlessNV) (GLenum mode, GLenum type, const void *indirect, GLsizei drawCount, GLsizei stride, GLint vertexBufferCount);
 }
-AXLGLFL_DECL_GLPROC(glMultiDrawArraysIndirectBindlessNV);
-AXLGLFL_DECL_GLPROC(glMultiDrawElementsIndirectBindlessNV);
+AXLGLFLAPI PFN::glMultiDrawArraysIndirectBindlessNV glMultiDrawArraysIndirectBindlessNV;
+AXLGLFLAPI PFN::glMultiDrawElementsIndirectBindlessNV glMultiDrawElementsIndirectBindlessNV;
 // GL_NV_bindless_multi_draw_indirect
 
 // GL_NV_bindless_multi_draw_indirect_count
@@ -4764,8 +4764,8 @@ namespace PFN {
 typedef void (APIENTRYP glMultiDrawArraysIndirectBindlessCountNV) (GLenum mode, const void *indirect, GLsizei drawCount, GLsizei maxDrawCount, GLsizei stride, GLint vertexBufferCount);
 typedef void (APIENTRYP glMultiDrawElementsIndirectBindlessCountNV) (GLenum mode, GLenum type, const void *indirect, GLsizei drawCount, GLsizei maxDrawCount, GLsizei stride, GLint vertexBufferCount);
 }
-AXLGLFL_DECL_GLPROC(glMultiDrawArraysIndirectBindlessCountNV);
-AXLGLFL_DECL_GLPROC(glMultiDrawElementsIndirectBindlessCountNV);
+AXLGLFLAPI PFN::glMultiDrawArraysIndirectBindlessCountNV glMultiDrawArraysIndirectBindlessCountNV;
+AXLGLFLAPI PFN::glMultiDrawElementsIndirectBindlessCountNV glMultiDrawElementsIndirectBindlessCountNV;
 // GL_NV_bindless_multi_draw_indirect_count
 
 // GL_NV_bindless_texture
@@ -4785,19 +4785,19 @@ typedef void (APIENTRYP glProgramUniformHandleui64vNV) (GLuint program, GLint lo
 typedef GLboolean (APIENTRYP glIsTextureHandleResidentNV) (GLuint64 handle);
 typedef GLboolean (APIENTRYP glIsImageHandleResidentNV) (GLuint64 handle);
 }
-AXLGLFL_DECL_GLPROC(glGetTextureHandleNV);
-AXLGLFL_DECL_GLPROC(glGetTextureSamplerHandleNV);
-AXLGLFL_DECL_GLPROC(glMakeTextureHandleResidentNV);
-AXLGLFL_DECL_GLPROC(glMakeTextureHandleNonResidentNV);
-AXLGLFL_DECL_GLPROC(glGetImageHandleNV);
-AXLGLFL_DECL_GLPROC(glMakeImageHandleResidentNV);
-AXLGLFL_DECL_GLPROC(glMakeImageHandleNonResidentNV);
-AXLGLFL_DECL_GLPROC(glUniformHandleui64NV);
-AXLGLFL_DECL_GLPROC(glUniformHandleui64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniformHandleui64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniformHandleui64vNV);
-AXLGLFL_DECL_GLPROC(glIsTextureHandleResidentNV);
-AXLGLFL_DECL_GLPROC(glIsImageHandleResidentNV);
+AXLGLFLAPI PFN::glGetTextureHandleNV glGetTextureHandleNV;
+AXLGLFLAPI PFN::glGetTextureSamplerHandleNV glGetTextureSamplerHandleNV;
+AXLGLFLAPI PFN::glMakeTextureHandleResidentNV glMakeTextureHandleResidentNV;
+AXLGLFLAPI PFN::glMakeTextureHandleNonResidentNV glMakeTextureHandleNonResidentNV;
+AXLGLFLAPI PFN::glGetImageHandleNV glGetImageHandleNV;
+AXLGLFLAPI PFN::glMakeImageHandleResidentNV glMakeImageHandleResidentNV;
+AXLGLFLAPI PFN::glMakeImageHandleNonResidentNV glMakeImageHandleNonResidentNV;
+AXLGLFLAPI PFN::glUniformHandleui64NV glUniformHandleui64NV;
+AXLGLFLAPI PFN::glUniformHandleui64vNV glUniformHandleui64vNV;
+AXLGLFLAPI PFN::glProgramUniformHandleui64NV glProgramUniformHandleui64NV;
+AXLGLFLAPI PFN::glProgramUniformHandleui64vNV glProgramUniformHandleui64vNV;
+AXLGLFLAPI PFN::glIsTextureHandleResidentNV glIsTextureHandleResidentNV;
+AXLGLFLAPI PFN::glIsImageHandleResidentNV glIsImageHandleResidentNV;
 // GL_NV_bindless_texture
 
 // GL_NV_blend_equation_advanced
@@ -4855,8 +4855,8 @@ namespace PFN {
 typedef void (APIENTRYP glBlendParameteriNV) (GLenum pname, GLint value);
 typedef void (APIENTRYP glBlendBarrierNV) (void);
 }
-AXLGLFL_DECL_GLPROC(glBlendParameteriNV);
-AXLGLFL_DECL_GLPROC(glBlendBarrierNV);
+AXLGLFLAPI PFN::glBlendParameteriNV glBlendParameteriNV;
+AXLGLFLAPI PFN::glBlendBarrierNV glBlendBarrierNV;
 // GL_NV_blend_equation_advanced
 
 // GL_NV_blend_equation_advanced_coherent
@@ -4878,7 +4878,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_VIEWPORT_POSITION_W_SCALE_Y_COEFF_NV = 0x937E
 namespace PFN {
 typedef void (APIENTRYP glViewportPositionWScaleNV) (GLuint index, GLfloat xcoeff, GLfloat ycoeff);
 }
-AXLGLFL_DECL_GLPROC(glViewportPositionWScaleNV);
+AXLGLFLAPI PFN::glViewportPositionWScaleNV glViewportPositionWScaleNV;
 // GL_NV_clip_space_w_scaling
 
 // GL_NV_command_list
@@ -4921,23 +4921,23 @@ typedef void (APIENTRYP glCommandListSegmentsNV) (GLuint list, GLuint segments);
 typedef void (APIENTRYP glCompileCommandListNV) (GLuint list);
 typedef void (APIENTRYP glCallCommandListNV) (GLuint list);
 }
-AXLGLFL_DECL_GLPROC(glCreateStatesNV);
-AXLGLFL_DECL_GLPROC(glDeleteStatesNV);
-AXLGLFL_DECL_GLPROC(glIsStateNV);
-AXLGLFL_DECL_GLPROC(glStateCaptureNV);
-AXLGLFL_DECL_GLPROC(glGetCommandHeaderNV);
-AXLGLFL_DECL_GLPROC(glGetStageIndexNV);
-AXLGLFL_DECL_GLPROC(glDrawCommandsNV);
-AXLGLFL_DECL_GLPROC(glDrawCommandsAddressNV);
-AXLGLFL_DECL_GLPROC(glDrawCommandsStatesNV);
-AXLGLFL_DECL_GLPROC(glDrawCommandsStatesAddressNV);
-AXLGLFL_DECL_GLPROC(glCreateCommandListsNV);
-AXLGLFL_DECL_GLPROC(glDeleteCommandListsNV);
-AXLGLFL_DECL_GLPROC(glIsCommandListNV);
-AXLGLFL_DECL_GLPROC(glListDrawCommandsStatesClientNV);
-AXLGLFL_DECL_GLPROC(glCommandListSegmentsNV);
-AXLGLFL_DECL_GLPROC(glCompileCommandListNV);
-AXLGLFL_DECL_GLPROC(glCallCommandListNV);
+AXLGLFLAPI PFN::glCreateStatesNV glCreateStatesNV;
+AXLGLFLAPI PFN::glDeleteStatesNV glDeleteStatesNV;
+AXLGLFLAPI PFN::glIsStateNV glIsStateNV;
+AXLGLFLAPI PFN::glStateCaptureNV glStateCaptureNV;
+AXLGLFLAPI PFN::glGetCommandHeaderNV glGetCommandHeaderNV;
+AXLGLFLAPI PFN::glGetStageIndexNV glGetStageIndexNV;
+AXLGLFLAPI PFN::glDrawCommandsNV glDrawCommandsNV;
+AXLGLFLAPI PFN::glDrawCommandsAddressNV glDrawCommandsAddressNV;
+AXLGLFLAPI PFN::glDrawCommandsStatesNV glDrawCommandsStatesNV;
+AXLGLFLAPI PFN::glDrawCommandsStatesAddressNV glDrawCommandsStatesAddressNV;
+AXLGLFLAPI PFN::glCreateCommandListsNV glCreateCommandListsNV;
+AXLGLFLAPI PFN::glDeleteCommandListsNV glDeleteCommandListsNV;
+AXLGLFLAPI PFN::glIsCommandListNV glIsCommandListNV;
+AXLGLFLAPI PFN::glListDrawCommandsStatesClientNV glListDrawCommandsStatesClientNV;
+AXLGLFLAPI PFN::glCommandListSegmentsNV glCommandListSegmentsNV;
+AXLGLFLAPI PFN::glCompileCommandListNV glCompileCommandListNV;
+AXLGLFLAPI PFN::glCallCommandListNV glCallCommandListNV;
 // GL_NV_command_list
 
 // GL_NV_compute_shader_derivatives
@@ -4954,8 +4954,8 @@ namespace PFN {
 typedef void (APIENTRYP glBeginConditionalRenderNV) (GLuint id, GLenum mode);
 typedef void (APIENTRYP glEndConditionalRenderNV) (void);
 }
-AXLGLFL_DECL_GLPROC(glBeginConditionalRenderNV);
-AXLGLFL_DECL_GLPROC(glEndConditionalRenderNV);
+AXLGLFLAPI PFN::glBeginConditionalRenderNV glBeginConditionalRenderNV;
+AXLGLFLAPI PFN::glEndConditionalRenderNV glEndConditionalRenderNV;
 // GL_NV_conditional_render
 
 // GL_NV_conservative_raster
@@ -4967,7 +4967,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_MAX_SUBPIXEL_PRECISION_BIAS_BITS_NV = 0x9349;
 namespace PFN {
 typedef void (APIENTRYP glSubpixelPrecisionBiasNV) (GLuint xbits, GLuint ybits);
 }
-AXLGLFL_DECL_GLPROC(glSubpixelPrecisionBiasNV);
+AXLGLFLAPI PFN::glSubpixelPrecisionBiasNV glSubpixelPrecisionBiasNV;
 // GL_NV_conservative_raster
 
 // GL_NV_conservative_raster_dilate
@@ -4978,7 +4978,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_CONSERVATIVE_RASTER_DILATE_GRANULARITY_NV = 0
 namespace PFN {
 typedef void (APIENTRYP glConservativeRasterParameterfNV) (GLenum pname, GLfloat value);
 }
-AXLGLFL_DECL_GLPROC(glConservativeRasterParameterfNV);
+AXLGLFLAPI PFN::glConservativeRasterParameterfNV glConservativeRasterParameterfNV;
 // GL_NV_conservative_raster_dilate
 
 // GL_NV_conservative_raster_pre_snap
@@ -4994,7 +4994,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_CONSERVATIVE_RASTER_MODE_PRE_SNAP_TRIANGLES_N
 namespace PFN {
 typedef void (APIENTRYP glConservativeRasterParameteriNV) (GLenum pname, GLint param);
 }
-AXLGLFL_DECL_GLPROC(glConservativeRasterParameteriNV);
+AXLGLFLAPI PFN::glConservativeRasterParameteriNV glConservativeRasterParameteriNV;
 // GL_NV_conservative_raster_pre_snap_triangles
 
 // GL_NV_conservative_raster_underestimation
@@ -5012,9 +5012,9 @@ typedef void (APIENTRYP glDepthRangedNV) (GLdouble zNear, GLdouble zFar);
 typedef void (APIENTRYP glClearDepthdNV) (GLdouble depth);
 typedef void (APIENTRYP glDepthBoundsdNV) (GLdouble zmin, GLdouble zmax);
 }
-AXLGLFL_DECL_GLPROC(glDepthRangedNV);
-AXLGLFL_DECL_GLPROC(glClearDepthdNV);
-AXLGLFL_DECL_GLPROC(glDepthBoundsdNV);
+AXLGLFLAPI PFN::glDepthRangedNV glDepthRangedNV;
+AXLGLFLAPI PFN::glClearDepthdNV glClearDepthdNV;
+AXLGLFLAPI PFN::glDepthBoundsdNV glDepthBoundsdNV;
 // GL_NV_depth_buffer_float
 
 // GL_NV_draw_vulkan_image
@@ -5027,11 +5027,11 @@ typedef void (APIENTRYP glWaitVkSemaphoreNV) (GLuint64 vkSemaphore);
 typedef void (APIENTRYP glSignalVkSemaphoreNV) (GLuint64 vkSemaphore);
 typedef void (APIENTRYP glSignalVkFenceNV) (GLuint64 vkFence);
 }
-AXLGLFL_DECL_GLPROC(glDrawVkImageNV);
-AXLGLFL_DECL_GLPROC(glGetVkProcAddrNV);
-AXLGLFL_DECL_GLPROC(glWaitVkSemaphoreNV);
-AXLGLFL_DECL_GLPROC(glSignalVkSemaphoreNV);
-AXLGLFL_DECL_GLPROC(glSignalVkFenceNV);
+AXLGLFLAPI PFN::glDrawVkImageNV glDrawVkImageNV;
+AXLGLFLAPI PFN::glGetVkProcAddrNV glGetVkProcAddrNV;
+AXLGLFLAPI PFN::glWaitVkSemaphoreNV glWaitVkSemaphoreNV;
+AXLGLFLAPI PFN::glSignalVkSemaphoreNV glSignalVkSemaphoreNV;
+AXLGLFLAPI PFN::glSignalVkFenceNV glSignalVkFenceNV;
 // GL_NV_draw_vulkan_image
 
 // GL_NV_fill_rectangle
@@ -5046,7 +5046,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_FRAGMENT_COVERAGE_COLOR_NV = 0x92DE;
 namespace PFN {
 typedef void (APIENTRYP glFragmentCoverageColorNV) (GLuint color);
 }
-AXLGLFL_DECL_GLPROC(glFragmentCoverageColorNV);
+AXLGLFLAPI PFN::glFragmentCoverageColorNV glFragmentCoverageColorNV;
 // GL_NV_fragment_coverage_to_color
 
 // GL_NV_fragment_shader_barycentric
@@ -5072,9 +5072,9 @@ typedef void (APIENTRYP glCoverageModulationTableNV) (GLsizei n, const GLfloat *
 typedef void (APIENTRYP glGetCoverageModulationTableNV) (GLsizei bufSize, GLfloat *v);
 typedef void (APIENTRYP glCoverageModulationNV) (GLenum components);
 }
-AXLGLFL_DECL_GLPROC(glCoverageModulationTableNV);
-AXLGLFL_DECL_GLPROC(glGetCoverageModulationTableNV);
-AXLGLFL_DECL_GLPROC(glCoverageModulationNV);
+AXLGLFLAPI PFN::glCoverageModulationTableNV glCoverageModulationTableNV;
+AXLGLFLAPI PFN::glGetCoverageModulationTableNV glGetCoverageModulationTableNV;
+AXLGLFLAPI PFN::glCoverageModulationNV glCoverageModulationNV;
 // GL_NV_framebuffer_mixed_samples
 
 // GL_NV_framebuffer_multisample_coverage
@@ -5086,7 +5086,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_MULTISAMPLE_COVERAGE_MODES_NV = 0x8E12;
 namespace PFN {
 typedef void (APIENTRYP glRenderbufferStorageMultisampleCoverageNV) (GLenum target, GLsizei coverageSamples, GLsizei colorSamples, GLenum internalformat, GLsizei width, GLsizei height);
 }
-AXLGLFL_DECL_GLPROC(glRenderbufferStorageMultisampleCoverageNV);
+AXLGLFLAPI PFN::glRenderbufferStorageMultisampleCoverageNV glRenderbufferStorageMultisampleCoverageNV;
 // GL_NV_framebuffer_multisample_coverage
 
 // GL_NV_geometry_shader_passthrough
@@ -5158,39 +5158,39 @@ typedef void (APIENTRYP glProgramUniform2ui64vNV) (GLuint program, GLint locatio
 typedef void (APIENTRYP glProgramUniform3ui64vNV) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
 typedef void (APIENTRYP glProgramUniform4ui64vNV) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
 }
-AXLGLFL_DECL_GLPROC(glUniform1i64NV);
-AXLGLFL_DECL_GLPROC(glUniform2i64NV);
-AXLGLFL_DECL_GLPROC(glUniform3i64NV);
-AXLGLFL_DECL_GLPROC(glUniform4i64NV);
-AXLGLFL_DECL_GLPROC(glUniform1i64vNV);
-AXLGLFL_DECL_GLPROC(glUniform2i64vNV);
-AXLGLFL_DECL_GLPROC(glUniform3i64vNV);
-AXLGLFL_DECL_GLPROC(glUniform4i64vNV);
-AXLGLFL_DECL_GLPROC(glUniform1ui64NV);
-AXLGLFL_DECL_GLPROC(glUniform2ui64NV);
-AXLGLFL_DECL_GLPROC(glUniform3ui64NV);
-AXLGLFL_DECL_GLPROC(glUniform4ui64NV);
-AXLGLFL_DECL_GLPROC(glUniform1ui64vNV);
-AXLGLFL_DECL_GLPROC(glUniform2ui64vNV);
-AXLGLFL_DECL_GLPROC(glUniform3ui64vNV);
-AXLGLFL_DECL_GLPROC(glUniform4ui64vNV);
-AXLGLFL_DECL_GLPROC(glGetUniformi64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform1i64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform2i64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform3i64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform4i64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform1i64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform2i64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform3i64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform4i64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform1ui64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform2ui64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform3ui64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform4ui64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniform1ui64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform2ui64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform3ui64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniform4ui64vNV);
+AXLGLFLAPI PFN::glUniform1i64NV glUniform1i64NV;
+AXLGLFLAPI PFN::glUniform2i64NV glUniform2i64NV;
+AXLGLFLAPI PFN::glUniform3i64NV glUniform3i64NV;
+AXLGLFLAPI PFN::glUniform4i64NV glUniform4i64NV;
+AXLGLFLAPI PFN::glUniform1i64vNV glUniform1i64vNV;
+AXLGLFLAPI PFN::glUniform2i64vNV glUniform2i64vNV;
+AXLGLFLAPI PFN::glUniform3i64vNV glUniform3i64vNV;
+AXLGLFLAPI PFN::glUniform4i64vNV glUniform4i64vNV;
+AXLGLFLAPI PFN::glUniform1ui64NV glUniform1ui64NV;
+AXLGLFLAPI PFN::glUniform2ui64NV glUniform2ui64NV;
+AXLGLFLAPI PFN::glUniform3ui64NV glUniform3ui64NV;
+AXLGLFLAPI PFN::glUniform4ui64NV glUniform4ui64NV;
+AXLGLFLAPI PFN::glUniform1ui64vNV glUniform1ui64vNV;
+AXLGLFLAPI PFN::glUniform2ui64vNV glUniform2ui64vNV;
+AXLGLFLAPI PFN::glUniform3ui64vNV glUniform3ui64vNV;
+AXLGLFLAPI PFN::glUniform4ui64vNV glUniform4ui64vNV;
+AXLGLFLAPI PFN::glGetUniformi64vNV glGetUniformi64vNV;
+AXLGLFLAPI PFN::glProgramUniform1i64NV glProgramUniform1i64NV;
+AXLGLFLAPI PFN::glProgramUniform2i64NV glProgramUniform2i64NV;
+AXLGLFLAPI PFN::glProgramUniform3i64NV glProgramUniform3i64NV;
+AXLGLFLAPI PFN::glProgramUniform4i64NV glProgramUniform4i64NV;
+AXLGLFLAPI PFN::glProgramUniform1i64vNV glProgramUniform1i64vNV;
+AXLGLFLAPI PFN::glProgramUniform2i64vNV glProgramUniform2i64vNV;
+AXLGLFLAPI PFN::glProgramUniform3i64vNV glProgramUniform3i64vNV;
+AXLGLFLAPI PFN::glProgramUniform4i64vNV glProgramUniform4i64vNV;
+AXLGLFLAPI PFN::glProgramUniform1ui64NV glProgramUniform1ui64NV;
+AXLGLFLAPI PFN::glProgramUniform2ui64NV glProgramUniform2ui64NV;
+AXLGLFLAPI PFN::glProgramUniform3ui64NV glProgramUniform3ui64NV;
+AXLGLFLAPI PFN::glProgramUniform4ui64NV glProgramUniform4ui64NV;
+AXLGLFLAPI PFN::glProgramUniform1ui64vNV glProgramUniform1ui64vNV;
+AXLGLFLAPI PFN::glProgramUniform2ui64vNV glProgramUniform2ui64vNV;
+AXLGLFLAPI PFN::glProgramUniform3ui64vNV glProgramUniform3ui64vNV;
+AXLGLFLAPI PFN::glProgramUniform4ui64vNV glProgramUniform4ui64vNV;
 // GL_NV_gpu_shader5
 
 // GL_NV_internalformat_sample_query
@@ -5202,7 +5202,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_CONFORMANT_NV = 0x9374;
 namespace PFN {
 typedef void (APIENTRYP glGetInternalformatSampleivNV) (GLenum target, GLenum internalformat, GLsizei samples, GLenum pname, GLsizei count, GLint *params);
 }
-AXLGLFL_DECL_GLPROC(glGetInternalformatSampleivNV);
+AXLGLFLAPI PFN::glGetInternalformatSampleivNV glGetInternalformatSampleivNV;
 // GL_NV_internalformat_sample_query
 
 // GL_NV_memory_attachment
@@ -5225,12 +5225,12 @@ typedef void (APIENTRYP glBufferAttachMemoryNV) (GLenum target, GLuint memory, G
 typedef void (APIENTRYP glTextureAttachMemoryNV) (GLuint texture, GLuint memory, GLuint64 offset);
 typedef void (APIENTRYP glNamedBufferAttachMemoryNV) (GLuint buffer, GLuint memory, GLuint64 offset);
 }
-AXLGLFL_DECL_GLPROC(glGetMemoryObjectDetachedResourcesuivNV);
-AXLGLFL_DECL_GLPROC(glResetMemoryObjectParameterNV);
-AXLGLFL_DECL_GLPROC(glTexAttachMemoryNV);
-AXLGLFL_DECL_GLPROC(glBufferAttachMemoryNV);
-AXLGLFL_DECL_GLPROC(glTextureAttachMemoryNV);
-AXLGLFL_DECL_GLPROC(glNamedBufferAttachMemoryNV);
+AXLGLFLAPI PFN::glGetMemoryObjectDetachedResourcesuivNV glGetMemoryObjectDetachedResourcesuivNV;
+AXLGLFLAPI PFN::glResetMemoryObjectParameterNV glResetMemoryObjectParameterNV;
+AXLGLFLAPI PFN::glTexAttachMemoryNV glTexAttachMemoryNV;
+AXLGLFLAPI PFN::glBufferAttachMemoryNV glBufferAttachMemoryNV;
+AXLGLFLAPI PFN::glTextureAttachMemoryNV glTextureAttachMemoryNV;
+AXLGLFLAPI PFN::glNamedBufferAttachMemoryNV glNamedBufferAttachMemoryNV;
 // GL_NV_memory_attachment
 
 // GL_NV_memory_object_sparse
@@ -5241,10 +5241,10 @@ typedef void (APIENTRYP glTexPageCommitmentMemNV) (GLenum target, GLint layer, G
 typedef void (APIENTRYP glNamedBufferPageCommitmentMemNV) (GLuint buffer, GLintptr offset, GLsizeiptr size, GLuint memory, GLuint64 memOffset, GLboolean commit);
 typedef void (APIENTRYP glTexturePageCommitmentMemNV) (GLuint texture, GLint layer, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset, GLboolean commit);
 }
-AXLGLFL_DECL_GLPROC(glBufferPageCommitmentMemNV);
-AXLGLFL_DECL_GLPROC(glTexPageCommitmentMemNV);
-AXLGLFL_DECL_GLPROC(glNamedBufferPageCommitmentMemNV);
-AXLGLFL_DECL_GLPROC(glTexturePageCommitmentMemNV);
+AXLGLFLAPI PFN::glBufferPageCommitmentMemNV glBufferPageCommitmentMemNV;
+AXLGLFLAPI PFN::glTexPageCommitmentMemNV glTexPageCommitmentMemNV;
+AXLGLFLAPI PFN::glNamedBufferPageCommitmentMemNV glNamedBufferPageCommitmentMemNV;
+AXLGLFLAPI PFN::glTexturePageCommitmentMemNV glTexturePageCommitmentMemNV;
 // GL_NV_memory_object_sparse
 
 // GL_NV_mesh_shader
@@ -5303,10 +5303,10 @@ typedef void (APIENTRYP glDrawMeshTasksIndirectNV) (GLintptr indirect);
 typedef void (APIENTRYP glMultiDrawMeshTasksIndirectNV) (GLintptr indirect, GLsizei drawcount, GLsizei stride);
 typedef void (APIENTRYP glMultiDrawMeshTasksIndirectCountNV) (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 }
-AXLGLFL_DECL_GLPROC(glDrawMeshTasksNV);
-AXLGLFL_DECL_GLPROC(glDrawMeshTasksIndirectNV);
-AXLGLFL_DECL_GLPROC(glMultiDrawMeshTasksIndirectNV);
-AXLGLFL_DECL_GLPROC(glMultiDrawMeshTasksIndirectCountNV);
+AXLGLFLAPI PFN::glDrawMeshTasksNV glDrawMeshTasksNV;
+AXLGLFLAPI PFN::glDrawMeshTasksIndirectNV glDrawMeshTasksIndirectNV;
+AXLGLFLAPI PFN::glMultiDrawMeshTasksIndirectNV glMultiDrawMeshTasksIndirectNV;
+AXLGLFLAPI PFN::glMultiDrawMeshTasksIndirectCountNV glMultiDrawMeshTasksIndirectCountNV;
 // GL_NV_mesh_shader
 
 // GL_NV_path_rendering
@@ -5523,63 +5523,63 @@ typedef GLenum (APIENTRYP glPathMemoryGlyphIndexArrayNV) (GLuint firstPathName, 
 typedef void (APIENTRYP glProgramPathFragmentInputGenNV) (GLuint program, GLint location, GLenum genMode, GLint components, const GLfloat *coeffs);
 typedef void (APIENTRYP glGetProgramResourcefvNV) (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum *props, GLsizei count, GLsizei *length, GLfloat *params);
 }
-AXLGLFL_DECL_GLPROC(glGenPathsNV);
-AXLGLFL_DECL_GLPROC(glDeletePathsNV);
-AXLGLFL_DECL_GLPROC(glIsPathNV);
-AXLGLFL_DECL_GLPROC(glPathCommandsNV);
-AXLGLFL_DECL_GLPROC(glPathCoordsNV);
-AXLGLFL_DECL_GLPROC(glPathSubCommandsNV);
-AXLGLFL_DECL_GLPROC(glPathSubCoordsNV);
-AXLGLFL_DECL_GLPROC(glPathStringNV);
-AXLGLFL_DECL_GLPROC(glPathGlyphsNV);
-AXLGLFL_DECL_GLPROC(glPathGlyphRangeNV);
-AXLGLFL_DECL_GLPROC(glWeightPathsNV);
-AXLGLFL_DECL_GLPROC(glCopyPathNV);
-AXLGLFL_DECL_GLPROC(glInterpolatePathsNV);
-AXLGLFL_DECL_GLPROC(glTransformPathNV);
-AXLGLFL_DECL_GLPROC(glPathParameterivNV);
-AXLGLFL_DECL_GLPROC(glPathParameteriNV);
-AXLGLFL_DECL_GLPROC(glPathParameterfvNV);
-AXLGLFL_DECL_GLPROC(glPathParameterfNV);
-AXLGLFL_DECL_GLPROC(glPathDashArrayNV);
-AXLGLFL_DECL_GLPROC(glPathStencilFuncNV);
-AXLGLFL_DECL_GLPROC(glPathStencilDepthOffsetNV);
-AXLGLFL_DECL_GLPROC(glStencilFillPathNV);
-AXLGLFL_DECL_GLPROC(glStencilStrokePathNV);
-AXLGLFL_DECL_GLPROC(glStencilFillPathInstancedNV);
-AXLGLFL_DECL_GLPROC(glStencilStrokePathInstancedNV);
-AXLGLFL_DECL_GLPROC(glPathCoverDepthFuncNV);
-AXLGLFL_DECL_GLPROC(glCoverFillPathNV);
-AXLGLFL_DECL_GLPROC(glCoverStrokePathNV);
-AXLGLFL_DECL_GLPROC(glCoverFillPathInstancedNV);
-AXLGLFL_DECL_GLPROC(glCoverStrokePathInstancedNV);
-AXLGLFL_DECL_GLPROC(glGetPathParameterivNV);
-AXLGLFL_DECL_GLPROC(glGetPathParameterfvNV);
-AXLGLFL_DECL_GLPROC(glGetPathCommandsNV);
-AXLGLFL_DECL_GLPROC(glGetPathCoordsNV);
-AXLGLFL_DECL_GLPROC(glGetPathDashArrayNV);
-AXLGLFL_DECL_GLPROC(glGetPathMetricsNV);
-AXLGLFL_DECL_GLPROC(glGetPathMetricRangeNV);
-AXLGLFL_DECL_GLPROC(glGetPathSpacingNV);
-AXLGLFL_DECL_GLPROC(glIsPointInFillPathNV);
-AXLGLFL_DECL_GLPROC(glIsPointInStrokePathNV);
-AXLGLFL_DECL_GLPROC(glGetPathLengthNV);
-AXLGLFL_DECL_GLPROC(glPointAlongPathNV);
-AXLGLFL_DECL_GLPROC(glMatrixLoad3x2fNV);
-AXLGLFL_DECL_GLPROC(glMatrixLoad3x3fNV);
-AXLGLFL_DECL_GLPROC(glMatrixLoadTranspose3x3fNV);
-AXLGLFL_DECL_GLPROC(glMatrixMult3x2fNV);
-AXLGLFL_DECL_GLPROC(glMatrixMult3x3fNV);
-AXLGLFL_DECL_GLPROC(glMatrixMultTranspose3x3fNV);
-AXLGLFL_DECL_GLPROC(glStencilThenCoverFillPathNV);
-AXLGLFL_DECL_GLPROC(glStencilThenCoverStrokePathNV);
-AXLGLFL_DECL_GLPROC(glStencilThenCoverFillPathInstancedNV);
-AXLGLFL_DECL_GLPROC(glStencilThenCoverStrokePathInstancedNV);
-AXLGLFL_DECL_GLPROC(glPathGlyphIndexRangeNV);
-AXLGLFL_DECL_GLPROC(glPathGlyphIndexArrayNV);
-AXLGLFL_DECL_GLPROC(glPathMemoryGlyphIndexArrayNV);
-AXLGLFL_DECL_GLPROC(glProgramPathFragmentInputGenNV);
-AXLGLFL_DECL_GLPROC(glGetProgramResourcefvNV);
+AXLGLFLAPI PFN::glGenPathsNV glGenPathsNV;
+AXLGLFLAPI PFN::glDeletePathsNV glDeletePathsNV;
+AXLGLFLAPI PFN::glIsPathNV glIsPathNV;
+AXLGLFLAPI PFN::glPathCommandsNV glPathCommandsNV;
+AXLGLFLAPI PFN::glPathCoordsNV glPathCoordsNV;
+AXLGLFLAPI PFN::glPathSubCommandsNV glPathSubCommandsNV;
+AXLGLFLAPI PFN::glPathSubCoordsNV glPathSubCoordsNV;
+AXLGLFLAPI PFN::glPathStringNV glPathStringNV;
+AXLGLFLAPI PFN::glPathGlyphsNV glPathGlyphsNV;
+AXLGLFLAPI PFN::glPathGlyphRangeNV glPathGlyphRangeNV;
+AXLGLFLAPI PFN::glWeightPathsNV glWeightPathsNV;
+AXLGLFLAPI PFN::glCopyPathNV glCopyPathNV;
+AXLGLFLAPI PFN::glInterpolatePathsNV glInterpolatePathsNV;
+AXLGLFLAPI PFN::glTransformPathNV glTransformPathNV;
+AXLGLFLAPI PFN::glPathParameterivNV glPathParameterivNV;
+AXLGLFLAPI PFN::glPathParameteriNV glPathParameteriNV;
+AXLGLFLAPI PFN::glPathParameterfvNV glPathParameterfvNV;
+AXLGLFLAPI PFN::glPathParameterfNV glPathParameterfNV;
+AXLGLFLAPI PFN::glPathDashArrayNV glPathDashArrayNV;
+AXLGLFLAPI PFN::glPathStencilFuncNV glPathStencilFuncNV;
+AXLGLFLAPI PFN::glPathStencilDepthOffsetNV glPathStencilDepthOffsetNV;
+AXLGLFLAPI PFN::glStencilFillPathNV glStencilFillPathNV;
+AXLGLFLAPI PFN::glStencilStrokePathNV glStencilStrokePathNV;
+AXLGLFLAPI PFN::glStencilFillPathInstancedNV glStencilFillPathInstancedNV;
+AXLGLFLAPI PFN::glStencilStrokePathInstancedNV glStencilStrokePathInstancedNV;
+AXLGLFLAPI PFN::glPathCoverDepthFuncNV glPathCoverDepthFuncNV;
+AXLGLFLAPI PFN::glCoverFillPathNV glCoverFillPathNV;
+AXLGLFLAPI PFN::glCoverStrokePathNV glCoverStrokePathNV;
+AXLGLFLAPI PFN::glCoverFillPathInstancedNV glCoverFillPathInstancedNV;
+AXLGLFLAPI PFN::glCoverStrokePathInstancedNV glCoverStrokePathInstancedNV;
+AXLGLFLAPI PFN::glGetPathParameterivNV glGetPathParameterivNV;
+AXLGLFLAPI PFN::glGetPathParameterfvNV glGetPathParameterfvNV;
+AXLGLFLAPI PFN::glGetPathCommandsNV glGetPathCommandsNV;
+AXLGLFLAPI PFN::glGetPathCoordsNV glGetPathCoordsNV;
+AXLGLFLAPI PFN::glGetPathDashArrayNV glGetPathDashArrayNV;
+AXLGLFLAPI PFN::glGetPathMetricsNV glGetPathMetricsNV;
+AXLGLFLAPI PFN::glGetPathMetricRangeNV glGetPathMetricRangeNV;
+AXLGLFLAPI PFN::glGetPathSpacingNV glGetPathSpacingNV;
+AXLGLFLAPI PFN::glIsPointInFillPathNV glIsPointInFillPathNV;
+AXLGLFLAPI PFN::glIsPointInStrokePathNV glIsPointInStrokePathNV;
+AXLGLFLAPI PFN::glGetPathLengthNV glGetPathLengthNV;
+AXLGLFLAPI PFN::glPointAlongPathNV glPointAlongPathNV;
+AXLGLFLAPI PFN::glMatrixLoad3x2fNV glMatrixLoad3x2fNV;
+AXLGLFLAPI PFN::glMatrixLoad3x3fNV glMatrixLoad3x3fNV;
+AXLGLFLAPI PFN::glMatrixLoadTranspose3x3fNV glMatrixLoadTranspose3x3fNV;
+AXLGLFLAPI PFN::glMatrixMult3x2fNV glMatrixMult3x2fNV;
+AXLGLFLAPI PFN::glMatrixMult3x3fNV glMatrixMult3x3fNV;
+AXLGLFLAPI PFN::glMatrixMultTranspose3x3fNV glMatrixMultTranspose3x3fNV;
+AXLGLFLAPI PFN::glStencilThenCoverFillPathNV glStencilThenCoverFillPathNV;
+AXLGLFLAPI PFN::glStencilThenCoverStrokePathNV glStencilThenCoverStrokePathNV;
+AXLGLFLAPI PFN::glStencilThenCoverFillPathInstancedNV glStencilThenCoverFillPathInstancedNV;
+AXLGLFLAPI PFN::glStencilThenCoverStrokePathInstancedNV glStencilThenCoverStrokePathInstancedNV;
+AXLGLFLAPI PFN::glPathGlyphIndexRangeNV glPathGlyphIndexRangeNV;
+AXLGLFLAPI PFN::glPathGlyphIndexArrayNV glPathGlyphIndexArrayNV;
+AXLGLFLAPI PFN::glPathMemoryGlyphIndexArrayNV glPathMemoryGlyphIndexArrayNV;
+AXLGLFLAPI PFN::glProgramPathFragmentInputGenNV glProgramPathFragmentInputGenNV;
+AXLGLFLAPI PFN::glGetProgramResourcefvNV glGetProgramResourcefvNV;
 // GL_NV_path_rendering
 
 // GL_NV_path_rendering_shared_edge
@@ -5613,9 +5613,9 @@ typedef void (APIENTRYP glFramebufferSampleLocationsfvNV) (GLenum target, GLuint
 typedef void (APIENTRYP glNamedFramebufferSampleLocationsfvNV) (GLuint framebuffer, GLuint start, GLsizei count, const GLfloat *v);
 typedef void (APIENTRYP glResolveDepthValuesNV) (void);
 }
-AXLGLFL_DECL_GLPROC(glFramebufferSampleLocationsfvNV);
-AXLGLFL_DECL_GLPROC(glNamedFramebufferSampleLocationsfvNV);
-AXLGLFL_DECL_GLPROC(glResolveDepthValuesNV);
+AXLGLFLAPI PFN::glFramebufferSampleLocationsfvNV glFramebufferSampleLocationsfvNV;
+AXLGLFLAPI PFN::glNamedFramebufferSampleLocationsfvNV glNamedFramebufferSampleLocationsfvNV;
+AXLGLFLAPI PFN::glResolveDepthValuesNV glResolveDepthValuesNV;
 // GL_NV_sample_locations
 
 // GL_NV_sample_mask_override_coverage
@@ -5630,8 +5630,8 @@ namespace PFN {
 typedef void (APIENTRYP glScissorExclusiveNV) (GLint x, GLint y, GLsizei width, GLsizei height);
 typedef void (APIENTRYP glScissorExclusiveArrayvNV) (GLuint first, GLsizei count, const GLint *v);
 }
-AXLGLFL_DECL_GLPROC(glScissorExclusiveNV);
-AXLGLFL_DECL_GLPROC(glScissorExclusiveArrayvNV);
+AXLGLFLAPI PFN::glScissorExclusiveNV glScissorExclusiveNV;
+AXLGLFLAPI PFN::glScissorExclusiveArrayvNV glScissorExclusiveArrayvNV;
 // GL_NV_scissor_exclusive
 
 // GL_NV_shader_atomic_counters
@@ -5675,20 +5675,20 @@ typedef void (APIENTRYP glGetUniformui64vNV) (GLuint program, GLint location, GL
 typedef void (APIENTRYP glProgramUniformui64NV) (GLuint program, GLint location, GLuint64EXT value);
 typedef void (APIENTRYP glProgramUniformui64vNV) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
 }
-AXLGLFL_DECL_GLPROC(glMakeBufferResidentNV);
-AXLGLFL_DECL_GLPROC(glMakeBufferNonResidentNV);
-AXLGLFL_DECL_GLPROC(glIsBufferResidentNV);
-AXLGLFL_DECL_GLPROC(glMakeNamedBufferResidentNV);
-AXLGLFL_DECL_GLPROC(glMakeNamedBufferNonResidentNV);
-AXLGLFL_DECL_GLPROC(glIsNamedBufferResidentNV);
-AXLGLFL_DECL_GLPROC(glGetBufferParameterui64vNV);
-AXLGLFL_DECL_GLPROC(glGetNamedBufferParameterui64vNV);
-AXLGLFL_DECL_GLPROC(glGetIntegerui64vNV);
-AXLGLFL_DECL_GLPROC(glUniformui64NV);
-AXLGLFL_DECL_GLPROC(glUniformui64vNV);
-AXLGLFL_DECL_GLPROC(glGetUniformui64vNV);
-AXLGLFL_DECL_GLPROC(glProgramUniformui64NV);
-AXLGLFL_DECL_GLPROC(glProgramUniformui64vNV);
+AXLGLFLAPI PFN::glMakeBufferResidentNV glMakeBufferResidentNV;
+AXLGLFLAPI PFN::glMakeBufferNonResidentNV glMakeBufferNonResidentNV;
+AXLGLFLAPI PFN::glIsBufferResidentNV glIsBufferResidentNV;
+AXLGLFLAPI PFN::glMakeNamedBufferResidentNV glMakeNamedBufferResidentNV;
+AXLGLFLAPI PFN::glMakeNamedBufferNonResidentNV glMakeNamedBufferNonResidentNV;
+AXLGLFLAPI PFN::glIsNamedBufferResidentNV glIsNamedBufferResidentNV;
+AXLGLFLAPI PFN::glGetBufferParameterui64vNV glGetBufferParameterui64vNV;
+AXLGLFLAPI PFN::glGetNamedBufferParameterui64vNV glGetNamedBufferParameterui64vNV;
+AXLGLFLAPI PFN::glGetIntegerui64vNV glGetIntegerui64vNV;
+AXLGLFLAPI PFN::glUniformui64NV glUniformui64NV;
+AXLGLFLAPI PFN::glUniformui64vNV glUniformui64vNV;
+AXLGLFLAPI PFN::glGetUniformui64vNV glGetUniformui64vNV;
+AXLGLFLAPI PFN::glProgramUniformui64NV glProgramUniformui64NV;
+AXLGLFLAPI PFN::glProgramUniformui64vNV glProgramUniformui64vNV;
 // GL_NV_shader_buffer_load
 
 // GL_NV_shader_buffer_store
@@ -5748,13 +5748,13 @@ typedef void (APIENTRYP glShadingRateImagePaletteNV) (GLuint viewport, GLuint fi
 typedef void (APIENTRYP glShadingRateSampleOrderNV) (GLenum order);
 typedef void (APIENTRYP glShadingRateSampleOrderCustomNV) (GLenum rate, GLuint samples, const GLint *locations);
 }
-AXLGLFL_DECL_GLPROC(glBindShadingRateImageNV);
-AXLGLFL_DECL_GLPROC(glGetShadingRateImagePaletteNV);
-AXLGLFL_DECL_GLPROC(glGetShadingRateSampleLocationivNV);
-AXLGLFL_DECL_GLPROC(glShadingRateImageBarrierNV);
-AXLGLFL_DECL_GLPROC(glShadingRateImagePaletteNV);
-AXLGLFL_DECL_GLPROC(glShadingRateSampleOrderNV);
-AXLGLFL_DECL_GLPROC(glShadingRateSampleOrderCustomNV);
+AXLGLFLAPI PFN::glBindShadingRateImageNV glBindShadingRateImageNV;
+AXLGLFLAPI PFN::glGetShadingRateImagePaletteNV glGetShadingRateImagePaletteNV;
+AXLGLFLAPI PFN::glGetShadingRateSampleLocationivNV glGetShadingRateSampleLocationivNV;
+AXLGLFLAPI PFN::glShadingRateImageBarrierNV glShadingRateImageBarrierNV;
+AXLGLFLAPI PFN::glShadingRateImagePaletteNV glShadingRateImagePaletteNV;
+AXLGLFLAPI PFN::glShadingRateSampleOrderNV glShadingRateSampleOrderNV;
+AXLGLFLAPI PFN::glShadingRateSampleOrderCustomNV glShadingRateSampleOrderCustomNV;
 // GL_NV_shading_rate_image
 
 // GL_NV_stereo_view_rendering
@@ -5766,7 +5766,7 @@ AXLGLFLAPI const bool& GL_NV_texture_barrier;
 namespace PFN {
 typedef void (APIENTRYP glTextureBarrierNV) (void);
 }
-AXLGLFL_DECL_GLPROC(glTextureBarrierNV);
+AXLGLFLAPI PFN::glTextureBarrierNV glTextureBarrierNV;
 // GL_NV_texture_barrier
 
 // GL_NV_texture_rectangle_compressed
@@ -5803,25 +5803,25 @@ typedef void (APIENTRYP glGetVertexAttribLi64vNV) (GLuint index, GLenum pname, G
 typedef void (APIENTRYP glGetVertexAttribLui64vNV) (GLuint index, GLenum pname, GLuint64EXT *params);
 typedef void (APIENTRYP glVertexAttribLFormatNV) (GLuint index, GLint size, GLenum type, GLsizei stride);
 }
-AXLGLFL_DECL_GLPROC(glVertexAttribL1i64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL2i64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL3i64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL4i64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1i64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL2i64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL3i64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL4i64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1ui64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL2ui64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL3ui64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL4ui64NV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL1ui64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL2ui64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL3ui64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribL4ui64vNV);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribLi64vNV);
-AXLGLFL_DECL_GLPROC(glGetVertexAttribLui64vNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribLFormatNV);
+AXLGLFLAPI PFN::glVertexAttribL1i64NV glVertexAttribL1i64NV;
+AXLGLFLAPI PFN::glVertexAttribL2i64NV glVertexAttribL2i64NV;
+AXLGLFLAPI PFN::glVertexAttribL3i64NV glVertexAttribL3i64NV;
+AXLGLFLAPI PFN::glVertexAttribL4i64NV glVertexAttribL4i64NV;
+AXLGLFLAPI PFN::glVertexAttribL1i64vNV glVertexAttribL1i64vNV;
+AXLGLFLAPI PFN::glVertexAttribL2i64vNV glVertexAttribL2i64vNV;
+AXLGLFLAPI PFN::glVertexAttribL3i64vNV glVertexAttribL3i64vNV;
+AXLGLFLAPI PFN::glVertexAttribL4i64vNV glVertexAttribL4i64vNV;
+AXLGLFLAPI PFN::glVertexAttribL1ui64NV glVertexAttribL1ui64NV;
+AXLGLFLAPI PFN::glVertexAttribL2ui64NV glVertexAttribL2ui64NV;
+AXLGLFLAPI PFN::glVertexAttribL3ui64NV glVertexAttribL3ui64NV;
+AXLGLFLAPI PFN::glVertexAttribL4ui64NV glVertexAttribL4ui64NV;
+AXLGLFLAPI PFN::glVertexAttribL1ui64vNV glVertexAttribL1ui64vNV;
+AXLGLFLAPI PFN::glVertexAttribL2ui64vNV glVertexAttribL2ui64vNV;
+AXLGLFLAPI PFN::glVertexAttribL3ui64vNV glVertexAttribL3ui64vNV;
+AXLGLFLAPI PFN::glVertexAttribL4ui64vNV glVertexAttribL4ui64vNV;
+AXLGLFLAPI PFN::glGetVertexAttribLi64vNV glGetVertexAttribLi64vNV;
+AXLGLFLAPI PFN::glGetVertexAttribLui64vNV glGetVertexAttribLui64vNV;
+AXLGLFLAPI PFN::glVertexAttribLFormatNV glVertexAttribLFormatNV;
 // GL_NV_vertex_attrib_integer_64bit
 
 // GL_NV_vertex_buffer_unified_memory
@@ -5865,18 +5865,18 @@ typedef void (APIENTRYP glVertexAttribFormatNV) (GLuint index, GLint size, GLenu
 typedef void (APIENTRYP glVertexAttribIFormatNV) (GLuint index, GLint size, GLenum type, GLsizei stride);
 typedef void (APIENTRYP glGetIntegerui64i_vNV) (GLenum value, GLuint index, GLuint64EXT *result);
 }
-AXLGLFL_DECL_GLPROC(glBufferAddressRangeNV);
-AXLGLFL_DECL_GLPROC(glVertexFormatNV);
-AXLGLFL_DECL_GLPROC(glNormalFormatNV);
-AXLGLFL_DECL_GLPROC(glColorFormatNV);
-AXLGLFL_DECL_GLPROC(glIndexFormatNV);
-AXLGLFL_DECL_GLPROC(glTexCoordFormatNV);
-AXLGLFL_DECL_GLPROC(glEdgeFlagFormatNV);
-AXLGLFL_DECL_GLPROC(glSecondaryColorFormatNV);
-AXLGLFL_DECL_GLPROC(glFogCoordFormatNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribFormatNV);
-AXLGLFL_DECL_GLPROC(glVertexAttribIFormatNV);
-AXLGLFL_DECL_GLPROC(glGetIntegerui64i_vNV);
+AXLGLFLAPI PFN::glBufferAddressRangeNV glBufferAddressRangeNV;
+AXLGLFLAPI PFN::glVertexFormatNV glVertexFormatNV;
+AXLGLFLAPI PFN::glNormalFormatNV glNormalFormatNV;
+AXLGLFLAPI PFN::glColorFormatNV glColorFormatNV;
+AXLGLFLAPI PFN::glIndexFormatNV glIndexFormatNV;
+AXLGLFLAPI PFN::glTexCoordFormatNV glTexCoordFormatNV;
+AXLGLFLAPI PFN::glEdgeFlagFormatNV glEdgeFlagFormatNV;
+AXLGLFLAPI PFN::glSecondaryColorFormatNV glSecondaryColorFormatNV;
+AXLGLFLAPI PFN::glFogCoordFormatNV glFogCoordFormatNV;
+AXLGLFLAPI PFN::glVertexAttribFormatNV glVertexAttribFormatNV;
+AXLGLFLAPI PFN::glVertexAttribIFormatNV glVertexAttribIFormatNV;
+AXLGLFLAPI PFN::glGetIntegerui64i_vNV glGetIntegerui64i_vNV;
 // GL_NV_vertex_buffer_unified_memory
 
 // GL_NV_viewport_array2
@@ -5900,7 +5900,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_VIEWPORT_SWIZZLE_W_NV = 0x935B;
 namespace PFN {
 typedef void (APIENTRYP glViewportSwizzleNV) (GLuint index, GLenum swizzlex, GLenum swizzley, GLenum swizzlez, GLenum swizzlew);
 }
-AXLGLFL_DECL_GLPROC(glViewportSwizzleNV);
+AXLGLFLAPI PFN::glViewportSwizzleNV glViewportSwizzleNV;
 // GL_NV_viewport_swizzle
 
 } // namespace GLNV
@@ -5916,7 +5916,7 @@ AXLGLFLCONSTMODIFIER GLconstant GL_FRAMEBUFFER_INCOMPLETE_VIEW_TARGETS_OVR = 0x9
 namespace PFN {
 typedef void (APIENTRYP glFramebufferTextureMultiviewOVR) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint baseViewIndex, GLsizei numViews);
 }
-AXLGLFL_DECL_GLPROC(glFramebufferTextureMultiviewOVR);
+AXLGLFLAPI PFN::glFramebufferTextureMultiviewOVR glFramebufferTextureMultiviewOVR;
 // GL_OVR_multiview
 
 // GL_OVR_multiview2

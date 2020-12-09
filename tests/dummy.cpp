@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
 	{
 		Dummy::InitError error;
 		Dummy dummy;
-		Assertv(!dummy.isInitialized(), verbose);
+		Assertve(!dummy.isInitialized(), verbose);
 		Assertv(!dummy.isCurrent(), verbose);
 		Assertv(!dummy.makeCurrent(), verbose);
 		error = dummy.init();
-		Assertv(error == Dummy::IERR_NONE, verbose);
+		Assertv(error == Dummy::InitError::NONE, verbose);
 		Assertv(dummy.isInitialized(), verbose);
 		Assertv(!dummy.isCurrent(), verbose);
 		Assertv(dummy.makeCurrent(), verbose);
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		Assertv(!dummy.isInitialized(), verbose);
 		Assertv(!dummy.isCurrent(), verbose);
 		Assertv(!dummy.makeCurrent(), verbose);
-		Assertv(dummy.init() == Dummy::IERR_NONE, verbose);
+		Assertv(dummy.init() == Dummy::InitError::NONE, verbose);
 		Assertv(dummy.isInitialized(), verbose);
 		Assertv(!dummy.isCurrent(), verbose);
 		Assertv(dummy.makeCurrent(), verbose);

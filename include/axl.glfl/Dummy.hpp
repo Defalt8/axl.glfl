@@ -7,17 +7,19 @@ namespace glfl {
 class AXLGLFLCXXAPI Dummy {
 	public:
 		ENUM_CLASS InitError {
-			IERR_UNKNOWN = -1,
-			IERR_NONE = 0,
-			IERR_WINDOW_CLASS,
-			IERR_WINDOW,
-			IERR_PIXEL_FORMAT,
-			IERR_CONTEXT
+			UNKNOWN = -1,
+			NONE = 0,
+			WINDOW_CLASS,
+			WINDOW,
+			PIXEL_FORMAT,
+			CONTEXT,
+			DISPLAY,
+			CONFIG
 		};
 		Dummy(bool init = false);
 		~Dummy();
 		// Initializes global dummy OpenGL context.
-		// - returns IERR_NONE on success
+		// - returns NONE on success
 		InitError init();
 		// returns true if the dummy context is valid
 		bool isInitialized() const;

@@ -5,6 +5,8 @@
 #include <axl.glfl/glCoreARB.hpp>
 #include "Assert.hpp"
 
+#define LOG_B(b) printf("%c - %s - "#b"\n", (b ? ' ' : '*'), (b ? "OK" : "NA"));
+
 int main(int argc, char *argv[])
 {
 	bool verbose = argc > 1 && (0 == strcmp(argv[1], "-v") || 0 == strcmp(argv[1], "--verbose"));
@@ -15,9 +17,9 @@ int main(int argc, char *argv[])
 		Assertve(core::load(), verbose);
 		{
 			using namespace axl::glfl::core::GL1;
-			printf(">> GL_VERSION_1_0: %d\n", GL_VERSION_1_0);
 			if(GL_VERSION_1_0)
 			{
+				LOG_B(GL_VERSION_1_0);
 				Assertv((glCullFace), verbose);
 				Assertv((glFrontFace), verbose);
 				Assertv((glHint), verbose);
@@ -67,9 +69,9 @@ int main(int argc, char *argv[])
 				Assertv((glDepthRange), verbose);
 				Assertv((glViewport), verbose);
 			}
-			printf(">> GL_VERSION_1_1: %d\n", GL_VERSION_1_1);
 			if(GL_VERSION_1_1)
 			{
+				LOG_B(GL_VERSION_1_1);
 				Assertv((glDrawArrays), verbose);
 				Assertv((glDrawElements), verbose);
 				Assertv((glGetPointerv), verbose);
@@ -85,17 +87,17 @@ int main(int argc, char *argv[])
 				Assertv((glGenTextures), verbose);
 				Assertv((glIsTexture), verbose);
 			}
-			printf(">> GL_VERSION_1_2: %d\n", GL_VERSION_1_2);
 			if(GL_VERSION_1_2)
 			{
+				LOG_B(GL_VERSION_1_2);
 				Assertv((glDrawRangeElements), verbose);
 				Assertv((glTexImage3D), verbose);
 				Assertv((glTexSubImage3D), verbose);
 				Assertv((glCopyTexSubImage3D), verbose);
 			}
-			printf(">> GL_VERSION_1_3: %d\n", GL_VERSION_1_3);
 			if(GL_VERSION_1_3)
 			{
+				LOG_B(GL_VERSION_1_3);
 				Assertv((glActiveTexture), verbose);
 				Assertv((glSampleCoverage), verbose);
 				Assertv((glCompressedTexImage3D), verbose);
@@ -106,9 +108,9 @@ int main(int argc, char *argv[])
 				Assertv((glCompressedTexSubImage1D), verbose);
 				Assertv((glGetCompressedTexImage), verbose);
 			}
-			printf(">> GL_VERSION_1_4: %d\n", GL_VERSION_1_4);
 			if(GL_VERSION_1_4)
 			{
+				LOG_B(GL_VERSION_1_4);
 				Assertv((glBlendFuncSeparate), verbose);
 				Assertv((glMultiDrawArrays), verbose);
 				Assertv((glMultiDrawElements), verbose);
@@ -119,9 +121,9 @@ int main(int argc, char *argv[])
 				Assertv((glBlendColor), verbose);
 				Assertv((glBlendEquation), verbose);
 			}
-			printf(">> GL_VERSION_1_5: %d\n", GL_VERSION_1_5);
 			if(GL_VERSION_1_5)
 			{
+				LOG_B(GL_VERSION_1_5);
 				Assertv((glGenQueries), verbose);
 				Assertv((glDeleteQueries), verbose);
 				Assertv((glIsQuery), verbose);
@@ -145,9 +147,9 @@ int main(int argc, char *argv[])
 		}
 		{
 			using namespace axl::glfl::core::GL2;
-			printf(">> GL_VERSION_2_0: %d\n", GL_VERSION_2_0);
 			if(GL_VERSION_2_0)
 			{
+				LOG_B(GL_VERSION_2_0);
 				Assertv((glBlendEquationSeparate), verbose);
 				Assertv((glDrawBuffers), verbose);
 				Assertv((glStencilOpSeparate), verbose);
@@ -242,9 +244,9 @@ int main(int argc, char *argv[])
 				Assertv((glVertexAttrib4usv), verbose);
 				Assertv((glVertexAttribPointer), verbose);
 			}
-			printf(">> GL_VERSION_2_1: %d\n", GL_VERSION_2_1);
 			if(GL_VERSION_2_1)
 			{
+				LOG_B(GL_VERSION_2_1);
 				Assertv((glUniformMatrix2x3fv), verbose);
 				Assertv((glUniformMatrix3x2fv), verbose);
 				Assertv((glUniformMatrix2x4fv), verbose);
@@ -255,9 +257,9 @@ int main(int argc, char *argv[])
 		}
 		{
 			using namespace axl::glfl::core::GL3;
-			printf(">> GL_VERSION_3_0: %d\n", GL_VERSION_3_0);
 			if(GL_VERSION_3_0)
 			{
+				LOG_B(GL_VERSION_3_0);
 				Assertv((glColorMaski), verbose);
 				Assertv((glGetBooleani_v), verbose);
 				Assertv((glGetIntegeri_v), verbose);
@@ -343,9 +345,9 @@ int main(int argc, char *argv[])
 				Assertv((glGenVertexArrays), verbose);
 				Assertv((glIsVertexArray), verbose);
 			}
-			printf(">> GL_VERSION_3_1: %d\n", GL_VERSION_3_1);
 			if(GL_VERSION_3_1)
 			{
+				LOG_B(GL_VERSION_3_1);
 				Assertv((glDrawArraysInstanced), verbose);
 				Assertv((glDrawElementsInstanced), verbose);
 				Assertv((glTexBuffer), verbose);
@@ -359,9 +361,9 @@ int main(int argc, char *argv[])
 				Assertv((glGetActiveUniformBlockName), verbose);
 				Assertv((glUniformBlockBinding), verbose);
 			}
-			printf(">> GL_VERSION_3_2: %d\n", GL_VERSION_3_2);
 			if(GL_VERSION_3_2)
 			{
+				LOG_B(GL_VERSION_3_2);
 				Assertv((glDrawElementsBaseVertex), verbose);
 				Assertv((glDrawRangeElementsBaseVertex), verbose);
 				Assertv((glDrawElementsInstancedBaseVertex), verbose);
@@ -382,9 +384,9 @@ int main(int argc, char *argv[])
 				Assertv((glGetMultisamplefv), verbose);
 				Assertv((glSampleMaski), verbose);
 			}
-			printf(">> GL_VERSION_3_3: %d\n", GL_VERSION_3_3);
 			if(GL_VERSION_3_3)
 			{
+				LOG_B(GL_VERSION_3_3);
 				Assertv((glBindFragDataLocationIndexed), verbose);
 				Assertv((glGetFragDataIndex), verbose);
 				Assertv((glGenSamplers), verbose);
@@ -417,9 +419,9 @@ int main(int argc, char *argv[])
 		}
 		{
 			using namespace axl::glfl::core::GL4;
-			printf(">> GL_VERSION_4_0: %d\n", GL_VERSION_4_0);
 			if(GL_VERSION_4_0)
 			{
+				LOG_B(GL_VERSION_4_0);
 				Assertv((glMinSampleShading), verbose);
 				Assertv((glBlendEquationi), verbose);
 				Assertv((glBlendEquationSeparatei), verbose);
@@ -467,9 +469,9 @@ int main(int argc, char *argv[])
 				Assertv((glEndQueryIndexed), verbose);
 				Assertv((glGetQueryIndexediv), verbose);
 			}
-			printf(">> GL_VERSION_4_1: %d\n", GL_VERSION_4_1);
 			if(GL_VERSION_4_1)
 			{
+				LOG_B(GL_VERSION_4_1);
 				Assertv((glReleaseShaderCompiler), verbose);
 				Assertv((glShaderBinary), verbose);
 				Assertv((glGetShaderPrecisionFormat), verbose);
@@ -559,9 +561,9 @@ int main(int argc, char *argv[])
 				Assertv((glGetFloati_v), verbose);
 				Assertv((glGetDoublei_v), verbose);
 			}
-			printf(">> GL_VERSION_4_2: %d\n", GL_VERSION_4_2);
 			if(GL_VERSION_4_2)
 			{
+				LOG_B(GL_VERSION_4_2);
 				Assertv((glDrawArraysInstancedBaseInstance), verbose);
 				Assertv((glDrawElementsInstancedBaseInstance), verbose);
 				Assertv((glDrawElementsInstancedBaseVertexBaseInstance), verbose);
@@ -576,9 +578,9 @@ int main(int argc, char *argv[])
 				Assertv((glDrawTransformFeedbackStreamInstanced), verbose);
 			}
 
-			printf(">> GL_VERSION_4_3: %d\n", GL_VERSION_4_3);
 			if(GL_VERSION_4_3)
 			{
+				LOG_B(GL_VERSION_4_3);
 				Assertv((glClearBufferData), verbose);
 				Assertv((glClearBufferSubData), verbose);
 				Assertv((glDispatchCompute), verbose);
@@ -623,9 +625,9 @@ int main(int argc, char *argv[])
 				Assertv((glObjectPtrLabel), verbose);
 				Assertv((glGetObjectPtrLabel), verbose);
 			}
-			printf(">> GL_VERSION_4_4: %d\n", GL_VERSION_4_4);
 			if(GL_VERSION_4_4)
 			{
+				LOG_B(GL_VERSION_4_4);
 				Assertv((glBufferStorage), verbose);
 				Assertv((glClearTexImage), verbose);
 				Assertv((glClearTexSubImage), verbose);
@@ -636,9 +638,9 @@ int main(int argc, char *argv[])
 				Assertv((glBindImageTextures), verbose);
 				Assertv((glBindVertexBuffers), verbose);
 			}
-			printf(">> GL_VERSION_4_5: %d\n", GL_VERSION_4_5);
 			if(GL_VERSION_4_5)
 			{
+				LOG_B(GL_VERSION_4_5);
 				Assertv((glClipControl), verbose);
 				Assertv((glCreateTransformFeedbacks), verbose);
 				Assertv((glTransformFeedbackBufferBase), verbose);
@@ -750,9 +752,9 @@ int main(int argc, char *argv[])
 				Assertv((glReadnPixels), verbose);
 				Assertv((glTextureBarrier), verbose);
 			}
-			printf(">> GL_VERSION_4_6: %d\n", GL_VERSION_4_6);
 			if(GL_VERSION_4_6)
 			{
+				LOG_B(GL_VERSION_4_6);
 				Assertv((glSpecializeShader), verbose);
 				Assertv((glMultiDrawArraysIndirectCount), verbose);
 				Assertv((glMultiDrawElementsIndirectCount), verbose);
@@ -762,20 +764,20 @@ int main(int argc, char *argv[])
 		// namespace GLARB
 		{  
 			using namespace axl::glfl::core::GLARB; 
-			printf(">> GL_ARB_ES2_compatibility: %d\n", GL_ARB_ES2_compatibility);
-			printf(">> GL_ARB_ES3_1_compatibility: %d\n", GL_ARB_ES3_1_compatibility);
-			printf(">> GL_ARB_ES3_2_compatibility: %d\n", GL_ARB_ES3_2_compatibility);
+			if(GL_ARB_ES2_compatibility) LOG_B(GL_ARB_ES2_compatibility);
+			if(GL_ARB_ES3_1_compatibility) LOG_B(GL_ARB_ES3_1_compatibility);
 			if(GL_ARB_ES3_2_compatibility)
 			{
+				LOG_B(GL_ARB_ES3_2_compatibility);
 				Assertv((glPrimitiveBoundingBoxARB), verbose);
 			}
 
-			printf(">> GL_ARB_ES3_compatibility: %d\n", GL_ARB_ES3_compatibility);
-			printf(">> GL_ARB_arrays_of_arrays: %d\n", GL_ARB_arrays_of_arrays);
-			printf(">> GL_ARB_base_instance: %d\n", GL_ARB_base_instance);
-			printf(">> GL_ARB_bindless_texture: %d\n", GL_ARB_bindless_texture);
+			if(GL_ARB_ES3_compatibility) LOG_B(GL_ARB_ES3_compatibility);
+			if(GL_ARB_arrays_of_arrays) LOG_B(GL_ARB_arrays_of_arrays);
+			if(GL_ARB_base_instance) LOG_B(GL_ARB_base_instance);
 			if(GL_ARB_bindless_texture)
 			{
+				LOG_B(GL_ARB_bindless_texture);
 				Assertv((glGetTextureHandleARB), verbose);
 				Assertv((glGetTextureSamplerHandleARB), verbose);
 				Assertv((glMakeTextureHandleResidentARB), verbose);
@@ -793,86 +795,85 @@ int main(int argc, char *argv[])
 				Assertv((glVertexAttribL1ui64vARB), verbose);
 				Assertv((glGetVertexAttribLui64vARB), verbose);
 			}
-
-			printf(">> GL_ARB_blend_func_extended: %d\n", GL_ARB_blend_func_extended);
-			printf(">> GL_ARB_buffer_storage: %d\n", GL_ARB_buffer_storage);
-			printf(">> GL_ARB_cl_event: %d\n", GL_ARB_cl_event);
+			if(GL_ARB_blend_func_extended) LOG_B(GL_ARB_blend_func_extended);
+			if(GL_ARB_buffer_storage) LOG_B(GL_ARB_buffer_storage);
 			if(GL_ARB_cl_event)
 			{
+				LOG_B(GL_ARB_cl_event);
 				Assertv((glCreateSyncFromCLeventARB), verbose);
 			}
-			printf(">> GL_ARB_clear_buffer_object: %d\n", GL_ARB_clear_buffer_object);
-			printf(">> GL_ARB_clear_texture: %d\n", GL_ARB_clear_texture);
-			printf(">> GL_ARB_clip_control: %d\n", GL_ARB_clip_control);
-			printf(">> GL_ARB_compressed_texture_pixel_storage: %d\n", GL_ARB_compressed_texture_pixel_storage);
-			printf(">> GL_ARB_compute_shader: %d\n", GL_ARB_compute_shader);
-			printf(">> GL_ARB_compute_variable_group_size: %d\n", GL_ARB_compute_variable_group_size);
+			if(GL_ARB_clear_buffer_object) LOG_B(GL_ARB_clear_buffer_object);
+			if(GL_ARB_clear_texture) LOG_B(GL_ARB_clear_texture);
+			if(GL_ARB_clip_control) LOG_B(GL_ARB_clip_control);
+			if(GL_ARB_compressed_texture_pixel_storage) LOG_B(GL_ARB_compressed_texture_pixel_storage);
+			if(GL_ARB_compute_shader) LOG_B(GL_ARB_compute_shader);
 			if(GL_ARB_compute_variable_group_size)
 			{
+				LOG_B(GL_ARB_compute_variable_group_size);
 				Assertv((glDispatchComputeGroupSizeARB), verbose);
 			}
-			printf(">> GL_ARB_conditional_render_inverted: %d\n", GL_ARB_conditional_render_inverted);
-			printf(">> GL_ARB_conservative_depth: %d\n", GL_ARB_conservative_depth);
-			printf(">> GL_ARB_copy_buffer: %d\n", GL_ARB_copy_buffer);
-			printf(">> GL_ARB_copy_image: %d\n", GL_ARB_copy_image);
-			printf(">> GL_ARB_cull_distance: %d\n", GL_ARB_cull_distance);
-			printf(">> GL_ARB_debug_output: %d\n", GL_ARB_debug_output);
+			if(GL_ARB_conditional_render_inverted) LOG_B(GL_ARB_conditional_render_inverted);
+			if(GL_ARB_conservative_depth) LOG_B(GL_ARB_conservative_depth);
+			if(GL_ARB_copy_buffer) LOG_B(GL_ARB_copy_buffer);
+			if(GL_ARB_copy_image) LOG_B(GL_ARB_copy_image);
+			if(GL_ARB_cull_distance) LOG_B(GL_ARB_cull_distance);
 			if(GL_ARB_debug_output)
 			{
+				LOG_B(GL_ARB_debug_output);
 				Assertv((glDebugMessageControlARB), verbose);
 				Assertv((glDebugMessageInsertARB), verbose);
 				Assertv((glDebugMessageCallbackARB), verbose);
 				Assertv((glGetDebugMessageLogARB), verbose);
 			}
-			printf(">> GL_ARB_depth_buffer_float: %d\n", GL_ARB_depth_buffer_float);
-			printf(">> GL_ARB_depth_clamp: %d\n", GL_ARB_depth_clamp);
-			printf(">> GL_ARB_derivative_control: %d\n", GL_ARB_derivative_control);
-			printf(">> GL_ARB_direct_state_access: %d\n", GL_ARB_direct_state_access);
-			printf(">> GL_ARB_draw_buffers_blend: %d\n", GL_ARB_draw_buffers_blend);
+			if(GL_ARB_depth_buffer_float) LOG_B(GL_ARB_depth_buffer_float);
+			if(GL_ARB_depth_clamp) LOG_B(GL_ARB_depth_clamp);
+			if(GL_ARB_derivative_control) LOG_B(GL_ARB_derivative_control);
+			if(GL_ARB_direct_state_access) LOG_B(GL_ARB_direct_state_access);
 			if(GL_ARB_draw_buffers_blend)
 			{
+				LOG_B(GL_ARB_draw_buffers_blend);
 				Assertv((glBlendEquationiARB), verbose);
 				Assertv((glBlendEquationSeparateiARB), verbose);
 				Assertv((glBlendFunciARB), verbose);
 				Assertv((glBlendFuncSeparateiARB), verbose);
 			}
-			printf(">> GL_ARB_draw_elements_base_vertex: %d\n", GL_ARB_draw_elements_base_vertex);
-			printf(">> GL_ARB_draw_indirect: %d\n", GL_ARB_draw_indirect);
-			printf(">> GL_ARB_draw_instanced: %d\n", GL_ARB_draw_instanced);
+			if(GL_ARB_draw_elements_base_vertex) LOG_B(GL_ARB_draw_elements_base_vertex);
+			if(GL_ARB_draw_indirect) LOG_B(GL_ARB_draw_indirect);
 			if(GL_ARB_draw_instanced)
 			{
+				LOG_B(GL_ARB_draw_instanced);
 				Assertv((glDrawArraysInstancedARB), verbose);
 				Assertv((glDrawElementsInstancedARB), verbose);
 			}
-			printf(">> GL_ARB_enhanced_layouts: %d\n", GL_ARB_enhanced_layouts);
-			printf(">> GL_ARB_explicit_attrib_location: %d\n", GL_ARB_explicit_attrib_location);
-			printf(">> GL_ARB_explicit_uniform_location: %d\n", GL_ARB_explicit_uniform_location);
-			printf(">> GL_ARB_fragment_coord_conventions: %d\n", GL_ARB_fragment_coord_conventions);
-			printf(">> GL_ARB_fragment_layer_viewport: %d\n", GL_ARB_fragment_layer_viewport);
-			printf(">> GL_ARB_fragment_shader_interlock: %d\n", GL_ARB_fragment_shader_interlock);
-			printf(">> GL_ARB_framebuffer_no_attachments: %d\n", GL_ARB_framebuffer_no_attachments);
-			printf(">> GL_ARB_framebuffer_object: %d\n", GL_ARB_framebuffer_object);
-			printf(">> GL_ARB_framebuffer_sRGB: %d\n", GL_ARB_framebuffer_sRGB);
-			printf(">> GL_ARB_geometry_shader4: %d\n", GL_ARB_geometry_shader4);
+			if(GL_ARB_enhanced_layouts) LOG_B(GL_ARB_enhanced_layouts);
+			if(GL_ARB_explicit_attrib_location) LOG_B(GL_ARB_explicit_attrib_location);
+			if(GL_ARB_explicit_uniform_location) LOG_B(GL_ARB_explicit_uniform_location);
+			if(GL_ARB_fragment_coord_conventions) LOG_B(GL_ARB_fragment_coord_conventions);
+			if(GL_ARB_fragment_layer_viewport) LOG_B(GL_ARB_fragment_layer_viewport);
+			if(GL_ARB_fragment_shader_interlock) LOG_B(GL_ARB_fragment_shader_interlock);
+			if(GL_ARB_framebuffer_no_attachments) LOG_B(GL_ARB_framebuffer_no_attachments);
+			if(GL_ARB_framebuffer_object) LOG_B(GL_ARB_framebuffer_object);
+			if(GL_ARB_framebuffer_sRGB) LOG_B(GL_ARB_framebuffer_sRGB);
 			if(GL_ARB_geometry_shader4)
 			{
+				LOG_B(GL_ARB_geometry_shader4);
 				Assertv((glProgramParameteriARB), verbose);
 				Assertv((glFramebufferTextureARB), verbose);
 				Assertv((glFramebufferTextureLayerARB), verbose);
 				Assertv((glFramebufferTextureFaceARB), verbose);
 			}
-			printf(">> GL_ARB_get_program_binary: %d\n", GL_ARB_get_program_binary);
-			printf(">> GL_ARB_get_texture_sub_image: %d\n", GL_ARB_get_texture_sub_image);
-			printf(">> GL_ARB_gl_spirv: %d\n", GL_ARB_gl_spirv);
+			if(GL_ARB_get_program_binary) LOG_B(GL_ARB_get_program_binary);
+			if(GL_ARB_get_texture_sub_image) LOG_B(GL_ARB_get_texture_sub_image);
 			if(GL_ARB_gl_spirv)
 			{
+				LOG_B(GL_ARB_gl_spirv);
 				Assertv((glSpecializeShaderARB), verbose);
 			}
-			printf(">> GL_ARB_gpu_shader5: %d\n", GL_ARB_gpu_shader5);
-			printf(">> GL_ARB_gpu_shader_fp64: %d\n", GL_ARB_gpu_shader_fp64);
-			printf(">> GL_ARB_gpu_shader_int64: %d\n", GL_ARB_gpu_shader_int64);
+			if(GL_ARB_gpu_shader5) LOG_B(GL_ARB_gpu_shader5);
+			if(GL_ARB_gpu_shader_fp64) LOG_B(GL_ARB_gpu_shader_fp64);
 			if(GL_ARB_gpu_shader_int64)
 			{
+				LOG_B(GL_ARB_gpu_shader_int64);
 				Assertv((glUniform1i64ARB), verbose);
 				Assertv((glUniform2i64ARB), verbose);
 				Assertv((glUniform3i64ARB), verbose);
@@ -910,44 +911,44 @@ int main(int argc, char *argv[])
 				Assertv((glProgramUniform3ui64vARB), verbose);
 				Assertv((glProgramUniform4ui64vARB), verbose);
 			}
-			printf(">> GL_ARB_half_float_vertex: %d\n", GL_ARB_half_float_vertex);
-			printf(">> GL_ARB_imaging: %d\n", GL_ARB_imaging);
-			printf(">> GL_ARB_indirect_parameters: %d\n", GL_ARB_indirect_parameters);
+			if(GL_ARB_half_float_vertex) LOG_B(GL_ARB_half_float_vertex);
+			if(GL_ARB_imaging) LOG_B(GL_ARB_imaging);
 			if(GL_ARB_indirect_parameters)
 			{
+				LOG_B(GL_ARB_indirect_parameters);
 				Assertv((glMultiDrawArraysIndirectCountARB), verbose);
 				Assertv((glMultiDrawElementsIndirectCountARB), verbose);
 			}
-			printf(">> GL_ARB_instanced_arrays: %d\n", GL_ARB_instanced_arrays);
 			if(GL_ARB_instanced_arrays)
 			{
+				LOG_B(GL_ARB_instanced_arrays);
 				Assertv((glVertexAttribDivisorARB), verbose);
 			}
 
-			printf(">> GL_ARB_internalformat_query: %d\n", GL_ARB_internalformat_query);
-			printf(">> GL_ARB_internalformat_query2: %d\n", GL_ARB_internalformat_query2);
-			printf(">> GL_ARB_invalidate_subdata: %d\n", GL_ARB_invalidate_subdata);
-			printf(">> GL_ARB_map_buffer_alignment: %d\n", GL_ARB_map_buffer_alignment);
-			printf(">> GL_ARB_map_buffer_range: %d\n", GL_ARB_map_buffer_range);
-			printf(">> GL_ARB_multi_bind: %d\n", GL_ARB_multi_bind);
-			printf(">> GL_ARB_multi_draw_indirect: %d\n", GL_ARB_multi_draw_indirect);
-			printf(">> GL_ARB_occlusion_query2: %d\n", GL_ARB_occlusion_query2);
-			printf(">> GL_ARB_parallel_shader_compile: %d\n", GL_ARB_parallel_shader_compile);
+			if(GL_ARB_internalformat_query) LOG_B(GL_ARB_internalformat_query);
+			if(GL_ARB_internalformat_query2) LOG_B(GL_ARB_internalformat_query2);
+			if(GL_ARB_invalidate_subdata) LOG_B(GL_ARB_invalidate_subdata);
+			if(GL_ARB_map_buffer_alignment) LOG_B(GL_ARB_map_buffer_alignment);
+			if(GL_ARB_map_buffer_range) LOG_B(GL_ARB_map_buffer_range);
+			if(GL_ARB_multi_bind) LOG_B(GL_ARB_multi_bind);
+			if(GL_ARB_multi_draw_indirect) LOG_B(GL_ARB_multi_draw_indirect);
+			if(GL_ARB_occlusion_query2) LOG_B(GL_ARB_occlusion_query2);
 			if(GL_ARB_parallel_shader_compile)
 			{
+				LOG_B(GL_ARB_parallel_shader_compile);
 				Assertv((glMaxShaderCompilerThreadsARB), verbose);
 			}
-			printf(">> GL_ARB_pipeline_statistics_query: %d\n", GL_ARB_pipeline_statistics_query);
-			printf(">> GL_ARB_pixel_buffer_object: %d\n", GL_ARB_pixel_buffer_object);
-			printf(">> GL_ARB_polygon_offset_clamp: %d\n", GL_ARB_polygon_offset_clamp);
-			printf(">> GL_ARB_post_depth_coverage: %d\n", GL_ARB_post_depth_coverage);
-			printf(">> GL_ARB_program_interface_query: %d\n", GL_ARB_program_interface_query);
-			printf(">> GL_ARB_provoking_vertex: %d\n", GL_ARB_provoking_vertex);
-			printf(">> GL_ARB_query_buffer_object: %d\n", GL_ARB_query_buffer_object);
-			printf(">> GL_ARB_robust_buffer_access_behavior: %d\n", GL_ARB_robust_buffer_access_behavior);
-			printf(">> GL_ARB_robustness: %d\n", GL_ARB_robustness);
+			if(GL_ARB_pipeline_statistics_query) LOG_B(GL_ARB_pipeline_statistics_query);
+			if(GL_ARB_pixel_buffer_object) LOG_B(GL_ARB_pixel_buffer_object);
+			if(GL_ARB_polygon_offset_clamp) LOG_B(GL_ARB_polygon_offset_clamp);
+			if(GL_ARB_post_depth_coverage) LOG_B(GL_ARB_post_depth_coverage);
+			if(GL_ARB_program_interface_query) LOG_B(GL_ARB_program_interface_query);
+			if(GL_ARB_provoking_vertex) LOG_B(GL_ARB_provoking_vertex);
+			if(GL_ARB_query_buffer_object) LOG_B(GL_ARB_query_buffer_object);
+			if(GL_ARB_robust_buffer_access_behavior) LOG_B(GL_ARB_robust_buffer_access_behavior);
 			if(GL_ARB_robustness)
 			{
+				LOG_B(GL_ARB_robustness);
 				Assertv((glGetGraphicsResetStatusARB), verbose);
 				Assertv((glGetnTexImageARB), verbose);
 				Assertv((glReadnPixelsARB), verbose);
@@ -957,42 +958,42 @@ int main(int argc, char *argv[])
 				Assertv((glGetnUniformuivARB), verbose);
 				Assertv((glGetnUniformdvARB), verbose);
 			}
-			printf(">> GL_ARB_robustness_isolation: %d\n", GL_ARB_robustness_isolation);
-			printf(">> GL_ARB_sample_locations: %d\n", GL_ARB_sample_locations);
+			if(GL_ARB_robustness_isolation) LOG_B(GL_ARB_robustness_isolation);
 			if(GL_ARB_sample_locations)
 			{
+				LOG_B(GL_ARB_sample_locations);
 				Assertv((glFramebufferSampleLocationsfvARB), verbose);
 				Assertv((glNamedFramebufferSampleLocationsfvARB), verbose);
 				Assertv((glEvaluateDepthValuesARB), verbose);
 			}
-			printf(">> GL_ARB_sample_shading: %d\n", GL_ARB_sample_shading);
 			if(GL_ARB_sample_shading)
 			{
+				LOG_B(GL_ARB_sample_shading);
 				Assertv((glMinSampleShadingARB), verbose);
 			}
-			printf(">> GL_ARB_sampler_objects: %d\n", GL_ARB_sampler_objects);
-			printf(">> GL_ARB_seamless_cube_map: %d\n", GL_ARB_seamless_cube_map);
-			printf(">> GL_ARB_seamless_cubemap_per_texture: %d\n", GL_ARB_seamless_cubemap_per_texture);
-			printf(">> GL_ARB_separate_shader_objects: %d\n", GL_ARB_separate_shader_objects);
-			printf(">> GL_ARB_shader_atomic_counter_ops: %d\n", GL_ARB_shader_atomic_counter_ops);
-			printf(">> GL_ARB_shader_atomic_counters: %d\n", GL_ARB_shader_atomic_counters);
-			printf(">> GL_ARB_shader_ballot: %d\n", GL_ARB_shader_ballot);
-			printf(">> GL_ARB_shader_bit_encoding: %d\n", GL_ARB_shader_bit_encoding);
-			printf(">> GL_ARB_shader_clock: %d\n", GL_ARB_shader_clock);
-			printf(">> GL_ARB_shader_draw_parameters: %d\n", GL_ARB_shader_draw_parameters);
-			printf(">> GL_ARB_shader_group_vote: %d\n", GL_ARB_shader_group_vote);
-			printf(">> GL_ARB_shader_image_load_store: %d\n", GL_ARB_shader_image_load_store);
-			printf(">> GL_ARB_shader_image_size: %d\n", GL_ARB_shader_image_size);
-			printf(">> GL_ARB_shader_precision: %d\n", GL_ARB_shader_precision);
-			printf(">> GL_ARB_shader_stencil_export: %d\n", GL_ARB_shader_stencil_export);
-			printf(">> GL_ARB_shader_storage_buffer_object: %d\n", GL_ARB_shader_storage_buffer_object);
-			printf(">> GL_ARB_shader_subroutine: %d\n", GL_ARB_shader_subroutine);
-			printf(">> GL_ARB_shader_texture_image_samples: %d\n", GL_ARB_shader_texture_image_samples);
-			printf(">> GL_ARB_shader_viewport_layer_array: %d\n", GL_ARB_shader_viewport_layer_array);
-			printf(">> GL_ARB_shading_language_420pack: %d\n", GL_ARB_shading_language_420pack);
-			printf(">> GL_ARB_shading_language_include: %d\n", GL_ARB_shading_language_include);
+			if(GL_ARB_sampler_objects) LOG_B(GL_ARB_sampler_objects);
+			if(GL_ARB_seamless_cube_map) LOG_B(GL_ARB_seamless_cube_map);
+			if(GL_ARB_seamless_cubemap_per_texture) LOG_B(GL_ARB_seamless_cubemap_per_texture);
+			if(GL_ARB_separate_shader_objects) LOG_B(GL_ARB_separate_shader_objects);
+			if(GL_ARB_shader_atomic_counter_ops) LOG_B(GL_ARB_shader_atomic_counter_ops);
+			if(GL_ARB_shader_atomic_counters) LOG_B(GL_ARB_shader_atomic_counters);
+			if(GL_ARB_shader_ballot) LOG_B(GL_ARB_shader_ballot);
+			if(GL_ARB_shader_bit_encoding) LOG_B(GL_ARB_shader_bit_encoding);
+			if(GL_ARB_shader_clock) LOG_B(GL_ARB_shader_clock);
+			if(GL_ARB_shader_draw_parameters) LOG_B(GL_ARB_shader_draw_parameters);
+			if(GL_ARB_shader_group_vote) LOG_B(GL_ARB_shader_group_vote);
+			if(GL_ARB_shader_image_load_store) LOG_B(GL_ARB_shader_image_load_store);
+			if(GL_ARB_shader_image_size) LOG_B(GL_ARB_shader_image_size);
+			if(GL_ARB_shader_precision) LOG_B(GL_ARB_shader_precision);
+			if(GL_ARB_shader_stencil_export) LOG_B(GL_ARB_shader_stencil_export);
+			if(GL_ARB_shader_storage_buffer_object) LOG_B(GL_ARB_shader_storage_buffer_object);
+			if(GL_ARB_shader_subroutine) LOG_B(GL_ARB_shader_subroutine);
+			if(GL_ARB_shader_texture_image_samples) LOG_B(GL_ARB_shader_texture_image_samples);
+			if(GL_ARB_shader_viewport_layer_array) LOG_B(GL_ARB_shader_viewport_layer_array);
+			if(GL_ARB_shading_language_420pack) LOG_B(GL_ARB_shading_language_420pack);
 			if(GL_ARB_shading_language_include)
 			{
+				LOG_B(GL_ARB_shading_language_include);
 				Assertv((glNamedStringARB), verbose);
 				Assertv((glDeleteNamedStringARB), verbose);
 				Assertv((glCompileShaderIncludeARB), verbose);
@@ -1000,68 +1001,68 @@ int main(int argc, char *argv[])
 				Assertv((glGetNamedStringARB), verbose);
 				Assertv((glGetNamedStringivARB), verbose);
 			}
-			printf(">> GL_ARB_shading_language_packing: %d\n", GL_ARB_shading_language_packing);
-			printf(">> GL_ARB_sparse_buffer: %d\n", GL_ARB_sparse_buffer);
+			if(GL_ARB_shading_language_packing) LOG_B(GL_ARB_shading_language_packing);
 			if(GL_ARB_sparse_buffer)
 			{
+				LOG_B(GL_ARB_sparse_buffer);
 				Assertv((glBufferPageCommitmentARB), verbose);
 				Assertv((glNamedBufferPageCommitmentEXT), verbose);
 				Assertv((glNamedBufferPageCommitmentARB), verbose);
 			}
-			printf(">> GL_ARB_sparse_texture: %d\n", GL_ARB_sparse_texture);
 			if(GL_ARB_sparse_texture)
 			{
+				LOG_B(GL_ARB_sparse_texture);
 				Assertv((glTexPageCommitmentARB), verbose);
 			}
-			printf(">> GL_ARB_sparse_texture2: %d\n", GL_ARB_sparse_texture2);
-			printf(">> GL_ARB_sparse_texture_clamp: %d\n", GL_ARB_sparse_texture_clamp);
-			printf(">> GL_ARB_spirv_extensions: %d\n", GL_ARB_spirv_extensions);
-			printf(">> GL_ARB_stencil_texturing: %d\n", GL_ARB_stencil_texturing);
-			printf(">> GL_ARB_sync: %d\n", GL_ARB_sync);
-			printf(">> GL_ARB_tessellation_shader: %d\n", GL_ARB_tessellation_shader);
-			printf(">> GL_ARB_texture_barrier: %d\n", GL_ARB_texture_barrier);
-			printf(">> GL_ARB_texture_border_clamp: %d\n", GL_ARB_texture_border_clamp);
-			printf(">> GL_ARB_texture_buffer_object: %d\n", GL_ARB_texture_buffer_object);
+			if(GL_ARB_sparse_texture2) LOG_B(GL_ARB_sparse_texture2);
+			if(GL_ARB_sparse_texture_clamp) LOG_B(GL_ARB_sparse_texture_clamp);
+			if(GL_ARB_spirv_extensions) LOG_B(GL_ARB_spirv_extensions);
+			if(GL_ARB_stencil_texturing) LOG_B(GL_ARB_stencil_texturing);
+			if(GL_ARB_sync) LOG_B(GL_ARB_sync);
+			if(GL_ARB_tessellation_shader) LOG_B(GL_ARB_tessellation_shader);
+			if(GL_ARB_texture_barrier) LOG_B(GL_ARB_texture_barrier);
+			if(GL_ARB_texture_border_clamp) LOG_B(GL_ARB_texture_border_clamp);
 			if(GL_ARB_texture_buffer_object)
 			{
+				LOG_B(GL_ARB_texture_buffer_object);
 				Assertv((glTexBufferARB), verbose);
 			}
-			printf(">> GL_ARB_texture_buffer_object_rgb32: %d\n", GL_ARB_texture_buffer_object_rgb32);
-			printf(">> GL_ARB_texture_buffer_range: %d\n", GL_ARB_texture_buffer_range);
-			printf(">> GL_ARB_texture_compression_bptc: %d\n", GL_ARB_texture_compression_bptc);
-			printf(">> GL_ARB_texture_compression_rgtc: %d\n", GL_ARB_texture_compression_rgtc);
-			printf(">> GL_ARB_texture_cube_map_array: %d\n", GL_ARB_texture_cube_map_array);
-			printf(">> GL_ARB_texture_filter_anisotropic: %d\n", GL_ARB_texture_filter_anisotropic);
-			printf(">> GL_ARB_texture_filter_minmax: %d\n", GL_ARB_texture_filter_minmax);
-			printf(">> GL_ARB_texture_gather: %d\n", GL_ARB_texture_gather);
-			printf(">> GL_ARB_texture_mirror_clamp_to_edge: %d\n", GL_ARB_texture_mirror_clamp_to_edge);
-			printf(">> GL_ARB_texture_mirrored_repeat: %d\n", GL_ARB_texture_mirrored_repeat);
-			printf(">> GL_ARB_texture_multisample: %d\n", GL_ARB_texture_multisample);
-			printf(">> GL_ARB_texture_non_power_of_two: %d\n", GL_ARB_texture_non_power_of_two);
-			printf(">> GL_ARB_texture_query_levels: %d\n", GL_ARB_texture_query_levels);
-			printf(">> GL_ARB_texture_query_lod: %d\n", GL_ARB_texture_query_lod);
-			printf(">> GL_ARB_texture_rg: %d\n", GL_ARB_texture_rg);
-			printf(">> GL_ARB_texture_rgb10_a2ui: %d\n", GL_ARB_texture_rgb10_a2ui);
-			printf(">> GL_ARB_texture_stencil8: %d\n", GL_ARB_texture_stencil8);
-			printf(">> GL_ARB_texture_storage: %d\n", GL_ARB_texture_storage);
-			printf(">> GL_ARB_texture_storage_multisample: %d\n", GL_ARB_texture_storage_multisample);
-			printf(">> GL_ARB_texture_swizzle: %d\n", GL_ARB_texture_swizzle);
-			printf(">> GL_ARB_texture_view: %d\n", GL_ARB_texture_view);
-			printf(">> GL_ARB_timer_query: %d\n", GL_ARB_timer_query);
-			printf(">> GL_ARB_transform_feedback2: %d\n", GL_ARB_transform_feedback2);
-			printf(">> GL_ARB_transform_feedback3: %d\n", GL_ARB_transform_feedback3);
-			printf(">> GL_ARB_transform_feedback_instanced: %d\n", GL_ARB_transform_feedback_instanced);
-			printf(">> GL_ARB_transform_feedback_overflow_query: %d\n", GL_ARB_transform_feedback_overflow_query);
-			printf(">> GL_ARB_uniform_buffer_object: %d\n", GL_ARB_uniform_buffer_object);
-			printf(">> GL_ARB_vertex_array_bgra: %d\n", GL_ARB_vertex_array_bgra);
-			printf(">> GL_ARB_vertex_array_object: %d\n", GL_ARB_vertex_array_object);
-			printf(">> GL_ARB_vertex_attrib_64bit: %d\n", GL_ARB_vertex_attrib_64bit);
-			printf(">> GL_ARB_vertex_attrib_binding: %d\n", GL_ARB_vertex_attrib_binding);
-			printf(">> GL_ARB_vertex_type_10f_11f_11f_rev: %d\n", GL_ARB_vertex_type_10f_11f_11f_rev);
-			printf(">> GL_ARB_vertex_type_2_10_10_10_rev: %d\n", GL_ARB_vertex_type_2_10_10_10_rev);
-			printf(">> GL_ARB_viewport_array: %d\n", GL_ARB_viewport_array);
+			if(GL_ARB_texture_buffer_object_rgb32) LOG_B(GL_ARB_texture_buffer_object_rgb32);
+			if(GL_ARB_texture_buffer_range) LOG_B(GL_ARB_texture_buffer_range);
+			if(GL_ARB_texture_compression_bptc) LOG_B(GL_ARB_texture_compression_bptc);
+			if(GL_ARB_texture_compression_rgtc) LOG_B(GL_ARB_texture_compression_rgtc);
+			if(GL_ARB_texture_cube_map_array) LOG_B(GL_ARB_texture_cube_map_array);
+			if(GL_ARB_texture_filter_anisotropic) LOG_B(GL_ARB_texture_filter_anisotropic);
+			if(GL_ARB_texture_filter_minmax) LOG_B(GL_ARB_texture_filter_minmax);
+			if(GL_ARB_texture_gather) LOG_B(GL_ARB_texture_gather);
+			if(GL_ARB_texture_mirror_clamp_to_edge) LOG_B(GL_ARB_texture_mirror_clamp_to_edge);
+			if(GL_ARB_texture_mirrored_repeat) LOG_B(GL_ARB_texture_mirrored_repeat);
+			if(GL_ARB_texture_multisample) LOG_B(GL_ARB_texture_multisample);
+			if(GL_ARB_texture_non_power_of_two) LOG_B(GL_ARB_texture_non_power_of_two);
+			if(GL_ARB_texture_query_levels) LOG_B(GL_ARB_texture_query_levels);
+			if(GL_ARB_texture_query_lod) LOG_B(GL_ARB_texture_query_lod);
+			if(GL_ARB_texture_rg) LOG_B(GL_ARB_texture_rg);
+			if(GL_ARB_texture_rgb10_a2ui) LOG_B(GL_ARB_texture_rgb10_a2ui);
+			if(GL_ARB_texture_stencil8) LOG_B(GL_ARB_texture_stencil8);
+			if(GL_ARB_texture_storage) LOG_B(GL_ARB_texture_storage);
+			if(GL_ARB_texture_storage_multisample) LOG_B(GL_ARB_texture_storage_multisample);
+			if(GL_ARB_texture_swizzle) LOG_B(GL_ARB_texture_swizzle);
+			if(GL_ARB_texture_view) LOG_B(GL_ARB_texture_view);
+			if(GL_ARB_timer_query) LOG_B(GL_ARB_timer_query);
+			if(GL_ARB_transform_feedback2) LOG_B(GL_ARB_transform_feedback2);
+			if(GL_ARB_transform_feedback3) LOG_B(GL_ARB_transform_feedback3);
+			if(GL_ARB_transform_feedback_instanced) LOG_B(GL_ARB_transform_feedback_instanced);
+			if(GL_ARB_transform_feedback_overflow_query) LOG_B(GL_ARB_transform_feedback_overflow_query);
+			if(GL_ARB_uniform_buffer_object) LOG_B(GL_ARB_uniform_buffer_object);
+			if(GL_ARB_vertex_array_bgra) LOG_B(GL_ARB_vertex_array_bgra);
+			if(GL_ARB_vertex_array_object) LOG_B(GL_ARB_vertex_array_object);
+			if(GL_ARB_vertex_attrib_64bit) LOG_B(GL_ARB_vertex_attrib_64bit);
+			if(GL_ARB_vertex_attrib_binding) LOG_B(GL_ARB_vertex_attrib_binding);
+			if(GL_ARB_vertex_type_10f_11f_11f_rev) LOG_B(GL_ARB_vertex_type_10f_11f_11f_rev);
+			if(GL_ARB_vertex_type_2_10_10_10_rev) LOG_B(GL_ARB_vertex_type_2_10_10_10_rev);
 			if(GL_ARB_viewport_array)
 			{
+				LOG_B(GL_ARB_viewport_array);
 				Assertv((glDepthRangeArraydvNV), verbose);
 				Assertv((glDepthRangeIndexeddNV), verbose);
 			}
@@ -1069,40 +1070,38 @@ int main(int argc, char *argv[])
 		// namespace KHR
 		{
 			using namespace axl::glfl::core::GLKHR; 
-			printf(">> GL_KHR_blend_equation_advanced: %d\n", GL_KHR_blend_equation_advanced);
 			if(GL_KHR_blend_equation_advanced)
 			{
+				LOG_B(GL_KHR_blend_equation_advanced);
 				Assertv((glBlendBarrierKHR), verbose);
 			}
-			printf(">> GL_KHR_blend_equation_advanced_coherent: %d\n", GL_KHR_blend_equation_advanced_coherent);
-			printf(">> GL_KHR_context_flush_control: %d\n", GL_KHR_context_flush_control);
-			printf(">> GL_KHR_debug: %d\n", GL_KHR_debug);
-			printf(">> GL_KHR_no_error: %d\n", GL_KHR_no_error);
-			printf(">> GL_KHR_parallel_shader_compile: %d\n", GL_KHR_parallel_shader_compile);
+			if(GL_KHR_blend_equation_advanced_coherent) LOG_B(GL_KHR_blend_equation_advanced_coherent);
+			if(GL_KHR_context_flush_control) LOG_B(GL_KHR_context_flush_control);
+			if(GL_KHR_debug) LOG_B(GL_KHR_debug);
+			if(GL_KHR_no_error) LOG_B(GL_KHR_no_error);
 			if(GL_KHR_parallel_shader_compile)
 			{
+				LOG_B(GL_KHR_parallel_shader_compile);
 				Assertv((glMaxShaderCompilerThreadsKHR), verbose);
 			}
-			printf(">> GL_KHR_robust_buffer_access_behavior: %d\n", GL_KHR_robust_buffer_access_behavior);
-			printf(">> GL_KHR_robustness: %d\n", GL_KHR_robustness);
-			printf(">> GL_KHR_shader_subgroup: %d\n", GL_KHR_shader_subgroup);
-			printf(">> GL_KHR_texture_compression_astc_hdr: %d\n", GL_KHR_texture_compression_astc_hdr);
-			printf(">> GL_KHR_texture_compression_astc_ldr: %d\n", GL_KHR_texture_compression_astc_ldr);
-			printf(">> GL_KHR_texture_compression_astc_sliced_3d: %d\n", GL_KHR_texture_compression_astc_sliced_3d);
+			if(GL_KHR_robust_buffer_access_behavior) LOG_B(GL_KHR_robust_buffer_access_behavior);
+			if(GL_KHR_robustness) LOG_B(GL_KHR_robustness);
+			if(GL_KHR_shader_subgroup) LOG_B(GL_KHR_shader_subgroup);
+			if(GL_KHR_texture_compression_astc_hdr) LOG_B(GL_KHR_texture_compression_astc_hdr);
+			if(GL_KHR_texture_compression_astc_ldr) LOG_B(GL_KHR_texture_compression_astc_ldr);
+			if(GL_KHR_texture_compression_astc_sliced_3d) LOG_B(GL_KHR_texture_compression_astc_sliced_3d);
 		} // namespace GLKHR
 		{
 		using namespace axl::glfl::core::GLAMD;
-		// GL_AMD_framebuffer_multisample_advanced
-		printf(">> GL_AMD_framebuffer_multisample_advanced: %d\n", GL_AMD_framebuffer_multisample_advanced);
 		if(GL_AMD_framebuffer_multisample_advanced)
 		{
+			LOG_B(GL_AMD_framebuffer_multisample_advanced);
 			Assertv((glRenderbufferStorageMultisampleAdvancedAMD), verbose);
 			Assertv((glNamedRenderbufferStorageMultisampleAdvancedAMD), verbose);
 		}
-		// GL_AMD_performance_monitor
-		printf(">> GL_AMD_performance_monitor: %d\n", GL_AMD_performance_monitor);
 		if(GL_AMD_performance_monitor)
 		{
+			LOG_B(GL_AMD_performance_monitor);
 			Assertv((glGetPerfMonitorGroupsAMD), verbose);
 			Assertv((glGetPerfMonitorCountersAMD), verbose);
 			Assertv((glGetPerfMonitorGroupStringAMD), verbose);
@@ -1118,39 +1117,33 @@ int main(int argc, char *argv[])
 	} // namespace GLAMD
 	{
 		using namespace axl::glfl::core::GLAPPLE;
-		// GL_APPLE_rgb_422
-		printf(">> GL_APPLE_rgb_422: %d\n", GL_APPLE_rgb_422);
+		if(GL_APPLE_rgb_422) LOG_B(GL_APPLE_rgb_422);
 	} // namespace GLAPPLE
 	{
 		using namespace axl::glfl::core::GLEXT;
-		// GL_EXT_EGL_image_storage
-		printf(">> GL_EXT_EGL_image_storage: %d\n", GL_EXT_EGL_image_storage);
 		if(GL_EXT_EGL_image_storage)
 		{
+			LOG_B(GL_EXT_EGL_image_storage);
 			Assertv((glEGLImageTargetTexStorageEXT), verbose);
 			Assertv((glEGLImageTargetTextureStorageEXT), verbose);
 		}
-		// GL_EXT_EGL_sync
-		printf(">> GL_EXT_EGL_sync: %d\n", GL_EXT_EGL_sync);
-		// GL_EXT_debug_label
-		printf(">> GL_EXT_debug_label: %d\n", GL_EXT_debug_label);
+		if(GL_EXT_EGL_sync) LOG_B(GL_EXT_EGL_sync);
 		if(GL_EXT_debug_label)
 		{
+			LOG_B(GL_EXT_debug_label);
 			Assertv((glLabelObjectEXT), verbose);
 			Assertv((glGetObjectLabelEXT), verbose);
 		}
-		// GL_EXT_debug_marker
-		printf(">> GL_EXT_debug_marker: %d\n", GL_EXT_debug_marker);
 		if(GL_EXT_debug_marker)
 		{
+			LOG_B(GL_EXT_debug_marker);
 			Assertv((glInsertEventMarkerEXT), verbose);
 			Assertv((glPushGroupMarkerEXT), verbose);
 			Assertv((glPopGroupMarkerEXT), verbose);
 		}
-		// GL_EXT_direct_state_access
-		printf(">> GL_EXT_direct_state_access: %d\n", GL_EXT_direct_state_access);
 		if(GL_EXT_direct_state_access)
 		{
+			LOG_B(GL_EXT_direct_state_access);
 			Assertv((glMatrixLoadfEXT), verbose);
 			Assertv((glMatrixLoaddEXT), verbose);
 			Assertv((glMatrixMultfEXT), verbose);
@@ -1407,86 +1400,65 @@ int main(int argc, char *argv[])
 			Assertv((glTexturePageCommitmentEXT), verbose);
 			Assertv((glVertexArrayVertexAttribDivisorEXT), verbose);
 		}
-		// GL_EXT_draw_instanced
-		printf(">> GL_EXT_draw_instanced: %d\n", GL_EXT_draw_instanced);
 		if(GL_EXT_draw_instanced)
 		{
+			LOG_B(GL_EXT_draw_instanced);
 			Assertv((glDrawArraysInstancedEXT), verbose);
 			Assertv((glDrawElementsInstancedEXT), verbose);
 		}
 
-		// GL_EXT_multiview_tessellation_geometry_shader
-		printf(">> GL_EXT_multiview_tessellation_geometry_shader: %d\n", GL_EXT_multiview_tessellation_geometry_shader);
-		// GL_EXT_multiview_texture_multisample
-		printf(">> GL_EXT_multiview_texture_multisample: %d\n", GL_EXT_multiview_texture_multisample);
-		// GL_EXT_multiview_timer_query
-		printf(">> GL_EXT_multiview_timer_query: %d\n", GL_EXT_multiview_timer_query);
-		// GL_EXT_polygon_offset_clamp
-		printf(">> GL_EXT_polygon_offset_clamp: %d\n", GL_EXT_polygon_offset_clamp);
+		if(GL_EXT_multiview_tessellation_geometry_shader) LOG_B(GL_EXT_multiview_tessellation_geometry_shader);
+		if(GL_EXT_multiview_texture_multisample) LOG_B(GL_EXT_multiview_texture_multisample);
+		if(GL_EXT_multiview_timer_query) LOG_B(GL_EXT_multiview_timer_query);
 		if(GL_EXT_polygon_offset_clamp)
 		{
+			LOG_B(GL_EXT_polygon_offset_clamp);
 			Assertv((glPolygonOffsetClampEXT), verbose);
 		}
-		// GL_EXT_post_depth_coverage
-		printf(">> GL_EXT_post_depth_coverage: %d\n", GL_EXT_post_depth_coverage);
-		// GL_EXT_raster_multisample
-		printf(">> GL_EXT_raster_multisample: %d\n", GL_EXT_raster_multisample);
+		if(GL_EXT_post_depth_coverage) LOG_B(GL_EXT_post_depth_coverage);
 		if(GL_EXT_raster_multisample)
 		{
+			LOG_B(GL_EXT_raster_multisample);
 			Assertv((glRasterSamplesEXT), verbose);
 		}
-		// GL_EXT_separate_shader_objects
-		printf(">> GL_EXT_separate_shader_objects: %d\n", GL_EXT_separate_shader_objects);
 		if(GL_EXT_separate_shader_objects)
 		{
+			LOG_B(GL_EXT_separate_shader_objects);
 			Assertv((glUseShaderProgramEXT), verbose);
 			Assertv((glActiveProgramEXT), verbose);
 			Assertv((glCreateShaderProgramEXT), verbose);
 		}
-		// GL_EXT_shader_framebuffer_fetch
-		printf(">> GL_EXT_shader_framebuffer_fetch: %d\n", GL_EXT_shader_framebuffer_fetch);
-		// GL_EXT_shader_framebuffer_fetch_non_coherent
-		printf(">> GL_EXT_shader_framebuffer_fetch_non_coherent: %d\n", GL_EXT_shader_framebuffer_fetch_non_coherent);
+		if(GL_EXT_shader_framebuffer_fetch) LOG_B(GL_EXT_shader_framebuffer_fetch);
 		if(GL_EXT_shader_framebuffer_fetch_non_coherent)
 		{
+			LOG_B(GL_EXT_shader_framebuffer_fetch_non_coherent);
 			Assertv((glFramebufferFetchBarrierEXT), verbose);
 		}
-		// GL_EXT_shader_integer_mix
-		printf(">> GL_EXT_shader_integer_mix: %d\n", GL_EXT_shader_integer_mix);
-		// GL_EXT_texture_compression_s3tc
-		printf(">> GL_EXT_texture_compression_s3tc: %d\n", GL_EXT_texture_compression_s3tc);
-		// GL_EXT_texture_filter_minmax
-		printf(">> GL_EXT_texture_filter_minmax: %d\n", GL_EXT_texture_filter_minmax);
-		// GL_EXT_texture_sRGB_R8
-		printf(">> GL_EXT_texture_sRGB_R8: %d\n", GL_EXT_texture_sRGB_R8);
-		// GL_EXT_texture_sRGB_decode
-		printf(">> GL_EXT_texture_sRGB_decode: %d\n", GL_EXT_texture_sRGB_decode);
-		// GL_EXT_texture_shadow_lod
-		printf(">> GL_EXT_texture_shadow_lod: %d\n", GL_EXT_texture_shadow_lod);
-		// GL_EXT_window_rectangles
-		printf(">> GL_EXT_window_rectangles: %d\n", GL_EXT_window_rectangles);
+		if(GL_EXT_shader_integer_mix) LOG_B(GL_EXT_shader_integer_mix);
+		if(GL_EXT_texture_compression_s3tc) LOG_B(GL_EXT_texture_compression_s3tc);
+		if(GL_EXT_texture_filter_minmax) LOG_B(GL_EXT_texture_filter_minmax);
+		if(GL_EXT_texture_sRGB_R8) LOG_B(GL_EXT_texture_sRGB_R8);
+		if(GL_EXT_texture_sRGB_decode) LOG_B(GL_EXT_texture_sRGB_decode);
+		if(GL_EXT_texture_shadow_lod) LOG_B(GL_EXT_texture_shadow_lod);
 		if(GL_EXT_window_rectangles)
 		{
+			LOG_B(GL_EXT_window_rectangles);
 			Assertv((glWindowRectanglesEXT), verbose);
 		}
 
 	} // namespace GLEXT
 	{
 		using namespace axl::glfl::core::GLINTEL;
-		// GL_INTEL_blackhole_render
-		printf(">> GL_INTEL_blackhole_render: %d\n", GL_INTEL_blackhole_render);
-		// GL_INTEL_conservative_rasterization
-		printf(">> GL_INTEL_conservative_rasterization: %d\n", GL_INTEL_conservative_rasterization);
-		// GL_INTEL_framebuffer_CMAA
-		printf(">> GL_INTEL_framebuffer_CMAA: %d\n", GL_INTEL_framebuffer_CMAA);
+		if(GL_INTEL_blackhole_render) LOG_B(GL_INTEL_blackhole_render);
+		if(GL_INTEL_conservative_rasterization) LOG_B(GL_INTEL_conservative_rasterization);
 		if(GL_INTEL_framebuffer_CMAA)
 		{
+			LOG_B(GL_INTEL_framebuffer_CMAA);
 			Assertv((glApplyFramebufferAttachmentCMAAINTEL), verbose);
 		}
-		// GL_INTEL_performance_query
-		printf(">> GL_INTEL_performance_query: %d\n", GL_INTEL_performance_query);
 		if(GL_INTEL_performance_query)
 		{
+			LOG_B(GL_INTEL_performance_query);
 			Assertv((glBeginPerfQueryINTEL), verbose);
 			Assertv((glCreatePerfQueryINTEL), verbose);
 			Assertv((glDeletePerfQueryINTEL), verbose);
@@ -1501,38 +1473,32 @@ int main(int argc, char *argv[])
 	} // namespace GLINTEL
 	{
 		using namespace axl::glfl::core::GLMESA;
-		// GL_MESA_framebuffer_flip_x
-		printf(">> GL_MESA_framebuffer_flip_x: %d\n", GL_MESA_framebuffer_flip_x);
-		// GL_MESA_framebuffer_flip_y
-		printf(">> GL_MESA_framebuffer_flip_y: %d\n", GL_MESA_framebuffer_flip_y);
+		if(GL_MESA_framebuffer_flip_x) LOG_B(GL_MESA_framebuffer_flip_x);
 		if(GL_MESA_framebuffer_flip_y)
 		{
+			LOG_B(GL_MESA_framebuffer_flip_y);
 			Assertv((glFramebufferParameteriMESA), verbose);
 			Assertv((glGetFramebufferParameterivMESA), verbose);
 		}
-		// GL_MESA_framebuffer_swap_xy
-		printf(">> GL_MESA_framebuffer_swap_xy: %d\n", GL_MESA_framebuffer_swap_xy);
+		if(GL_MESA_framebuffer_swap_xy) LOG_B(GL_MESA_framebuffer_swap_xy);
 	} // namespace GLMESA
 	{
 		using namespace axl::glfl::core::GLNV;
-		// GL_NV_bindless_multi_draw_indirect
-		printf(">> GL_NV_bindless_multi_draw_indirect: %d\n", GL_NV_bindless_multi_draw_indirect);
 		if(GL_NV_bindless_multi_draw_indirect)
 		{
+			LOG_B(GL_NV_bindless_multi_draw_indirect);
 			Assertv((glMultiDrawArraysIndirectBindlessNV), verbose);
 			Assertv((glMultiDrawElementsIndirectBindlessNV), verbose);
 		}
-		// GL_NV_bindless_multi_draw_indirect_count
-		printf(">> GL_NV_bindless_multi_draw_indirect_count: %d\n", GL_NV_bindless_multi_draw_indirect_count);
 		if(GL_NV_bindless_multi_draw_indirect_count)
 		{
+			LOG_B(GL_NV_bindless_multi_draw_indirect_count);
 			Assertv((glMultiDrawArraysIndirectBindlessCountNV), verbose);
 			Assertv((glMultiDrawElementsIndirectBindlessCountNV), verbose);
 		}
-		// GL_NV_bindless_texture
-		printf(">> GL_NV_bindless_texture: %d\n", GL_NV_bindless_texture);
 		if(GL_NV_bindless_texture)
 		{
+			LOG_B(GL_NV_bindless_texture);
 			Assertv((glGetTextureHandleNV), verbose);
 			Assertv((glGetTextureSamplerHandleNV), verbose);
 			Assertv((glMakeTextureHandleResidentNV), verbose);
@@ -1547,27 +1513,22 @@ int main(int argc, char *argv[])
 			Assertv((glIsTextureHandleResidentNV), verbose);
 			Assertv((glIsImageHandleResidentNV), verbose);
 		}
-		// GL_NV_blend_equation_advanced
-		printf(">> GL_NV_blend_equation_advanced: %d\n", GL_NV_blend_equation_advanced);
 		if(GL_NV_blend_equation_advanced)
 		{
+			LOG_B(GL_NV_blend_equation_advanced);
 			Assertv((glBlendParameteriNV), verbose);
 			Assertv((glBlendBarrierNV), verbose);
 		}
-		// GL_NV_blend_equation_advanced_coherent
-		printf(">> GL_NV_blend_equation_advanced_coherent: %d\n", GL_NV_blend_equation_advanced_coherent);
-		// GL_NV_blend_minmax_factor
-		printf(">> GL_NV_blend_minmax_factor: %d\n", GL_NV_blend_minmax_factor);
-		// GL_NV_clip_space_w_scaling
-		printf(">> GL_NV_clip_space_w_scaling: %d\n", GL_NV_clip_space_w_scaling);
+		if(GL_NV_blend_equation_advanced_coherent) LOG_B(GL_NV_blend_equation_advanced_coherent);
+		if(GL_NV_blend_minmax_factor) LOG_B(GL_NV_blend_minmax_factor);
 		if(GL_NV_clip_space_w_scaling)
 		{
+			LOG_B(GL_NV_clip_space_w_scaling);
 			Assertv((glViewportPositionWScaleNV), verbose);
 		}
-		// GL_NV_command_list
-		printf(">> GL_NV_command_list: %d\n", GL_NV_command_list);
 		if(GL_NV_command_list)
 		{
+			LOG_B(GL_NV_command_list);
 			Assertv((glCreateStatesNV), verbose);
 			Assertv((glDeleteStatesNV), verbose);
 			Assertv((glIsStateNV), verbose);
@@ -1586,87 +1547,70 @@ int main(int argc, char *argv[])
 			Assertv((glCompileCommandListNV), verbose);
 			Assertv((glCallCommandListNV), verbose);
 		}
-		// GL_NV_compute_shader_derivatives
-		printf(">> GL_NV_compute_shader_derivatives: %d\n", GL_NV_compute_shader_derivatives);
-		// GL_NV_conditional_render
-		printf(">> GL_NV_conditional_render: %d\n", GL_NV_conditional_render);
+		if(GL_NV_compute_shader_derivatives) LOG_B(GL_NV_compute_shader_derivatives);
 		if(GL_NV_conditional_render)
 		{
+			LOG_B(GL_NV_conditional_render);
 			Assertv((glBeginConditionalRenderNV), verbose);
 			Assertv((glEndConditionalRenderNV), verbose);
 		}
-		// GL_NV_conservative_raster
-		printf(">> GL_NV_conservative_raster: %d\n", GL_NV_conservative_raster);
 		if(GL_NV_conservative_raster)
 		{
+			LOG_B(GL_NV_conservative_raster);
 			Assertv((glSubpixelPrecisionBiasNV), verbose);
 		}
-		// GL_NV_conservative_raster_dilate
-		printf(">> GL_NV_conservative_raster_dilate: %d\n", GL_NV_conservative_raster_dilate);
 		if(GL_NV_conservative_raster_dilate)
 		{
+			LOG_B(GL_NV_conservative_raster_dilate);
 			Assertv((glConservativeRasterParameterfNV), verbose);
 		}
-		// GL_NV_conservative_raster_pre_snap
-		printf(">> GL_NV_conservative_raster_pre_snap: %d\n", GL_NV_conservative_raster_pre_snap);
-		// GL_NV_conservative_raster_pre_snap_triangles
-		printf(">> GL_NV_conservative_raster_pre_snap_triangles: %d\n", GL_NV_conservative_raster_pre_snap_triangles);
+		if(GL_NV_conservative_raster_pre_snap) LOG_B(GL_NV_conservative_raster_pre_snap);
 		if(GL_NV_conservative_raster_pre_snap_triangles)
 		{
+			LOG_B(GL_NV_conservative_raster_pre_snap_triangles);
 			Assertv((glConservativeRasterParameteriNV), verbose);
 		}
-		// GL_NV_conservative_raster_underestimation
-		printf(">> GL_NV_conservative_raster_underestimation: %d\n", GL_NV_conservative_raster_underestimation);
-		// GL_NV_depth_buffer_float
-		printf(">> GL_NV_depth_buffer_float: %d\n", GL_NV_depth_buffer_float);
+		if(GL_NV_conservative_raster_underestimation) LOG_B(GL_NV_conservative_raster_underestimation);
 		if(GL_NV_depth_buffer_float)
 		{
+			LOG_B(GL_NV_depth_buffer_float);
 			Assertv((glDepthRangedNV), verbose);
 			Assertv((glClearDepthdNV), verbose);
 			Assertv((glDepthBoundsdNV), verbose);
 		}
-		// GL_NV_draw_vulkan_image
-		printf(">> GL_NV_draw_vulkan_image: %d\n", GL_NV_draw_vulkan_image);
 		if(GL_NV_draw_vulkan_image)
 		{
+			LOG_B(GL_NV_draw_vulkan_image);
 			Assertv((glDrawVkImageNV), verbose);
 			Assertv((glGetVkProcAddrNV), verbose);
 			Assertv((glWaitVkSemaphoreNV), verbose);
 			Assertv((glSignalVkSemaphoreNV), verbose);
 			Assertv((glSignalVkFenceNV), verbose);
 		}
-		// GL_NV_fill_rectangle
-		printf(">> GL_NV_fill_rectangle: %d\n", GL_NV_fill_rectangle);
-		// GL_NV_fragment_coverage_to_color
-		printf(">> GL_NV_fragment_coverage_to_color: %d\n", GL_NV_fragment_coverage_to_color);
+		if(GL_NV_fill_rectangle) LOG_B(GL_NV_fill_rectangle);
 		if(GL_NV_fragment_coverage_to_color)
 		{
+			LOG_B(GL_NV_fragment_coverage_to_color);
 			Assertv((glFragmentCoverageColorNV), verbose);
 		}
-		// GL_NV_fragment_shader_barycentric
-		printf(">> GL_NV_fragment_shader_barycentric: %d\n", GL_NV_fragment_shader_barycentric);
-		// GL_NV_fragment_shader_interlock
-		printf(">> GL_NV_fragment_shader_interlock: %d\n", GL_NV_fragment_shader_interlock);
-		// GL_NV_framebuffer_mixed_samples
-		printf(">> GL_NV_framebuffer_mixed_samples: %d\n", GL_NV_framebuffer_mixed_samples);
+		if(GL_NV_fragment_shader_barycentric) LOG_B(GL_NV_fragment_shader_barycentric);
+		if(GL_NV_fragment_shader_interlock) LOG_B(GL_NV_fragment_shader_interlock);
 		if(GL_NV_framebuffer_mixed_samples)
 		{
+			LOG_B(GL_NV_framebuffer_mixed_samples);
 			Assertv((glCoverageModulationTableNV), verbose);
 			Assertv((glGetCoverageModulationTableNV), verbose);
 			Assertv((glCoverageModulationNV), verbose);
 		}
-		// GL_NV_framebuffer_multisample_coverage
-		printf(">> GL_NV_framebuffer_multisample_coverage: %d\n", GL_NV_framebuffer_multisample_coverage);
 		if(GL_NV_framebuffer_multisample_coverage)
 		{
+			LOG_B(GL_NV_framebuffer_multisample_coverage);
 			Assertv((glRenderbufferStorageMultisampleCoverageNV), verbose);
 		}
-		// GL_NV_geometry_shader_passthrough
-		printf(">> GL_NV_geometry_shader_passthrough: %d\n", GL_NV_geometry_shader_passthrough);
-		// GL_NV_gpu_shader5
-		printf(">> GL_NV_gpu_shader5: %d\n", GL_NV_gpu_shader5);
+		if(GL_NV_geometry_shader_passthrough) LOG_B(GL_NV_geometry_shader_passthrough);
 		if(GL_NV_gpu_shader5)
 		{
+			LOG_B(GL_NV_gpu_shader5);
 			Assertv((glUniform1i64NV), verbose);
 			Assertv((glUniform2i64NV), verbose);
 			Assertv((glUniform3i64NV), verbose);
@@ -1701,16 +1645,14 @@ int main(int argc, char *argv[])
 			Assertv((glProgramUniform3ui64vNV), verbose);
 			Assertv((glProgramUniform4ui64vNV), verbose);
 		}
-		// GL_NV_internalformat_sample_query
-		printf(">> GL_NV_internalformat_sample_query: %d\n", GL_NV_internalformat_sample_query);
 		if(GL_NV_internalformat_sample_query)
 		{
+			LOG_B(GL_NV_internalformat_sample_query);
 			Assertv((glGetInternalformatSampleivNV), verbose);
 		}
-		// GL_NV_memory_attachment
-		printf(">> GL_NV_memory_attachment: %d\n", GL_NV_memory_attachment);
 		if(GL_NV_memory_attachment)
 		{
+			LOG_B(GL_NV_memory_attachment);
 			Assertv((glGetMemoryObjectDetachedResourcesuivNV), verbose);
 			Assertv((glResetMemoryObjectParameterNV), verbose);
 			Assertv((glTexAttachMemoryNV), verbose);
@@ -1718,28 +1660,25 @@ int main(int argc, char *argv[])
 			Assertv((glTextureAttachMemoryNV), verbose);
 			Assertv((glNamedBufferAttachMemoryNV), verbose);
 		}
-		// GL_NV_memory_object_sparse
-		printf(">> GL_NV_memory_object_sparse: %d\n", GL_NV_memory_object_sparse);
 		if(GL_NV_memory_object_sparse)
 		{
+			LOG_B(GL_NV_memory_object_sparse);
 			Assertv((glBufferPageCommitmentMemNV), verbose);
 			Assertv((glTexPageCommitmentMemNV), verbose);
 			Assertv((glNamedBufferPageCommitmentMemNV), verbose);
 			Assertv((glTexturePageCommitmentMemNV), verbose);
 		}
-		// GL_NV_mesh_shader
-		printf(">> GL_NV_mesh_shader: %d\n", GL_NV_mesh_shader);
 		if(GL_NV_mesh_shader)
 		{
+			LOG_B(GL_NV_mesh_shader);
 			Assertv((glDrawMeshTasksNV), verbose);
 			Assertv((glDrawMeshTasksIndirectNV), verbose);
 			Assertv((glMultiDrawMeshTasksIndirectNV), verbose);
 			Assertv((glMultiDrawMeshTasksIndirectCountNV), verbose);
 		}
-		// GL_NV_path_rendering
-		printf(">> GL_NV_path_rendering: %d\n", GL_NV_path_rendering);
 		if(GL_NV_path_rendering)
 		{
+			LOG_B(GL_NV_path_rendering);
 			Assertv((glGenPathsNV), verbose);
 			Assertv((glDeletePathsNV), verbose);
 			Assertv((glIsPathNV), verbose);
@@ -1798,43 +1737,31 @@ int main(int argc, char *argv[])
 			Assertv((glProgramPathFragmentInputGenNV), verbose);
 			Assertv((glGetProgramResourcefvNV), verbose);
 		}
-		// GL_NV_path_rendering_shared_edge
-		printf(">> GL_NV_path_rendering_shared_edge: %d\n", GL_NV_path_rendering_shared_edge);
-		// GL_NV_primitive_shading_rate
-		printf(">> GL_NV_primitive_shading_rate: %d\n", GL_NV_primitive_shading_rate);
-		// GL_NV_representative_fragment_test
-		printf(">> GL_NV_representative_fragment_test: %d\n", GL_NV_representative_fragment_test);
-		// GL_NV_sample_locations
-		printf(">> GL_NV_sample_locations: %d\n", GL_NV_sample_locations);
+		if(GL_NV_path_rendering_shared_edge) LOG_B(GL_NV_path_rendering_shared_edge);
+		if(GL_NV_primitive_shading_rate) LOG_B(GL_NV_primitive_shading_rate);
+		if(GL_NV_representative_fragment_test) LOG_B(GL_NV_representative_fragment_test);
 		if(GL_NV_sample_locations)
 		{
+			LOG_B(GL_NV_sample_locations);
 			Assertv((glFramebufferSampleLocationsfvNV), verbose);
 			Assertv((glNamedFramebufferSampleLocationsfvNV), verbose);
 			Assertv((glResolveDepthValuesNV), verbose);
 		}
-		// GL_NV_sample_mask_override_coverage
-		printf(">> GL_NV_sample_mask_override_coverage: %d\n", GL_NV_sample_mask_override_coverage);
-		// GL_NV_scissor_exclusive
-		printf(">> GL_NV_scissor_exclusive: %d\n", GL_NV_scissor_exclusive);
+		if(GL_NV_sample_mask_override_coverage) LOG_B(GL_NV_sample_mask_override_coverage);
 		if(GL_NV_scissor_exclusive)
 		{
+			LOG_B(GL_NV_scissor_exclusive);
 			Assertv((glScissorExclusiveNV), verbose);
 			Assertv((glScissorExclusiveArrayvNV), verbose);
 		}
-		// GL_NV_shader_atomic_counters
-		printf(">> GL_NV_shader_atomic_counters: %d\n", GL_NV_shader_atomic_counters);
-		// GL_NV_shader_atomic_float
-		printf(">> GL_NV_shader_atomic_float: %d\n", GL_NV_shader_atomic_float);
-		// GL_NV_shader_atomic_float64
-		printf(">> GL_NV_shader_atomic_float64: %d\n", GL_NV_shader_atomic_float64);
-		// GL_NV_shader_atomic_fp16_vector
-		printf(">> GL_NV_shader_atomic_fp16_vector: %d\n", GL_NV_shader_atomic_fp16_vector);
-		// GL_NV_shader_atomic_int64
-		printf(">> GL_NV_shader_atomic_int64: %d\n", GL_NV_shader_atomic_int64);
-		// GL_NV_shader_buffer_load
-		printf(">> GL_NV_shader_buffer_load: %d\n", GL_NV_shader_buffer_load);
+		if(GL_NV_shader_atomic_counters) LOG_B(GL_NV_shader_atomic_counters);
+		if(GL_NV_shader_atomic_float) LOG_B(GL_NV_shader_atomic_float);
+		if(GL_NV_shader_atomic_float64) LOG_B(GL_NV_shader_atomic_float64);
+		if(GL_NV_shader_atomic_fp16_vector) LOG_B(GL_NV_shader_atomic_fp16_vector);
+		if(GL_NV_shader_atomic_int64) LOG_B(GL_NV_shader_atomic_int64);
 		if(GL_NV_shader_buffer_load)
 		{
+			LOG_B(GL_NV_shader_buffer_load);
 			Assertv((glMakeBufferResidentNV), verbose);
 			Assertv((glMakeBufferNonResidentNV), verbose);
 			Assertv((glIsBufferResidentNV), verbose);
@@ -1850,20 +1777,14 @@ int main(int argc, char *argv[])
 			Assertv((glProgramUniformui64NV), verbose);
 			Assertv((glProgramUniformui64vNV), verbose);
 		}
-		// GL_NV_shader_buffer_store
-		printf(">> GL_NV_shader_buffer_store: %d\n", GL_NV_shader_buffer_store);
-		// GL_NV_shader_subgroup_partitioned
-		printf(">> GL_NV_shader_subgroup_partitioned: %d\n", GL_NV_shader_subgroup_partitioned);
-		// GL_NV_shader_texture_footprint
-		printf(">> GL_NV_shader_texture_footprint: %d\n", GL_NV_shader_texture_footprint);
-		// GL_NV_shader_thread_group
-		printf(">> GL_NV_shader_thread_group: %d\n", GL_NV_shader_thread_group);
-		// GL_NV_shader_thread_shuffle
-		printf(">> GL_NV_shader_thread_shuffle: %d\n", GL_NV_shader_thread_shuffle);
-		// GL_NV_shading_rate_image
-		printf(">> GL_NV_shading_rate_image: %d\n", GL_NV_shading_rate_image);
+		if(GL_NV_shader_buffer_store) LOG_B(GL_NV_shader_buffer_store);
+		if(GL_NV_shader_subgroup_partitioned) LOG_B(GL_NV_shader_subgroup_partitioned);
+		if(GL_NV_shader_texture_footprint) LOG_B(GL_NV_shader_texture_footprint);
+		if(GL_NV_shader_thread_group) LOG_B(GL_NV_shader_thread_group);
+		if(GL_NV_shader_thread_shuffle) LOG_B(GL_NV_shader_thread_shuffle);
 		if(GL_NV_shading_rate_image)
 		{
+			LOG_B(GL_NV_shading_rate_image);
 			Assertv((glBindShadingRateImageNV), verbose);
 			Assertv((glGetShadingRateImagePaletteNV), verbose);
 			Assertv((glGetShadingRateSampleLocationivNV), verbose);
@@ -1872,22 +1793,17 @@ int main(int argc, char *argv[])
 			Assertv((glShadingRateSampleOrderNV), verbose);
 			Assertv((glShadingRateSampleOrderCustomNV), verbose);
 		}
-		// GL_NV_stereo_view_rendering
-		printf(">> GL_NV_stereo_view_rendering: %d\n", GL_NV_stereo_view_rendering);
-		// GL_NV_texture_barrier
-		printf(">> GL_NV_texture_barrier: %d\n", GL_NV_texture_barrier);
+		if(GL_NV_stereo_view_rendering) LOG_B(GL_NV_stereo_view_rendering);
 		if(GL_NV_texture_barrier)
 		{
+			LOG_B(GL_NV_texture_barrier);
 			Assertv((glTextureBarrierNV), verbose);
 		}
-		// GL_NV_texture_rectangle_compressed
-		printf(">> GL_NV_texture_rectangle_compressed: %d\n", GL_NV_texture_rectangle_compressed);
-		// GL_NV_uniform_buffer_unified_memory
-		printf(">> GL_NV_uniform_buffer_unified_memory: %d\n", GL_NV_uniform_buffer_unified_memory);
-		// GL_NV_vertex_attrib_integer_64bit
-		printf(">> GL_NV_vertex_attrib_integer_64bit: %d\n", GL_NV_vertex_attrib_integer_64bit);
+		if(GL_NV_texture_rectangle_compressed) LOG_B(GL_NV_texture_rectangle_compressed);
+		if(GL_NV_uniform_buffer_unified_memory) LOG_B(GL_NV_uniform_buffer_unified_memory);
 		if(GL_NV_vertex_attrib_integer_64bit)
 		{
+			LOG_B(GL_NV_vertex_attrib_integer_64bit);
 			Assertv((glVertexAttribL1i64NV), verbose);
 			Assertv((glVertexAttribL2i64NV), verbose);
 			Assertv((glVertexAttribL3i64NV), verbose);
@@ -1908,11 +1824,9 @@ int main(int argc, char *argv[])
 			Assertv((glGetVertexAttribLui64vNV), verbose);
 			Assertv((glVertexAttribLFormatNV), verbose);
 		}
-
-		// GL_NV_vertex_buffer_unified_memory
-		printf(">> GL_NV_vertex_buffer_unified_memory: %d\n", GL_NV_vertex_buffer_unified_memory);
 		if(GL_NV_vertex_buffer_unified_memory)
 		{
+			LOG_B(GL_NV_vertex_buffer_unified_memory);
 			Assertv((glBufferAddressRangeNV), verbose);
 			Assertv((glVertexFormatNV), verbose);
 			Assertv((glNormalFormatNV), verbose);
@@ -1926,26 +1840,22 @@ int main(int argc, char *argv[])
 			Assertv((glVertexAttribIFormatNV), verbose);
 			Assertv((glGetIntegerui64i_vNV), verbose);
 		}
-
-		// GL_NV_viewport_array2
-		printf(">> GL_NV_viewport_array2: %d\n", GL_NV_viewport_array2);
-		// GL_NV_viewport_swizzle
-		printf(">> GL_NV_viewport_swizzle: %d\n", GL_NV_viewport_swizzle);
+		if(GL_NV_viewport_array2) LOG_B(GL_NV_viewport_array2);
 		if(GL_NV_viewport_swizzle)
 		{
+			LOG_B(GL_NV_viewport_swizzle);
 			Assertv((glViewportSwizzleNV), verbose);
 		}
 
 	} // namespace GLNV
 	{
 		using namespace axl::glfl::core::GLOVR;
-		// GL_OVR_multiview
-		printf(">> GL_OVR_multiview: %d\n", GL_OVR_multiview);
 		if(GL_OVR_multiview)
 		{
+			LOG_B(GL_OVR_multiview);
 			Assertv((glFramebufferTextureMultiviewOVR), verbose);
 		}
-		printf(">> GL_OVR_multiview2: %d\n", GL_OVR_multiview2);
+		if(GL_OVR_multiview2) LOG_B(GL_OVR_multiview2);
 	} // namespace GLOVR
 	}
 	if(axl::Assert::_num_failed_tests) puts("----------------------------------------");
