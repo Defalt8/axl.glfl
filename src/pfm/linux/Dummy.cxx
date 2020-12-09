@@ -21,7 +21,6 @@ Dummy::Dummy(bool init)
 	data->window = 0;
 	data->context = NULL;
 	if(init) this->init();
-	
 }
 Dummy::~Dummy()
 {
@@ -56,7 +55,7 @@ Dummy::InitError Dummy::init()
 	if(!cmap) return InitError::CONFIG;
 	swa.colormap = cmap;
 	swa.event_mask = ExposureMask | KeyPressMask;
-	win = XCreateWindow(dpy, root, 0, 0, 0, 0, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
+	win = XCreateWindow(dpy, root, 0, 0, 100, 100, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
 	if(!win) return InitError::WINDOW;
 	// XMapWindow(dpy, win);
 	glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);

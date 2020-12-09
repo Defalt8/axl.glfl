@@ -13,8 +13,9 @@
 #	include <axl.glfl/glfl.hpp>
 #	include <axl.glfl/gl.hpp>
 using namespace axl::glfl;
-#	include <X11/Xlib.h>
+#	define __gl_h_ 1
 #	include <GL/glx.h>
+#	include <X11/Xlib.h>
 #	include <axl.glfl/glCoreARB.hpp>
 #	include <axl.glfl/Dummy.hpp>
 #	define LOAD_GLPROC(Name) Name = (PFN::Name)glXGetProcAddress((const GLubyte*)#Name)
