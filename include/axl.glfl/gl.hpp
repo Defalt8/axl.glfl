@@ -1,6 +1,4 @@
 #pragma once
-#ifndef __gl_h_
-#define __gl_h_ 1
 
 #include <stdint.h>
 
@@ -55,5 +53,3 @@ typedef struct __GLsync *GLsync;
 
 } // namespace axl::glfl
 } // namespace axl
-
-#endif // __gl_h_
