@@ -10,6 +10,7 @@ add_library( axl.glfl ${AXLGLFL_TYPE}
 	"glfl.cpp"
 	"Dummy.cpp"
 	"glCoreARB.cpp"
+	"pfm.cpp"
 )
 target_include_directories( axl.glfl PUBLIC "${CMAKE_SOURCE_DIR}/include" )
 target_compile_definitions( axl.glfl
