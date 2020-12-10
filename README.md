@@ -4,7 +4,7 @@ An organized multiplatform OpenGL function loader.
 
 ## Version and supported platforms
 
-- **Latest version**: 1.3.7 beta
+- **Latest version**: 1.3.8 beta
 - **Supported platforms**: Windows, Linux
 
 ## Requirements and Dependencies
@@ -83,7 +83,7 @@ An organized multiplatform OpenGL function loader.
 ### Header files
 
 - [axl.glfl/platform.h]("include/axl.glfl/platform.h") - Defines PLATFORM and ABI macros based on the building platform.
-- [axl.glfl/glfl.hpp]("include/axl.glfl/glfl.hpp") - Library base header. Declares VERSION and BUILD.
+- [axl.glfl/lib.hpp]("include/axl.glfl/lib.hpp") - Library base header. Declares VERSION and BUILD.
 - [axl.glfl/gl.hpp]("include/axl.glfl/gl.hpp") - Declares common OpenGL data types and macros.
 - [axl.glfl/glCoreARB.hpp]("include/axl.glfl/glCoreARB.hpp") - Declares **all core** OpenGL *functions* and *extensions* within specific namespaces. Contains the `load` function.
 - [axl.glfl/Dummy.hpp]("include/axl.glfl/Dummy.hpp") - Declares `Dummy` OpenGL context class.

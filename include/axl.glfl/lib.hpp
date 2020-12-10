@@ -32,6 +32,7 @@
 
 namespace axl {
 namespace glfl {
+namespace lib {
 
 struct _Version {
 	unsigned int major;
@@ -46,5 +47,6 @@ typedef _Build Build;
 AXLGLFLAPI const Version VERSION;
 AXLGLFLAPI const Build BUILD;
 
+} // axl::glfl::lib
 } // axl::glfl
 } // axl

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <axl.glfl/glfl.hpp>
+#include <axl.glfl/lib.hpp>
 #include <axl.glfl/glCoreARB.hpp>
 #include "Assert.hpp"
 
@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
 {
 	bool verbose = argc > 1 && (0 == strcmp(argv[1], "-v") || 0 == strcmp(argv[1], "--verbose"));
 	using namespace axl::glfl;
-	printf(">> axl.glfl %u.%u.%u %s - Dummy test\n", VERSION.major, VERSION.minor, VERSION.patch, (BUILD == Build::SHARED ? "SHARED" : "STATIC"));
+	using namespace axl::glfl::lib;
+	printf(">> axl.glfl %s library %u.%u.%u - glCoreARB test\n", (BUILD == Build::SHARED ? "SHARED" : "STATIC"), VERSION.major, VERSION.minor, VERSION.patch);
 	puts("----------------------------------------");
 	{
 		Assertve(core::load(), verbose);

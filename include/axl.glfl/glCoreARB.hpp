@@ -1,9 +1,7 @@
 #pragma once
 
 #include "gl.hpp"
-#include "glfl.hpp"
-
-// #define AXLGLFLAPI PFN::Name Name AXLGLFLAPI PFN::##Name Name
+#include "lib.hpp"
 
 namespace axl {
 namespace glfl {
@@ -5926,6 +5924,7 @@ AXLGLFLAPI const bool& GL_OVR_multiview2;
 } // namespace GLOVR
 
 AXLGLFLAPI bool load();
+AXLGLFLAPI bool checkExtension(const char* extension_name);
 
 } // namespace axl::glfl::core
 } // namespace axl::glfl

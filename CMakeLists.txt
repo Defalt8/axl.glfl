@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.8 )
 
-project( AXL_GLFL VERSION 1.3.7 DESCRIPTION "OpenGL function loader library." )
+project( AXL_GLFL VERSION 1.3.8 DESCRIPTION "OpenGL function loader library." )
 
 set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED true )
@@ -27,7 +27,7 @@ if( AXLGLFL_INSTALL_HEADERS )
 		"include/axl.glfl/platform.h"
 		"include/axl.glfl/Dummy.hpp"
 		"include/axl.glfl/gl.hpp"
-		"include/axl.glfl/glfl.hpp"
+		"include/axl.glfl/lib.hpp"
 		"include/axl.glfl/glCoreARB.hpp"
 		DESTINATION "${AXLGLFL_HEADER_INSTALL_DIR}/axl.glfl"
 	)

@@ -4,13 +4,13 @@
 #if PLATFORM==PLATFORM_WINDOWS
 #	define WIN32_LEAN_AND_MEAN 1
 #	include <windows.h>
-#	include <axl.glfl/glfl.hpp>
+#	include <axl.glfl/lib.hpp>
 #	include <axl.glfl/Dummy.hpp>
 #	include <axl.glfl/glCoreARB.hpp>
 #	define LOAD_GLPROC(Name) (!(Name = (PFN::Name)wglGetProcAddress(#Name)) ? (Name = (PFN::Name)GetProcAddress(GLMODULE, #Name)) : Name)
 #	define LOAD_GLPROC_ALT(Name) Name = (PFN::Name)GetProcAddress(GLMODULE, #Name)
 #elif PLATFORM==PLATFORM_LINUX
-#	include <axl.glfl/glfl.hpp>
+#	include <axl.glfl/lib.hpp>
 #	include <axl.glfl/gl.hpp>
 using namespace axl::glfl;
 #	define __gl_h_ 1
@@ -23,8 +23,6 @@ using namespace axl::glfl;
 #else
 #	error("Unsupported platform!")
 #endif
-
-// #define PFN::Name) PFN::##Name Name = (PFN::##Name Name) PFN::##Name Name = (PFN::##Name = (PFN::Name) PFN::##Name Name = (PFN::##Name)00
 
 namespace axl {
 namespace glfl {
@@ -2378,19 +2376,19 @@ const bool& GL_OVR_multiview2 = _GL_OVR_multiview2;
 
 
 
-bool checkExtensions();
+bool checkAllExtensions();
 
 bool load()
 {
 	static bool initialized = false;
+	if(initialized) return true;
+	if(!GLOBAL_DUMMY.isInitialized()) GLOBAL_DUMMY.init();
 #if PLATFORM==PLATFORM_WINDOWS
 	HMODULE GLMODULE = NULL;
-	if(initialized) return true;
-	if(Dummy::InitError::NONE != GLOBAL_DUMMY.init() || !GLOBAL_DUMMY.makeCurrent() || !(GLMODULE = LoadLibraryW(L"opengl32.dll")))
+	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent() || !(GLMODULE = LoadLibraryW(L"opengl32.dll")))
 		return false;
 #elif PLATFORM==PLATFORM_LINUX
-	if(initialized) return true;
-	if(Dummy::InitError::NONE != GLOBAL_DUMMY.init() || !GLOBAL_DUMMY.makeCurrent() || !glXGetProcAddress)
+	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent() || !GLOBAL_DUMMY.makeCurrent() || !glXGetProcAddress)
 		return false;
 #endif
 	{
@@ -4267,230 +4265,55 @@ bool load()
 		_GL_OVR_multiview = 0 != glFramebufferTextureMultiviewOVR;
 		_GL_OVR_multiview2 = false;
 	} // namespace GLOVR
-	return (initialized = true) && checkExtensions();
+	return (initialized = true) && checkAllExtensions();
 }
 
-bool checkExtensions()
+bool checkAllExtensions()
 {
 	static bool initialized = false;
-#if PLATFORM==PLATFORM_WINDOWS
 	if(initialized) return true;
-	if(Dummy::InitError::NONE != GLOBAL_DUMMY.init() || !GLOBAL_DUMMY.makeCurrent())
+	if(!GLOBAL_DUMMY.isInitialized()) GLOBAL_DUMMY.init();
+	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent())
 		return false;
-#elif PLATFORM==PLATFORM_LINUX
-	if(initialized) return true;
-	if(Dummy::InitError::NONE != GLOBAL_DUMMY.init() || !GLOBAL_DUMMY.makeCurrent())
-		return false;
-#endif
 	using namespace axl::glfl::core::GL1;
-	const char* str_ver = (const char*)glGetString(GL_VERSION);
+	using namespace axl::glfl::core::GL2;
+	using namespace axl::glfl::core::GL3;
+	using namespace axl::glfl::core::GLARB;
+	using namespace axl::glfl::core::GLAMD;
+	using namespace axl::glfl::core::GLAPPLE;
+	using namespace axl::glfl::core::GLEXT;
+	using namespace axl::glfl::core::GLINTEL;
+	using namespace axl::glfl::core::GLKHR;
+	using namespace axl::glfl::core::GLMESA;
+	using namespace axl::glfl::core::GLNV;
+	using namespace axl::glfl::core::GLOVR;
+	bool gl_3_or_higher = false;
+	const char *str_ver = (const char*)glGetString(GL_VERSION);
 	if(!str_ver) return false;
-	if(((int)str_ver[0]-'0') >= 3)
+	gl_3_or_higher = (((int)str_ver[0] - '0') >= 3);
+	GLint i = 0, num_ext = 0, index = 0, last = 0;
+	const char *cur_ext = (const char*)0, *ext = (const char*)0;
+	if(gl_3_or_higher)
 	{
-		using namespace axl::glfl::core::GL2;
-		using namespace axl::glfl::core::GL3;
-		using namespace axl::glfl::core::GLARB;
-		using namespace axl::glfl::core::GLAMD;
-		using namespace axl::glfl::core::GLAPPLE;
-		using namespace axl::glfl::core::GLEXT;
-		using namespace axl::glfl::core::GLINTEL;
-		using namespace axl::glfl::core::GLKHR;
-		using namespace axl::glfl::core::GLMESA;
-		using namespace axl::glfl::core::GLNV;
-		using namespace axl::glfl::core::GLOVR;
-		GLint num_extensions;
-		glGetIntegerv(GL_NUM_EXTENSIONS, &num_extensions);
-		for(int i = 0; i < num_extensions; ++i)
-		{
-			const char* cur_ext = (const char*)glGetStringi(GL_EXTENSIONS, i);
-			if(!GL_ARB_ES2_compatibility && strcmp("GL_ARB_ES2_compatibility", cur_ext) == 0) { _GL_ARB_ES2_compatibility = true; continue; }
-			else if(!GL_ARB_ES3_1_compatibility && strcmp("GL_ARB_ES3_1_compatibility", cur_ext) == 0) { _GL_ARB_ES3_1_compatibility = true; continue; }
-			else if(!GL_ARB_ES3_2_compatibility && strcmp("GL_ARB_ES3_2_compatibility", cur_ext) == 0) { _GL_ARB_ES3_2_compatibility = true; continue; }
-			else if(!GL_ARB_arrays_of_arrays && strcmp("GL_ARB_arrays_of_arrays", cur_ext) == 0) { _GL_ARB_arrays_of_arrays = true; continue; }
-			else if(!GL_ARB_base_instance && strcmp("GL_ARB_base_instance", cur_ext) == 0) { _GL_ARB_base_instance = true; continue; }
-			else if(!GL_ARB_blend_func_extended && strcmp("GL_ARB_blend_func_extended", cur_ext) == 0) { _GL_ARB_blend_func_extended = true; continue; }
-			else if(!GL_ARB_buffer_storage && strcmp("GL_ARB_buffer_storage", cur_ext) == 0) { _GL_ARB_buffer_storage = true; continue; }
-			else if(!GL_ARB_clear_buffer_object && strcmp("GL_ARB_clear_buffer_object", cur_ext) == 0) { _GL_ARB_clear_buffer_object = true; continue; }
-			else if(!GL_ARB_clear_texture && strcmp("GL_ARB_clear_texture", cur_ext) == 0) { _GL_ARB_clear_texture = true; continue; }
-			else if(!GL_ARB_clip_control && strcmp("GL_ARB_clip_control", cur_ext) == 0) { _GL_ARB_clip_control = true; continue; }
-			else if(!GL_ARB_compressed_texture_pixel_storage && strcmp("GL_ARB_compressed_texture_pixel_storage", cur_ext) == 0) { _GL_ARB_compressed_texture_pixel_storage = true; continue; }
-			else if(!GL_ARB_compute_shader && strcmp("GL_ARB_compute_shader", cur_ext) == 0) { _GL_ARB_compute_shader = true; continue; }
-			else if(!GL_ARB_conditional_render_inverted && strcmp("GL_ARB_conditional_render_inverted", cur_ext) == 0) { _GL_ARB_conditional_render_inverted = true; continue; }
-			else if(!GL_ARB_conservative_depth && strcmp("GL_ARB_conservative_depth", cur_ext) == 0) { _GL_ARB_conservative_depth = true; continue; }
-			else if(!GL_ARB_copy_buffer && strcmp("GL_ARB_copy_buffer", cur_ext) == 0) { _GL_ARB_copy_buffer = true; continue; }
-			else if(!GL_ARB_copy_image && strcmp("GL_ARB_copy_image", cur_ext) == 0) { _GL_ARB_copy_image = true; continue; }
-			else if(!GL_ARB_cull_distance && strcmp("GL_ARB_cull_distance", cur_ext) == 0) { _GL_ARB_cull_distance = true; continue; }
-			else if(!GL_ARB_depth_buffer_float && strcmp("GL_ARB_depth_buffer_float", cur_ext) == 0) { _GL_ARB_depth_buffer_float = true; continue; }
-			else if(!GL_ARB_depth_clamp && strcmp("GL_ARB_depth_clamp", cur_ext) == 0) { _GL_ARB_depth_clamp = true; continue; }
-			else if(!GL_ARB_derivative_control && strcmp("GL_ARB_derivative_control", cur_ext) == 0) { _GL_ARB_derivative_control = true; continue; }
-			else if(!GL_ARB_direct_state_access && strcmp("GL_ARB_direct_state_access", cur_ext) == 0) { _GL_ARB_direct_state_access = true; continue; }
-			else if(!GL_ARB_draw_elements_base_vertex && strcmp("GL_ARB_draw_elements_base_vertex", cur_ext) == 0) { _GL_ARB_draw_elements_base_vertex = true; continue; }
-			else if(!GL_ARB_draw_indirect && strcmp("GL_ARB_draw_indirect", cur_ext) == 0) { _GL_ARB_draw_indirect = true; continue; }
-			else if(!GL_ARB_draw_instanced && strcmp("GL_ARB_draw_instanced", cur_ext) == 0) { _GL_ARB_draw_instanced = true; continue; }
-			else if(!GL_ARB_enhanced_layouts && strcmp("GL_ARB_enhanced_layouts", cur_ext) == 0) { _GL_ARB_enhanced_layouts = true; continue; }
-			else if(!GL_ARB_explicit_attrib_location && strcmp("GL_ARB_explicit_attrib_location", cur_ext) == 0) { _GL_ARB_explicit_attrib_location = true; continue; }
-			else if(!GL_ARB_explicit_uniform_location && strcmp("GL_ARB_explicit_uniform_location", cur_ext) == 0) { _GL_ARB_explicit_uniform_location = true; continue; }
-			else if(!GL_ARB_fragment_coord_conventions && strcmp("GL_ARB_fragment_coord_conventions", cur_ext) == 0) { _GL_ARB_fragment_coord_conventions = true; continue; }
-			else if(!GL_ARB_fragment_layer_viewport && strcmp("GL_ARB_fragment_layer_viewport", cur_ext) == 0) { _GL_ARB_fragment_layer_viewport = true; continue; }
-			else if(!GL_ARB_fragment_shader_interlock && strcmp("GL_ARB_fragment_shader_interlock", cur_ext) == 0) { _GL_ARB_fragment_shader_interlock = true; continue; }
-			else if(!GL_ARB_framebuffer_no_attachments && strcmp("GL_ARB_framebuffer_no_attachments", cur_ext) == 0) { _GL_ARB_framebuffer_no_attachments = true; continue; }
-			else if(!GL_ARB_framebuffer_object && strcmp("GL_ARB_framebuffer_object", cur_ext) == 0) { _GL_ARB_framebuffer_object = true; continue; }
-			else if(!GL_ARB_framebuffer_sRGB && strcmp("GL_ARB_framebuffer_sRGB", cur_ext) == 0) { _GL_ARB_framebuffer_sRGB = true; continue; }
-			else if(!GL_ARB_get_program_binary && strcmp("GL_ARB_get_program_binary", cur_ext) == 0) { _GL_ARB_get_program_binary = true; continue; }
-			else if(!GL_ARB_get_texture_sub_image && strcmp("GL_ARB_get_texture_sub_image", cur_ext) == 0) { _GL_ARB_get_texture_sub_image = true; continue; }
-			else if(!GL_ARB_gpu_shader5 && strcmp("GL_ARB_gpu_shader5", cur_ext) == 0) { _GL_ARB_gpu_shader5 = true; continue; }
-			else if(!GL_ARB_gpu_shader_fp64 && strcmp("GL_ARB_gpu_shader_fp64", cur_ext) == 0) { _GL_ARB_gpu_shader_fp64 = true; continue; }
-			else if(!GL_ARB_half_float_vertex && strcmp("GL_ARB_half_float_vertex", cur_ext) == 0) { _GL_ARB_half_float_vertex = true; continue; }
-			else if(!GL_ARB_imaging && strcmp("GL_ARB_imaging", cur_ext) == 0) { _GL_ARB_imaging = true; continue; }
-			else if(!GL_ARB_internalformat_query && strcmp("GL_ARB_internalformat_query", cur_ext) == 0) { _GL_ARB_internalformat_query = true; continue; }
-			else if(!GL_ARB_invalidate_subdata && strcmp("GL_ARB_invalidate_subdata", cur_ext) == 0) { _GL_ARB_invalidate_subdata = true; continue; }
-			else if(!GL_ARB_map_buffer_alignment && strcmp("GL_ARB_map_buffer_alignment", cur_ext) == 0) { _GL_ARB_map_buffer_alignment = true; continue; }
-			else if(!GL_ARB_map_buffer_range && strcmp("GL_ARB_map_buffer_range", cur_ext) == 0) { _GL_ARB_map_buffer_range = true; continue; }
-			else if(!GL_ARB_multi_bind && strcmp("GL_ARB_multi_bind", cur_ext) == 0) { _GL_ARB_multi_bind = true; continue; }
-			else if(!GL_ARB_multi_draw_indirect && strcmp("GL_ARB_multi_draw_indirect", cur_ext) == 0) { _GL_ARB_multi_draw_indirect = true; continue; }
-			else if(!GL_ARB_occlusion_query2 && strcmp("GL_ARB_occlusion_query2", cur_ext) == 0) { _GL_ARB_occlusion_query2 = true; continue; }
-			else if(!GL_ARB_polygon_offset_clamp && strcmp("GL_ARB_polygon_offset_clamp", cur_ext) == 0) { _GL_ARB_polygon_offset_clamp = true; continue; }
-			else if(!GL_ARB_post_depth_coverage && strcmp("GL_ARB_post_depth_coverage", cur_ext) == 0) { _GL_ARB_post_depth_coverage = true; continue; }
-			else if(!GL_ARB_program_interface_query && strcmp("GL_ARB_program_interface_query", cur_ext) == 0) { _GL_ARB_program_interface_query = true; continue; }
-			else if(!GL_ARB_provoking_vertex && strcmp("GL_ARB_provoking_vertex", cur_ext) == 0) { _GL_ARB_provoking_vertex = true; continue; }
-			else if(!GL_ARB_query_buffer_object && strcmp("GL_ARB_query_buffer_object", cur_ext) == 0) { _GL_ARB_query_buffer_object = true; continue; }
-			else if(!GL_ARB_robust_buffer_access_behavior && strcmp("GL_ARB_robust_buffer_access_behavior", cur_ext) == 0) { _GL_ARB_robust_buffer_access_behavior = true; continue; }
-			else if(!GL_ARB_robustness_isolation && strcmp("GL_ARB_robustness_isolation", cur_ext) == 0) { _GL_ARB_robustness_isolation = true; continue; }
-			else if(!GL_ARB_sampler_objects && strcmp("GL_ARB_sampler_objects", cur_ext) == 0) { _GL_ARB_sampler_objects = true; continue; }
-			else if(!GL_ARB_seamless_cube_map && strcmp("GL_ARB_seamless_cube_map", cur_ext) == 0) { _GL_ARB_seamless_cube_map = true; continue; }
-			else if(!GL_ARB_seamless_cubemap_per_texture && strcmp("GL_ARB_seamless_cubemap_per_texture", cur_ext) == 0) { _GL_ARB_seamless_cubemap_per_texture = true; continue; }
-			else if(!GL_ARB_separate_shader_objects && strcmp("GL_ARB_separate_shader_objects", cur_ext) == 0) { _GL_ARB_separate_shader_objects = true; continue; }
-			else if(!GL_ARB_shader_atomic_counter_ops && strcmp("GL_ARB_shader_atomic_counter_ops", cur_ext) == 0) { _GL_ARB_shader_atomic_counter_ops = true; continue; }
-			else if(!GL_ARB_shader_atomic_counters && strcmp("GL_ARB_shader_atomic_counters", cur_ext) == 0) { _GL_ARB_shader_atomic_counters = true; continue; }
-			else if(!GL_ARB_shader_ballot && strcmp("GL_ARB_shader_ballot", cur_ext) == 0) { _GL_ARB_shader_ballot = true; continue; }
-			else if(!GL_ARB_shader_bit_encoding && strcmp("GL_ARB_shader_bit_encoding", cur_ext) == 0) { _GL_ARB_shader_bit_encoding = true; continue; }
-			else if(!GL_ARB_shader_clock && strcmp("GL_ARB_shader_clock", cur_ext) == 0) { _GL_ARB_shader_clock = true; continue; }
-			else if(!GL_ARB_shader_draw_parameters && strcmp("GL_ARB_shader_draw_parameters", cur_ext) == 0) { _GL_ARB_shader_draw_parameters = true; continue; }
-			else if(!GL_ARB_shader_group_vote && strcmp("GL_ARB_shader_group_vote", cur_ext) == 0) { _GL_ARB_shader_group_vote = true; continue; }
-			else if(!GL_ARB_shader_image_load_store && strcmp("GL_ARB_shader_image_load_store", cur_ext) == 0) { _GL_ARB_shader_image_load_store = true; continue; }
-			else if(!GL_ARB_shader_image_size && strcmp("GL_ARB_shader_image_size", cur_ext) == 0) { _GL_ARB_shader_image_size = true; continue; }
-			else if(!GL_ARB_shader_precision && strcmp("GL_ARB_shader_precision", cur_ext) == 0) { _GL_ARB_shader_precision = true; continue; }
-			else if(!GL_ARB_shader_stencil_export && strcmp("GL_ARB_shader_stencil_export", cur_ext) == 0) { _GL_ARB_shader_stencil_export = true; continue; }
-			else if(!GL_ARB_shader_storage_buffer_object && strcmp("GL_ARB_shader_storage_buffer_object", cur_ext) == 0) { _GL_ARB_shader_storage_buffer_object = true; continue; }
-			else if(!GL_ARB_shader_subroutine && strcmp("GL_ARB_shader_subroutine", cur_ext) == 0) { _GL_ARB_shader_subroutine = true; continue; }
-			else if(!GL_ARB_shader_texture_image_samples && strcmp("GL_ARB_shader_texture_image_samples", cur_ext) == 0) { _GL_ARB_shader_texture_image_samples = true; continue; }
-			else if(!GL_ARB_shader_viewport_layer_array && strcmp("GL_ARB_shader_viewport_layer_array", cur_ext) == 0) { _GL_ARB_shader_viewport_layer_array = true; continue; }
-			else if(!GL_ARB_shading_language_420pack && strcmp("GL_ARB_shading_language_420pack", cur_ext) == 0) { _GL_ARB_shading_language_420pack = true; continue; }
-			else if(!GL_ARB_sparse_texture2 && strcmp("GL_ARB_sparse_texture2", cur_ext) == 0) { _GL_ARB_sparse_texture2 = true; continue; }
-			else if(!GL_ARB_sparse_texture_clamp && strcmp("GL_ARB_sparse_texture_clamp", cur_ext) == 0) { _GL_ARB_sparse_texture_clamp = true; continue; }
-			else if(!GL_ARB_spirv_extensions && strcmp("GL_ARB_spirv_extensions", cur_ext) == 0) { _GL_ARB_spirv_extensions = true; continue; }
-			else if(!GL_ARB_stencil_texturing && strcmp("GL_ARB_stencil_texturing", cur_ext) == 0) { _GL_ARB_stencil_texturing = true; continue; }
-			else if(!GL_ARB_sync && strcmp("GL_ARB_sync", cur_ext) == 0) { _GL_ARB_sync = true; continue; }
-			else if(!GL_ARB_tessellation_shader && strcmp("GL_ARB_tessellation_shader", cur_ext) == 0) { _GL_ARB_tessellation_shader = true; continue; }
-			else if(!GL_ARB_texture_barrier && strcmp("GL_ARB_texture_barrier", cur_ext) == 0) { _GL_ARB_texture_barrier = true; continue; }
-			else if(!GL_ARB_texture_border_clamp && strcmp("GL_ARB_texture_border_clamp", cur_ext) == 0) { _GL_ARB_texture_border_clamp = true; continue; }
-			else if(!GL_ARB_texture_buffer_object_rgb32 && strcmp("GL_ARB_texture_buffer_object_rgb32", cur_ext) == 0) { _GL_ARB_texture_buffer_object_rgb32 = true; continue; }
-			else if(!GL_ARB_texture_buffer_range && strcmp("GL_ARB_texture_buffer_range", cur_ext) == 0) { _GL_ARB_texture_buffer_range = true; continue; }
-			else if(!GL_ARB_texture_compression_bptc && strcmp("GL_ARB_texture_compression_bptc", cur_ext) == 0) { _GL_ARB_texture_compression_bptc = true; continue; }
-			else if(!GL_ARB_texture_compression_rgtc && strcmp("GL_ARB_texture_compression_rgtc", cur_ext) == 0) { _GL_ARB_texture_compression_rgtc = true; continue; }
-			else if(!GL_ARB_texture_cube_map_array && strcmp("GL_ARB_texture_cube_map_array", cur_ext) == 0) { _GL_ARB_texture_cube_map_array = true; continue; }
-			else if(!GL_ARB_texture_filter_anisotropic && strcmp("GL_ARB_texture_filter_anisotropic", cur_ext) == 0) { _GL_ARB_texture_filter_anisotropic = true; continue; }
-			else if(!GL_ARB_texture_filter_minmax && strcmp("GL_ARB_texture_filter_minmax", cur_ext) == 0) { _GL_ARB_texture_filter_minmax = true; continue; }
-			else if(!GL_ARB_texture_gather && strcmp("GL_ARB_texture_gather", cur_ext) == 0) { _GL_ARB_texture_gather = true; continue; }
-			else if(!GL_ARB_texture_mirror_clamp_to_edge && strcmp("GL_ARB_texture_mirror_clamp_to_edge", cur_ext) == 0) { _GL_ARB_texture_mirror_clamp_to_edge = true; continue; }
-			else if(!GL_ARB_texture_mirrored_repeat && strcmp("GL_ARB_texture_mirrored_repeat", cur_ext) == 0) { _GL_ARB_texture_mirrored_repeat = true; continue; }
-			else if(!GL_ARB_texture_multisample && strcmp("GL_ARB_texture_multisample", cur_ext) == 0) { _GL_ARB_texture_multisample = true; continue; }
-			else if(!GL_ARB_texture_non_power_of_two && strcmp("GL_ARB_texture_non_power_of_two", cur_ext) == 0) { _GL_ARB_texture_non_power_of_two = true; continue; }
-			else if(!GL_ARB_texture_query_levels && strcmp("GL_ARB_texture_query_levels", cur_ext) == 0) { _GL_ARB_texture_query_levels = true; continue; }
-			else if(!GL_ARB_texture_query_lod && strcmp("GL_ARB_texture_query_lod", cur_ext) == 0) { _GL_ARB_texture_query_lod = true; continue; }
-			else if(!GL_ARB_texture_rg && strcmp("GL_ARB_texture_rg", cur_ext) == 0) { _GL_ARB_texture_rg = true; continue; }
-			else if(!GL_ARB_texture_rgb10_a2ui && strcmp("GL_ARB_texture_rgb10_a2ui", cur_ext) == 0) { _GL_ARB_texture_rgb10_a2ui = true; continue; }
-			else if(!GL_ARB_texture_stencil8 && strcmp("GL_ARB_texture_stencil8", cur_ext) == 0) { _GL_ARB_texture_stencil8 = true; continue; }
-			else if(!GL_ARB_texture_storage && strcmp("GL_ARB_texture_storage", cur_ext) == 0) { _GL_ARB_texture_storage = true; continue; }
-			else if(!GL_ARB_texture_storage_multisample && strcmp("GL_ARB_texture_storage_multisample", cur_ext) == 0) { _GL_ARB_texture_storage_multisample = true; continue; }
-			else if(!GL_ARB_texture_swizzle && strcmp("GL_ARB_texture_swizzle", cur_ext) == 0) { _GL_ARB_texture_swizzle = true; continue; }
-			else if(!GL_ARB_texture_view && strcmp("GL_ARB_texture_view", cur_ext) == 0) { _GL_ARB_texture_view = true; continue; }
-			else if(!GL_ARB_timer_query && strcmp("GL_ARB_timer_query", cur_ext) == 0) { _GL_ARB_timer_query = true; continue; }
-			else if(!GL_ARB_transform_feedback2 && strcmp("GL_ARB_transform_feedback2", cur_ext) == 0) { _GL_ARB_transform_feedback2 = true; continue; }
-			else if(!GL_ARB_transform_feedback3 && strcmp("GL_ARB_transform_feedback3", cur_ext) == 0) { _GL_ARB_transform_feedback3 = true; continue; }
-			else if(!GL_ARB_transform_feedback_instanced && strcmp("GL_ARB_transform_feedback_instanced", cur_ext) == 0) { _GL_ARB_transform_feedback_instanced = true; continue; }
-			else if(!GL_ARB_transform_feedback_overflow_query && strcmp("GL_ARB_transform_feedback_overflow_query", cur_ext) == 0) { _GL_ARB_transform_feedback_overflow_query = true; continue; }
-			else if(!GL_ARB_uniform_buffer_object && strcmp("GL_ARB_uniform_buffer_object", cur_ext) == 0) { _GL_ARB_uniform_buffer_object = true; continue; }
-			else if(!GL_ARB_vertex_array_bgra && strcmp("GL_ARB_vertex_array_bgra", cur_ext) == 0) { _GL_ARB_vertex_array_bgra = true; continue; }
-			else if(!GL_ARB_vertex_array_object && strcmp("GL_ARB_vertex_array_object", cur_ext) == 0) { _GL_ARB_vertex_array_object = true; continue; }
-			else if(!GL_ARB_vertex_attrib_64bit && strcmp("GL_ARB_vertex_attrib_64bit", cur_ext) == 0) { _GL_ARB_vertex_attrib_64bit = true; continue; }
-			else if(!GL_ARB_vertex_attrib_binding && strcmp("GL_ARB_vertex_attrib_binding", cur_ext) == 0) { _GL_ARB_vertex_attrib_binding = true; continue; }
-			else if(!GL_ARB_vertex_type_10f_11f_11f_rev && strcmp("GL_ARB_vertex_type_10f_11f_11f_rev", cur_ext) == 0) { _GL_ARB_vertex_type_10f_11f_11f_rev = true; continue; }
-			else if(!GL_ARB_vertex_type_2_10_10_10_rev && strcmp("GL_ARB_vertex_type_2_10_10_10_rev", cur_ext) == 0) { _GL_ARB_vertex_type_2_10_10_10_rev = true; continue; }
-			else if(!GL_KHR_blend_equation_advanced_coherent && strcmp("GL_KHR_blend_equation_advanced_coherent", cur_ext) == 0) { _GL_KHR_blend_equation_advanced_coherent = true; continue; }
-			else if(!GL_KHR_context_flush_control && strcmp("GL_KHR_context_flush_control", cur_ext) == 0) { _GL_KHR_context_flush_control = true; continue; }
-			else if(!GL_KHR_debug && strcmp("GL_KHR_debug", cur_ext) == 0) { _GL_KHR_debug = true; continue; }
-			else if(!GL_KHR_no_error && strcmp("GL_KHR_no_error", cur_ext) == 0) { _GL_KHR_no_error = true; continue; }
-			else if(!GL_KHR_robust_buffer_access_behavior && strcmp("GL_KHR_robust_buffer_access_behavior", cur_ext) == 0) { _GL_KHR_robust_buffer_access_behavior = true; continue; }
-			else if(!GL_KHR_robustness && strcmp("GL_KHR_robustness", cur_ext) == 0) { _GL_KHR_robustness = true; continue; }
-			if(!GL_KHR_shader_subgroup && strcmp("GL_KHR_shader_subgroup", cur_ext) == 0) { _GL_KHR_shader_subgroup = true; continue; }
-			else if(!GL_KHR_texture_compression_astc_hdr && strcmp("GL_KHR_texture_compression_astc_hdr", cur_ext) == 0) { _GL_KHR_texture_compression_astc_hdr = true; continue; }
-			else if(!GL_KHR_texture_compression_astc_ldr && strcmp("GL_KHR_texture_compression_astc_ldr", cur_ext) == 0) { _GL_KHR_texture_compression_astc_ldr = true; continue; }
-			else if(!GL_KHR_texture_compression_astc_sliced_3d && strcmp("GL_KHR_texture_compression_astc_sliced_3d", cur_ext) == 0) { _GL_KHR_texture_compression_astc_sliced_3d = true; continue; }
-			else if(!GL_APPLE_rgb_422 && strcmp("GL_APPLE_rgb_422", cur_ext) == 0) { _GL_APPLE_rgb_422 = true; continue; }
-			else if(!GL_EXT_EGL_sync && strcmp("GL_EXT_EGL_sync", cur_ext) == 0) { _GL_EXT_EGL_sync = true; continue; }
-			else if(!GL_EXT_multiview_tessellation_geometry_shader && strcmp("GL_EXT_multiview_tessellation_geometry_shader", cur_ext) == 0) { _GL_EXT_multiview_tessellation_geometry_shader = true; continue; }
-			else if(!GL_EXT_multiview_texture_multisample && strcmp("GL_EXT_multiview_texture_multisample", cur_ext) == 0) { _GL_EXT_multiview_texture_multisample = true; continue; }
-			else if(!GL_EXT_multiview_timer_query && strcmp("GL_EXT_multiview_timer_query", cur_ext) == 0) { _GL_EXT_multiview_timer_query = true; continue; }
-			else if(!GL_EXT_post_depth_coverage && strcmp("GL_EXT_post_depth_coverage", cur_ext) == 0) { _GL_EXT_post_depth_coverage = true; continue; }
-			else if(!GL_EXT_shader_framebuffer_fetch && strcmp("GL_EXT_shader_framebuffer_fetch", cur_ext) == 0) { _GL_EXT_shader_framebuffer_fetch = true; continue; }
-			else if(!GL_EXT_shader_integer_mix && strcmp("GL_EXT_shader_integer_mix", cur_ext) == 0) { _GL_EXT_shader_integer_mix = true; continue; }
-			else if(!GL_EXT_texture_compression_s3tc && strcmp("GL_EXT_texture_compression_s3tc", cur_ext) == 0) { _GL_EXT_texture_compression_s3tc = true; continue; }
-			else if(!GL_EXT_texture_filter_minmax && strcmp("GL_EXT_texture_filter_minmax", cur_ext) == 0) { _GL_EXT_texture_filter_minmax = true; continue; }
-			else if(!GL_EXT_texture_sRGB_R8 && strcmp("GL_EXT_texture_sRGB_R8", cur_ext) == 0) { _GL_EXT_texture_sRGB_R8 = true; continue; }
-			else if(!GL_EXT_texture_sRGB_decode && strcmp("GL_EXT_texture_sRGB_decode", cur_ext) == 0) { _GL_EXT_texture_sRGB_decode = true; continue; }
-			else if(!GL_EXT_texture_shadow_lod && strcmp("GL_EXT_texture_shadow_lod", cur_ext) == 0) { _GL_EXT_texture_shadow_lod = true; continue; }
-			else if(!GL_INTEL_blackhole_render && strcmp("GL_INTEL_blackhole_render", cur_ext) == 0) { _GL_INTEL_blackhole_render = true; continue; }
-			else if(!GL_INTEL_conservative_rasterization && strcmp("GL_INTEL_conservative_rasterization", cur_ext) == 0) { _GL_INTEL_conservative_rasterization = true; continue; }
-			else if(!GL_MESA_framebuffer_flip_x && strcmp("GL_MESA_framebuffer_flip_x", cur_ext) == 0) { _GL_MESA_framebuffer_flip_x = true; continue; }
-			else if(!GL_MESA_framebuffer_swap_xy && strcmp("GL_MESA_framebuffer_swap_xy", cur_ext) == 0) { _GL_MESA_framebuffer_swap_xy = true; continue; }
-			else if(!GL_NV_blend_equation_advanced_coherent && strcmp("GL_NV_blend_equation_advanced_coherent", cur_ext) == 0) { _GL_NV_blend_equation_advanced_coherent = true; continue; }
-			else if(!GL_NV_blend_minmax_factor && strcmp("GL_NV_blend_minmax_factor", cur_ext) == 0) { _GL_NV_blend_minmax_factor = true; continue; }
-			else if(!GL_NV_compute_shader_derivatives && strcmp("GL_NV_compute_shader_derivatives", cur_ext) == 0) { _GL_NV_compute_shader_derivatives = true; continue; }
-			else if(!GL_NV_conservative_raster_pre_snap && strcmp("GL_NV_conservative_raster_pre_snap", cur_ext) == 0) { _GL_NV_conservative_raster_pre_snap = true; continue; }
-			else if(!GL_NV_conservative_raster_underestimation && strcmp("GL_NV_conservative_raster_underestimation", cur_ext) == 0) { _GL_NV_conservative_raster_underestimation = true; continue; }
-			else if(!GL_NV_fill_rectangle && strcmp("GL_NV_fill_rectangle", cur_ext) == 0) { _GL_NV_fill_rectangle = true; continue; }
-			else if(!GL_NV_fragment_shader_barycentric && strcmp("GL_NV_fragment_shader_barycentric", cur_ext) == 0) { _GL_NV_fragment_shader_barycentric = true; continue; }
-			else if(!GL_NV_fragment_shader_interlock && strcmp("GL_NV_fragment_shader_interlock", cur_ext) == 0) { _GL_NV_fragment_shader_interlock = true; continue; }
-			else if(!GL_NV_geometry_shader_passthrough && strcmp("GL_NV_geometry_shader_passthrough", cur_ext) == 0) { _GL_NV_geometry_shader_passthrough = true; continue; }
-			else if(!GL_NV_path_rendering_shared_edge && strcmp("GL_NV_path_rendering_shared_edge", cur_ext) == 0) { _GL_NV_path_rendering_shared_edge = true; continue; }
-			else if(!GL_NV_primitive_shading_rate && strcmp("GL_NV_primitive_shading_rate", cur_ext) == 0) { _GL_NV_primitive_shading_rate = true; continue; }
-			else if(!GL_NV_representative_fragment_test && strcmp("GL_NV_representative_fragment_test", cur_ext) == 0) { _GL_NV_representative_fragment_test = true; continue; }
-			else if(!GL_NV_sample_mask_override_coverage && strcmp("GL_NV_sample_mask_override_coverage", cur_ext) == 0) { _GL_NV_sample_mask_override_coverage = true; continue; }
-			else if(!GL_NV_shader_atomic_counters && strcmp("GL_NV_shader_atomic_counters", cur_ext) == 0) { _GL_NV_shader_atomic_counters = true; continue; }
-			else if(!GL_NV_shader_atomic_float && strcmp("GL_NV_shader_atomic_float", cur_ext) == 0) { _GL_NV_shader_atomic_float = true; continue; }
-			else if(!GL_NV_shader_atomic_float64 && strcmp("GL_NV_shader_atomic_float64", cur_ext) == 0) { _GL_NV_shader_atomic_float64 = true; continue; }
-			else if(!GL_NV_shader_atomic_fp16_vector && strcmp("GL_NV_shader_atomic_fp16_vector", cur_ext) == 0) { _GL_NV_shader_atomic_fp16_vector = true; continue; }
-			else if(!GL_NV_shader_atomic_int64 && strcmp("GL_NV_shader_atomic_int64", cur_ext) == 0) { _GL_NV_shader_atomic_int64 = true; continue; }
-			else if(!GL_NV_shader_buffer_store && strcmp("GL_NV_shader_buffer_store", cur_ext) == 0) { _GL_NV_shader_buffer_store = true; continue; }
-			else if(!GL_NV_shader_subgroup_partitioned && strcmp("GL_NV_shader_subgroup_partitioned", cur_ext) == 0) { _GL_NV_shader_subgroup_partitioned = true; continue; }
-			else if(!GL_NV_shader_texture_footprint && strcmp("GL_NV_shader_texture_footprint", cur_ext) == 0) { _GL_NV_shader_texture_footprint = true; continue; }
-			else if(!GL_NV_shader_thread_group && strcmp("GL_NV_shader_thread_group", cur_ext) == 0) { _GL_NV_shader_thread_group = true; continue; }
-			else if(!GL_NV_shader_thread_shuffle && strcmp("GL_NV_shader_thread_shuffle", cur_ext) == 0) { _GL_NV_shader_thread_shuffle = true; continue; }
-			else if(!GL_NV_stereo_view_rendering && strcmp("GL_NV_stereo_view_rendering", cur_ext) == 0) { _GL_NV_stereo_view_rendering = true; continue; }
-			else if(!GL_NV_texture_rectangle_compressed && strcmp("GL_NV_texture_rectangle_compressed", cur_ext) == 0) { _GL_NV_texture_rectangle_compressed = true; continue; }
-			else if(!GL_NV_uniform_buffer_unified_memory && strcmp("GL_NV_uniform_buffer_unified_memory", cur_ext) == 0) { _GL_NV_uniform_buffer_unified_memory = true; continue; }
-			else if(!GL_NV_viewport_array2 && strcmp("GL_NV_viewport_array2", cur_ext) == 0) { _GL_NV_viewport_array2 = true; continue; }
-			else if(!GL_OVR_multiview2 && strcmp("GL_OVR_multiview2", cur_ext) == 0) { _GL_OVR_multiview2 = true; continue; }
-		}
+		glGetIntegerv(GL_NUM_EXTENSIONS, &num_ext);
+		if(num_ext <= 0) return true;
 	}
 	else
 	{
-		using namespace axl::glfl::core::GL2;
-		using namespace axl::glfl::core::GL3;
-		using namespace axl::glfl::core::GLARB;
-		using namespace axl::glfl::core::GLAMD;
-		using namespace axl::glfl::core::GLAPPLE;
-		using namespace axl::glfl::core::GLEXT;
-		using namespace axl::glfl::core::GLINTEL;
-		using namespace axl::glfl::core::GLKHR;
-		using namespace axl::glfl::core::GLMESA;
-		using namespace axl::glfl::core::GLNV;
-		using namespace axl::glfl::core::GLOVR;
-		int index = 0, last = 0;
-		bool done = false;
-		const char* ext = (const char*)glGetString(GL_EXTENSIONS);
-		while(!done)
+		ext = (const char*)glGetString(GL_EXTENSIONS);
+		if(!ext) return false;
+	}
+	
+	bool done = false;
+	while(!done)
+	{
+		if(gl_3_or_higher)
+		{
+			if(i >= num_ext) break;
+			cur_ext = (const char*)glGetStringi(GL_EXTENSIONS, i++);
+			if(!cur_ext) break;
+		}
+		else
 		{
 			char c = ext[index];
 			while(c != '\0' && c != ' ')
@@ -4501,178 +4324,228 @@ bool checkExtensions()
 			const char* cur_ext = (const char*)&ext[last];
 			if(c == ' ')
 				last = ++index;
-			if(!GL_ARB_ES2_compatibility && strncmp("GL_ARB_ES2_compatibility ", cur_ext, 24) == 0) { _GL_ARB_ES2_compatibility = true; continue; }
-			else if(!GL_ARB_ES3_1_compatibility && strncmp("GL_ARB_ES3_1_compatibility ", cur_ext, 26) == 0) { _GL_ARB_ES3_1_compatibility = true; continue; }
-			else if(!GL_ARB_ES3_2_compatibility && strncmp("GL_ARB_ES3_2_compatibility ", cur_ext, 26) == 0) { _GL_ARB_ES3_2_compatibility = true; continue; }
-			else if(!GL_ARB_arrays_of_arrays && strncmp("GL_ARB_arrays_of_arrays ", cur_ext, 23) == 0) { _GL_ARB_arrays_of_arrays = true; continue; }
-			else if(!GL_ARB_base_instance && strncmp("GL_ARB_base_instance ", cur_ext, 20) == 0) { _GL_ARB_base_instance = true; continue; }
-			else if(!GL_ARB_blend_func_extended && strncmp("GL_ARB_blend_func_extended ", cur_ext, 26) == 0) { _GL_ARB_blend_func_extended = true; continue; }
-			else if(!GL_ARB_buffer_storage && strncmp("GL_ARB_buffer_storage ", cur_ext, 21) == 0) { _GL_ARB_buffer_storage = true; continue; }
-			else if(!GL_ARB_clear_buffer_object && strncmp("GL_ARB_clear_buffer_object ", cur_ext, 26) == 0) { _GL_ARB_clear_buffer_object = true; continue; }
-			else if(!GL_ARB_clear_texture && strncmp("GL_ARB_clear_texture ", cur_ext, 20) == 0) { _GL_ARB_clear_texture = true; continue; }
-			else if(!GL_ARB_clip_control && strncmp("GL_ARB_clip_control ", cur_ext, 19) == 0) { _GL_ARB_clip_control = true; continue; }
-			else if(!GL_ARB_compressed_texture_pixel_storage && strncmp("GL_ARB_compressed_texture_pixel_storage ", cur_ext, 39) == 0) { _GL_ARB_compressed_texture_pixel_storage = true; continue; }
-			else if(!GL_ARB_compute_shader && strncmp("GL_ARB_compute_shader ", cur_ext, 21) == 0) { _GL_ARB_compute_shader = true; continue; }
-			else if(!GL_ARB_conditional_render_inverted && strncmp("GL_ARB_conditional_render_inverted ", cur_ext, 34) == 0) { _GL_ARB_conditional_render_inverted = true; continue; }
-			else if(!GL_ARB_conservative_depth && strncmp("GL_ARB_conservative_depth ", cur_ext, 25) == 0) { _GL_ARB_conservative_depth = true; continue; }
-			else if(!GL_ARB_copy_buffer && strncmp("GL_ARB_copy_buffer ", cur_ext, 18) == 0) { _GL_ARB_copy_buffer = true; continue; }
-			else if(!GL_ARB_copy_image && strncmp("GL_ARB_copy_image ", cur_ext, 17) == 0) { _GL_ARB_copy_image = true; continue; }
-			else if(!GL_ARB_cull_distance && strncmp("GL_ARB_cull_distance ", cur_ext, 20) == 0) { _GL_ARB_cull_distance = true; continue; }
-			else if(!GL_ARB_depth_buffer_float && strncmp("GL_ARB_depth_buffer_float ", cur_ext, 25) == 0) { _GL_ARB_depth_buffer_float = true; continue; }
-			else if(!GL_ARB_depth_clamp && strncmp("GL_ARB_depth_clamp ", cur_ext, 18) == 0) { _GL_ARB_depth_clamp = true; continue; }
-			else if(!GL_ARB_derivative_control && strncmp("GL_ARB_derivative_control ", cur_ext, 25) == 0) { _GL_ARB_derivative_control = true; continue; }
-			else if(!GL_ARB_direct_state_access && strncmp("GL_ARB_direct_state_access ", cur_ext, 26) == 0) { _GL_ARB_direct_state_access = true; continue; }
-			else if(!GL_ARB_draw_elements_base_vertex && strncmp("GL_ARB_draw_elements_base_vertex ", cur_ext, 32) == 0) { _GL_ARB_draw_elements_base_vertex = true; continue; }
-			else if(!GL_ARB_draw_indirect && strncmp("GL_ARB_draw_indirect ", cur_ext, 20) == 0) { _GL_ARB_draw_indirect = true; continue; }
-			else if(!GL_ARB_draw_instanced && strncmp("GL_ARB_draw_instanced ", cur_ext, 21) == 0) { _GL_ARB_draw_instanced = true; continue; }
-			else if(!GL_ARB_enhanced_layouts && strncmp("GL_ARB_enhanced_layouts ", cur_ext, 23) == 0) { _GL_ARB_enhanced_layouts = true; continue; }
-			else if(!GL_ARB_explicit_attrib_location && strncmp("GL_ARB_explicit_attrib_location ", cur_ext, 31) == 0) { _GL_ARB_explicit_attrib_location = true; continue; }
-			else if(!GL_ARB_explicit_uniform_location && strncmp("GL_ARB_explicit_uniform_location ", cur_ext, 32) == 0) { _GL_ARB_explicit_uniform_location = true; continue; }
-			else if(!GL_ARB_fragment_coord_conventions && strncmp("GL_ARB_fragment_coord_conventions ", cur_ext, 33) == 0) { _GL_ARB_fragment_coord_conventions = true; continue; }
-			else if(!GL_ARB_fragment_layer_viewport && strncmp("GL_ARB_fragment_layer_viewport ", cur_ext, 30) == 0) { _GL_ARB_fragment_layer_viewport = true; continue; }
-			else if(!GL_ARB_fragment_shader_interlock && strncmp("GL_ARB_fragment_shader_interlock ", cur_ext, 32) == 0) { _GL_ARB_fragment_shader_interlock = true; continue; }
-			else if(!GL_ARB_framebuffer_no_attachments && strncmp("GL_ARB_framebuffer_no_attachments ", cur_ext, 33) == 0) { _GL_ARB_framebuffer_no_attachments = true; continue; }
-			else if(!GL_ARB_framebuffer_object && strncmp("GL_ARB_framebuffer_object ", cur_ext, 25) == 0) { _GL_ARB_framebuffer_object = true; continue; }
-			else if(!GL_ARB_framebuffer_sRGB && strncmp("GL_ARB_framebuffer_sRGB ", cur_ext, 23) == 0) { _GL_ARB_framebuffer_sRGB = true; continue; }
-			else if(!GL_ARB_get_program_binary && strncmp("GL_ARB_get_program_binary ", cur_ext, 25) == 0) { _GL_ARB_get_program_binary = true; continue; }
-			else if(!GL_ARB_get_texture_sub_image && strncmp("GL_ARB_get_texture_sub_image ", cur_ext, 28) == 0) { _GL_ARB_get_texture_sub_image = true; continue; }
-			else if(!GL_ARB_gpu_shader5 && strncmp("GL_ARB_gpu_shader5 ", cur_ext, 18) == 0) { _GL_ARB_gpu_shader5 = true; continue; }
-			else if(!GL_ARB_gpu_shader_fp64 && strncmp("GL_ARB_gpu_shader_fp64 ", cur_ext, 22) == 0) { _GL_ARB_gpu_shader_fp64 = true; continue; }
-			else if(!GL_ARB_half_float_vertex && strncmp("GL_ARB_half_float_vertex ", cur_ext, 24) == 0) { _GL_ARB_half_float_vertex = true; continue; }
-			else if(!GL_ARB_imaging && strncmp("GL_ARB_imaging ", cur_ext, 14) == 0) { _GL_ARB_imaging = true; continue; }
-			else if(!GL_ARB_internalformat_query && strncmp("GL_ARB_internalformat_query ", cur_ext, 27) == 0) { _GL_ARB_internalformat_query = true; continue; }
-			else if(!GL_ARB_invalidate_subdata && strncmp("GL_ARB_invalidate_subdata ", cur_ext, 25) == 0) { _GL_ARB_invalidate_subdata = true; continue; }
-			else if(!GL_ARB_map_buffer_alignment && strncmp("GL_ARB_map_buffer_alignment ", cur_ext, 27) == 0) { _GL_ARB_map_buffer_alignment = true; continue; }
-			else if(!GL_ARB_map_buffer_range && strncmp("GL_ARB_map_buffer_range ", cur_ext, 23) == 0) { _GL_ARB_map_buffer_range = true; continue; }
-			else if(!GL_ARB_multi_bind && strncmp("GL_ARB_multi_bind ", cur_ext, 17) == 0) { _GL_ARB_multi_bind = true; continue; }
-			else if(!GL_ARB_multi_draw_indirect && strncmp("GL_ARB_multi_draw_indirect ", cur_ext, 26) == 0) { _GL_ARB_multi_draw_indirect = true; continue; }
-			else if(!GL_ARB_occlusion_query2 && strncmp("GL_ARB_occlusion_query2 ", cur_ext, 23) == 0) { _GL_ARB_occlusion_query2 = true; continue; }
-			else if(!GL_ARB_polygon_offset_clamp && strncmp("GL_ARB_polygon_offset_clamp ", cur_ext, 27) == 0) { _GL_ARB_polygon_offset_clamp = true; continue; }
-			else if(!GL_ARB_post_depth_coverage && strncmp("GL_ARB_post_depth_coverage ", cur_ext, 26) == 0) { _GL_ARB_post_depth_coverage = true; continue; }
-			else if(!GL_ARB_program_interface_query && strncmp("GL_ARB_program_interface_query ", cur_ext, 30) == 0) { _GL_ARB_program_interface_query = true; continue; }
-			else if(!GL_ARB_provoking_vertex && strncmp("GL_ARB_provoking_vertex ", cur_ext, 23) == 0) { _GL_ARB_provoking_vertex = true; continue; }
-			else if(!GL_ARB_query_buffer_object && strncmp("GL_ARB_query_buffer_object ", cur_ext, 26) == 0) { _GL_ARB_query_buffer_object = true; continue; }
-			else if(!GL_ARB_robust_buffer_access_behavior && strncmp("GL_ARB_robust_buffer_access_behavior ", cur_ext, 36) == 0) { _GL_ARB_robust_buffer_access_behavior = true; continue; }
-			else if(!GL_ARB_robustness_isolation && strncmp("GL_ARB_robustness_isolation ", cur_ext, 27) == 0) { _GL_ARB_robustness_isolation = true; continue; }
-			else if(!GL_ARB_sampler_objects && strncmp("GL_ARB_sampler_objects ", cur_ext, 22) == 0) { _GL_ARB_sampler_objects = true; continue; }
-			else if(!GL_ARB_seamless_cube_map && strncmp("GL_ARB_seamless_cube_map ", cur_ext, 24) == 0) { _GL_ARB_seamless_cube_map = true; continue; }
-			else if(!GL_ARB_seamless_cubemap_per_texture && strncmp("GL_ARB_seamless_cubemap_per_texture ", cur_ext, 35) == 0) { _GL_ARB_seamless_cubemap_per_texture = true; continue; }
-			else if(!GL_ARB_separate_shader_objects && strncmp("GL_ARB_separate_shader_objects ", cur_ext, 30) == 0) { _GL_ARB_separate_shader_objects = true; continue; }
-			else if(!GL_ARB_shader_atomic_counter_ops && strncmp("GL_ARB_shader_atomic_counter_ops ", cur_ext, 32) == 0) { _GL_ARB_shader_atomic_counter_ops = true; continue; }
-			else if(!GL_ARB_shader_atomic_counters && strncmp("GL_ARB_shader_atomic_counters ", cur_ext, 29) == 0) { _GL_ARB_shader_atomic_counters = true; continue; }
-			else if(!GL_ARB_shader_ballot && strncmp("GL_ARB_shader_ballot ", cur_ext, 20) == 0) { _GL_ARB_shader_ballot = true; continue; }
-			else if(!GL_ARB_shader_bit_encoding && strncmp("GL_ARB_shader_bit_encoding ", cur_ext, 26) == 0) { _GL_ARB_shader_bit_encoding = true; continue; }
-			else if(!GL_ARB_shader_clock && strncmp("GL_ARB_shader_clock ", cur_ext, 19) == 0) { _GL_ARB_shader_clock = true; continue; }
-			else if(!GL_ARB_shader_draw_parameters && strncmp("GL_ARB_shader_draw_parameters ", cur_ext, 29) == 0) { _GL_ARB_shader_draw_parameters = true; continue; }
-			else if(!GL_ARB_shader_group_vote && strncmp("GL_ARB_shader_group_vote ", cur_ext, 24) == 0) { _GL_ARB_shader_group_vote = true; continue; }
-			else if(!GL_ARB_shader_image_load_store && strncmp("GL_ARB_shader_image_load_store ", cur_ext, 30) == 0) { _GL_ARB_shader_image_load_store = true; continue; }
-			else if(!GL_ARB_shader_image_size && strncmp("GL_ARB_shader_image_size ", cur_ext, 24) == 0) { _GL_ARB_shader_image_size = true; continue; }
-			else if(!GL_ARB_shader_precision && strncmp("GL_ARB_shader_precision ", cur_ext, 23) == 0) { _GL_ARB_shader_precision = true; continue; }
-			else if(!GL_ARB_shader_stencil_export && strncmp("GL_ARB_shader_stencil_export ", cur_ext, 28) == 0) { _GL_ARB_shader_stencil_export = true; continue; }
-			else if(!GL_ARB_shader_storage_buffer_object && strncmp("GL_ARB_shader_storage_buffer_object ", cur_ext, 35) == 0) { _GL_ARB_shader_storage_buffer_object = true; continue; }
-			else if(!GL_ARB_shader_subroutine && strncmp("GL_ARB_shader_subroutine ", cur_ext, 25) == 0) { _GL_ARB_shader_subroutine = true; continue; }
-			else if(!GL_ARB_shader_texture_image_samples && strncmp("GL_ARB_shader_texture_image_samples ", cur_ext, 35) == 0) { _GL_ARB_shader_texture_image_samples = true; continue; }
-			else if(!GL_ARB_shader_viewport_layer_array && strncmp("GL_ARB_shader_viewport_layer_array ", cur_ext, 34) == 0) { _GL_ARB_shader_viewport_layer_array = true; continue; }
-			else if(!GL_ARB_shading_language_420pack && strncmp("GL_ARB_shading_language_420pack ", cur_ext, 31) == 0) { _GL_ARB_shading_language_420pack = true; continue; }
-			else if(!GL_ARB_sparse_texture2 && strncmp("GL_ARB_sparse_texture2 ", cur_ext, 22) == 0) { _GL_ARB_sparse_texture2 = true; continue; }
-			else if(!GL_ARB_sparse_texture_clamp && strncmp("GL_ARB_sparse_texture_clamp ", cur_ext, 27) == 0) { _GL_ARB_sparse_texture_clamp = true; continue; }
-			else if(!GL_ARB_spirv_extensions && strncmp("GL_ARB_spirv_extensions ", cur_ext, 23) == 0) { _GL_ARB_spirv_extensions = true; continue; }
-			else if(!GL_ARB_stencil_texturing && strncmp("GL_ARB_stencil_texturing ", cur_ext, 24) == 0) { _GL_ARB_stencil_texturing = true; continue; }
-			else if(!GL_ARB_sync && strncmp("GL_ARB_sync ", cur_ext, 11) == 0) { _GL_ARB_sync = true; continue; }
-			else if(!GL_ARB_tessellation_shader && strncmp("GL_ARB_tessellation_shader ", cur_ext, 26) == 0) { _GL_ARB_tessellation_shader = true; continue; }
-			else if(!GL_ARB_texture_barrier && strncmp("GL_ARB_texture_barrier ", cur_ext, 22) == 0) { _GL_ARB_texture_barrier = true; continue; }
-			else if(!GL_ARB_texture_border_clamp && strncmp("GL_ARB_texture_border_clamp ", cur_ext, 27) == 0) { _GL_ARB_texture_border_clamp = true; continue; }
-			else if(!GL_ARB_texture_buffer_object_rgb32 && strncmp("GL_ARB_texture_buffer_object_rgb32 ", cur_ext, 34) == 0) { _GL_ARB_texture_buffer_object_rgb32 = true; continue; }
-			else if(!GL_ARB_texture_buffer_range && strncmp("GL_ARB_texture_buffer_range ", cur_ext, 27) == 0) { _GL_ARB_texture_buffer_range = true; continue; }
-			else if(!GL_ARB_texture_compression_bptc && strncmp("GL_ARB_texture_compression_bptc ", cur_ext, 31) == 0) { _GL_ARB_texture_compression_bptc = true; continue; }
-			else if(!GL_ARB_texture_compression_rgtc && strncmp("GL_ARB_texture_compression_rgtc ", cur_ext, 31) == 0) { _GL_ARB_texture_compression_rgtc = true; continue; }
-			else if(!GL_ARB_texture_cube_map_array && strncmp("GL_ARB_texture_cube_map_array ", cur_ext, 29) == 0) { _GL_ARB_texture_cube_map_array = true; continue; }
-			else if(!GL_ARB_texture_filter_anisotropic && strncmp("GL_ARB_texture_filter_anisotropic ", cur_ext, 33) == 0) { _GL_ARB_texture_filter_anisotropic = true; continue; }
-			else if(!GL_ARB_texture_filter_minmax && strncmp("GL_ARB_texture_filter_minmax ", cur_ext, 28) == 0) { _GL_ARB_texture_filter_minmax = true; continue; }
-			else if(!GL_ARB_texture_gather && strncmp("GL_ARB_texture_gather ", cur_ext, 21) == 0) { _GL_ARB_texture_gather = true; continue; }
-			else if(!GL_ARB_texture_mirror_clamp_to_edge && strncmp("GL_ARB_texture_mirror_clamp_to_edge ", cur_ext, 35) == 0) { _GL_ARB_texture_mirror_clamp_to_edge = true; continue; }
-			else if(!GL_ARB_texture_mirrored_repeat && strncmp("GL_ARB_texture_mirrored_repeat ", cur_ext, 30) == 0) { _GL_ARB_texture_mirrored_repeat = true; continue; }
-			else if(!GL_ARB_texture_multisample && strncmp("GL_ARB_texture_multisample ", cur_ext, 26) == 0) { _GL_ARB_texture_multisample = true; continue; }
-			else if(!GL_ARB_texture_non_power_of_two && strncmp("GL_ARB_texture_non_power_of_two ", cur_ext, 31) == 0) { _GL_ARB_texture_non_power_of_two = true; continue; }
-			else if(!GL_ARB_texture_query_levels && strncmp("GL_ARB_texture_query_levels ", cur_ext, 27) == 0) { _GL_ARB_texture_query_levels = true; continue; }
-			else if(!GL_ARB_texture_query_lod && strncmp("GL_ARB_texture_query_lod ", cur_ext, 24) == 0) { _GL_ARB_texture_query_lod = true; continue; }
-			else if(!GL_ARB_texture_rg && strncmp("GL_ARB_texture_rg ", cur_ext, 17) == 0) { _GL_ARB_texture_rg = true; continue; }
-			else if(!GL_ARB_texture_rgb10_a2ui && strncmp("GL_ARB_texture_rgb10_a2ui ", cur_ext, 25) == 0) { _GL_ARB_texture_rgb10_a2ui = true; continue; }
-			else if(!GL_ARB_texture_stencil8 && strncmp("GL_ARB_texture_stencil8 ", cur_ext, 23) == 0) { _GL_ARB_texture_stencil8 = true; continue; }
-			else if(!GL_ARB_texture_storage && strncmp("GL_ARB_texture_storage ", cur_ext, 22) == 0) { _GL_ARB_texture_storage = true; continue; }
-			else if(!GL_ARB_texture_storage_multisample && strncmp("GL_ARB_texture_storage_multisample ", cur_ext, 34) == 0) { _GL_ARB_texture_storage_multisample = true; continue; }
-			else if(!GL_ARB_texture_swizzle && strncmp("GL_ARB_texture_swizzle ", cur_ext, 22) == 0) { _GL_ARB_texture_swizzle = true; continue; }
-			else if(!GL_ARB_texture_view && strncmp("GL_ARB_texture_view ", cur_ext, 19) == 0) { _GL_ARB_texture_view = true; continue; }
-			else if(!GL_ARB_timer_query && strncmp("GL_ARB_timer_query ", cur_ext, 18) == 0) { _GL_ARB_timer_query = true; continue; }
-			else if(!GL_ARB_transform_feedback2 && strncmp("GL_ARB_transform_feedback2 ", cur_ext, 26) == 0) { _GL_ARB_transform_feedback2 = true; continue; }
-			else if(!GL_ARB_transform_feedback3 && strncmp("GL_ARB_transform_feedback3 ", cur_ext, 26) == 0) { _GL_ARB_transform_feedback3 = true; continue; }
-			else if(!GL_ARB_transform_feedback_instanced && strncmp("GL_ARB_transform_feedback_instanced ", cur_ext, 35) == 0) { _GL_ARB_transform_feedback_instanced = true; continue; }
-			else if(!GL_ARB_transform_feedback_overflow_query && strncmp("GL_ARB_transform_feedback_overflow_query ", cur_ext, 40) == 0) { _GL_ARB_transform_feedback_overflow_query = true; continue; }
-			else if(!GL_ARB_uniform_buffer_object && strncmp("GL_ARB_uniform_buffer_object ", cur_ext, 28) == 0) { _GL_ARB_uniform_buffer_object = true; continue; }
-			else if(!GL_ARB_vertex_array_bgra && strncmp("GL_ARB_vertex_array_bgra ", cur_ext, 24) == 0) { _GL_ARB_vertex_array_bgra = true; continue; }
-			else if(!GL_ARB_vertex_array_object && strncmp("GL_ARB_vertex_array_object ", cur_ext, 26) == 0) { _GL_ARB_vertex_array_object = true; continue; }
-			else if(!GL_ARB_vertex_attrib_64bit && strncmp("GL_ARB_vertex_attrib_64bit ", cur_ext, 26) == 0) { _GL_ARB_vertex_attrib_64bit = true; continue; }
-			else if(!GL_ARB_vertex_attrib_binding && strncmp("GL_ARB_vertex_attrib_binding ", cur_ext, 28) == 0) { _GL_ARB_vertex_attrib_binding = true; continue; }
-			else if(!GL_ARB_vertex_type_10f_11f_11f_rev && strncmp("GL_ARB_vertex_type_10f_11f_11f_rev ", cur_ext, 34) == 0) { _GL_ARB_vertex_type_10f_11f_11f_rev = true; continue; }
-			else if(!GL_ARB_vertex_type_2_10_10_10_rev && strncmp("GL_ARB_vertex_type_2_10_10_10_rev ", cur_ext, 33) == 0) { _GL_ARB_vertex_type_2_10_10_10_rev = true; continue; }
-			else if(!GL_KHR_blend_equation_advanced_coherent && strncmp("GL_KHR_blend_equation_advanced_coherent ", cur_ext, 39) == 0) { _GL_KHR_blend_equation_advanced_coherent = true; continue; }
-			else if(!GL_KHR_context_flush_control && strncmp("GL_KHR_context_flush_control ", cur_ext, 28) == 0) { _GL_KHR_context_flush_control = true; continue; }
-			else if(!GL_KHR_debug && strncmp("GL_KHR_debug ", cur_ext, 12) == 0) { _GL_KHR_debug = true; continue; }
-			else if(!GL_KHR_no_error && strncmp("GL_KHR_no_error ", cur_ext, 15) == 0) { _GL_KHR_no_error = true; continue; }
-			else if(!GL_KHR_robust_buffer_access_behavior && strncmp("GL_KHR_robust_buffer_access_behavior ", cur_ext, 36) == 0) { _GL_KHR_robust_buffer_access_behavior = true; continue; }
-			else if(!GL_KHR_robustness && strncmp("GL_KHR_robustness ", cur_ext, 17) == 0) { _GL_KHR_robustness = true; continue; }
-			if(!GL_KHR_shader_subgroup && strncmp("GL_KHR_shader_subgroup", cur_ext , 22) == 0) { _GL_KHR_shader_subgroup = true; continue; }
-			else if(!GL_KHR_texture_compression_astc_hdr && strncmp("GL_KHR_texture_compression_astc_hdr ", cur_ext, 35) == 0) { _GL_KHR_texture_compression_astc_hdr = true; continue; }
-			else if(!GL_KHR_texture_compression_astc_ldr && strncmp("GL_KHR_texture_compression_astc_ldr ", cur_ext, 35) == 0) { _GL_KHR_texture_compression_astc_ldr = true; continue; }
-			else if(!GL_KHR_texture_compression_astc_sliced_3d && strncmp("GL_KHR_texture_compression_astc_sliced_3d ", cur_ext, 42) == 0) { _GL_KHR_texture_compression_astc_sliced_3d = true; continue; }
-			else if(!GL_APPLE_rgb_422 && strncmp("GL_APPLE_rgb_422 ", cur_ext, 16) == 0) { _GL_APPLE_rgb_422 = true; continue; }
-			else if(!GL_EXT_EGL_sync && strncmp("GL_EXT_EGL_sync ", cur_ext, 15) == 0) { _GL_EXT_EGL_sync = true; continue; }
-			else if(!GL_EXT_multiview_tessellation_geometry_shader && strncmp("GL_EXT_multiview_tessellation_geometry_shader ", cur_ext, 45) == 0) { _GL_EXT_multiview_tessellation_geometry_shader = true; continue; }
-			else if(!GL_EXT_multiview_texture_multisample && strncmp("GL_EXT_multiview_texture_multisample ", cur_ext, 36) == 0) { _GL_EXT_multiview_texture_multisample = true; continue; }
-			else if(!GL_EXT_multiview_timer_query && strncmp("GL_EXT_multiview_timer_query ", cur_ext, 28) == 0) { _GL_EXT_multiview_timer_query = true; continue; }
-			else if(!GL_EXT_post_depth_coverage && strncmp("GL_EXT_post_depth_coverage ", cur_ext, 26) == 0) { _GL_EXT_post_depth_coverage = true; continue; }
-			else if(!GL_EXT_shader_framebuffer_fetch && strncmp("GL_EXT_shader_framebuffer_fetch ", cur_ext, 31) == 0) { _GL_EXT_shader_framebuffer_fetch = true; continue; }
-			else if(!GL_EXT_shader_integer_mix && strncmp("GL_EXT_shader_integer_mix ", cur_ext, 25) == 0) { _GL_EXT_shader_integer_mix = true; continue; }
-			else if(!GL_EXT_texture_compression_s3tc && strncmp("GL_EXT_texture_compression_s3tc ", cur_ext, 31) == 0) { _GL_EXT_texture_compression_s3tc = true; continue; }
-			else if(!GL_EXT_texture_filter_minmax && strncmp("GL_EXT_texture_filter_minmax ", cur_ext, 28) == 0) { _GL_EXT_texture_filter_minmax = true; continue; }
-			else if(!GL_EXT_texture_sRGB_R8 && strncmp("GL_EXT_texture_sRGB_R8 ", cur_ext, 22) == 0) { _GL_EXT_texture_sRGB_R8 = true; continue; }
-			else if(!GL_EXT_texture_sRGB_decode && strncmp("GL_EXT_texture_sRGB_decode ", cur_ext, 26) == 0) { _GL_EXT_texture_sRGB_decode = true; continue; }
-			else if(!GL_EXT_texture_shadow_lod && strncmp("GL_EXT_texture_shadow_lod ", cur_ext, 25) == 0) { _GL_EXT_texture_shadow_lod = true; continue; }
-			else if(!GL_INTEL_blackhole_render && strncmp("GL_INTEL_blackhole_render ", cur_ext, 25) == 0) { _GL_INTEL_blackhole_render = true; continue; }
-			else if(!GL_INTEL_conservative_rasterization && strncmp("GL_INTEL_conservative_rasterization ", cur_ext, 35) == 0) { _GL_INTEL_conservative_rasterization = true; continue; }
-			else if(!GL_MESA_framebuffer_flip_x && strncmp("GL_MESA_framebuffer_flip_x ", cur_ext, 26) == 0) { _GL_MESA_framebuffer_flip_x = true; continue; }
-			else if(!GL_MESA_framebuffer_swap_xy && strncmp("GL_MESA_framebuffer_swap_xy ", cur_ext, 27) == 0) { _GL_MESA_framebuffer_swap_xy = true; continue; }
-			else if(!GL_NV_blend_equation_advanced_coherent && strncmp("GL_NV_blend_equation_advanced_coherent ", cur_ext, 38) == 0) { _GL_NV_blend_equation_advanced_coherent = true; continue; }
-			else if(!GL_NV_blend_minmax_factor && strncmp("GL_NV_blend_minmax_factor ", cur_ext, 25) == 0) { _GL_NV_blend_minmax_factor = true; continue; }
-			else if(!GL_NV_compute_shader_derivatives && strncmp("GL_NV_compute_shader_derivatives ", cur_ext, 32) == 0) { _GL_NV_compute_shader_derivatives = true; continue; }
-			else if(!GL_NV_conservative_raster_pre_snap && strncmp("GL_NV_conservative_raster_pre_snap ", cur_ext, 34) == 0) { _GL_NV_conservative_raster_pre_snap = true; continue; }
-			else if(!GL_NV_conservative_raster_underestimation && strncmp("GL_NV_conservative_raster_underestimation ", cur_ext, 41) == 0) { _GL_NV_conservative_raster_underestimation = true; continue; }
-			else if(!GL_NV_fill_rectangle && strncmp("GL_NV_fill_rectangle ", cur_ext, 20) == 0) { _GL_NV_fill_rectangle = true; continue; }
-			else if(!GL_NV_fragment_shader_barycentric && strncmp("GL_NV_fragment_shader_barycentric ", cur_ext, 33) == 0) { _GL_NV_fragment_shader_barycentric = true; continue; }
-			else if(!GL_NV_fragment_shader_interlock && strncmp("GL_NV_fragment_shader_interlock ", cur_ext, 31) == 0) { _GL_NV_fragment_shader_interlock = true; continue; }
-			else if(!GL_NV_geometry_shader_passthrough && strncmp("GL_NV_geometry_shader_passthrough ", cur_ext, 33) == 0) { _GL_NV_geometry_shader_passthrough = true; continue; }
-			else if(!GL_NV_path_rendering_shared_edge && strncmp("GL_NV_path_rendering_shared_edge ", cur_ext, 32) == 0) { _GL_NV_path_rendering_shared_edge = true; continue; }
-			else if(!GL_NV_primitive_shading_rate && strncmp("GL_NV_primitive_shading_rate ", cur_ext, 28) == 0) { _GL_NV_primitive_shading_rate = true; continue; }
-			else if(!GL_NV_representative_fragment_test && strncmp("GL_NV_representative_fragment_test ", cur_ext, 34) == 0) { _GL_NV_representative_fragment_test = true; continue; }
-			else if(!GL_NV_sample_mask_override_coverage && strncmp("GL_NV_sample_mask_override_coverage ", cur_ext, 35) == 0) { _GL_NV_sample_mask_override_coverage = true; continue; }
-			else if(!GL_NV_shader_atomic_counters && strncmp("GL_NV_shader_atomic_counters ", cur_ext, 28) == 0) { _GL_NV_shader_atomic_counters = true; continue; }
-			else if(!GL_NV_shader_atomic_float && strncmp("GL_NV_shader_atomic_float ", cur_ext, 25) == 0) { _GL_NV_shader_atomic_float = true; continue; }
-			else if(!GL_NV_shader_atomic_float64 && strncmp("GL_NV_shader_atomic_float64 ", cur_ext, 27) == 0) { _GL_NV_shader_atomic_float64 = true; continue; }
-			else if(!GL_NV_shader_atomic_fp16_vector && strncmp("GL_NV_shader_atomic_fp16_vector ", cur_ext, 31) == 0) { _GL_NV_shader_atomic_fp16_vector = true; continue; }
-			else if(!GL_NV_shader_atomic_int64 && strncmp("GL_NV_shader_atomic_int64 ", cur_ext, 25) == 0) { _GL_NV_shader_atomic_int64 = true; continue; }
-			else if(!GL_NV_shader_buffer_store && strncmp("GL_NV_shader_buffer_store ", cur_ext, 25) == 0) { _GL_NV_shader_buffer_store = true; continue; }
-			else if(!GL_NV_shader_subgroup_partitioned && strncmp("GL_NV_shader_subgroup_partitioned ", cur_ext, 33) == 0) { _GL_NV_shader_subgroup_partitioned = true; continue; }
-			else if(!GL_NV_shader_texture_footprint && strncmp("GL_NV_shader_texture_footprint ", cur_ext, 30) == 0) { _GL_NV_shader_texture_footprint = true; continue; }
-			else if(!GL_NV_shader_thread_group && strncmp("GL_NV_shader_thread_group ", cur_ext, 25) == 0) { _GL_NV_shader_thread_group = true; continue; }
-			else if(!GL_NV_shader_thread_shuffle && strncmp("GL_NV_shader_thread_shuffle ", cur_ext, 27) == 0) { _GL_NV_shader_thread_shuffle = true; continue; }
-			else if(!GL_NV_stereo_view_rendering && strncmp("GL_NV_stereo_view_rendering ", cur_ext, 27) == 0) { _GL_NV_stereo_view_rendering = true; continue; }
-			else if(!GL_NV_texture_rectangle_compressed && strncmp("GL_NV_texture_rectangle_compressed ", cur_ext, 34) == 0) { _GL_NV_texture_rectangle_compressed = true; continue; }
-			else if(!GL_NV_uniform_buffer_unified_memory && strncmp("GL_NV_uniform_buffer_unified_memory ", cur_ext, 35) == 0) { _GL_NV_uniform_buffer_unified_memory = true; continue; }
-			else if(!GL_NV_viewport_array2 && strncmp("GL_NV_viewport_array2 ", cur_ext, 21) == 0) { _GL_NV_viewport_array2 = true; continue; }
-			else if(!GL_OVR_multiview2 && strncmp("GL_OVR_multiview2 ", cur_ext, 17) == 0) { _GL_OVR_multiview2 = true; continue; }
 		}
+		if(!_GL_ARB_ES2_compatibility && strncmp(cur_ext, "GL_ARB_ES2_compatibility", 20) == 0) { _GL_ARB_ES2_compatibility = true; continue; }
+		else if(!_GL_ARB_ES3_1_compatibility && strncmp(cur_ext, "GL_ARB_ES3_1_compatibility", 26) == 0) { _GL_ARB_ES3_1_compatibility = true; continue; }
+		else if(!_GL_ARB_ES3_2_compatibility && strncmp(cur_ext, "GL_ARB_ES3_2_compatibility", 26) == 0) { _GL_ARB_ES3_2_compatibility = true; continue; }
+		else if(!_GL_ARB_arrays_of_arrays && strncmp(cur_ext, "GL_ARB_arrays_of_arrays", 23) == 0) { _GL_ARB_arrays_of_arrays = true; continue; }
+		else if(!_GL_ARB_base_instance && strncmp(cur_ext, "GL_ARB_base_instance", 20) == 0) { _GL_ARB_base_instance = true; continue; }
+		else if(!_GL_ARB_blend_func_extended && strncmp(cur_ext, "GL_ARB_blend_func_extended", 26) == 0) { _GL_ARB_blend_func_extended = true; continue; }
+		else if(!_GL_ARB_buffer_storage && strncmp(cur_ext, "GL_ARB_buffer_storage", 21) == 0) { _GL_ARB_buffer_storage = true; continue; }
+		else if(!_GL_ARB_clear_buffer_object && strncmp(cur_ext, "GL_ARB_clear_buffer_object", 26) == 0) { _GL_ARB_clear_buffer_object = true; continue; }
+		else if(!_GL_ARB_clear_texture && strncmp(cur_ext, "GL_ARB_clear_texture", 20) == 0) { _GL_ARB_clear_texture = true; continue; }
+		else if(!_GL_ARB_clip_control && strncmp(cur_ext, "GL_ARB_clip_control", 19) == 0) { _GL_ARB_clip_control = true; continue; }
+		else if(!_GL_ARB_compressed_texture_pixel_storage && strncmp(cur_ext, "GL_ARB_compressed_texture_pixel_storage", 39) == 0) { _GL_ARB_compressed_texture_pixel_storage = true; continue; }
+		else if(!_GL_ARB_compute_shader && strncmp(cur_ext, "GL_ARB_compute_shader", 21) == 0) { _GL_ARB_compute_shader = true; continue; }
+		else if(!_GL_ARB_conditional_render_inverted && strncmp(cur_ext, "GL_ARB_conditional_render_inverted", 34) == 0) { _GL_ARB_conditional_render_inverted = true; continue; }
+		else if(!_GL_ARB_conservative_depth && strncmp(cur_ext, "GL_ARB_conservative_depth", 25) == 0) { _GL_ARB_conservative_depth = true; continue; }
+		else if(!_GL_ARB_copy_buffer && strncmp(cur_ext, "GL_ARB_copy_buffer", 18) == 0) { _GL_ARB_copy_buffer = true; continue; }
+		else if(!_GL_ARB_copy_image && strncmp(cur_ext, "GL_ARB_copy_image", 17) == 0) { _GL_ARB_copy_image = true; continue; }
+		else if(!_GL_ARB_cull_distance && strncmp(cur_ext, "GL_ARB_cull_distance", 20) == 0) { _GL_ARB_cull_distance = true; continue; }
+		else if(!_GL_ARB_depth_buffer_float && strncmp(cur_ext, "GL_ARB_depth_buffer_float", 25) == 0) { _GL_ARB_depth_buffer_float = true; continue; }
+		else if(!_GL_ARB_depth_clamp && strncmp(cur_ext, "GL_ARB_depth_clamp", 18) == 0) { _GL_ARB_depth_clamp = true; continue; }
+		else if(!_GL_ARB_derivative_control && strncmp(cur_ext, "GL_ARB_derivative_control", 25) == 0) { _GL_ARB_derivative_control = true; continue; }
+		else if(!_GL_ARB_direct_state_access && strncmp(cur_ext, "GL_ARB_direct_state_access", 26) == 0) { _GL_ARB_direct_state_access = true; continue; }
+		else if(!_GL_ARB_draw_elements_base_vertex && strncmp(cur_ext, "GL_ARB_draw_elements_base_vertex", 32) == 0) { _GL_ARB_draw_elements_base_vertex = true; continue; }
+		else if(!_GL_ARB_draw_indirect && strncmp(cur_ext, "GL_ARB_draw_indirect", 20) == 0) { _GL_ARB_draw_indirect = true; continue; }
+		else if(!_GL_ARB_draw_instanced && strncmp(cur_ext, "GL_ARB_draw_instanced", 21) == 0) { _GL_ARB_draw_instanced = true; continue; }
+		else if(!_GL_ARB_enhanced_layouts && strncmp(cur_ext, "GL_ARB_enhanced_layouts", 23) == 0) { _GL_ARB_enhanced_layouts = true; continue; }
+		else if(!_GL_ARB_explicit_attrib_location && strncmp(cur_ext, "GL_ARB_explicit_attrib_location", 31) == 0) { _GL_ARB_explicit_attrib_location = true; continue; }
+		else if(!_GL_ARB_explicit_uniform_location && strncmp(cur_ext, "GL_ARB_explicit_uniform_location", 32) == 0) { _GL_ARB_explicit_uniform_location = true; continue; }
+		else if(!_GL_ARB_fragment_coord_conventions && strncmp(cur_ext, "GL_ARB_fragment_coord_conventions", 33) == 0) { _GL_ARB_fragment_coord_conventions = true; continue; }
+		else if(!_GL_ARB_fragment_layer_viewport && strncmp(cur_ext, "GL_ARB_fragment_layer_viewport", 30) == 0) { _GL_ARB_fragment_layer_viewport = true; continue; }
+		else if(!_GL_ARB_fragment_shader_interlock && strncmp(cur_ext, "GL_ARB_fragment_shader_interlock", 32) == 0) { _GL_ARB_fragment_shader_interlock = true; continue; }
+		else if(!_GL_ARB_framebuffer_no_attachments && strncmp(cur_ext, "GL_ARB_framebuffer_no_attachments", 33) == 0) { _GL_ARB_framebuffer_no_attachments = true; continue; }
+		else if(!_GL_ARB_framebuffer_object && strncmp(cur_ext, "GL_ARB_framebuffer_object", 25) == 0) { _GL_ARB_framebuffer_object = true; continue; }
+		else if(!_GL_ARB_framebuffer_sRGB && strncmp(cur_ext, "GL_ARB_framebuffer_sRGB", 23) == 0) { _GL_ARB_framebuffer_sRGB = true; continue; }
+		else if(!_GL_ARB_get_program_binary && strncmp(cur_ext, "GL_ARB_get_program_binary", 25) == 0) { _GL_ARB_get_program_binary = true; continue; }
+		else if(!_GL_ARB_get_texture_sub_image && strncmp(cur_ext, "GL_ARB_get_texture_sub_image", 28) == 0) { _GL_ARB_get_texture_sub_image = true; continue; }
+		else if(!_GL_ARB_gpu_shader5 && strncmp(cur_ext, "GL_ARB_gpu_shader5", 18) == 0) { _GL_ARB_gpu_shader5 = true; continue; }
+		else if(!_GL_ARB_gpu_shader_fp64 && strncmp(cur_ext, "GL_ARB_gpu_shader_fp64", 22) == 0) { _GL_ARB_gpu_shader_fp64 = true; continue; }
+		else if(!_GL_ARB_half_float_vertex && strncmp(cur_ext, "GL_ARB_half_float_vertex", 24) == 0) { _GL_ARB_half_float_vertex = true; continue; }
+		else if(!_GL_ARB_imaging && strncmp(cur_ext, "GL_ARB_imaging", 14) == 0) { _GL_ARB_imaging = true; continue; }
+		else if(!_GL_ARB_internalformat_query && strncmp(cur_ext, "GL_ARB_internalformat_query", 27) == 0) { _GL_ARB_internalformat_query = true; continue; }
+		else if(!_GL_ARB_invalidate_subdata && strncmp(cur_ext, "GL_ARB_invalidate_subdata", 25) == 0) { _GL_ARB_invalidate_subdata = true; continue; }
+		else if(!_GL_ARB_map_buffer_alignment && strncmp(cur_ext, "GL_ARB_map_buffer_alignment", 27) == 0) { _GL_ARB_map_buffer_alignment = true; continue; }
+		else if(!_GL_ARB_map_buffer_range && strncmp(cur_ext, "GL_ARB_map_buffer_range", 23) == 0) { _GL_ARB_map_buffer_range = true; continue; }
+		else if(!_GL_ARB_multi_bind && strncmp(cur_ext, "GL_ARB_multi_bind", 17) == 0) { _GL_ARB_multi_bind = true; continue; }
+		else if(!_GL_ARB_multi_draw_indirect && strncmp(cur_ext, "GL_ARB_multi_draw_indirect", 26) == 0) { _GL_ARB_multi_draw_indirect = true; continue; }
+		else if(!_GL_ARB_occlusion_query2 && strncmp(cur_ext, "GL_ARB_occlusion_query2", 23) == 0) { _GL_ARB_occlusion_query2 = true; continue; }
+		else if(!_GL_ARB_polygon_offset_clamp && strncmp(cur_ext, "GL_ARB_polygon_offset_clamp", 27) == 0) { _GL_ARB_polygon_offset_clamp = true; continue; }
+		else if(!_GL_ARB_post_depth_coverage && strncmp(cur_ext, "GL_ARB_post_depth_coverage", 26) == 0) { _GL_ARB_post_depth_coverage = true; continue; }
+		else if(!_GL_ARB_program_interface_query && strncmp(cur_ext, "GL_ARB_program_interface_query", 30) == 0) { _GL_ARB_program_interface_query = true; continue; }
+		else if(!_GL_ARB_provoking_vertex && strncmp(cur_ext, "GL_ARB_provoking_vertex", 23) == 0) { _GL_ARB_provoking_vertex = true; continue; }
+		else if(!_GL_ARB_query_buffer_object && strncmp(cur_ext, "GL_ARB_query_buffer_object", 26) == 0) { _GL_ARB_query_buffer_object = true; continue; }
+		else if(!_GL_ARB_robust_buffer_access_behavior && strncmp(cur_ext, "GL_ARB_robust_buffer_access_behavior", 36) == 0) { _GL_ARB_robust_buffer_access_behavior = true; continue; }
+		else if(!_GL_ARB_robustness_isolation && strncmp(cur_ext, "GL_ARB_robustness_isolation", 27) == 0) { _GL_ARB_robustness_isolation = true; continue; }
+		else if(!_GL_ARB_sampler_objects && strncmp(cur_ext, "GL_ARB_sampler_objects", 22) == 0) { _GL_ARB_sampler_objects = true; continue; }
+		else if(!_GL_ARB_seamless_cube_map && strncmp(cur_ext, "GL_ARB_seamless_cube_map", 24) == 0) { _GL_ARB_seamless_cube_map = true; continue; }
+		else if(!_GL_ARB_seamless_cubemap_per_texture && strncmp(cur_ext, "GL_ARB_seamless_cubemap_per_texture", 35) == 0) { _GL_ARB_seamless_cubemap_per_texture = true; continue; }
+		else if(!_GL_ARB_separate_shader_objects && strncmp(cur_ext, "GL_ARB_separate_shader_objects", 30) == 0) { _GL_ARB_separate_shader_objects = true; continue; }
+		else if(!_GL_ARB_shader_atomic_counter_ops && strncmp(cur_ext, "GL_ARB_shader_atomic_counter_ops", 32) == 0) { _GL_ARB_shader_atomic_counter_ops = true; continue; }
+		else if(!_GL_ARB_shader_atomic_counters && strncmp(cur_ext, "GL_ARB_shader_atomic_counters", 29) == 0) { _GL_ARB_shader_atomic_counters = true; continue; }
+		else if(!_GL_ARB_shader_ballot && strncmp(cur_ext, "GL_ARB_shader_ballot", 20) == 0) { _GL_ARB_shader_ballot = true; continue; }
+		else if(!_GL_ARB_shader_bit_encoding && strncmp(cur_ext, "GL_ARB_shader_bit_encoding", 26) == 0) { _GL_ARB_shader_bit_encoding = true; continue; }
+		else if(!_GL_ARB_shader_clock && strncmp(cur_ext, "GL_ARB_shader_clock", 19) == 0) { _GL_ARB_shader_clock = true; continue; }
+		else if(!_GL_ARB_shader_draw_parameters && strncmp(cur_ext, "GL_ARB_shader_draw_parameters", 29) == 0) { _GL_ARB_shader_draw_parameters = true; continue; }
+		else if(!_GL_ARB_shader_group_vote && strncmp(cur_ext, "GL_ARB_shader_group_vote", 24) == 0) { _GL_ARB_shader_group_vote = true; continue; }
+		else if(!_GL_ARB_shader_image_load_store && strncmp(cur_ext, "GL_ARB_shader_image_load_store", 30) == 0) { _GL_ARB_shader_image_load_store = true; continue; }
+		else if(!_GL_ARB_shader_image_size && strncmp(cur_ext, "GL_ARB_shader_image_size", 24) == 0) { _GL_ARB_shader_image_size = true; continue; }
+		else if(!_GL_ARB_shader_precision && strncmp(cur_ext, "GL_ARB_shader_precision", 23) == 0) { _GL_ARB_shader_precision = true; continue; }
+		else if(!_GL_ARB_shader_stencil_export && strncmp(cur_ext, "GL_ARB_shader_stencil_export", 28) == 0) { _GL_ARB_shader_stencil_export = true; continue; }
+		else if(!_GL_ARB_shader_storage_buffer_object && strncmp(cur_ext, "GL_ARB_shader_storage_buffer_object", 35) == 0) { _GL_ARB_shader_storage_buffer_object = true; continue; }
+		if(!_GL_ARB_shader_subroutine && strncmp(cur_ext, "GL_ARB_shader_subroutine", 24) == 0) { _GL_ARB_shader_subroutine = true; continue; }
+		else if(!_GL_ARB_shader_texture_image_samples && strncmp(cur_ext, "GL_ARB_shader_texture_image_samples", 35) == 0) { _GL_ARB_shader_texture_image_samples = true; continue; }
+		else if(!_GL_ARB_shader_viewport_layer_array && strncmp(cur_ext, "GL_ARB_shader_viewport_layer_array", 34) == 0) { _GL_ARB_shader_viewport_layer_array = true; continue; }
+		else if(!_GL_ARB_shading_language_420pack && strncmp(cur_ext, "GL_ARB_shading_language_420pack", 31) == 0) { _GL_ARB_shading_language_420pack = true; continue; }
+		else if(!_GL_ARB_sparse_texture2 && strncmp(cur_ext, "GL_ARB_sparse_texture2", 22) == 0) { _GL_ARB_sparse_texture2 = true; continue; }
+		else if(!_GL_ARB_sparse_texture_clamp && strncmp(cur_ext, "GL_ARB_sparse_texture_clamp", 27) == 0) { _GL_ARB_sparse_texture_clamp = true; continue; }
+		else if(!_GL_ARB_spirv_extensions && strncmp(cur_ext, "GL_ARB_spirv_extensions", 23) == 0) { _GL_ARB_spirv_extensions = true; continue; }
+		else if(!_GL_ARB_stencil_texturing && strncmp(cur_ext, "GL_ARB_stencil_texturing", 24) == 0) { _GL_ARB_stencil_texturing = true; continue; }
+		else if(!_GL_ARB_sync && strncmp(cur_ext, "GL_ARB_sync", 11) == 0) { _GL_ARB_sync = true; continue; }
+		else if(!_GL_ARB_tessellation_shader && strncmp(cur_ext, "GL_ARB_tessellation_shader", 26) == 0) { _GL_ARB_tessellation_shader = true; continue; }
+		else if(!_GL_ARB_texture_barrier && strncmp(cur_ext, "GL_ARB_texture_barrier", 22) == 0) { _GL_ARB_texture_barrier = true; continue; }
+		else if(!_GL_ARB_texture_border_clamp && strncmp(cur_ext, "GL_ARB_texture_border_clamp", 27) == 0) { _GL_ARB_texture_border_clamp = true; continue; }
+		else if(!_GL_ARB_texture_buffer_object_rgb32 && strncmp(cur_ext, "GL_ARB_texture_buffer_object_rgb32", 34) == 0) { _GL_ARB_texture_buffer_object_rgb32 = true; continue; }
+		else if(!_GL_ARB_texture_buffer_range && strncmp(cur_ext, "GL_ARB_texture_buffer_range", 27) == 0) { _GL_ARB_texture_buffer_range = true; continue; }
+		else if(!_GL_ARB_texture_compression_bptc && strncmp(cur_ext, "GL_ARB_texture_compression_bptc", 31) == 0) { _GL_ARB_texture_compression_bptc = true; continue; }
+		else if(!_GL_ARB_texture_compression_rgtc && strncmp(cur_ext, "GL_ARB_texture_compression_rgtc", 31) == 0) { _GL_ARB_texture_compression_rgtc = true; continue; }
+		else if(!_GL_ARB_texture_cube_map_array && strncmp(cur_ext, "GL_ARB_texture_cube_map_array", 29) == 0) { _GL_ARB_texture_cube_map_array = true; continue; }
+		else if(!_GL_ARB_texture_filter_anisotropic && strncmp(cur_ext, "GL_ARB_texture_filter_anisotropic", 33) == 0) { _GL_ARB_texture_filter_anisotropic = true; continue; }
+		else if(!_GL_ARB_texture_filter_minmax && strncmp(cur_ext, "GL_ARB_texture_filter_minmax", 28) == 0) { _GL_ARB_texture_filter_minmax = true; continue; }
+		else if(!_GL_ARB_texture_gather && strncmp(cur_ext, "GL_ARB_texture_gather", 21) == 0) { _GL_ARB_texture_gather = true; continue; }
+		else if(!_GL_ARB_texture_mirror_clamp_to_edge && strncmp(cur_ext, "GL_ARB_texture_mirror_clamp_to_edge", 35) == 0) { _GL_ARB_texture_mirror_clamp_to_edge = true; continue; }
+		else if(!_GL_ARB_texture_mirrored_repeat && strncmp(cur_ext, "GL_ARB_texture_mirrored_repeat", 30) == 0) { _GL_ARB_texture_mirrored_repeat = true; continue; }
+		else if(!_GL_ARB_texture_multisample && strncmp(cur_ext, "GL_ARB_texture_multisample", 26) == 0) { _GL_ARB_texture_multisample = true; continue; }
+		else if(!_GL_ARB_texture_non_power_of_two && strncmp(cur_ext, "GL_ARB_texture_non_power_of_two", 31) == 0) { _GL_ARB_texture_non_power_of_two = true; continue; }
+		else if(!_GL_ARB_texture_query_levels && strncmp(cur_ext, "GL_ARB_texture_query_levels", 27) == 0) { _GL_ARB_texture_query_levels = true; continue; }
+		else if(!_GL_ARB_texture_query_lod && strncmp(cur_ext, "GL_ARB_texture_query_lod", 24) == 0) { _GL_ARB_texture_query_lod = true; continue; }
+		else if(!_GL_ARB_texture_rg && strncmp(cur_ext, "GL_ARB_texture_rg", 17) == 0) { _GL_ARB_texture_rg = true; continue; }
+		else if(!_GL_ARB_texture_rgb10_a2ui && strncmp(cur_ext, "GL_ARB_texture_rgb10_a2ui", 25) == 0) { _GL_ARB_texture_rgb10_a2ui = true; continue; }
+		else if(!_GL_ARB_texture_stencil8 && strncmp(cur_ext, "GL_ARB_texture_stencil8", 23) == 0) { _GL_ARB_texture_stencil8 = true; continue; }
+		else if(!_GL_ARB_texture_storage && strncmp(cur_ext, "GL_ARB_texture_storage", 22) == 0) { _GL_ARB_texture_storage = true; continue; }
+		else if(!_GL_ARB_texture_storage_multisample && strncmp(cur_ext, "GL_ARB_texture_storage_multisample", 34) == 0) { _GL_ARB_texture_storage_multisample = true; continue; }
+		else if(!_GL_ARB_texture_swizzle && strncmp(cur_ext, "GL_ARB_texture_swizzle", 22) == 0) { _GL_ARB_texture_swizzle = true; continue; }
+		else if(!_GL_ARB_texture_view && strncmp(cur_ext, "GL_ARB_texture_view", 19) == 0) { _GL_ARB_texture_view = true; continue; }
+		else if(!_GL_ARB_timer_query && strncmp(cur_ext, "GL_ARB_timer_query", 18) == 0) { _GL_ARB_timer_query = true; continue; }
+		else if(!_GL_ARB_transform_feedback2 && strncmp(cur_ext, "GL_ARB_transform_feedback2", 26) == 0) { _GL_ARB_transform_feedback2 = true; continue; }
+		else if(!_GL_ARB_transform_feedback3 && strncmp(cur_ext, "GL_ARB_transform_feedback3", 26) == 0) { _GL_ARB_transform_feedback3 = true; continue; }
+		else if(!_GL_ARB_transform_feedback_instanced && strncmp(cur_ext, "GL_ARB_transform_feedback_instanced", 35) == 0) { _GL_ARB_transform_feedback_instanced = true; continue; }
+		else if(!_GL_ARB_transform_feedback_overflow_query && strncmp(cur_ext, "GL_ARB_transform_feedback_overflow_query", 40) == 0) { _GL_ARB_transform_feedback_overflow_query = true; continue; }
+		else if(!_GL_ARB_uniform_buffer_object && strncmp(cur_ext, "GL_ARB_uniform_buffer_object", 28) == 0) { _GL_ARB_uniform_buffer_object = true; continue; }
+		else if(!_GL_ARB_vertex_array_bgra && strncmp(cur_ext, "GL_ARB_vertex_array_bgra", 24) == 0) { _GL_ARB_vertex_array_bgra = true; continue; }
+		else if(!_GL_ARB_vertex_array_object && strncmp(cur_ext, "GL_ARB_vertex_array_object", 26) == 0) { _GL_ARB_vertex_array_object = true; continue; }
+		else if(!_GL_ARB_vertex_attrib_64bit && strncmp(cur_ext, "GL_ARB_vertex_attrib_64bit", 26) == 0) { _GL_ARB_vertex_attrib_64bit = true; continue; }
+		else if(!_GL_ARB_vertex_attrib_binding && strncmp(cur_ext, "GL_ARB_vertex_attrib_binding", 28) == 0) { _GL_ARB_vertex_attrib_binding = true; continue; }
+		else if(!_GL_ARB_vertex_type_10f_11f_11f_rev && strncmp(cur_ext, "GL_ARB_vertex_type_10f_11f_11f_rev", 34) == 0) { _GL_ARB_vertex_type_10f_11f_11f_rev = true; continue; }
+		else if(!_GL_ARB_vertex_type_2_10_10_10_rev && strncmp(cur_ext, "GL_ARB_vertex_type_2_10_10_10_rev", 33) == 0) { _GL_ARB_vertex_type_2_10_10_10_rev = true; continue; }
+		else if(!_GL_KHR_blend_equation_advanced_coherent && strncmp(cur_ext, "GL_KHR_blend_equation_advanced_coherent", 39) == 0) { _GL_KHR_blend_equation_advanced_coherent = true; continue; }
+		else if(!_GL_KHR_context_flush_control && strncmp(cur_ext, "GL_KHR_context_flush_control", 28) == 0) { _GL_KHR_context_flush_control = true; continue; }
+		else if(!_GL_KHR_debug && strncmp(cur_ext, "GL_KHR_debug", 12) == 0) { _GL_KHR_debug = true; continue; }
+		else if(!_GL_KHR_no_error && strncmp(cur_ext, "GL_KHR_no_error", 15) == 0) { _GL_KHR_no_error = true; continue; }
+		else if(!_GL_KHR_robust_buffer_access_behavior && strncmp(cur_ext, "GL_KHR_robust_buffer_access_behavior", 36) == 0) { _GL_KHR_robust_buffer_access_behavior = true; continue; }
+		else if(!_GL_KHR_robustness && strncmp(cur_ext, "GL_KHR_robustness", 17) == 0) { _GL_KHR_robustness = true; continue; }
+		else if(!_GL_KHR_shader_subgroup && strncmp(cur_ext, "GL_KHR_shader_subgrup" , 22) == 0) { _GL_KHR_shader_subgroup = true; continue; }
+		else if(!_GL_KHR_texture_compression_astc_hdr && strncmp(cur_ext, "GL_KHR_texture_compression_astc_hdr", 35) == 0) { _GL_KHR_texture_compression_astc_hdr = true; continue; }
+		else if(!_GL_KHR_texture_compression_astc_ldr && strncmp(cur_ext, "GL_KHR_texture_compression_astc_ldr", 35) == 0) { _GL_KHR_texture_compression_astc_ldr = true; continue; }
+		else if(!_GL_KHR_texture_compression_astc_sliced_3d && strncmp(cur_ext, "GL_KHR_texture_compression_astc_sliced_3d", 41) == 0) { _GL_KHR_texture_compression_astc_sliced_3d = true; continue; }
+		else if(!_GL_APPLE_rgb_422 && strncmp(cur_ext, "GL_APPLE_rgb_422", 16) == 0) { _GL_APPLE_rgb_422 = true; continue; }
+		else if(!_GL_EXT_EGL_sync && strncmp(cur_ext, "GL_EXT_EGL_sync", 15) == 0) { _GL_EXT_EGL_sync = true; continue; }
+		else if(!_GL_EXT_multiview_tessellation_geometry_shader && strncmp(cur_ext, "GL_EXT_multiview_tessellation_geometry_shader", 45) == 0) { _GL_EXT_multiview_tessellation_geometry_shader = true; continue; }
+		else if(!_GL_EXT_multiview_texture_multisample && strncmp(cur_ext, "GL_EXT_multiview_texture_multisample", 36) == 0) { _GL_EXT_multiview_texture_multisample = true; continue; }
+		else if(!_GL_EXT_multiview_timer_query && strncmp(cur_ext, "GL_EXT_multiview_timer_query", 28) == 0) { _GL_EXT_multiview_timer_query = true; continue; }
+		else if(!_GL_EXT_post_depth_coverage && strncmp(cur_ext, "GL_EXT_post_depth_coverage", 26) == 0) { _GL_EXT_post_depth_coverage = true; continue; }
+		else if(!_GL_EXT_shader_framebuffer_fetch && strncmp(cur_ext, "GL_EXT_shader_framebuffer_fetch", 31) == 0) { _GL_EXT_shader_framebuffer_fetch = true; continue; }
+		else if(!_GL_EXT_shader_integer_mix && strncmp(cur_ext, "GL_EXT_shader_integer_mix", 25) == 0) { _GL_EXT_shader_integer_mix = true; continue; }
+		else if(!_GL_EXT_texture_compression_s3tc && strncmp(cur_ext, "GL_EXT_texture_compression_s3tc", 31) == 0) { _GL_EXT_texture_compression_s3tc = true; continue; }
+		else if(!_GL_EXT_texture_filter_minmax && strncmp(cur_ext, "GL_EXT_texture_filter_minmax", 28) == 0) { _GL_EXT_texture_filter_minmax = true; continue; }
+		else if(!_GL_EXT_texture_sRGB_R8 && strncmp(cur_ext, "GL_EXT_texture_sRGB_R8", 22) == 0) { _GL_EXT_texture_sRGB_R8 = true; continue; }
+		else if(!_GL_EXT_texture_sRGB_decode && strncmp(cur_ext, "GL_EXT_texture_sRGB_decode", 26) == 0) { _GL_EXT_texture_sRGB_decode = true; continue; }
+		else if(!_GL_EXT_texture_shadow_lod && strncmp(cur_ext, "GL_EXT_texture_shadow_lod", 25) == 0) { _GL_EXT_texture_shadow_lod = true; continue; }
+		else if(!_GL_INTEL_blackhole_render && strncmp(cur_ext, "GL_INTEL_blackhole_render", 25) == 0) { _GL_INTEL_blackhole_render = true; continue; }
+		else if(!_GL_INTEL_conservative_rasterization && strncmp(cur_ext, "GL_INTEL_conservative_rasterization", 35) == 0) { _GL_INTEL_conservative_rasterization = true; continue; }
+		else if(!_GL_MESA_framebuffer_flip_x && strncmp(cur_ext, "GL_MESA_framebuffer_flip_x", 26) == 0) { _GL_MESA_framebuffer_flip_x = true; continue; }
+		else if(!_GL_MESA_framebuffer_swap_xy && strncmp(cur_ext, "GL_MESA_framebuffer_swap_xy", 27) == 0) { _GL_MESA_framebuffer_swap_xy = true; continue; }
+		else if(!_GL_NV_blend_equation_advanced_coherent && strncmp(cur_ext, "GL_NV_blend_equation_advanced_coherent", 38) == 0) { _GL_NV_blend_equation_advanced_coherent = true; continue; }
+		else if(!_GL_NV_blend_minmax_factor && strncmp(cur_ext, "GL_NV_blend_minmax_factor", 25) == 0) { _GL_NV_blend_minmax_factor = true; continue; }
+		if(!_GL_NV_compute_shader_derivatives && strncmp(cur_ext, "GL_NV_compute_shader_derivatives", 32) == 0) { _GL_NV_compute_shader_derivatives = true; continue; }
+		else if(!_GL_NV_conservative_raster_pre_snap && strncmp(cur_ext, "GL_NV_conservative_raster_pre_snap", 34) == 0) { _GL_NV_conservative_raster_pre_snap = true; continue; }
+		else if(!_GL_NV_conservative_raster_underestimation && strncmp(cur_ext, "GL_NV_conservative_raster_underestimation", 41) == 0) { _GL_NV_conservative_raster_underestimation = true; continue; }
+		else if(!_GL_NV_fill_rectangle && strncmp(cur_ext, "GL_NV_fill_rectangle", 20) == 0) { _GL_NV_fill_rectangle = true; continue; }
+		else if(!_GL_NV_fragment_shader_barycentric && strncmp(cur_ext, "GL_NV_fragment_shader_barycentric", 33) == 0) { _GL_NV_fragment_shader_barycentric = true; continue; }
+		else if(!_GL_NV_fragment_shader_interlock && strncmp(cur_ext, "GL_NV_fragment_shader_interlock", 31) == 0) { _GL_NV_fragment_shader_interlock = true; continue; }
+		else if(!_GL_NV_geometry_shader_passthrough && strncmp(cur_ext, "GL_NV_geometry_shader_passthrough", 33) == 0) { _GL_NV_geometry_shader_passthrough = true; continue; }
+		else if(!_GL_NV_path_rendering_shared_edge && strncmp(cur_ext, "GL_NV_path_rendering_shared_edge", 32) == 0) { _GL_NV_path_rendering_shared_edge = true; continue; }
+		else if(!_GL_NV_primitive_shading_rate && strncmp(cur_ext, "GL_NV_primitive_shading_rate", 28) == 0) { _GL_NV_primitive_shading_rate = true; continue; }
+		else if(!_GL_NV_representative_fragment_test && strncmp(cur_ext, "GL_NV_representative_fragment_test", 34) == 0) { _GL_NV_representative_fragment_test = true; continue; }
+		else if(!_GL_NV_sample_mask_override_coverage && strncmp(cur_ext, "GL_NV_sample_mask_override_coverage", 35) == 0) { _GL_NV_sample_mask_override_coverage = true; continue; }
+		else if(!_GL_NV_shader_atomic_counters && strncmp(cur_ext, "GL_NV_shader_atomic_counters", 28) == 0) { _GL_NV_shader_atomic_counters = true; continue; }
+		else if(!_GL_NV_shader_atomic_float && strncmp(cur_ext, "GL_NV_shader_atomic_float", 25) == 0) { _GL_NV_shader_atomic_float = true; continue; }
+		else if(!_GL_NV_shader_atomic_float64 && strncmp(cur_ext, "GL_NV_shader_atomic_float64", 27) == 0) { _GL_NV_shader_atomic_float64 = true; continue; }
+		else if(!_GL_NV_shader_atomic_fp16_vector && strncmp(cur_ext, "GL_NV_shader_atomic_fp16_vector", 31) == 0) { _GL_NV_shader_atomic_fp16_vector = true; continue; }
+		else if(!_GL_NV_shader_atomic_int64 && strncmp(cur_ext, "GL_NV_shader_atomic_int64", 25) == 0) { _GL_NV_shader_atomic_int64 = true; continue; }
+		else if(!_GL_NV_shader_buffer_store && strncmp(cur_ext, "GL_NV_shader_buffer_store", 25) == 0) { _GL_NV_shader_buffer_store = true; continue; }
+		else if(!_GL_NV_shader_subgroup_partitioned && strncmp(cur_ext, "GL_NV_shader_subgroup_partitioned", 33) == 0) { _GL_NV_shader_subgroup_partitioned = true; continue; }
+		else if(!_GL_NV_shader_texture_footprint && strncmp(cur_ext, "GL_NV_shader_texture_footprint", 30) == 0) { _GL_NV_shader_texture_footprint = true; continue; }
+		else if(!_GL_NV_shader_thread_group && strncmp(cur_ext, "GL_NV_shader_thread_group", 25) == 0) { _GL_NV_shader_thread_group = true; continue; }
+		else if(!_GL_NV_shader_thread_shuffle && strncmp(cur_ext, "GL_NV_shader_thread_shuffle", 27) == 0) { _GL_NV_shader_thread_shuffle = true; continue; }
+		else if(!_GL_NV_stereo_view_rendering && strncmp(cur_ext, "GL_NV_stereo_view_rendering", 27) == 0) { _GL_NV_stereo_view_rendering = true; continue; }
+		else if(!_GL_NV_texture_rectangle_compressed && strncmp(cur_ext, "GL_NV_texture_rectangle_compressed", 34) == 0) { _GL_NV_texture_rectangle_compressed = true; continue; }
+		else if(!_GL_NV_uniform_buffer_unified_memory && strncmp(cur_ext, "GL_NV_uniform_buffer_unified_memory", 35) == 0) { _GL_NV_uniform_buffer_unified_memory = true; continue; }
+		else if(!_GL_NV_viewport_array2 && strncmp(cur_ext, "GL_NV_viewport_array2", 21) == 0) { _GL_NV_viewport_array2 = true; continue; }
+		else if(!_GL_OVR_multiview2 && strncmp(cur_ext, "GL_OVR_multiview2", 17) == 0) { _GL_OVR_multiview2 = true; continue; }
 	}
 	return (initialized = true);
+}
+
+bool checkExtension(const char* extension_name)
+{
+	if(!GLOBAL_DUMMY.isInitialized()) GLOBAL_DUMMY.init();
+	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent() || !axl::glfl::core::load())
+		return false;
+	using namespace axl::glfl::core::GL1;
+	using namespace axl::glfl::core::GL3;
+	bool gl_3_or_higher = false;
+	const char *str_ver = (const char*)glGetString(GL_VERSION);
+	if(!str_ver) return false;
+	gl_3_or_higher = (((int)str_ver[0] - '0') >= 3);
+	GLint i = 0, num_ext = 0, index = 0, last = 0;
+	const char *cur_ext = (const char*)0, *ext = (const char*)0;
+	if(gl_3_or_higher)
+	{
+		glGetIntegerv(GL_NUM_EXTENSIONS, &num_ext);
+		if(num_ext <= 0) return true;
+	}
+	else
+	{
+		ext = (const char*)glGetString(GL_EXTENSIONS);
+		if(!ext) return false;
+	}
+	bool done = false;
+	while(!done)
+	{
+		if(gl_3_or_higher)
+		{
+			if(i >= num_ext) break;
+			cur_ext = (const char*)glGetStringi(GL_EXTENSIONS, i++);
+			if(!cur_ext) break;
+		}
+		else
+		{
+			char c = ext[index];
+			while(c != '\0' && c != ' ')
+			{
+				c = ext[++index];
+			}
+			if(c == '\0') done = true;
+			const char* cur_ext = (const char*)&ext[last];
+			if(c == ' ')
+				last = ++index;
+		}
+		if(strcmp(cur_ext, extension_name) == 0)
+			return true;
+	}
+	return false;
 }
 
 } // namespace axl::glfl::core
