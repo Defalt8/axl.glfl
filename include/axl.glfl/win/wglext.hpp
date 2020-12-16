@@ -1,6 +1,7 @@
-#include <axl.glfl/lib.hpp>
-#include <Windows.h>
-#include <axl.glfl/gl.hpp>
+#pragma once
+#include <windows.h>
+#include "../lib.hpp"
+#include "../gl.hpp"
 
 namespace axl {
 namespace glfl {

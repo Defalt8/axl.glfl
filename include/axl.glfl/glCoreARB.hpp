@@ -1,5 +1,4 @@
 #pragma once
-
 #include "gl.hpp"
 #include "lib.hpp"
 
