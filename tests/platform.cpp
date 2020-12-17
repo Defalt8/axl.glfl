@@ -3,7 +3,6 @@
 #include <cstring>
 #include <axl.glfl/platform.h>
 #include <axl.glfl/lib.hpp>
-#include <axl.glfl/Dummy.hpp>
 #include "Assert.hpp"
 
 #if PLATFORM==PLATFORM_WINDOWS

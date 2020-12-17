@@ -342,8 +342,8 @@ void* _GetProcAddress(const char* proc_name)
 	{
 		if(::glXGetProcAddress) getter_proc = (void* (*)(const axl::glfl::GLubyte* procname))::glXGetProcAddress((const axl::glfl::GLubyte*)proc_name);
 		else if(::glXGetProcAddressARB) getter_proc = (void* (*)(const axl::glfl::GLubyte* procname))::glXGetProcAddressARB((const axl::glfl::GLubyte*)proc_name);
-        else return (void*)0;
-    }
+		else return (void*)0;
+	}
 	return (void*)getter_proc((const axl::glfl::GLubyte*)proc_name);
 }
 
@@ -353,214 +353,52 @@ namespace GLX {
 
 #define _LOAD(F) (!(F = (PFN::F)glXGetProcAddress((const GLubyte*)#F)) ? (F = (PFN::F)glXGetProcAddressARB((const GLubyte*)#F)) : (PFN::F)0)
 
-bool loadExtensions();
-
 bool load()
 {
-    static bool loaded = false;
-    if(loaded) return true;
-	glXGetProcAddressARB = (PFN::glXGetProcAddressARB)_GetProcAddress("glXGetProcAddressARB");
-	_GLX_ARB_get_proc_address = 0 != glXGetProcAddressARB;
-	glXGetProcAddress = (PFN::glXGetProcAddress)_GetProcAddress("glXGetProcAddress");
-	_GLX_VERSION_1_4 = 0 != glXGetProcAddress;
-	if(!glXGetProcAddressARB && !glXGetProcAddress) return false;
-
-	_LOAD(glXGetFBConfigs);
-	_LOAD(glXChooseFBConfig);
-	_LOAD(glXGetFBConfigAttrib);
-	_LOAD(glXGetVisualFromFBConfig);
-	_LOAD(glXCreateWindow);
-	_LOAD(glXDestroyWindow);
-	_LOAD(glXCreatePixmap);
-	_LOAD(glXDestroyPixmap);
-	_LOAD(glXCreatePbuffer);
-	_LOAD(glXDestroyPbuffer);
-	_LOAD(glXQueryDrawable);
-	_LOAD(glXCreateNewContext);
-	_LOAD(glXMakeContextCurrent);
-	_LOAD(glXGetCurrentReadDrawable);
-	_LOAD(glXQueryContext);
-	_LOAD(glXSelectEvent);
-	_LOAD(glXGetSelectedEvent);
-	_GLX_VERSION_1_3 = glXGetFBConfigs && glXChooseFBConfig && glXGetFBConfigAttrib && glXGetVisualFromFBConfig && glXCreateWindow && glXDestroyWindow && glXCreatePixmap && glXDestroyPixmap && glXCreatePbuffer && glXDestroyPbuffer && glXQueryDrawable && glXCreateNewContext && glXMakeContextCurrent && glXGetCurrentReadDrawable && glXQueryContext && glXSelectEvent && glXGetSelectedEvent;
-
-	_LOAD(glXCreateContextAttribsARB);
-	_GLX_ARB_create_context = 0 != glXCreateContextAttribsARB;
-
-	_LOAD(glXGetGPUIDsAMD);
-	_LOAD(glXGetGPUInfoAMD);
-	_LOAD(glXGetContextGPUIDAMD);
-	_LOAD(glXCreateAssociatedContextAMD);
-	_LOAD(glXCreateAssociatedContextAttribsAMD);
-	_LOAD(glXDeleteAssociatedContextAMD);
-	_LOAD(glXMakeAssociatedContextCurrentAMD);
-	_LOAD(glXGetCurrentAssociatedContextAMD);
-	_LOAD(glXBlitContextFramebufferAMD);
-	_GLX_AMD_gpu_association = glXGetGPUIDsAMD && glXGetGPUInfoAMD && glXGetContextGPUIDAMD && glXCreateAssociatedContextAMD && glXCreateAssociatedContextAttribsAMD && glXDeleteAssociatedContextAMD && glXMakeAssociatedContextCurrentAMD && glXGetCurrentAssociatedContextAMD && glXBlitContextFramebufferAMD;
-
-	_LOAD(glXGetCurrentDisplayEXT);
-	_LOAD(glXQueryContextInfoEXT);
-	_LOAD(glXGetContextIDEXT);
-	_LOAD(glXImportContextEXT);
-	_LOAD(glXFreeContextEXT);
-	_GLX_EXT_import_context = glXGetCurrentDisplayEXT && glXQueryContextInfoEXT && glXGetContextIDEXT && glXImportContextEXT && glXFreeContextEXT;
-
-	_LOAD(glXSwapIntervalEXT);
-	_GLX_EXT_swap_control = 0 != glXSwapIntervalEXT;
-
-	_LOAD(glXBindTexImageEXT);
-	_LOAD(glXReleaseTexImageEXT);
-	_GLX_EXT_texture_from_pixmap = glXBindTexImageEXT && glXReleaseTexImageEXT;
-
-	_LOAD(glXGetAGPOffsetMESA);
-	_GLX_MESA_agp_offset = 0 != glXGetAGPOffsetMESA;
-
-	_LOAD(glXCopySubBufferMESA);
-	_GLX_MESA_copy_sub_buffer = 0 != glXCopySubBufferMESA;
-
-	_LOAD(glXCreateGLXPixmapMESA);
-	_GLX_MESA_pixmap_colormap = 0 != glXCreateGLXPixmapMESA;
-
-	_LOAD(glXQueryCurrentRendererIntegerMESA);
-	_LOAD(glXQueryCurrentRendererStringMESA);
-	_LOAD(glXQueryRendererIntegerMESA);
-	_LOAD(glXQueryRendererStringMESA);
-	_GLX_MESA_query_renderer = glXQueryCurrentRendererIntegerMESA && glXQueryCurrentRendererStringMESA && glXQueryRendererIntegerMESA && glXQueryRendererStringMESA;
-
-	_LOAD(glXReleaseBuffersMESA);
-	_GLX_MESA_release_buffers = 0 != glXReleaseBuffersMESA;
-
-	_LOAD(glXSet3DfxModeMESA);
-	_GLX_MESA_set_3dfx_mode = 0 != glXSet3DfxModeMESA;
-
-	_LOAD(glXGetSwapIntervalMESA);
-	_LOAD(glXSwapIntervalMESA);
-	_GLX_MESA_swap_control = glXGetSwapIntervalMESA && glXSwapIntervalMESA;
-
-	_LOAD(glXCopyBufferSubDataNV);
-	_LOAD(glXNamedCopyBufferSubDataNV);
-	_GLX_NV_copy_buffer = glXCopyBufferSubDataNV && glXNamedCopyBufferSubDataNV;
-
-	_LOAD(glXCopyImageSubDataNV);
-	_GLX_NV_copy_image = 0 != glXCopyImageSubDataNV;
-
-	_LOAD(glXDelayBeforeSwapNV);
-	_GLX_NV_delay_before_swap = 0 != glXDelayBeforeSwapNV;
-
-	_LOAD(glXEnumerateVideoDevicesNV);
-	_LOAD(glXBindVideoDeviceNV);
-	_GLX_NV_present_video = glXEnumerateVideoDevicesNV && glXBindVideoDeviceNV;
-
-	_LOAD(glXJoinSwapGroupNV);
-	_LOAD(glXBindSwapBarrierNV);
-	_LOAD(glXQuerySwapGroupNV);
-	_LOAD(glXQueryMaxSwapGroupsNV);
-	_LOAD(glXQueryFrameCountNV);
-	_LOAD(glXResetFrameCountNV);
-	_GLX_NV_swap_group = glXJoinSwapGroupNV && glXBindSwapBarrierNV && glXQuerySwapGroupNV && glXQueryMaxSwapGroupsNV && glXQueryFrameCountNV && glXResetFrameCountNV;
-
-	_LOAD(glXBindVideoCaptureDeviceNV);
-	_LOAD(glXEnumerateVideoCaptureDevicesNV);
-	_LOAD(glXLockVideoCaptureDeviceNV);
-	_LOAD(glXQueryVideoCaptureDeviceNV);
-	_LOAD(glXReleaseVideoCaptureDeviceNV);
-	_GLX_NV_video_capture = glXBindVideoCaptureDeviceNV && glXEnumerateVideoCaptureDevicesNV && glXLockVideoCaptureDeviceNV && glXQueryVideoCaptureDeviceNV && glXReleaseVideoCaptureDeviceNV;
-
-	_LOAD(glXGetVideoDeviceNV);
-	_LOAD(glXReleaseVideoDeviceNV);
-	_LOAD(glXBindVideoImageNV);
-	_LOAD(glXReleaseVideoImageNV);
-	_LOAD(glXSendPbufferToVideoNV);
-	_LOAD(glXGetVideoInfoNV);
-	_GLX_NV_video_out = glXGetVideoDeviceNV && glXReleaseVideoDeviceNV && glXBindVideoImageNV && glXReleaseVideoImageNV && glXSendPbufferToVideoNV && glXGetVideoInfoNV;
-
-	_LOAD(glXGetSyncValuesOML);
-	_LOAD(glXGetMscRateOML);
-	_LOAD(glXSwapBuffersMscOML);
-	_LOAD(glXWaitForMscOML);
-	_LOAD(glXWaitForSbcOML);
-	_GLX_OML_sync_control = glXGetSyncValuesOML && glXGetMscRateOML && glXSwapBuffersMscOML && glXWaitForMscOML && glXWaitForSbcOML;
-
-	#ifdef _DM_BUFFER_H_
-	_LOAD(glXAssociateDMPbufferSGIX);
-	_GLX_SGIX_dmbuffer = 0 != glXAssociateDMPbufferSGIX;
-	#endif // _DM_BUFFER_H_
-
-	_LOAD(glXGetFBConfigAttribSGIX);
-	_LOAD(glXChooseFBConfigSGIX);
-	_LOAD(glXCreateGLXPixmapWithConfigSGIX);
-	_LOAD(glXCreateContextWithConfigSGIX);
-	_LOAD(glXGetVisualFromFBConfigSGIX);
-	_LOAD(glXGetFBConfigFromVisualSGIX);
-	_GLX_SGIX_fbconfig = glXGetFBConfigAttribSGIX && glXChooseFBConfigSGIX && glXCreateGLXPixmapWithConfigSGIX && glXCreateContextWithConfigSGIX && glXGetVisualFromFBConfigSGIX && glXGetFBConfigFromVisualSGIX;
-
-	_LOAD(glXQueryHyperpipeNetworkSGIX);
-	_LOAD(glXHyperpipeConfigSGIX);
-	_LOAD(glXQueryHyperpipeConfigSGIX);
-	_LOAD(glXDestroyHyperpipeConfigSGIX);
-	_LOAD(glXBindHyperpipeSGIX);
-	_LOAD(glXQueryHyperpipeBestAttribSGIX);
-	_LOAD(glXHyperpipeAttribSGIX);
-	_LOAD(glXQueryHyperpipeAttribSGIX);
-	_GLX_SGIX_hyperpipe = glXQueryHyperpipeNetworkSGIX && glXHyperpipeConfigSGIX && glXQueryHyperpipeConfigSGIX && glXDestroyHyperpipeConfigSGIX && glXBindHyperpipeSGIX && glXQueryHyperpipeBestAttribSGIX && glXHyperpipeAttribSGIX && glXQueryHyperpipeAttribSGIX;
-
-	_LOAD(glXCreateGLXPbufferSGIX);
-	_LOAD(glXDestroyGLXPbufferSGIX);
-	_LOAD(glXQueryGLXPbufferSGIX);
-	_LOAD(glXSelectEventSGIX);
-	_LOAD(glXGetSelectedEventSGIX);
-	_GLX_SGIX_pbuffer = glXCreateGLXPbufferSGIX && glXDestroyGLXPbufferSGIX && glXQueryGLXPbufferSGIX && glXSelectEventSGIX && glXGetSelectedEventSGIX;
-
-	_LOAD(glXBindSwapBarrierSGIX);
-	_LOAD(glXQueryMaxSwapBarriersSGIX);
-	_GLX_SGIX_swap_barrier = glXBindSwapBarrierSGIX && glXQueryMaxSwapBarriersSGIX;
-
-	_LOAD(glXBindChannelToWindowSGIX);
-	_LOAD(glXChannelRectSGIX);
-	_LOAD(glXQueryChannelRectSGIX);
-	_LOAD(glXQueryChannelDeltasSGIX);
-	_LOAD(glXChannelRectSyncSGIX);
-	_GLX_SGIX_video_resize = glXBindChannelToWindowSGIX && glXChannelRectSGIX && glXQueryChannelRectSGIX && glXQueryChannelDeltasSGIX && glXChannelRectSyncSGIX;
-
-	#ifdef _VL_H
-	_LOAD(glXCreateGLXVideoSourceSGIX);
-	_LOAD(glXDestroyGLXVideoSourceSGIX);
-	_GLX_SGIX_video_source = glXCreateGLXVideoSourceSGIX && glXDestroyGLXVideoSourceSGIX;
-	#endif
-
-	_LOAD(glXCushionSGI);
-	_GLX_SGI_cushion = 0 != glXCushionSGI;
-
-	_LOAD(glXMakeCurrentReadSGI);
-	_LOAD(glXGetCurrentReadDrawableSGI);
-	_GLX_SGI_make_current_read = glXMakeCurrentReadSGI && glXGetCurrentReadDrawableSGI;
-
-	_LOAD(glXSwapIntervalSGI);
-	_GLX_SGI_swap_control = 0 != glXSwapIntervalSGI;
-
-	_LOAD(glXGetVideoSyncSGI);
-	_LOAD(glXWaitVideoSyncSGI);
-	_GLX_SGI_video_sync = glXGetVideoSyncSGI && glXWaitVideoSyncSGI;
-
-	_LOAD(glXGetTransparentIndexSUN);
-	_GLX_SUN_get_transparent_index = 0 != glXGetTransparentIndexSUN;
-
-	return (loaded = loadExtensions());
-}
-bool loadExtensions()
-{
-    static bool loaded = false;
-    if(loaded) return true;
+	static bool loaded = false;
+	if(loaded) return true;
 	if(!GLOBAL_DUMMY.isInitialized()) GLOBAL_DUMMY.init();
 	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent())
 		return false;
-    using namespace axl::glfl;
-    if(!GLX::glXQueryExtensionsString || !GLX::glXGetCurrentDisplay) return false;
-	Display* display = GLX::glXGetCurrentDisplay();
-    if(!display) return false;
-    GLint index = 0, last = 0;
+	Display *display = glXGetCurrentDisplay();
+	int version_major, version_minor;
+	if(!display || False == glXQueryVersion(display, &version_major, &version_minor)) return false;
+	if(!_GLX_ARB_get_proc_address)
+	{
+		glXGetProcAddressARB = (PFN::glXGetProcAddressARB)_GetProcAddress("glXGetProcAddressARB");
+		_GLX_ARB_get_proc_address = 0 != glXGetProcAddressARB;
+	}
+	if(!_GLX_VERSION_1_4 && (version_major >= 1 && version_minor >= 4))
+	{
+		glXGetProcAddress = (PFN::glXGetProcAddress)_GetProcAddress("glXGetProcAddress");
+		_GLX_VERSION_1_4 = 0 != glXGetProcAddress;
+	}
+	if(!glXGetProcAddressARB && !glXGetProcAddress) return false;
+
+	if(!_GLX_VERSION_1_3 && (version_major >= 1 && version_minor >= 3))
+	{
+		_LOAD(glXGetFBConfigs);
+		_LOAD(glXChooseFBConfig);
+		_LOAD(glXGetFBConfigAttrib);
+		_LOAD(glXGetVisualFromFBConfig);
+		_LOAD(glXCreateWindow);
+		_LOAD(glXDestroyWindow);
+		_LOAD(glXCreatePixmap);
+		_LOAD(glXDestroyPixmap);
+		_LOAD(glXCreatePbuffer);
+		_LOAD(glXDestroyPbuffer);
+		_LOAD(glXQueryDrawable);
+		_LOAD(glXCreateNewContext);
+		_LOAD(glXMakeContextCurrent);
+		_LOAD(glXGetCurrentReadDrawable);
+		_LOAD(glXQueryContext);
+		_LOAD(glXSelectEvent);
+		_LOAD(glXGetSelectedEvent);
+		_GLX_VERSION_1_3 = glXGetFBConfigs && glXChooseFBConfig && glXGetFBConfigAttrib && glXGetVisualFromFBConfig && glXCreateWindow && glXDestroyWindow && glXCreatePixmap && glXDestroyPixmap && glXCreatePbuffer && glXDestroyPbuffer && glXQueryDrawable && glXCreateNewContext && glXMakeContextCurrent && glXGetCurrentReadDrawable && glXQueryContext && glXSelectEvent && glXGetSelectedEvent;
+	}
+	GLint index = 0, last = 0;
 	const char *cur_ext = (const char*)0, *ext = (const char*)0;
-	ext = (const char*)GLX::glXQueryExtensionsString(display, 0);
+	ext = (const char*)glXQueryExtensionsString(display, 0);
 	if(!ext) return false;
 	bool done = false;
 	while(!done)
@@ -572,57 +410,490 @@ bool loadExtensions()
 		}
 		if(c == '\0') done = true;
 		const char* cur_ext = (const char*)&ext[last];
-        size_t len = (index - last);
+		const size_t len = (index - last);
 		if(c == ' ')
 			last = ++index;
-	    if(!_GLX_ARB_create_context_no_error && strncmp(cur_ext, "GLX_ARB_create_context_no_error", 31) == 0) { _GLX_ARB_create_context_no_error = true; continue; }
-	    else if(!_GLX_ARB_create_context_profile && strncmp(cur_ext, "GLX_ARB_create_context_profile", 30) == 0) { _GLX_ARB_create_context_profile = true; continue; }
-	    else if(!_GLX_ARB_create_context_robustness && strncmp(cur_ext, "GLX_ARB_create_context_robustness", 33) == 0) { _GLX_ARB_create_context_robustness = true; continue; }
-	    else if(!_GLX_ARB_fbconfig_float && strncmp(cur_ext, "GLX_ARB_fbconfig_float", 22) == 0) { _GLX_ARB_fbconfig_float = true; continue; }
-	    else if(!_GLX_ARB_framebuffer_sRGB && strncmp(cur_ext, "GLX_ARB_framebuffer_sRGB", 24) == 0) { _GLX_ARB_framebuffer_sRGB = true; continue; }
-	    else if(!_GLX_ARB_multisample && strncmp(cur_ext, "GLX_ARB_multisample", 19) == 0) { _GLX_ARB_multisample = true; continue; }
-	    else if(!_GLX_ARB_robustness_application_isolation && strncmp(cur_ext, "GLX_ARB_robustness_application_isolation", 40) == 0) { _GLX_ARB_robustness_application_isolation = true; continue; }
-	    else if(!_GLX_ARB_robustness_share_group_isolation && strncmp(cur_ext, "GLX_ARB_robustness_share_group_isolation", 40) == 0) { _GLX_ARB_robustness_share_group_isolation = true; continue; }
-	    else if(!_GLX_ARB_vertex_buffer_object && strncmp(cur_ext, "GLX_ARB_vertex_buffer_object", 28) == 0) { _GLX_ARB_vertex_buffer_object = true; continue; }
-	    else if(!_GLX_3DFX_multisample && strncmp(cur_ext, "GLX_3DFX_multisample", 20) == 0) { _GLX_3DFX_multisample = true; continue; }
-	    else if(!_GLX_EXT_buffer_age && strncmp(cur_ext, "GLX_EXT_buffer_age", 18) == 0) { _GLX_EXT_buffer_age = true; continue; }
-	    else if(!_GLX_EXT_context_priority && strncmp(cur_ext, "GLX_EXT_context_priority", 24) == 0) { _GLX_EXT_context_priority = true; continue; }
-	    else if(!_GLX_EXT_create_context_es2_profile && strncmp(cur_ext, "GLX_EXT_create_context_es2_profile", 34) == 0) { _GLX_EXT_create_context_es2_profile = true; continue; }
-	    else if(!_GLX_EXT_create_context_es_profile && strncmp(cur_ext, "GLX_EXT_create_context_es_profile", 33) == 0) { _GLX_EXT_create_context_es_profile = true; continue; }
-	    else if(!_GLX_EXT_fbconfig_packed_float && strncmp(cur_ext, "GLX_EXT_fbconfig_packed_float", 29) == 0) { _GLX_EXT_fbconfig_packed_float = true; continue; }
-	    else if(!_GLX_EXT_framebuffer_sRGB && strncmp(cur_ext, "GLX_EXT_framebuffer_sRGB", 24) == 0) { _GLX_EXT_framebuffer_sRGB = true; continue; }
-	    else if(!_GLX_EXT_get_drawable_type && strncmp(cur_ext, "GLX_EXT_get_drawable_type", 25) == 0) { _GLX_EXT_get_drawable_type = true; continue; }
-	    else if(!_GLX_EXT_libglvnd && strncmp(cur_ext, "GLX_EXT_libglvnd", 16) == 0) { _GLX_EXT_libglvnd = true; continue; }
-	    else if(!_GLX_EXT_no_config_context && strncmp(cur_ext, "GLX_EXT_no_config_context", 25) == 0) { _GLX_EXT_no_config_context = true; continue; }
-	    else if(!_GLX_EXT_stereo_tree && strncmp(cur_ext, "GLX_EXT_stereo_tree", 19) == 0) { _GLX_EXT_stereo_tree = true; continue; }
-	    else if(!_GLX_EXT_swap_control_tear && strncmp(cur_ext, "GLX_EXT_swap_control_tear", 25) == 0) { _GLX_EXT_swap_control_tear = true; continue; }
-	    else if(!_GLX_EXT_visual_info && strncmp(cur_ext, "GLX_EXT_visual_info", 19) == 0) { _GLX_EXT_visual_info = true; continue; }
-	    else if(!_GLX_EXT_visual_rating && strncmp(cur_ext, "GLX_EXT_visual_rating", 21) == 0) { _GLX_EXT_visual_rating = true; continue; }
-	    else if(!_GLX_INTEL_swap_event && strncmp(cur_ext, "GLX_INTEL_swap_event", 20) == 0) { _GLX_INTEL_swap_event = true; continue; }
-	    else if(!_GLX_NV_float_buffer && strncmp(cur_ext, "GLX_NV_float_buffer", 19) == 0) { _GLX_NV_float_buffer = true; continue; }
-	    else if(!_GLX_NV_multigpu_context && strncmp(cur_ext, "GLX_NV_multigpu_context", 23) == 0) { _GLX_NV_multigpu_context = true; continue; }
-	    else if(!_GLX_NV_multisample_coverage && strncmp(cur_ext, "GLX_NV_multisample_coverage", 27) == 0) { _GLX_NV_multisample_coverage = true; continue; }
-	    else if(!_GLX_NV_robustness_video_memory_purge && strncmp(cur_ext, "GLX_NV_robustness_video_memory_purge", 36) == 0) { _GLX_NV_robustness_video_memory_purge = true; continue; }
-	    else if(!_GLX_OML_swap_method && strncmp(cur_ext, "GLX_OML_swap_method", 19) == 0) { _GLX_OML_swap_method = true; continue; }
-	    else if(!_GLX_SGIS_blended_overlay && strncmp(cur_ext, "GLX_SGIS_blended_overlay", 24) == 0) { _GLX_SGIS_blended_overlay = true; continue; }
-	    else if(!_GLX_SGIS_multisample && strncmp(cur_ext, "GLX_SGIS_multisample", 20) == 0) { _GLX_SGIS_multisample = true; continue; }
-	    else if(!_GLX_SGIS_shared_multisample && strncmp(cur_ext, "GLX_SGIS_shared_multisample", 27) == 0) { _GLX_SGIS_shared_multisample = true; continue; }
-	    else if(!_GLX_SGIX_visual_select_group && strncmp(cur_ext, "GLX_SGIX_visual_select_group", 28) == 0) { _GLX_SGIX_visual_select_group = true; continue; }
-    }
-    loaded = true;
+		switch(len)
+		{
+			case 15:
+				if(!_GLX_SGI_cushion && strncmp(cur_ext, "GLX_SGI_cushion", 15) == 0)
+				{
+					_LOAD(glXCushionSGI);
+					_GLX_SGI_cushion = true;
+					continue;
+				}
+				break;
+			case 16:
+				if(!_GLX_NV_video_out && strncmp(cur_ext, "GLX_NV_video_out", 16) == 0)
+				{
+					_LOAD(glXGetVideoDeviceNV);
+					_LOAD(glXReleaseVideoDeviceNV);
+					_LOAD(glXBindVideoImageNV);
+					_LOAD(glXReleaseVideoImageNV);
+					_LOAD(glXSendPbufferToVideoNV);
+					_LOAD(glXGetVideoInfoNV);
+					_GLX_NV_video_out = true;
+					continue;
+				}
+				else if(!_GLX_SGIX_pbuffer && strncmp(cur_ext, "GLX_SGIX_pbuffer", 16) == 0)
+				{
+					_LOAD(glXCreateGLXPbufferSGIX);
+					_LOAD(glXDestroyGLXPbufferSGIX);
+					_LOAD(glXQueryGLXPbufferSGIX);
+					_LOAD(glXSelectEventSGIX);
+					_LOAD(glXGetSelectedEventSGIX);
+					_GLX_SGIX_pbuffer = true;
+					continue;
+				}
+				else if(!_GLX_EXT_libglvnd && strncmp(cur_ext, "GLX_EXT_libglvnd", 16) == 0)
+				{
+					_GLX_EXT_libglvnd = true;
+					continue;
+				}
+				break;
+			case 17:
+				if(!_GLX_NV_copy_image && strncmp(cur_ext, "GLX_NV_copy_image", 17) == 0)
+				{
+					_LOAD(glXCopyImageSubDataNV);
+					_GLX_NV_copy_image = true;
+					continue;
+				}
+				else if(!_GLX_NV_swap_group && strncmp(cur_ext, "GLX_NV_swap_group", 17) == 0)
+				{
+					_LOAD(glXJoinSwapGroupNV);
+					_LOAD(glXBindSwapBarrierNV);
+					_LOAD(glXQuerySwapGroupNV);
+					_LOAD(glXQueryMaxSwapGroupsNV);
+					_LOAD(glXQueryFrameCountNV);
+					_LOAD(glXResetFrameCountNV);
+					_GLX_NV_swap_group = true;
+					continue;
+				}
+				else if(!_GLX_SGIX_fbconfig && strncmp(cur_ext, "GLX_SGIX_fbconfig", 17) == 0)
+				{
+					_LOAD(glXGetFBConfigAttribSGIX);
+					_LOAD(glXChooseFBConfigSGIX);
+					_LOAD(glXCreateGLXPixmapWithConfigSGIX);
+					_LOAD(glXCreateContextWithConfigSGIX);
+					_LOAD(glXGetVisualFromFBConfigSGIX);
+					_LOAD(glXGetFBConfigFromVisualSGIX);
+					_GLX_SGIX_fbconfig = true;
+					continue;
+				}
+#ifdef _DM_BUFFER_H_
+				else if(!_GLX_SGIX_dmbuffer && strncmp(cur_ext, "GLX_SGIX_dmbuffer", 17) == 0)
+				{
+					_LOAD(glXAssociateDMPbufferSGIX);
+					_GLX_SGIX_dmbuffer = true;
+					continue;
+				}
+#endif
+				break;
+			case 18:
+				if(!_GLX_NV_copy_buffer && strncmp(cur_ext, "GLX_NV_copy_buffer", 18) == 0)
+				{
+					_LOAD(glXCopyBufferSubDataNV);
+					_LOAD(glXNamedCopyBufferSubDataNV);
+					_GLX_NV_copy_buffer = true;
+					continue;
+				}
+				else if(!_GLX_SGIX_hyperpipe && strncmp(cur_ext, "GLX_SGIX_hyperpipe", 18) == 0)
+				{
+					_LOAD(glXQueryHyperpipeNetworkSGIX);
+					_LOAD(glXHyperpipeConfigSGIX);
+					_LOAD(glXQueryHyperpipeConfigSGIX);
+					_LOAD(glXDestroyHyperpipeConfigSGIX);
+					_LOAD(glXBindHyperpipeSGIX);
+					_LOAD(glXQueryHyperpipeBestAttribSGIX);
+					_LOAD(glXHyperpipeAttribSGIX);
+					_LOAD(glXQueryHyperpipeAttribSGIX);
+					_GLX_SGIX_hyperpipe = true;
+					continue;
+				}
+				else if(!_GLX_SGI_video_sync && strncmp(cur_ext, "GLX_SGI_video_sync", 18) == 0)
+				{
+					_LOAD(glXGetVideoSyncSGI);
+					_LOAD(glXWaitVideoSyncSGI);
+					_GLX_SGI_video_sync = true;
+					continue;
+				}
+				else if(!_GLX_EXT_buffer_age && strncmp(cur_ext, "GLX_EXT_buffer_age", 18) == 0)
+				{
+					_GLX_EXT_buffer_age = true;
+					continue;
+				}
+				break;
+			case 19:
+				if(!_GLX_MESA_agp_offset && strncmp(cur_ext, "GLX_MESA_agp_offset", 19) == 0)
+				{
+					_LOAD(glXGetAGPOffsetMESA);
+					_GLX_MESA_agp_offset = true;
+					continue;
+				}
+				else if(!_GLX_ARB_multisample && strncmp(cur_ext, "GLX_ARB_multisample", 19) == 0)
+				{
+					_GLX_ARB_multisample = true;
+					continue;
+				}
+				else if(!_GLX_EXT_stereo_tree && strncmp(cur_ext, "GLX_EXT_stereo_tree", 19) == 0)
+				{
+					_GLX_EXT_stereo_tree = true;
+					continue;
+				}
+				else if(!_GLX_EXT_visual_info && strncmp(cur_ext, "GLX_EXT_visual_info", 19) == 0)
+				{
+					_GLX_EXT_visual_info = true;
+					continue;
+				}
+				else if(!_GLX_NV_float_buffer && strncmp(cur_ext, "GLX_NV_float_buffer", 19) == 0)
+				{
+					_GLX_NV_float_buffer = true;
+					continue;
+				}
+				else if(!_GLX_OML_swap_method && strncmp(cur_ext, "GLX_OML_swap_method", 19) == 0)
+				{
+					_GLX_OML_swap_method = true;
+					continue;
+				}
+				break;
+			case 20:
+				if(!_GLX_EXT_swap_control && strncmp(cur_ext, "GLX_EXT_swap_control", 20) == 0)
+				{
+					_LOAD(glXSwapIntervalEXT);
+					_GLX_EXT_swap_control = true;
+					continue;
+				}
+				else if(!_GLX_NV_present_video && strncmp(cur_ext, "GLX_NV_present_video", 20) == 0)
+				{
+					_LOAD(glXEnumerateVideoDevicesNV);
+					_LOAD(glXBindVideoDeviceNV);
+					_GLX_NV_present_video = true;
+					continue;
+				}
+				else if(!_GLX_NV_video_capture && strncmp(cur_ext, "GLX_NV_video_capture", 20) == 0)
+				{
+					_LOAD(glXBindVideoCaptureDeviceNV);
+					_LOAD(glXEnumerateVideoCaptureDevicesNV);
+					_LOAD(glXLockVideoCaptureDeviceNV);
+					_LOAD(glXQueryVideoCaptureDeviceNV);
+					_LOAD(glXReleaseVideoCaptureDeviceNV);
+					_GLX_NV_video_capture = true;
+					continue;
+				}
+				else if(!_GLX_OML_sync_control && strncmp(cur_ext, "GLX_OML_sync_control", 20) == 0)
+				{
+					_LOAD(glXGetSyncValuesOML);
+					_LOAD(glXGetMscRateOML);
+					_LOAD(glXSwapBuffersMscOML);
+					_LOAD(glXWaitForMscOML);
+					_LOAD(glXWaitForSbcOML);
+					_GLX_OML_sync_control = true;
+					continue;
+				}
+				else if(!_GLX_SGI_swap_control && strncmp(cur_ext, "GLX_SGI_swap_control", 20) == 0)
+				{
+					_LOAD(glXSwapIntervalSGI);
+					_GLX_SGI_swap_control = true;
+					continue;
+				}
+				else if(!_GLX_3DFX_multisample && strncmp(cur_ext, "GLX_3DFX_multisample", 20) == 0)
+				{
+					_GLX_3DFX_multisample = true;
+					continue;
+				}
+				else if(!_GLX_INTEL_swap_event && strncmp(cur_ext, "GLX_INTEL_swap_event", 20) == 0)
+				{
+					_GLX_INTEL_swap_event = true;
+					continue;
+				}
+				else if(!_GLX_SGIS_multisample && strncmp(cur_ext, "GLX_SGIS_multisample", 20) == 0)
+				{
+					_GLX_SGIS_multisample = true;
+					continue;
+				}
+				break;
+			case 21:
+				if(!_GLX_SGIX_swap_barrier && strncmp(cur_ext, "GLX_SGIX_swap_barrier", 21) == 0)
+				{
+					_LOAD(glXBindSwapBarrierSGIX);
+					_LOAD(glXQueryMaxSwapBarriersSGIX);
+					_GLX_SGIX_swap_barrier = true;
+					continue;
+				}
+				else if(!_GLX_SGIX_video_resize && strncmp(cur_ext, "GLX_SGIX_video_resize", 21) == 0)
+				{
+					_LOAD(glXBindChannelToWindowSGIX);
+					_LOAD(glXChannelRectSGIX);
+					_LOAD(glXQueryChannelRectSGIX);
+					_LOAD(glXQueryChannelDeltasSGIX);
+					_LOAD(glXChannelRectSyncSGIX);
+					_GLX_SGIX_video_resize = true;
+					continue;
+				}
+				else if(!_GLX_MESA_swap_control && strncmp(cur_ext, "GLX_MESA_swap_control", 21) == 0)
+				{
+					_LOAD(glXGetSwapIntervalMESA);
+					_LOAD(glXSwapIntervalMESA);
+					_GLX_MESA_swap_control = true;
+					continue;
+				}
+				else if(!_GLX_EXT_visual_rating && strncmp(cur_ext, "GLX_EXT_visual_rating", 21) == 0)
+				{
+					_GLX_EXT_visual_rating = true;
+					continue;
+				}
+#ifdef _VL_H
+				else if(!_GLX_SGIX_video_source && strncmp(cur_ext, "GLX_SGIX_video_source", 21) == 0)
+				{
+					_LOAD(glXCreateGLXVideoSourceSGIX);
+					_LOAD(glXDestroyGLXVideoSourceSGIX);
+					_GLX_SGIX_video_source = true;
+					continue;
+				}
+#endif
+				break;
+			case 22:
+				if(!_GLX_ARB_create_context && strncmp(cur_ext, "GLX_ARB_create_context", 22) == 0)
+				{
+					_LOAD(glXCreateContextAttribsARB);
+					_GLX_ARB_create_context = true;
+					continue;
+				}
+				else if(!_GLX_EXT_import_context && strncmp(cur_ext, "GLX_EXT_import_context", 22) == 0)
+				{
+					_LOAD(glXGetCurrentDisplayEXT);
+					_LOAD(glXQueryContextInfoEXT);
+					_LOAD(glXGetContextIDEXT);
+					_LOAD(glXImportContextEXT);
+					_LOAD(glXFreeContextEXT);
+					_GLX_EXT_import_context = true;
+					continue;
+				}
+				else if(!_GLX_MESA_set_3dfx_mode && strncmp(cur_ext, "GLX_MESA_set_3dfx_mode", 22) == 0)
+				{
+					_LOAD(glXSet3DfxModeMESA);
+					_GLX_MESA_set_3dfx_mode = true;
+					continue;
+				}
+				else if(!_GLX_ARB_fbconfig_float && strncmp(cur_ext, "GLX_ARB_fbconfig_float", 22) == 0)
+				{
+					_GLX_ARB_fbconfig_float = true;
+					continue;
+				}
+				break;
+			case 23:
+				if(!_GLX_AMD_gpu_association && strncmp(cur_ext, "GLX_AMD_gpu_association", 23) == 0)
+				{
+					_LOAD(glXGetGPUIDsAMD);
+					_LOAD(glXGetGPUInfoAMD);
+					_LOAD(glXGetContextGPUIDAMD);
+					_LOAD(glXCreateAssociatedContextAMD);
+					_LOAD(glXCreateAssociatedContextAttribsAMD);
+					_LOAD(glXDeleteAssociatedContextAMD);
+					_LOAD(glXMakeAssociatedContextCurrentAMD);
+					_LOAD(glXGetCurrentAssociatedContextAMD);
+					_LOAD(glXBlitContextFramebufferAMD);
+					_GLX_AMD_gpu_association = true;
+					continue;
+				}
+				else if(!_GLX_MESA_query_renderer && strncmp(cur_ext, "GLX_MESA_query_renderer", 23) == 0)
+				{
+					_LOAD(glXQueryCurrentRendererIntegerMESA);
+					_LOAD(glXQueryCurrentRendererStringMESA);
+					_LOAD(glXQueryRendererIntegerMESA);
+					_LOAD(glXQueryRendererStringMESA);
+					_GLX_MESA_query_renderer = true;
+					continue;
+				}
+				else if(!_GLX_NV_multigpu_context && strncmp(cur_ext, "GLX_NV_multigpu_context", 23) == 0)
+				{
+					_GLX_NV_multigpu_context = true;
+					continue;
+				}
+				break;
+			case 24: 
+				if(!_GLX_MESA_release_buffers && strncmp(cur_ext, "GLX_MESA_release_buffers", 24) == 0)
+				{
+					_LOAD(glXReleaseBuffersMESA);
+					_GLX_MESA_release_buffers = true;
+					continue;
+				}
+				else if(!_GLX_NV_delay_before_swap && strncmp(cur_ext, "GLX_NV_delay_before_swap", 24) == 0)
+				{
+					_LOAD(glXDelayBeforeSwapNV);
+					_GLX_NV_delay_before_swap = true;
+					continue;
+				}
+				else if(!_GLX_MESA_copy_sub_buffer && strncmp(cur_ext, "GLX_MESA_copy_sub_buffer", 24) == 0)
+				{
+					_LOAD(glXCopySubBufferMESA);
+					_GLX_MESA_copy_sub_buffer = true;
+					continue;
+				}
+				else if(!_GLX_MESA_pixmap_colormap && strncmp(cur_ext, "GLX_MESA_pixmap_colormap", 24) == 0)
+				{
+					_LOAD(glXCreateGLXPixmapMESA);
+					_GLX_MESA_pixmap_colormap = true;
+					continue;
+				}
+				else if(!_GLX_ARB_framebuffer_sRGB && strncmp(cur_ext, "GLX_ARB_framebuffer_sRGB", 24) == 0)
+				{
+					_GLX_ARB_framebuffer_sRGB = true;
+					continue;
+				}
+				else if(!_GLX_EXT_context_priority && strncmp(cur_ext, "GLX_EXT_context_priority", 24) == 0)
+				{
+					_GLX_EXT_context_priority = true;
+					continue;
+				}
+				else if(!_GLX_EXT_framebuffer_sRGB && strncmp(cur_ext, "GLX_EXT_framebuffer_sRGB", 24) == 0)
+				{
+					_GLX_EXT_framebuffer_sRGB = true;
+					continue;
+				}
+				else if(!_GLX_SGIS_blended_overlay && strncmp(cur_ext, "GLX_SGIS_blended_overlay", 24) == 0)
+				{
+					_GLX_SGIS_blended_overlay = true;
+					continue;
+				}
+				break;
+			case 25:
+				if(!_GLX_SGI_make_current_read && strncmp(cur_ext, "GLX_SGI_make_current_read", 25) == 0)
+				{
+					_LOAD(glXMakeCurrentReadSGI);
+					_LOAD(glXGetCurrentReadDrawableSGI);
+					_GLX_SGI_make_current_read = true;
+					continue;
+				}
+				else if(!_GLX_EXT_get_drawable_type && strncmp(cur_ext, "GLX_EXT_get_drawable_type", 25) == 0)
+				{
+					_GLX_EXT_get_drawable_type = true;
+					continue;
+				}
+				else if(!_GLX_EXT_no_config_context && strncmp(cur_ext, "GLX_EXT_no_config_context", 25) == 0)
+				{
+					_GLX_EXT_no_config_context = true;
+					continue;
+				}
+				else if(!_GLX_EXT_swap_control_tear && strncmp(cur_ext, "GLX_EXT_swap_control_tear", 25) == 0)
+				{
+					_GLX_EXT_swap_control_tear = true;
+					continue;
+				}
+				break;
+			case 27:
+				if(!_GLX_EXT_texture_from_pixmap && strncmp(cur_ext, "GLX_EXT_texture_from_pixmap", 27) == 0)
+				{
+					_LOAD(glXBindTexImageEXT);
+					_LOAD(glXReleaseTexImageEXT);
+					_GLX_EXT_texture_from_pixmap = true;
+					continue;
+				}
+				else if(!_GLX_NV_multisample_coverage && strncmp(cur_ext, "GLX_NV_multisample_coverage", 27) == 0)
+				{
+					_GLX_NV_multisample_coverage = true;
+					continue;
+				}
+				else if(!_GLX_SGIS_shared_multisample && strncmp(cur_ext, "GLX_SGIS_shared_multisample", 27) == 0)
+				{
+					_GLX_SGIS_shared_multisample = true;
+					continue;
+				}
+				break;
+			case 29: 
+				if(!_GLX_SUN_get_transparent_index && strncmp(cur_ext, "GLX_SUN_get_transparent_index", 29) == 0)
+				{
+					_LOAD(glXGetTransparentIndexSUN);
+					_GLX_SUN_get_transparent_index = true;
+					continue;
+				}
+				else if(!_GLX_EXT_fbconfig_packed_float && strncmp(cur_ext, "GLX_EXT_fbconfig_packed_float", 29) == 0)
+				{
+					_GLX_EXT_fbconfig_packed_float = true;
+					continue;
+				}
+				break;
+			case 28:
+				if(!_GLX_ARB_vertex_buffer_object && strncmp(cur_ext, "GLX_ARB_vertex_buffer_object", 28) == 0)
+				{
+					_GLX_ARB_vertex_buffer_object = true;
+					continue;
+				}
+				else if(!_GLX_SGIX_visual_select_group && strncmp(cur_ext, "GLX_SGIX_visual_select_group", 28) == 0)
+				{
+					_GLX_SGIX_visual_select_group = true;
+					continue;
+				}
+				break;
+			case 30:
+				if(!_GLX_ARB_create_context_profile && strncmp(cur_ext, "GLX_ARB_create_context_profile", 30) == 0)
+				{
+					_GLX_ARB_create_context_profile = true;
+					continue;
+				}
+				break;
+			case 31:
+				if(!_GLX_ARB_create_context_no_error && strncmp(cur_ext, "GLX_ARB_create_context_no_error", 31) == 0)
+				{
+					_GLX_ARB_create_context_no_error = true;
+					continue;
+				}
+				break;
+			case 33:
+				if(!_GLX_ARB_create_context_robustness && strncmp(cur_ext, "GLX_ARB_create_context_robustness", 33) == 0)
+				{
+					_GLX_ARB_create_context_robustness = true;
+					continue;
+				}
+				else if(!_GLX_EXT_create_context_es_profile && strncmp(cur_ext, "GLX_EXT_create_context_es_profile", 33) == 0)
+				{
+					_GLX_EXT_create_context_es_profile = true;
+					continue;
+				}
+				break;
+			case 34:
+				if(!_GLX_EXT_create_context_es2_profile && strncmp(cur_ext, "GLX_EXT_create_context_es2_profile", 34) == 0)
+				{
+					_GLX_EXT_create_context_es2_profile = true;
+					continue;
+				}
+				break;
+			case 36:
+				if(!_GLX_NV_robustness_video_memory_purge && strncmp(cur_ext, "GLX_NV_robustness_video_memory_purge", 36) == 0)
+				{
+					_GLX_NV_robustness_video_memory_purge = true;
+					continue;
+				}
+				break;
+			case 40:
+				if(!_GLX_ARB_robustness_application_isolation && strncmp(cur_ext, "GLX_ARB_robustness_application_isolation", 40) == 0)
+				{
+					_GLX_ARB_robustness_application_isolation = true;
+					continue;
+				}
+				else if(!_GLX_ARB_robustness_share_group_isolation && strncmp(cur_ext, "GLX_ARB_robustness_share_group_isolation", 40) == 0)
+				{
+					_GLX_ARB_robustness_share_group_isolation = true;
+					continue;
+				}
+				break;
+		}
+	}
+	loaded = true;
 	return true;   
 }
 
 bool checkExtension(const char* extension_name)
 {
-    using namespace axl::glfl;
-    if(!GLX::load() || !GLX::glXQueryExtensionsString || !GLX::glXGetCurrentDisplay) return false;
+	using namespace axl::glfl;
+	if(!GLX::glXQueryExtensionsString || !GLX::glXGetCurrentDisplay) return false;
 	Display* display = GLX::glXGetCurrentDisplay();
-    if(!display) return false;
-    GLint index = 0, last = 0;
+	if(!display) return false;
+	GLint index = 0, last = 0;
 	const char *cur_ext = (const char*)0, *ext = (const char*)0;
 	ext = (const char*)GLX::glXQueryExtensionsString(display, 0);
 	if(!ext) return false;
+	const size_t ext_len = strlen(extension_name);
 	bool done = false;
 	while(!done)
 	{
@@ -633,9 +904,10 @@ bool checkExtension(const char* extension_name)
 		}
 		if(c == '\0') done = true;
 		const char* cur_ext = (const char*)&ext[last];
+		const size_t len = index - last;
 		if(c == ' ')
 			last = ++index;
-		if(strcmp(cur_ext, extension_name) == 0)
+		if(len == ext_len && strncmp(cur_ext, extension_name, ext_len) == 0)
 			return true;
 	}
 	return false;
