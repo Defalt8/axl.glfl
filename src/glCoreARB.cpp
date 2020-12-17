@@ -1,4 +1,4 @@
-#include <string.h>
+#include <cstring>
 #include <axl.glfl/platform.h>
 
 #if PLATFORM==PLATFORM_WINDOWS
@@ -11,15 +11,12 @@
 #	define LOAD_GLPROC_ALT(Name) Name = (PFN::Name)GetProcAddress(GLMODULE, #Name)
 #elif PLATFORM==PLATFORM_LINUX
 #	include <axl.glfl/lib.hpp>
-#	include <axl.glfl/gl.hpp>
-using namespace axl::glfl;
-#	define __gl_h_ 1
-#	include <GL/glx.h>
-#	include <X11/Xlib.h>
+#	include <axl.glfl/linux/glx.hpp>
+#	include <axl.glfl/linux/glxext.hpp>
 #	include <axl.glfl/glCoreARB.hpp>
 #	include <axl.glfl/Dummy.hpp>
-#	define LOAD_GLPROC(Name) Name = (PFN::Name)glXGetProcAddress((const GLubyte*)#Name)
-#	define LOAD_GLPROC_ALT(Name) Name = (PFN::Name)glXGetProcAddress((const GLubyte*)#Name)
+#	define LOAD_GLPROC(Name) Name = (!(Name = (PFN::Name)axl::glfl::GLX::glXGetProcAddress((const GLubyte*)#Name)) ? (Name = (PFN::Name)axl::glfl::GLX::glXGetProcAddressARB((const GLubyte*)#Name)) : Name)
+#	define LOAD_GLPROC_ALT(Name) Name = (PFN::Name)axl::glfl::GLX::glXGetProcAddressARB((const GLubyte*)#Name)
 #else
 #	error("Unsupported platform!")
 #endif
@@ -2388,7 +2385,7 @@ bool load()
 	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent() || !(GLMODULE = LoadLibraryW(L"opengl32.dll")))
 		return false;
 #elif PLATFORM==PLATFORM_LINUX
-	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent() || !GLOBAL_DUMMY.makeCurrent() || !glXGetProcAddress)
+	if(!GLOBAL_DUMMY.isInitialized() || !GLOBAL_DUMMY.makeCurrent() || !GLOBAL_DUMMY.makeCurrent() || !GLX::load() || (!GLX::glXGetProcAddress && !GLX::glXGetProcAddressARB))
 		return false;
 #endif
 	{

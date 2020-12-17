@@ -1,8 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <axl.glfl/platform.h>
 #include <axl.glfl/lib.hpp>
+#include <axl.glfl/Dummy.hpp>
 #include "Assert.hpp"
 
 #if PLATFORM==PLATFORM_WINDOWS

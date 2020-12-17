@@ -2,8 +2,6 @@
 #include "../lib.hpp"
 #include "glx.hpp"
 
-#define _DECL(F) AXLGLFLAPI PFN::F F
-
 namespace axl {
 namespace glfl {
 namespace GLX {
@@ -86,23 +84,23 @@ typedef int ( *glXQueryContext) (Display *dpy, GLXContext ctx, int attribute, in
 typedef void ( *glXSelectEvent) (Display *dpy, GLXDrawable draw, unsigned long event_mask);
 typedef void ( *glXGetSelectedEvent) (Display *dpy, GLXDrawable draw, unsigned long *event_mask);
 }
-_DECL(glXGetFBConfigs);
-_DECL(glXChooseFBConfig);
-_DECL(glXGetFBConfigAttrib);
-_DECL(glXGetVisualFromFBConfig);
-_DECL(glXCreateWindow);
-_DECL(glXDestroyWindow);
-_DECL(glXCreatePixmap);
-_DECL(glXDestroyPixmap);
-_DECL(glXCreatePbuffer);
-_DECL(glXDestroyPbuffer);
-_DECL(glXQueryDrawable);
-_DECL(glXCreateNewContext);
-_DECL(glXMakeContextCurrent);
-_DECL(glXGetCurrentReadDrawable);
-_DECL(glXQueryContext);
-_DECL(glXSelectEvent);
-_DECL(glXGetSelectedEvent);
+AXLGLFLAPI PFN::glXGetFBConfigs glXGetFBConfigs;
+AXLGLFLAPI PFN::glXChooseFBConfig glXChooseFBConfig;
+AXLGLFLAPI PFN::glXGetFBConfigAttrib glXGetFBConfigAttrib;
+AXLGLFLAPI PFN::glXGetVisualFromFBConfig glXGetVisualFromFBConfig;
+AXLGLFLAPI PFN::glXCreateWindow glXCreateWindow;
+AXLGLFLAPI PFN::glXDestroyWindow glXDestroyWindow;
+AXLGLFLAPI PFN::glXCreatePixmap glXCreatePixmap;
+AXLGLFLAPI PFN::glXDestroyPixmap glXDestroyPixmap;
+AXLGLFLAPI PFN::glXCreatePbuffer glXCreatePbuffer;
+AXLGLFLAPI PFN::glXDestroyPbuffer glXDestroyPbuffer;
+AXLGLFLAPI PFN::glXQueryDrawable glXQueryDrawable;
+AXLGLFLAPI PFN::glXCreateNewContext glXCreateNewContext;
+AXLGLFLAPI PFN::glXMakeContextCurrent glXMakeContextCurrent;
+AXLGLFLAPI PFN::glXGetCurrentReadDrawable glXGetCurrentReadDrawable;
+AXLGLFLAPI PFN::glXQueryContext glXQueryContext;
+AXLGLFLAPI PFN::glXSelectEvent glXSelectEvent;
+AXLGLFLAPI PFN::glXGetSelectedEvent glXGetSelectedEvent;
 AXLGLFLAPI const bool& GLX_VERSION_1_3;
 //^ GLX_VERSION_1_3
 
@@ -113,7 +111,7 @@ typedef void ( *__GLXextFuncPtr)(void);
 namespace PFN {
 typedef __GLXextFuncPtr ( *glXGetProcAddress) (const GLubyte *procName);
 }
-_DECL(glXGetProcAddress);
+AXLGLFLAPI PFN::glXGetProcAddress glXGetProcAddress;
 AXLGLFLAPI const bool& GLX_VERSION_1_4;
 //^ GLX_VERSION_1_4
 
@@ -133,7 +131,7 @@ AXLGLFLCONSTMODIFIER GLconstant GLX_CONTEXT_FLAGS_ARB = 0x2094;
 namespace PFN {
 typedef GLXContext ( *glXCreateContextAttribsARB) (Display *dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int *attrib_list);
 }
-_DECL(glXCreateContextAttribsARB);
+AXLGLFLAPI PFN::glXCreateContextAttribsARB glXCreateContextAttribsARB;
 AXLGLFLAPI const bool& GLX_ARB_create_context;
 //^ GLX_ARB_create_context
 
@@ -172,7 +170,7 @@ AXLGLFLAPI const bool& GLX_ARB_framebuffer_sRGB;
 namespace PFN {
 typedef __GLXextFuncPtr ( *glXGetProcAddressARB) (const GLubyte *procName);
 }
-_DECL(glXGetProcAddressARB);
+AXLGLFLAPI PFN::glXGetProcAddressARB glXGetProcAddressARB;
 AXLGLFLAPI const bool& GLX_ARB_get_proc_address;
 //^ GLX_ARB_get_proc_address
 
@@ -225,15 +223,15 @@ typedef Bool ( *glXMakeAssociatedContextCurrentAMD) (GLXContext ctx);
 typedef GLXContext ( *glXGetCurrentAssociatedContextAMD) (void);
 typedef void ( *glXBlitContextFramebufferAMD) (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 }
-_DECL(glXGetGPUIDsAMD);
-_DECL(glXGetGPUInfoAMD);
-_DECL(glXGetContextGPUIDAMD);
-_DECL(glXCreateAssociatedContextAMD);
-_DECL(glXCreateAssociatedContextAttribsAMD);
-_DECL(glXDeleteAssociatedContextAMD);
-_DECL(glXMakeAssociatedContextCurrentAMD);
-_DECL(glXGetCurrentAssociatedContextAMD);
-_DECL(glXBlitContextFramebufferAMD);
+AXLGLFLAPI PFN::glXGetGPUIDsAMD glXGetGPUIDsAMD;
+AXLGLFLAPI PFN::glXGetGPUInfoAMD glXGetGPUInfoAMD;
+AXLGLFLAPI PFN::glXGetContextGPUIDAMD glXGetContextGPUIDAMD;
+AXLGLFLAPI PFN::glXCreateAssociatedContextAMD glXCreateAssociatedContextAMD;
+AXLGLFLAPI PFN::glXCreateAssociatedContextAttribsAMD glXCreateAssociatedContextAttribsAMD;
+AXLGLFLAPI PFN::glXDeleteAssociatedContextAMD glXDeleteAssociatedContextAMD;
+AXLGLFLAPI PFN::glXMakeAssociatedContextCurrentAMD glXMakeAssociatedContextCurrentAMD;
+AXLGLFLAPI PFN::glXGetCurrentAssociatedContextAMD glXGetCurrentAssociatedContextAMD;
+AXLGLFLAPI PFN::glXBlitContextFramebufferAMD glXBlitContextFramebufferAMD;
 AXLGLFLAPI const bool& GLX_AMD_gpu_association;
 //^ GLX_AMD_gpu_association
 
@@ -287,11 +285,11 @@ typedef GLXContextID ( *glXGetContextIDEXT) (const GLXContext context);
 typedef GLXContext ( *glXImportContextEXT) (Display *dpy, GLXContextID contextID);
 typedef void ( *glXFreeContextEXT) (Display *dpy, GLXContext context);
 }
-_DECL(glXGetCurrentDisplayEXT);
-_DECL(glXQueryContextInfoEXT);
-_DECL(glXGetContextIDEXT);
-_DECL(glXImportContextEXT);
-_DECL(glXFreeContextEXT);
+AXLGLFLAPI PFN::glXGetCurrentDisplayEXT glXGetCurrentDisplayEXT;
+AXLGLFLAPI PFN::glXQueryContextInfoEXT glXQueryContextInfoEXT;
+AXLGLFLAPI PFN::glXGetContextIDEXT glXGetContextIDEXT;
+AXLGLFLAPI PFN::glXImportContextEXT glXImportContextEXT;
+AXLGLFLAPI PFN::glXFreeContextEXT glXFreeContextEXT;
 AXLGLFLAPI const bool& GLX_EXT_import_context;
 //^ GLX_EXT_import_context
 
@@ -327,7 +325,7 @@ AXLGLFLCONSTMODIFIER GLconstant GLX_MAX_SWAP_INTERVAL_EXT = 0x20F2;
 namespace PFN {
 typedef void ( *glXSwapIntervalEXT) (Display *dpy, GLXDrawable drawable, int interval);
 }
-_DECL(glXSwapIntervalEXT);
+AXLGLFLAPI PFN::glXSwapIntervalEXT glXSwapIntervalEXT;
 AXLGLFLAPI const bool& GLX_EXT_swap_control;
 //^ GLX_EXT_swap_control
 
@@ -374,8 +372,8 @@ namespace PFN {
 typedef void ( *glXBindTexImageEXT) (Display *dpy, GLXDrawable drawable, int buffer, const int *attrib_list);
 typedef void ( *glXReleaseTexImageEXT) (Display *dpy, GLXDrawable drawable, int buffer);
 }
-_DECL(glXBindTexImageEXT);
-_DECL(glXReleaseTexImageEXT);
+AXLGLFLAPI PFN::glXBindTexImageEXT glXBindTexImageEXT;
+AXLGLFLAPI PFN::glXReleaseTexImageEXT glXReleaseTexImageEXT;
 AXLGLFLAPI const bool& GLX_EXT_texture_from_pixmap;
 //^ GLX_EXT_texture_from_pixmap
 
@@ -418,7 +416,7 @@ AXLGLFLAPI const bool& GLX_INTEL_swap_event;
 namespace PFN {
 typedef unsigned int ( *glXGetAGPOffsetMESA) (const void *pointer);
 }
-_DECL(glXGetAGPOffsetMESA);
+AXLGLFLAPI PFN::glXGetAGPOffsetMESA glXGetAGPOffsetMESA;
 AXLGLFLAPI const bool& GLX_MESA_agp_offset;
 //^ GLX_MESA_agp_offset
 
@@ -426,7 +424,7 @@ AXLGLFLAPI const bool& GLX_MESA_agp_offset;
 namespace PFN {
 typedef void ( *glXCopySubBufferMESA) (Display *dpy, GLXDrawable drawable, int x, int y, int width, int height);
 }
-_DECL(glXCopySubBufferMESA);
+AXLGLFLAPI PFN::glXCopySubBufferMESA glXCopySubBufferMESA;
 AXLGLFLAPI const bool& GLX_MESA_copy_sub_buffer;
 //^ GLX_MESA_copy_sub_buffer
 
@@ -434,7 +432,7 @@ AXLGLFLAPI const bool& GLX_MESA_copy_sub_buffer;
 namespace PFN {
 typedef GLXPixmap ( *glXCreateGLXPixmapMESA) (Display *dpy, XVisualInfo *visual, Pixmap pixmap, Colormap cmap);
 }
-_DECL(glXCreateGLXPixmapMESA);
+AXLGLFLAPI PFN::glXCreateGLXPixmapMESA glXCreateGLXPixmapMESA;
 AXLGLFLAPI const bool& GLX_MESA_pixmap_colormap;
 //^ GLX_MESA_pixmap_colormap
 
@@ -456,10 +454,10 @@ typedef const char *( *glXQueryCurrentRendererStringMESA) (int attribute);
 typedef Bool ( *glXQueryRendererIntegerMESA) (Display *dpy, int screen, int renderer, int attribute, unsigned int *value);
 typedef const char *( *glXQueryRendererStringMESA) (Display *dpy, int screen, int renderer, int attribute);
 }
-_DECL(glXQueryCurrentRendererIntegerMESA);
-_DECL(glXQueryCurrentRendererStringMESA);
-_DECL(glXQueryRendererIntegerMESA);
-_DECL(glXQueryRendererStringMESA);
+AXLGLFLAPI PFN::glXQueryCurrentRendererIntegerMESA glXQueryCurrentRendererIntegerMESA;
+AXLGLFLAPI PFN::glXQueryCurrentRendererStringMESA glXQueryCurrentRendererStringMESA;
+AXLGLFLAPI PFN::glXQueryRendererIntegerMESA glXQueryRendererIntegerMESA;
+AXLGLFLAPI PFN::glXQueryRendererStringMESA glXQueryRendererStringMESA;
 AXLGLFLAPI const bool& GLX_MESA_query_renderer;
 //^ GLX_MESA_query_renderer
 
@@ -467,7 +465,7 @@ AXLGLFLAPI const bool& GLX_MESA_query_renderer;
 namespace PFN {
 typedef Bool ( *glXReleaseBuffersMESA) (Display *dpy, GLXDrawable drawable);
 }
-_DECL(glXReleaseBuffersMESA);
+AXLGLFLAPI PFN::glXReleaseBuffersMESA glXReleaseBuffersMESA;
 AXLGLFLAPI const bool& GLX_MESA_release_buffers;
 //^ GLX_MESA_release_buffers
 
@@ -477,7 +475,7 @@ AXLGLFLCONSTMODIFIER GLconstant GLX_3DFX_FULLSCREEN_MODE_MESA = 0x2;
 namespace PFN {
 typedef GLboolean ( *glXSet3DfxModeMESA) (GLint mode);
 }
-_DECL(glXSet3DfxModeMESA);
+AXLGLFLAPI PFN::glXSet3DfxModeMESA glXSet3DfxModeMESA;
 AXLGLFLAPI const bool& GLX_MESA_set_3dfx_mode;
 //^ GLX_MESA_set_3dfx_mode
 
@@ -486,8 +484,8 @@ namespace PFN {
 typedef int ( *glXGetSwapIntervalMESA) (void);
 typedef int ( *glXSwapIntervalMESA) (unsigned int interval);
 }
-_DECL(glXGetSwapIntervalMESA);
-_DECL(glXSwapIntervalMESA);
+AXLGLFLAPI PFN::glXGetSwapIntervalMESA glXGetSwapIntervalMESA;
+AXLGLFLAPI PFN::glXSwapIntervalMESA glXSwapIntervalMESA;
 AXLGLFLAPI const bool& GLX_MESA_swap_control;
 //^ GLX_MESA_swap_control
 
@@ -496,8 +494,8 @@ namespace PFN {
 typedef void ( *glXCopyBufferSubDataNV) (Display *dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
 typedef void ( *glXNamedCopyBufferSubDataNV) (Display *dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
 }
-_DECL(glXCopyBufferSubDataNV);
-_DECL(glXNamedCopyBufferSubDataNV);
+AXLGLFLAPI PFN::glXCopyBufferSubDataNV glXCopyBufferSubDataNV;
+AXLGLFLAPI PFN::glXNamedCopyBufferSubDataNV glXNamedCopyBufferSubDataNV;
 AXLGLFLAPI const bool& GLX_NV_copy_buffer;
 //^ GLX_NV_copy_buffer
 
@@ -505,7 +503,7 @@ AXLGLFLAPI const bool& GLX_NV_copy_buffer;
 namespace PFN {
 typedef void ( *glXCopyImageSubDataNV) (Display *dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
 }
-_DECL(glXCopyImageSubDataNV);
+AXLGLFLAPI PFN::glXCopyImageSubDataNV glXCopyImageSubDataNV;
 AXLGLFLAPI const bool& GLX_NV_copy_image;
 //^ GLX_NV_copy_image
 
@@ -513,7 +511,7 @@ AXLGLFLAPI const bool& GLX_NV_copy_image;
 namespace PFN {
 typedef Bool ( *glXDelayBeforeSwapNV) (Display *dpy, GLXDrawable drawable, GLfloat seconds);
 }
-_DECL(glXDelayBeforeSwapNV);
+AXLGLFLAPI PFN::glXDelayBeforeSwapNV glXDelayBeforeSwapNV;
 AXLGLFLAPI const bool& GLX_NV_delay_before_swap;
 //^ GLX_NV_delay_before_swap
 
@@ -543,8 +541,8 @@ namespace PFN {
 typedef unsigned int *( *glXEnumerateVideoDevicesNV) (Display *dpy, int screen, int *nelements);
 typedef int ( *glXBindVideoDeviceNV) (Display *dpy, unsigned int video_slot, unsigned int video_device, const int *attrib_list);
 }
-_DECL(glXEnumerateVideoDevicesNV);
-_DECL(glXBindVideoDeviceNV);
+AXLGLFLAPI PFN::glXEnumerateVideoDevicesNV glXEnumerateVideoDevicesNV;
+AXLGLFLAPI PFN::glXBindVideoDeviceNV glXBindVideoDeviceNV;
 AXLGLFLAPI const bool& GLX_NV_present_video;
 //^ GLX_NV_present_video
 
@@ -562,12 +560,12 @@ typedef Bool ( *glXQueryMaxSwapGroupsNV) (Display *dpy, int screen, GLuint *maxG
 typedef Bool ( *glXQueryFrameCountNV) (Display *dpy, int screen, GLuint *count);
 typedef Bool ( *glXResetFrameCountNV) (Display *dpy, int screen);
 }
-_DECL(glXJoinSwapGroupNV);
-_DECL(glXBindSwapBarrierNV);
-_DECL(glXQuerySwapGroupNV);
-_DECL(glXQueryMaxSwapGroupsNV);
-_DECL(glXQueryFrameCountNV);
-_DECL(glXResetFrameCountNV);
+AXLGLFLAPI PFN::glXJoinSwapGroupNV glXJoinSwapGroupNV;
+AXLGLFLAPI PFN::glXBindSwapBarrierNV glXBindSwapBarrierNV;
+AXLGLFLAPI PFN::glXQuerySwapGroupNV glXQuerySwapGroupNV;
+AXLGLFLAPI PFN::glXQueryMaxSwapGroupsNV glXQueryMaxSwapGroupsNV;
+AXLGLFLAPI PFN::glXQueryFrameCountNV glXQueryFrameCountNV;
+AXLGLFLAPI PFN::glXResetFrameCountNV glXResetFrameCountNV;
 AXLGLFLAPI const bool& GLX_NV_swap_group;
 //^ GLX_NV_swap_group
 
@@ -583,11 +581,11 @@ typedef void ( *glXLockVideoCaptureDeviceNV) (Display *dpy, GLXVideoCaptureDevic
 typedef int ( *glXQueryVideoCaptureDeviceNV) (Display *dpy, GLXVideoCaptureDeviceNV device, int attribute, int *value);
 typedef void ( *glXReleaseVideoCaptureDeviceNV) (Display *dpy, GLXVideoCaptureDeviceNV device);
 }
-_DECL(glXBindVideoCaptureDeviceNV);
-_DECL(glXEnumerateVideoCaptureDevicesNV);
-_DECL(glXLockVideoCaptureDeviceNV);
-_DECL(glXQueryVideoCaptureDeviceNV);
-_DECL(glXReleaseVideoCaptureDeviceNV);
+AXLGLFLAPI PFN::glXBindVideoCaptureDeviceNV glXBindVideoCaptureDeviceNV;
+AXLGLFLAPI PFN::glXEnumerateVideoCaptureDevicesNV glXEnumerateVideoCaptureDevicesNV;
+AXLGLFLAPI PFN::glXLockVideoCaptureDeviceNV glXLockVideoCaptureDeviceNV;
+AXLGLFLAPI PFN::glXQueryVideoCaptureDeviceNV glXQueryVideoCaptureDeviceNV;
+AXLGLFLAPI PFN::glXReleaseVideoCaptureDeviceNV glXReleaseVideoCaptureDeviceNV;
 AXLGLFLAPI const bool& GLX_NV_video_capture;
 //^ GLX_NV_video_capture
 
@@ -611,12 +609,12 @@ typedef int ( *glXReleaseVideoImageNV) (Display *dpy, GLXPbuffer pbuf);
 typedef int ( *glXSendPbufferToVideoNV) (Display *dpy, GLXPbuffer pbuf, int iBufferType, unsigned long *pulCounterPbuffer, GLboolean bBlock);
 typedef int ( *glXGetVideoInfoNV) (Display *dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long *pulCounterOutputPbuffer, unsigned long *pulCounterOutputVideo);
 }
-_DECL(glXGetVideoDeviceNV);
-_DECL(glXReleaseVideoDeviceNV);
-_DECL(glXBindVideoImageNV);
-_DECL(glXReleaseVideoImageNV);
-_DECL(glXSendPbufferToVideoNV);
-_DECL(glXGetVideoInfoNV);
+AXLGLFLAPI PFN::glXGetVideoDeviceNV glXGetVideoDeviceNV;
+AXLGLFLAPI PFN::glXReleaseVideoDeviceNV glXReleaseVideoDeviceNV;
+AXLGLFLAPI PFN::glXBindVideoImageNV glXBindVideoImageNV;
+AXLGLFLAPI PFN::glXReleaseVideoImageNV glXReleaseVideoImageNV;
+AXLGLFLAPI PFN::glXSendPbufferToVideoNV glXSendPbufferToVideoNV;
+AXLGLFLAPI PFN::glXGetVideoInfoNV glXGetVideoInfoNV;
 AXLGLFLAPI const bool& GLX_NV_video_out;
 //^ GLX_NV_video_out
 
@@ -648,13 +646,13 @@ AXLGLFLAPI const bool& GLX_OML_sync_control;
 #elif defined( __VMS ) || defined(__sgi)
 #   include <inttypes.h>
 #elif defined(__SCO__) || defined(__USLC__)
-#   include <stdint.h>
+#   include <cstdint>
 #elif defined(__UNIXOS2__) || defined(__SOL64__)
 typedef long int int32_t;
 typedef long long int int64_t;
 typedef unsigned long long int uint64_t;
 #elif defined(_WIN32) && defined(__GNUC__)
-#   include <stdint.h>
+#   include <cstdint>
 #elif defined(_WIN32)
 typedef __int32 int32_t;
 typedef __int64 int64_t;
@@ -672,11 +670,11 @@ typedef int64_t ( *glXSwapBuffersMscOML) (Display *dpy, GLXDrawable drawable, in
 typedef Bool ( *glXWaitForMscOML) (Display *dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t *ust, int64_t *msc, int64_t *sbc);
 typedef Bool ( *glXWaitForSbcOML) (Display *dpy, GLXDrawable drawable, int64_t target_sbc, int64_t *ust, int64_t *msc, int64_t *sbc);
 }
-_DECL(glXGetSyncValuesOML);
-_DECL(glXGetMscRateOML);
-_DECL(glXSwapBuffersMscOML);
-_DECL(glXWaitForMscOML);
-_DECL(glXWaitForSbcOML);
+AXLGLFLAPI PFN::glXGetSyncValuesOML glXGetSyncValuesOML;
+AXLGLFLAPI PFN::glXGetMscRateOML glXGetMscRateOML;
+AXLGLFLAPI PFN::glXSwapBuffersMscOML glXSwapBuffersMscOML;
+AXLGLFLAPI PFN::glXWaitForMscOML glXWaitForMscOML;
+AXLGLFLAPI PFN::glXWaitForSbcOML glXWaitForSbcOML;
 AXLGLFLAPI const bool& GLX_OML_sync_control;
 //^ GLX_OML_sync_control
 
@@ -704,7 +702,7 @@ AXLGLFLCONSTMODIFIER GLconstant GLX_DIGITAL_MEDIA_PBUFFER_SGIX = 0x8024;
 namespace PFN {
 typedef Bool (*glXAssociateDMPbufferSGIX) (Display *dpy, GLXPbufferSGIX pbuffer, DMparams *params, DMbuffer dmbuffer);
 }
-_DECL(glXAssociateDMPbufferSGIX);
+AXLGLFLAPI PFN::glXAssociateDMPbufferSGIX glXAssociateDMPbufferSGIX;
 #endif // _DM_BUFFER_H_
 AXLGLFLAPI const bool& GLX_SGIX_dmbuffer;
 //^ GLX_SGIX_dmbuffer
@@ -729,12 +727,12 @@ typedef GLXContext ( *glXCreateContextWithConfigSGIX) (Display *dpy, GLXFBConfig
 typedef XVisualInfo *( *glXGetVisualFromFBConfigSGIX) (Display *dpy, GLXFBConfigSGIX config);
 typedef GLXFBConfigSGIX ( *glXGetFBConfigFromVisualSGIX) (Display *dpy, XVisualInfo *vis);
 }
-_DECL(glXGetFBConfigAttribSGIX);
-_DECL(glXChooseFBConfigSGIX);
-_DECL(glXCreateGLXPixmapWithConfigSGIX);
-_DECL(glXCreateContextWithConfigSGIX);
-_DECL(glXGetVisualFromFBConfigSGIX);
-_DECL(glXGetFBConfigFromVisualSGIX);
+AXLGLFLAPI PFN::glXGetFBConfigAttribSGIX glXGetFBConfigAttribSGIX;
+AXLGLFLAPI PFN::glXChooseFBConfigSGIX glXChooseFBConfigSGIX;
+AXLGLFLAPI PFN::glXCreateGLXPixmapWithConfigSGIX glXCreateGLXPixmapWithConfigSGIX;
+AXLGLFLAPI PFN::glXCreateContextWithConfigSGIX glXCreateContextWithConfigSGIX;
+AXLGLFLAPI PFN::glXGetVisualFromFBConfigSGIX glXGetVisualFromFBConfigSGIX;
+AXLGLFLAPI PFN::glXGetFBConfigFromVisualSGIX glXGetFBConfigFromVisualSGIX;
 AXLGLFLAPI const bool& GLX_SGIX_fbconfig;
 //^ GLX_SGIX_fbconfig
 
@@ -778,14 +776,14 @@ typedef int ( *glXQueryHyperpipeBestAttribSGIX) (Display *dpy, int timeSlice, in
 typedef int ( *glXHyperpipeAttribSGIX) (Display *dpy, int timeSlice, int attrib, int size, void *attribList);
 typedef int ( *glXQueryHyperpipeAttribSGIX) (Display *dpy, int timeSlice, int attrib, int size, void *returnAttribList);
 }
-_DECL(glXQueryHyperpipeNetworkSGIX);
-_DECL(glXHyperpipeConfigSGIX);
-_DECL(glXQueryHyperpipeConfigSGIX);
-_DECL(glXDestroyHyperpipeConfigSGIX);
-_DECL(glXBindHyperpipeSGIX);
-_DECL(glXQueryHyperpipeBestAttribSGIX);
-_DECL(glXHyperpipeAttribSGIX);
-_DECL(glXQueryHyperpipeAttribSGIX);
+AXLGLFLAPI PFN::glXQueryHyperpipeNetworkSGIX glXQueryHyperpipeNetworkSGIX;
+AXLGLFLAPI PFN::glXHyperpipeConfigSGIX glXHyperpipeConfigSGIX;
+AXLGLFLAPI PFN::glXQueryHyperpipeConfigSGIX glXQueryHyperpipeConfigSGIX;
+AXLGLFLAPI PFN::glXDestroyHyperpipeConfigSGIX glXDestroyHyperpipeConfigSGIX;
+AXLGLFLAPI PFN::glXBindHyperpipeSGIX glXBindHyperpipeSGIX;
+AXLGLFLAPI PFN::glXQueryHyperpipeBestAttribSGIX glXQueryHyperpipeBestAttribSGIX;
+AXLGLFLAPI PFN::glXHyperpipeAttribSGIX glXHyperpipeAttribSGIX;
+AXLGLFLAPI PFN::glXQueryHyperpipeAttribSGIX glXQueryHyperpipeAttribSGIX;
 AXLGLFLAPI const bool& GLX_SGIX_hyperpipe;
 //^ GLX_SGIX_hyperpipe
 
@@ -822,11 +820,11 @@ typedef void ( *glXQueryGLXPbufferSGIX) (Display *dpy, GLXPbufferSGIX pbuf, int 
 typedef void ( *glXSelectEventSGIX) (Display *dpy, GLXDrawable drawable, unsigned long mask);
 typedef void ( *glXGetSelectedEventSGIX) (Display *dpy, GLXDrawable drawable, unsigned long *mask);
 }
-_DECL(glXCreateGLXPbufferSGIX);
-_DECL(glXDestroyGLXPbufferSGIX);
-_DECL(glXQueryGLXPbufferSGIX);
-_DECL(glXSelectEventSGIX);
-_DECL(glXGetSelectedEventSGIX);
+AXLGLFLAPI PFN::glXCreateGLXPbufferSGIX glXCreateGLXPbufferSGIX;
+AXLGLFLAPI PFN::glXDestroyGLXPbufferSGIX glXDestroyGLXPbufferSGIX;
+AXLGLFLAPI PFN::glXQueryGLXPbufferSGIX glXQueryGLXPbufferSGIX;
+AXLGLFLAPI PFN::glXSelectEventSGIX glXSelectEventSGIX;
+AXLGLFLAPI PFN::glXGetSelectedEventSGIX glXGetSelectedEventSGIX;
 AXLGLFLAPI const bool& GLX_SGIX_pbuffer;
 //^ GLX_SGIX_pbuffer
 
@@ -835,8 +833,8 @@ namespace PFN {
 typedef void ( *glXBindSwapBarrierSGIX) (Display *dpy, GLXDrawable drawable, int barrier);
 typedef Bool ( *glXQueryMaxSwapBarriersSGIX) (Display *dpy, int screen, int *max);
 }
-_DECL(glXBindSwapBarrierSGIX);
-_DECL(glXQueryMaxSwapBarriersSGIX);
+AXLGLFLAPI PFN::glXBindSwapBarrierSGIX glXBindSwapBarrierSGIX;
+AXLGLFLAPI PFN::glXQueryMaxSwapBarriersSGIX glXQueryMaxSwapBarriersSGIX;
 AXLGLFLAPI const bool& GLX_SGIX_swap_barrier;
 //^ GLX_SGIX_swap_barrier
 
@@ -858,11 +856,11 @@ typedef int ( *glXQueryChannelRectSGIX) (Display *display, int screen, int chann
 typedef int ( *glXQueryChannelDeltasSGIX) (Display *display, int screen, int channel, int *x, int *y, int *w, int *h);
 typedef int ( *glXChannelRectSyncSGIX) (Display *display, int screen, int channel, GLenum synctype);
 }
-_DECL(glXBindChannelToWindowSGIX);
-_DECL(glXChannelRectSGIX);
-_DECL(glXQueryChannelRectSGIX);
-_DECL(glXQueryChannelDeltasSGIX);
-_DECL(glXChannelRectSyncSGIX);
+AXLGLFLAPI PFN::glXBindChannelToWindowSGIX glXBindChannelToWindowSGIX;
+AXLGLFLAPI PFN::glXChannelRectSGIX glXChannelRectSGIX;
+AXLGLFLAPI PFN::glXQueryChannelRectSGIX glXQueryChannelRectSGIX;
+AXLGLFLAPI PFN::glXQueryChannelDeltasSGIX glXQueryChannelDeltasSGIX;
+AXLGLFLAPI PFN::glXChannelRectSyncSGIX glXChannelRectSyncSGIX;
 AXLGLFLAPI const bool& GLX_SGIX_video_resize;
 //^ GLX_SGIX_video_resize
 
@@ -873,8 +871,8 @@ namespace PFN {
 typedef GLXVideoSourceSGIX ( *glXCreateGLXVideoSourceSGIX) (Display *display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode);
 typedef void ( *glXDestroyGLXVideoSourceSGIX) (Display *dpy, GLXVideoSourceSGIX glxvideosource);
 }
-_DECL(glXCreateGLXVideoSourceSGIX);
-_DECL(glXDestroyGLXVideoSourceSGIX);
+AXLGLFLAPI PFN::glXCreateGLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX;
+AXLGLFLAPI PFN::glXDestroyGLXVideoSourceSGIX glXDestroyGLXVideoSourceSGIX;
 #endif // _VL_H
 AXLGLFLAPI const bool& GLX_SGIX_video_source;
 //^ GLX_SGIX_video_source
@@ -888,7 +886,7 @@ AXLGLFLAPI const bool& GLX_SGIX_visual_select_group;
 namespace PFN {
 typedef void ( *glXCushionSGI) (Display *dpy, Window window, float cushion);
 }
-_DECL(glXCushionSGI);
+AXLGLFLAPI PFN::glXCushionSGI glXCushionSGI;
 AXLGLFLAPI const bool& GLX_SGI_cushion;
 //^ GLX_SGI_cushion
 
@@ -897,8 +895,8 @@ namespace PFN {
 typedef Bool ( *glXMakeCurrentReadSGI) (Display *dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
 typedef GLXDrawable ( *glXGetCurrentReadDrawableSGI) (void);
 }
-_DECL(glXMakeCurrentReadSGI);
-_DECL(glXGetCurrentReadDrawableSGI);
+AXLGLFLAPI PFN::glXMakeCurrentReadSGI glXMakeCurrentReadSGI;
+AXLGLFLAPI PFN::glXGetCurrentReadDrawableSGI glXGetCurrentReadDrawableSGI;
 AXLGLFLAPI const bool& GLX_SGI_make_current_read;
 //^ GLX_SGI_make_current_read
 
@@ -906,7 +904,7 @@ AXLGLFLAPI const bool& GLX_SGI_make_current_read;
 namespace PFN {
 typedef int ( *glXSwapIntervalSGI) (int interval);
 }
-_DECL(glXSwapIntervalSGI);
+AXLGLFLAPI PFN::glXSwapIntervalSGI glXSwapIntervalSGI;
 AXLGLFLAPI const bool& GLX_SGI_swap_control;
 //^ GLX_SGI_swap_control
 
@@ -915,8 +913,8 @@ namespace PFN {
 typedef int ( *glXGetVideoSyncSGI) (unsigned int *count);
 typedef int ( *glXWaitVideoSyncSGI) (int divisor, int remainder, unsigned int *count);
 }
-_DECL(glXGetVideoSyncSGI);
-_DECL(glXWaitVideoSyncSGI);
+AXLGLFLAPI PFN::glXGetVideoSyncSGI glXGetVideoSyncSGI;
+AXLGLFLAPI PFN::glXWaitVideoSyncSGI glXWaitVideoSyncSGI;
 AXLGLFLAPI const bool& GLX_SGI_video_sync;
 //^ GLX_SGI_video_sync
 
@@ -924,7 +922,7 @@ AXLGLFLAPI const bool& GLX_SGI_video_sync;
 namespace PFN {
 typedef Status ( *glXGetTransparentIndexSUN) (Display *dpy, Window overlay, Window underlay, unsigned long *pTransparentIndex);
 }
-_DECL(glXGetTransparentIndexSUN);
+AXLGLFLAPI PFN::glXGetTransparentIndexSUN glXGetTransparentIndexSUN;
 AXLGLFLAPI const bool& GLX_SUN_get_transparent_index;
 //^ GLX_SUN_get_transparent_index
 
