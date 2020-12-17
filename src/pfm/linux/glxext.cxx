@@ -351,7 +351,7 @@ namespace axl {
 namespace glfl {
 namespace GLX {
 
-#define _LOAD(F) (!(F = (PFN::F)glXGetProcAddress((const GLubyte*)#F)) ? (F = (PFN::F)glXGetProcAddressARB((const GLubyte*)#F)) : (PFN::F)0)
+#define LOAD_GLXPROC(F) (!(F = (PFN::F)glXGetProcAddress((const GLubyte*)#F)) ? (F = (PFN::F)glXGetProcAddressARB((const GLubyte*)#F)) : (PFN::F)0)
 
 bool load()
 {
@@ -377,23 +377,23 @@ bool load()
 
 	if(!_GLX_VERSION_1_3 && (version_major >= 1 && version_minor >= 3))
 	{
-		_LOAD(glXGetFBConfigs);
-		_LOAD(glXChooseFBConfig);
-		_LOAD(glXGetFBConfigAttrib);
-		_LOAD(glXGetVisualFromFBConfig);
-		_LOAD(glXCreateWindow);
-		_LOAD(glXDestroyWindow);
-		_LOAD(glXCreatePixmap);
-		_LOAD(glXDestroyPixmap);
-		_LOAD(glXCreatePbuffer);
-		_LOAD(glXDestroyPbuffer);
-		_LOAD(glXQueryDrawable);
-		_LOAD(glXCreateNewContext);
-		_LOAD(glXMakeContextCurrent);
-		_LOAD(glXGetCurrentReadDrawable);
-		_LOAD(glXQueryContext);
-		_LOAD(glXSelectEvent);
-		_LOAD(glXGetSelectedEvent);
+		LOAD_GLXPROC(glXGetFBConfigs);
+		LOAD_GLXPROC(glXChooseFBConfig);
+		LOAD_GLXPROC(glXGetFBConfigAttrib);
+		LOAD_GLXPROC(glXGetVisualFromFBConfig);
+		LOAD_GLXPROC(glXCreateWindow);
+		LOAD_GLXPROC(glXDestroyWindow);
+		LOAD_GLXPROC(glXCreatePixmap);
+		LOAD_GLXPROC(glXDestroyPixmap);
+		LOAD_GLXPROC(glXCreatePbuffer);
+		LOAD_GLXPROC(glXDestroyPbuffer);
+		LOAD_GLXPROC(glXQueryDrawable);
+		LOAD_GLXPROC(glXCreateNewContext);
+		LOAD_GLXPROC(glXMakeContextCurrent);
+		LOAD_GLXPROC(glXGetCurrentReadDrawable);
+		LOAD_GLXPROC(glXQueryContext);
+		LOAD_GLXPROC(glXSelectEvent);
+		LOAD_GLXPROC(glXGetSelectedEvent);
 		_GLX_VERSION_1_3 = glXGetFBConfigs && glXChooseFBConfig && glXGetFBConfigAttrib && glXGetVisualFromFBConfig && glXCreateWindow && glXDestroyWindow && glXCreatePixmap && glXDestroyPixmap && glXCreatePbuffer && glXDestroyPbuffer && glXQueryDrawable && glXCreateNewContext && glXMakeContextCurrent && glXGetCurrentReadDrawable && glXQueryContext && glXSelectEvent && glXGetSelectedEvent;
 	}
 	GLint index = 0, last = 0;
@@ -418,7 +418,7 @@ bool load()
 			case 15:
 				if(!_GLX_SGI_cushion && strncmp(cur_ext, "GLX_SGI_cushion", 15) == 0)
 				{
-					_LOAD(glXCushionSGI);
+					LOAD_GLXPROC(glXCushionSGI);
 					_GLX_SGI_cushion = true;
 					continue;
 				}
@@ -426,22 +426,22 @@ bool load()
 			case 16:
 				if(!_GLX_NV_video_out && strncmp(cur_ext, "GLX_NV_video_out", 16) == 0)
 				{
-					_LOAD(glXGetVideoDeviceNV);
-					_LOAD(glXReleaseVideoDeviceNV);
-					_LOAD(glXBindVideoImageNV);
-					_LOAD(glXReleaseVideoImageNV);
-					_LOAD(glXSendPbufferToVideoNV);
-					_LOAD(glXGetVideoInfoNV);
+					LOAD_GLXPROC(glXGetVideoDeviceNV);
+					LOAD_GLXPROC(glXReleaseVideoDeviceNV);
+					LOAD_GLXPROC(glXBindVideoImageNV);
+					LOAD_GLXPROC(glXReleaseVideoImageNV);
+					LOAD_GLXPROC(glXSendPbufferToVideoNV);
+					LOAD_GLXPROC(glXGetVideoInfoNV);
 					_GLX_NV_video_out = true;
 					continue;
 				}
 				else if(!_GLX_SGIX_pbuffer && strncmp(cur_ext, "GLX_SGIX_pbuffer", 16) == 0)
 				{
-					_LOAD(glXCreateGLXPbufferSGIX);
-					_LOAD(glXDestroyGLXPbufferSGIX);
-					_LOAD(glXQueryGLXPbufferSGIX);
-					_LOAD(glXSelectEventSGIX);
-					_LOAD(glXGetSelectedEventSGIX);
+					LOAD_GLXPROC(glXCreateGLXPbufferSGIX);
+					LOAD_GLXPROC(glXDestroyGLXPbufferSGIX);
+					LOAD_GLXPROC(glXQueryGLXPbufferSGIX);
+					LOAD_GLXPROC(glXSelectEventSGIX);
+					LOAD_GLXPROC(glXGetSelectedEventSGIX);
 					_GLX_SGIX_pbuffer = true;
 					continue;
 				}
@@ -454,36 +454,36 @@ bool load()
 			case 17:
 				if(!_GLX_NV_copy_image && strncmp(cur_ext, "GLX_NV_copy_image", 17) == 0)
 				{
-					_LOAD(glXCopyImageSubDataNV);
+					LOAD_GLXPROC(glXCopyImageSubDataNV);
 					_GLX_NV_copy_image = true;
 					continue;
 				}
 				else if(!_GLX_NV_swap_group && strncmp(cur_ext, "GLX_NV_swap_group", 17) == 0)
 				{
-					_LOAD(glXJoinSwapGroupNV);
-					_LOAD(glXBindSwapBarrierNV);
-					_LOAD(glXQuerySwapGroupNV);
-					_LOAD(glXQueryMaxSwapGroupsNV);
-					_LOAD(glXQueryFrameCountNV);
-					_LOAD(glXResetFrameCountNV);
+					LOAD_GLXPROC(glXJoinSwapGroupNV);
+					LOAD_GLXPROC(glXBindSwapBarrierNV);
+					LOAD_GLXPROC(glXQuerySwapGroupNV);
+					LOAD_GLXPROC(glXQueryMaxSwapGroupsNV);
+					LOAD_GLXPROC(glXQueryFrameCountNV);
+					LOAD_GLXPROC(glXResetFrameCountNV);
 					_GLX_NV_swap_group = true;
 					continue;
 				}
 				else if(!_GLX_SGIX_fbconfig && strncmp(cur_ext, "GLX_SGIX_fbconfig", 17) == 0)
 				{
-					_LOAD(glXGetFBConfigAttribSGIX);
-					_LOAD(glXChooseFBConfigSGIX);
-					_LOAD(glXCreateGLXPixmapWithConfigSGIX);
-					_LOAD(glXCreateContextWithConfigSGIX);
-					_LOAD(glXGetVisualFromFBConfigSGIX);
-					_LOAD(glXGetFBConfigFromVisualSGIX);
+					LOAD_GLXPROC(glXGetFBConfigAttribSGIX);
+					LOAD_GLXPROC(glXChooseFBConfigSGIX);
+					LOAD_GLXPROC(glXCreateGLXPixmapWithConfigSGIX);
+					LOAD_GLXPROC(glXCreateContextWithConfigSGIX);
+					LOAD_GLXPROC(glXGetVisualFromFBConfigSGIX);
+					LOAD_GLXPROC(glXGetFBConfigFromVisualSGIX);
 					_GLX_SGIX_fbconfig = true;
 					continue;
 				}
 #ifdef _DM_BUFFER_H_
 				else if(!_GLX_SGIX_dmbuffer && strncmp(cur_ext, "GLX_SGIX_dmbuffer", 17) == 0)
 				{
-					_LOAD(glXAssociateDMPbufferSGIX);
+					LOAD_GLXPROC(glXAssociateDMPbufferSGIX);
 					_GLX_SGIX_dmbuffer = true;
 					continue;
 				}
@@ -492,28 +492,28 @@ bool load()
 			case 18:
 				if(!_GLX_NV_copy_buffer && strncmp(cur_ext, "GLX_NV_copy_buffer", 18) == 0)
 				{
-					_LOAD(glXCopyBufferSubDataNV);
-					_LOAD(glXNamedCopyBufferSubDataNV);
+					LOAD_GLXPROC(glXCopyBufferSubDataNV);
+					LOAD_GLXPROC(glXNamedCopyBufferSubDataNV);
 					_GLX_NV_copy_buffer = true;
 					continue;
 				}
 				else if(!_GLX_SGIX_hyperpipe && strncmp(cur_ext, "GLX_SGIX_hyperpipe", 18) == 0)
 				{
-					_LOAD(glXQueryHyperpipeNetworkSGIX);
-					_LOAD(glXHyperpipeConfigSGIX);
-					_LOAD(glXQueryHyperpipeConfigSGIX);
-					_LOAD(glXDestroyHyperpipeConfigSGIX);
-					_LOAD(glXBindHyperpipeSGIX);
-					_LOAD(glXQueryHyperpipeBestAttribSGIX);
-					_LOAD(glXHyperpipeAttribSGIX);
-					_LOAD(glXQueryHyperpipeAttribSGIX);
+					LOAD_GLXPROC(glXQueryHyperpipeNetworkSGIX);
+					LOAD_GLXPROC(glXHyperpipeConfigSGIX);
+					LOAD_GLXPROC(glXQueryHyperpipeConfigSGIX);
+					LOAD_GLXPROC(glXDestroyHyperpipeConfigSGIX);
+					LOAD_GLXPROC(glXBindHyperpipeSGIX);
+					LOAD_GLXPROC(glXQueryHyperpipeBestAttribSGIX);
+					LOAD_GLXPROC(glXHyperpipeAttribSGIX);
+					LOAD_GLXPROC(glXQueryHyperpipeAttribSGIX);
 					_GLX_SGIX_hyperpipe = true;
 					continue;
 				}
 				else if(!_GLX_SGI_video_sync && strncmp(cur_ext, "GLX_SGI_video_sync", 18) == 0)
 				{
-					_LOAD(glXGetVideoSyncSGI);
-					_LOAD(glXWaitVideoSyncSGI);
+					LOAD_GLXPROC(glXGetVideoSyncSGI);
+					LOAD_GLXPROC(glXWaitVideoSyncSGI);
 					_GLX_SGI_video_sync = true;
 					continue;
 				}
@@ -526,7 +526,7 @@ bool load()
 			case 19:
 				if(!_GLX_MESA_agp_offset && strncmp(cur_ext, "GLX_MESA_agp_offset", 19) == 0)
 				{
-					_LOAD(glXGetAGPOffsetMESA);
+					LOAD_GLXPROC(glXGetAGPOffsetMESA);
 					_GLX_MESA_agp_offset = true;
 					continue;
 				}
@@ -559,40 +559,40 @@ bool load()
 			case 20:
 				if(!_GLX_EXT_swap_control && strncmp(cur_ext, "GLX_EXT_swap_control", 20) == 0)
 				{
-					_LOAD(glXSwapIntervalEXT);
+					LOAD_GLXPROC(glXSwapIntervalEXT);
 					_GLX_EXT_swap_control = true;
 					continue;
 				}
 				else if(!_GLX_NV_present_video && strncmp(cur_ext, "GLX_NV_present_video", 20) == 0)
 				{
-					_LOAD(glXEnumerateVideoDevicesNV);
-					_LOAD(glXBindVideoDeviceNV);
+					LOAD_GLXPROC(glXEnumerateVideoDevicesNV);
+					LOAD_GLXPROC(glXBindVideoDeviceNV);
 					_GLX_NV_present_video = true;
 					continue;
 				}
 				else if(!_GLX_NV_video_capture && strncmp(cur_ext, "GLX_NV_video_capture", 20) == 0)
 				{
-					_LOAD(glXBindVideoCaptureDeviceNV);
-					_LOAD(glXEnumerateVideoCaptureDevicesNV);
-					_LOAD(glXLockVideoCaptureDeviceNV);
-					_LOAD(glXQueryVideoCaptureDeviceNV);
-					_LOAD(glXReleaseVideoCaptureDeviceNV);
+					LOAD_GLXPROC(glXBindVideoCaptureDeviceNV);
+					LOAD_GLXPROC(glXEnumerateVideoCaptureDevicesNV);
+					LOAD_GLXPROC(glXLockVideoCaptureDeviceNV);
+					LOAD_GLXPROC(glXQueryVideoCaptureDeviceNV);
+					LOAD_GLXPROC(glXReleaseVideoCaptureDeviceNV);
 					_GLX_NV_video_capture = true;
 					continue;
 				}
 				else if(!_GLX_OML_sync_control && strncmp(cur_ext, "GLX_OML_sync_control", 20) == 0)
 				{
-					_LOAD(glXGetSyncValuesOML);
-					_LOAD(glXGetMscRateOML);
-					_LOAD(glXSwapBuffersMscOML);
-					_LOAD(glXWaitForMscOML);
-					_LOAD(glXWaitForSbcOML);
+					LOAD_GLXPROC(glXGetSyncValuesOML);
+					LOAD_GLXPROC(glXGetMscRateOML);
+					LOAD_GLXPROC(glXSwapBuffersMscOML);
+					LOAD_GLXPROC(glXWaitForMscOML);
+					LOAD_GLXPROC(glXWaitForSbcOML);
 					_GLX_OML_sync_control = true;
 					continue;
 				}
 				else if(!_GLX_SGI_swap_control && strncmp(cur_ext, "GLX_SGI_swap_control", 20) == 0)
 				{
-					_LOAD(glXSwapIntervalSGI);
+					LOAD_GLXPROC(glXSwapIntervalSGI);
 					_GLX_SGI_swap_control = true;
 					continue;
 				}
@@ -615,25 +615,25 @@ bool load()
 			case 21:
 				if(!_GLX_SGIX_swap_barrier && strncmp(cur_ext, "GLX_SGIX_swap_barrier", 21) == 0)
 				{
-					_LOAD(glXBindSwapBarrierSGIX);
-					_LOAD(glXQueryMaxSwapBarriersSGIX);
+					LOAD_GLXPROC(glXBindSwapBarrierSGIX);
+					LOAD_GLXPROC(glXQueryMaxSwapBarriersSGIX);
 					_GLX_SGIX_swap_barrier = true;
 					continue;
 				}
 				else if(!_GLX_SGIX_video_resize && strncmp(cur_ext, "GLX_SGIX_video_resize", 21) == 0)
 				{
-					_LOAD(glXBindChannelToWindowSGIX);
-					_LOAD(glXChannelRectSGIX);
-					_LOAD(glXQueryChannelRectSGIX);
-					_LOAD(glXQueryChannelDeltasSGIX);
-					_LOAD(glXChannelRectSyncSGIX);
+					LOAD_GLXPROC(glXBindChannelToWindowSGIX);
+					LOAD_GLXPROC(glXChannelRectSGIX);
+					LOAD_GLXPROC(glXQueryChannelRectSGIX);
+					LOAD_GLXPROC(glXQueryChannelDeltasSGIX);
+					LOAD_GLXPROC(glXChannelRectSyncSGIX);
 					_GLX_SGIX_video_resize = true;
 					continue;
 				}
 				else if(!_GLX_MESA_swap_control && strncmp(cur_ext, "GLX_MESA_swap_control", 21) == 0)
 				{
-					_LOAD(glXGetSwapIntervalMESA);
-					_LOAD(glXSwapIntervalMESA);
+					LOAD_GLXPROC(glXGetSwapIntervalMESA);
+					LOAD_GLXPROC(glXSwapIntervalMESA);
 					_GLX_MESA_swap_control = true;
 					continue;
 				}
@@ -645,8 +645,8 @@ bool load()
 #ifdef _VL_H
 				else if(!_GLX_SGIX_video_source && strncmp(cur_ext, "GLX_SGIX_video_source", 21) == 0)
 				{
-					_LOAD(glXCreateGLXVideoSourceSGIX);
-					_LOAD(glXDestroyGLXVideoSourceSGIX);
+					LOAD_GLXPROC(glXCreateGLXVideoSourceSGIX);
+					LOAD_GLXPROC(glXDestroyGLXVideoSourceSGIX);
 					_GLX_SGIX_video_source = true;
 					continue;
 				}
@@ -655,23 +655,23 @@ bool load()
 			case 22:
 				if(!_GLX_ARB_create_context && strncmp(cur_ext, "GLX_ARB_create_context", 22) == 0)
 				{
-					_LOAD(glXCreateContextAttribsARB);
+					LOAD_GLXPROC(glXCreateContextAttribsARB);
 					_GLX_ARB_create_context = true;
 					continue;
 				}
 				else if(!_GLX_EXT_import_context && strncmp(cur_ext, "GLX_EXT_import_context", 22) == 0)
 				{
-					_LOAD(glXGetCurrentDisplayEXT);
-					_LOAD(glXQueryContextInfoEXT);
-					_LOAD(glXGetContextIDEXT);
-					_LOAD(glXImportContextEXT);
-					_LOAD(glXFreeContextEXT);
+					LOAD_GLXPROC(glXGetCurrentDisplayEXT);
+					LOAD_GLXPROC(glXQueryContextInfoEXT);
+					LOAD_GLXPROC(glXGetContextIDEXT);
+					LOAD_GLXPROC(glXImportContextEXT);
+					LOAD_GLXPROC(glXFreeContextEXT);
 					_GLX_EXT_import_context = true;
 					continue;
 				}
 				else if(!_GLX_MESA_set_3dfx_mode && strncmp(cur_ext, "GLX_MESA_set_3dfx_mode", 22) == 0)
 				{
-					_LOAD(glXSet3DfxModeMESA);
+					LOAD_GLXPROC(glXSet3DfxModeMESA);
 					_GLX_MESA_set_3dfx_mode = true;
 					continue;
 				}
@@ -684,24 +684,24 @@ bool load()
 			case 23:
 				if(!_GLX_AMD_gpu_association && strncmp(cur_ext, "GLX_AMD_gpu_association", 23) == 0)
 				{
-					_LOAD(glXGetGPUIDsAMD);
-					_LOAD(glXGetGPUInfoAMD);
-					_LOAD(glXGetContextGPUIDAMD);
-					_LOAD(glXCreateAssociatedContextAMD);
-					_LOAD(glXCreateAssociatedContextAttribsAMD);
-					_LOAD(glXDeleteAssociatedContextAMD);
-					_LOAD(glXMakeAssociatedContextCurrentAMD);
-					_LOAD(glXGetCurrentAssociatedContextAMD);
-					_LOAD(glXBlitContextFramebufferAMD);
+					LOAD_GLXPROC(glXGetGPUIDsAMD);
+					LOAD_GLXPROC(glXGetGPUInfoAMD);
+					LOAD_GLXPROC(glXGetContextGPUIDAMD);
+					LOAD_GLXPROC(glXCreateAssociatedContextAMD);
+					LOAD_GLXPROC(glXCreateAssociatedContextAttribsAMD);
+					LOAD_GLXPROC(glXDeleteAssociatedContextAMD);
+					LOAD_GLXPROC(glXMakeAssociatedContextCurrentAMD);
+					LOAD_GLXPROC(glXGetCurrentAssociatedContextAMD);
+					LOAD_GLXPROC(glXBlitContextFramebufferAMD);
 					_GLX_AMD_gpu_association = true;
 					continue;
 				}
 				else if(!_GLX_MESA_query_renderer && strncmp(cur_ext, "GLX_MESA_query_renderer", 23) == 0)
 				{
-					_LOAD(glXQueryCurrentRendererIntegerMESA);
-					_LOAD(glXQueryCurrentRendererStringMESA);
-					_LOAD(glXQueryRendererIntegerMESA);
-					_LOAD(glXQueryRendererStringMESA);
+					LOAD_GLXPROC(glXQueryCurrentRendererIntegerMESA);
+					LOAD_GLXPROC(glXQueryCurrentRendererStringMESA);
+					LOAD_GLXPROC(glXQueryRendererIntegerMESA);
+					LOAD_GLXPROC(glXQueryRendererStringMESA);
 					_GLX_MESA_query_renderer = true;
 					continue;
 				}
@@ -714,25 +714,25 @@ bool load()
 			case 24: 
 				if(!_GLX_MESA_release_buffers && strncmp(cur_ext, "GLX_MESA_release_buffers", 24) == 0)
 				{
-					_LOAD(glXReleaseBuffersMESA);
+					LOAD_GLXPROC(glXReleaseBuffersMESA);
 					_GLX_MESA_release_buffers = true;
 					continue;
 				}
 				else if(!_GLX_NV_delay_before_swap && strncmp(cur_ext, "GLX_NV_delay_before_swap", 24) == 0)
 				{
-					_LOAD(glXDelayBeforeSwapNV);
+					LOAD_GLXPROC(glXDelayBeforeSwapNV);
 					_GLX_NV_delay_before_swap = true;
 					continue;
 				}
 				else if(!_GLX_MESA_copy_sub_buffer && strncmp(cur_ext, "GLX_MESA_copy_sub_buffer", 24) == 0)
 				{
-					_LOAD(glXCopySubBufferMESA);
+					LOAD_GLXPROC(glXCopySubBufferMESA);
 					_GLX_MESA_copy_sub_buffer = true;
 					continue;
 				}
 				else if(!_GLX_MESA_pixmap_colormap && strncmp(cur_ext, "GLX_MESA_pixmap_colormap", 24) == 0)
 				{
-					_LOAD(glXCreateGLXPixmapMESA);
+					LOAD_GLXPROC(glXCreateGLXPixmapMESA);
 					_GLX_MESA_pixmap_colormap = true;
 					continue;
 				}
@@ -760,8 +760,8 @@ bool load()
 			case 25:
 				if(!_GLX_SGI_make_current_read && strncmp(cur_ext, "GLX_SGI_make_current_read", 25) == 0)
 				{
-					_LOAD(glXMakeCurrentReadSGI);
-					_LOAD(glXGetCurrentReadDrawableSGI);
+					LOAD_GLXPROC(glXMakeCurrentReadSGI);
+					LOAD_GLXPROC(glXGetCurrentReadDrawableSGI);
 					_GLX_SGI_make_current_read = true;
 					continue;
 				}
@@ -784,8 +784,8 @@ bool load()
 			case 27:
 				if(!_GLX_EXT_texture_from_pixmap && strncmp(cur_ext, "GLX_EXT_texture_from_pixmap", 27) == 0)
 				{
-					_LOAD(glXBindTexImageEXT);
-					_LOAD(glXReleaseTexImageEXT);
+					LOAD_GLXPROC(glXBindTexImageEXT);
+					LOAD_GLXPROC(glXReleaseTexImageEXT);
 					_GLX_EXT_texture_from_pixmap = true;
 					continue;
 				}
@@ -803,7 +803,7 @@ bool load()
 			case 29: 
 				if(!_GLX_SUN_get_transparent_index && strncmp(cur_ext, "GLX_SUN_get_transparent_index", 29) == 0)
 				{
-					_LOAD(glXGetTransparentIndexSUN);
+					LOAD_GLXPROC(glXGetTransparentIndexSUN);
 					_GLX_SUN_get_transparent_index = true;
 					continue;
 				}
