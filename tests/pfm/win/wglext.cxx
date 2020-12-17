@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <axl.glfl/lib.hpp>
 #include <axl.glfl/win/wglext.hpp>
 #include "../../Assert.hpp"

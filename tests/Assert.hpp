@@ -1,5 +1,5 @@
 #pragma once
-#include <stdio.h>
+#include <cstdio>
 
 #define Assert(e) ++axl::Assert::_num_total_tests; ((e) ? (void)0 : axl::Assert::_assertionFailed(false, #e, __FILE__, __LINE__))
 #define Asserte(e) ++axl::Assert::_num_total_tests; ((e) ? (void)0 : axl::Assert::_assertionFailed(true, #e, __FILE__, __LINE__))

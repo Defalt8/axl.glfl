@@ -1,5 +1,5 @@
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <GL/glx.h>
 #include <X11/Xlib.h>
 #include <axl.glfl/Dummy.hpp>
