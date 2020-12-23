@@ -10,8 +10,8 @@
 #	include <axl.glfl/lib.hpp>
 #	include <axl.glfl/Dummy.hpp>
 #	include <axl.glfl/glCoreARB.hpp>
-#	define LOAD_GLPROC(Name) (!(Name = (PFN::Name)wglGetProcAddress(#Name)) ? (Name = (PFN::Name)GetProcAddress(GLMODULE, #Name)) : Name)
-#	define LOAD_GLPROC_ALT(Name) Name = (PFN::Name)GetProcAddress(GLMODULE, #Name)
+#	define LOAD_GLPROC(Name) (!(Name = (PFN::Name)GetProcAddress(GLMODULE, #Name)) ? LOAD_GLPROC_ALT(Name) : Name)
+#	define LOAD_GLPROC_ALT(Name) (Name = (PFN::Name)wglGetProcAddress(#Name))
 #elif PLATFORM==PLATFORM_LINUX
 #	include <axl.glfl/lib.hpp>
 #	include <axl.glfl/linux/glx.hpp>
@@ -3163,7 +3163,6 @@ bool load()
         }
 	}
 	{  // namespace GLARB
-		// using namespace axl::glfl::core::GLARB;
         bool gl_3_or_higher = false;
         const char *str_ver = (const char*)GL1::glGetString(GL1::GL_VERSION);
         if(!str_ver) return false;
@@ -3338,6 +3337,8 @@ bool load()
                         LOAD_GLPROC(glBufferPageCommitmentARB);
                         LOAD_GLPROC(glNamedBufferPageCommitmentEXT);
                         LOAD_GLPROC(glNamedBufferPageCommitmentARB);
+                        if(!glNamedBufferPageCommitmentARB && glNamedBufferPageCommitmentEXT)
+                            glNamedBufferPageCommitmentARB = (PFN::glNamedBufferPageCommitmentARB)glNamedBufferPageCommitmentEXT;
                         _GL_ARB_sparse_buffer = true;
                     }
                     else if(!GLNV::_GL_NV_fill_rectangle && strncmp(cur_ext, "GL_NV_fill_rectangle", 20) == 0) { GLNV::_GL_NV_fill_rectangle = true; }
