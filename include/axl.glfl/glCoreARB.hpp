@@ -5922,6 +5922,22 @@ AXLGLFLAPI const bool& GL_OVR_multiview2;
 
 } // namespace GLOVR
 
+namespace GL {
+using namespace axl::glfl::core::GL1;
+using namespace axl::glfl::core::GL2;
+using namespace axl::glfl::core::GL3;
+using namespace axl::glfl::core::GL4;
+using namespace axl::glfl::core::GLARB;
+using namespace axl::glfl::core::GLKHR;
+using namespace axl::glfl::core::GLAMD;
+using namespace axl::glfl::core::GLAPPLE;
+using namespace axl::glfl::core::GLEXT;
+using namespace axl::glfl::core::GLINTEL;
+using namespace axl::glfl::core::GLMESA;
+using namespace axl::glfl::core::GLNV;
+using namespace axl::glfl::core::GLOVR;
+}
+
 AXLGLFLAPI bool load();
 AXLGLFLAPI bool checkExtension(const char* extension_name);
 
