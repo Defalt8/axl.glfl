@@ -12,7 +12,7 @@ add_library( axl.glfl ${AXLGLFL_TYPE}
 	"glCoreARB.cpp"
 	"pfm.cpp"
 )
-target_include_directories( axl.glfl PUBLIC "${CMAKE_SOURCE_DIR}/include" )
+target_include_directories( axl.glfl PUBLIC "${PROJECT_SOURCE_DIR}/include" )
 target_compile_definitions( axl.glfl
 	PRIVATE AXLGLFL_BUILD=1
 	PRIVATE AXLGLFL_VERSION_MAJOR=${PROJECT_VERSION_MAJOR}
