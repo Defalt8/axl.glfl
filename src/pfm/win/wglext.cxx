@@ -284,7 +284,7 @@ bool load()
 			last = ++index;
 		switch(len)
 		{
-			case 13: if(!_WGL_I3D_gamma && strncmp(cur_ext, "WGL_I3D_gamma ", (len + 1)) == 0)
+			case 13: if(!_WGL_I3D_gamma && strncmp(cur_ext, "WGL_I3D_gamma", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetGammaTableParametersI3D);
 					LOAD_WGLPROC(wglSetGammaTableParametersI3D);
@@ -293,7 +293,7 @@ bool load()
 					_WGL_I3D_gamma = wglGetGammaTableParametersI3D && wglSetGammaTableParametersI3D && wglGetGammaTableI3D && wglSetGammaTableI3D;
 				}
 				break;
-			case 15: if(!_WGL_ARB_pbuffer && strncmp(cur_ext, "WGL_ARB_pbuffer ", (len + 1)) == 0)
+			case 15: if(!_WGL_ARB_pbuffer && strncmp(cur_ext, "WGL_ARB_pbuffer", len) == 0)
 				{
 					LOAD_WGLPROC(wglCreatePbufferARB);
 					LOAD_WGLPROC(wglGetPbufferDCARB);
@@ -302,7 +302,7 @@ bool load()
 					LOAD_WGLPROC(wglQueryPbufferARB);
 					_WGL_ARB_pbuffer = wglCreatePbufferARB && wglGetPbufferDCARB && wglReleasePbufferDCARB && wglDestroyPbufferARB && wglQueryPbufferARB;
 				}
-				else if(!_WGL_EXT_pbuffer && strncmp(cur_ext, "WGL_EXT_pbuffer ", (len + 1)) == 0)
+				else if(!_WGL_EXT_pbuffer && strncmp(cur_ext, "WGL_EXT_pbuffer", len) == 0)
 				{
 					LOAD_WGLPROC(wglCreatePbufferEXT);
 					LOAD_WGLPROC(wglGetPbufferDCEXT);
@@ -311,7 +311,7 @@ bool load()
 					LOAD_WGLPROC(wglQueryPbufferEXT);
 					_WGL_EXT_pbuffer = wglCreatePbufferEXT && wglGetPbufferDCEXT && wglReleasePbufferDCEXT && wglDestroyPbufferEXT && wglQueryPbufferEXT;
 				}
-				else if(!_WGL_I3D_genlock && strncmp(cur_ext, "WGL_I3D_genlock ", (len + 1)) == 0)
+				else if(!_WGL_I3D_genlock && strncmp(cur_ext, "WGL_I3D_genlock", len) == 0)
 				{
 					LOAD_WGLPROC(wglEnableGenlockI3D);
 					LOAD_WGLPROC(wglDisableGenlockI3D);
@@ -328,7 +328,7 @@ bool load()
 					_WGL_I3D_genlock = wglEnableGenlockI3D && wglDisableGenlockI3D && wglIsEnabledGenlockI3D && wglGenlockSourceI3D && wglGetGenlockSourceI3D && wglGenlockSourceEdgeI3D && wglGetGenlockSourceEdgeI3D && wglGenlockSampleRateI3D && wglGetGenlockSampleRateI3D && wglGenlockSourceDelayI3D && wglGetGenlockSourceDelayI3D && wglQueryGenlockMaxSourceDelayI3D;
 				}
 				break;
-			case 17: if(!_WGL_NV_DX_interop && strncmp(cur_ext, "WGL_NV_DX_interop ", (len + 1)) == 0)
+			case 17: if(!_WGL_NV_DX_interop && strncmp(cur_ext, "WGL_NV_DX_interop", len) == 0)
 				{
 					LOAD_WGLPROC(wglDXSetResourceShareHandleNV);
 					LOAD_WGLPROC(wglDXOpenDeviceNV);
@@ -340,12 +340,12 @@ bool load()
 					LOAD_WGLPROC(wglDXUnlockObjectsNV);
 					_WGL_NV_DX_interop = wglDXSetResourceShareHandleNV && wglDXOpenDeviceNV && wglDXCloseDeviceNV && wglDXRegisterObjectNV && wglDXUnregisterObjectNV && wglDXObjectAccessNV && wglDXLockObjectsNV && wglDXUnlockObjectsNV;
 				}
-				else if(!_WGL_NV_copy_image && strncmp(cur_ext, "WGL_NV_copy_image ", (len + 1)) == 0)
+				else if(!_WGL_NV_copy_image && strncmp(cur_ext, "WGL_NV_copy_image", len) == 0)
 				{
 					LOAD_WGLPROC(wglCopyImageSubDataNV);
 					_WGL_NV_copy_image = 0 != WGL_NV_copy_image;
 				}
-				else if(!_WGL_NV_swap_group && strncmp(cur_ext, "WGL_NV_swap_group ", (len + 1)) == 0)
+				else if(!_WGL_NV_swap_group && strncmp(cur_ext, "WGL_NV_swap_group", len) == 0)
 				{
 					LOAD_WGLPROC(wglJoinSwapGroupNV);
 					LOAD_WGLPROC(wglBindSwapBarrierNV);
@@ -356,14 +356,14 @@ bool load()
 					_WGL_NV_swap_group = wglJoinSwapGroupNV && wglBindSwapBarrierNV && wglQuerySwapGroupNV && wglQueryMaxSwapGroupsNV && wglQueryFrameCountNV && wglResetFrameCountNV;
 				}
 				break;
-			case 18: if(!_WGL_EXT_colorspace && strncmp(cur_ext, "WGL_EXT_colorspace ", (len + 1)) == 0) { _WGL_EXT_colorspace = true; }
-				else if(!_WGL_NV_DX_interop2 && strncmp(cur_ext, "WGL_NV_DX_interop2 ", (len + 1)) == 0) { _WGL_NV_DX_interop2 = true; }
+			case 18: if(!_WGL_EXT_colorspace && strncmp(cur_ext, "WGL_EXT_colorspace", len) == 0) { _WGL_EXT_colorspace = true; }
+				else if(!_WGL_NV_DX_interop2 && strncmp(cur_ext, "WGL_NV_DX_interop2", len) == 0) { _WGL_NV_DX_interop2 = true; }
 				break;
-			case 19: if(!_WGL_ARB_multisample && strncmp(cur_ext, "WGL_ARB_multisample ", (len + 1)) == 0) { _WGL_ARB_multisample = true; }
-				else if(!_WGL_EXT_depth_float && strncmp(cur_ext, "WGL_EXT_depth_float ", (len + 1)) == 0) { _WGL_EXT_depth_float = true; }
-				else if(!_WGL_EXT_multisample && strncmp(cur_ext, "WGL_EXT_multisample ", (len + 1)) == 0) { _WGL_EXT_multisample = true; }
-				else if(!_WGL_NV_float_buffer && strncmp(cur_ext, "WGL_NV_float_buffer ", (len + 1)) == 0) { _WGL_NV_float_buffer = true; }
-				else if(!_WGL_NV_gpu_affinity && strncmp(cur_ext, "WGL_NV_gpu_affinity ", (len + 1)) == 0)
+			case 19: if(!_WGL_ARB_multisample && strncmp(cur_ext, "WGL_ARB_multisample", len) == 0) { _WGL_ARB_multisample = true; }
+				else if(!_WGL_EXT_depth_float && strncmp(cur_ext, "WGL_EXT_depth_float", len) == 0) { _WGL_EXT_depth_float = true; }
+				else if(!_WGL_EXT_multisample && strncmp(cur_ext, "WGL_EXT_multisample", len) == 0) { _WGL_EXT_multisample = true; }
+				else if(!_WGL_NV_float_buffer && strncmp(cur_ext, "WGL_NV_float_buffer", len) == 0) { _WGL_NV_float_buffer = true; }
+				else if(!_WGL_NV_gpu_affinity && strncmp(cur_ext, "WGL_NV_gpu_affinity", len) == 0)
 				{
 					LOAD_WGLPROC(wglEnumGpusNV);
 					LOAD_WGLPROC(wglEnumGpuDevicesNV);
@@ -372,7 +372,7 @@ bool load()
 					LOAD_WGLPROC(wglDeleteDCNV);
 					_WGL_NV_gpu_affinity = wglEnumGpusNV && wglEnumGpuDevicesNV && wglCreateAffinityDCNV && wglEnumGpusFromAffinityDCNV && wglDeleteDCNV;
 				}
-				else if(!_WGL_NV_video_output && strncmp(cur_ext, "WGL_NV_video_output ", (len + 1)) == 0)
+				else if(!_WGL_NV_video_output && strncmp(cur_ext, "WGL_NV_video_output", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetVideoDeviceNV);
 					LOAD_WGLPROC(wglReleaseVideoDeviceNV);
@@ -383,28 +383,28 @@ bool load()
 					_WGL_NV_video_output = wglGetVideoDeviceNV && wglReleaseVideoDeviceNV && wglBindVideoImageNV && wglReleaseVideoImageNV && wglSendPbufferToVideoNV && wglGetVideoInfoNV;
 				}
 				break;
-			case 20: if(!_WGL_ARB_pixel_format && strncmp(cur_ext, "WGL_ARB_pixel_format ", (len + 1)) == 0)
+			case 20: if(!_WGL_ARB_pixel_format && strncmp(cur_ext, "WGL_ARB_pixel_format", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetPixelFormatAttribivARB);
 					LOAD_WGLPROC(wglGetPixelFormatAttribfvARB);
 					LOAD_WGLPROC(wglChoosePixelFormatARB);
 					_WGL_ARB_pixel_format = wglGetPixelFormatAttribivARB && wglGetPixelFormatAttribfvARB && wglChoosePixelFormatARB;
 				}
-				else if(!_WGL_3DFX_multisample && strncmp(cur_ext, "WGL_3DFX_multisample ", (len + 1)) == 0) { _WGL_3DFX_multisample = true; }
-				else if(!_WGL_EXT_pixel_format && strncmp(cur_ext, "WGL_EXT_pixel_format ", (len + 1)) == 0)
+				else if(!_WGL_3DFX_multisample && strncmp(cur_ext, "WGL_3DFX_multisample", len) == 0) { _WGL_3DFX_multisample = true; }
+				else if(!_WGL_EXT_pixel_format && strncmp(cur_ext, "WGL_EXT_pixel_format", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetPixelFormatAttribivEXT);
 					LOAD_WGLPROC(wglGetPixelFormatAttribfvEXT);
 					LOAD_WGLPROC(wglChoosePixelFormatEXT);
 					_WGL_EXT_pixel_format = wglGetPixelFormatAttribivEXT && wglGetPixelFormatAttribfvEXT && wglChoosePixelFormatEXT;
 				}
-				else if(!_WGL_EXT_swap_control && strncmp(cur_ext, "WGL_EXT_swap_control ", (len + 1)) == 0)
+				else if(!_WGL_EXT_swap_control && strncmp(cur_ext, "WGL_EXT_swap_control", len) == 0)
 				{
 					LOAD_WGLPROC(wglSwapIntervalEXT);
 					LOAD_WGLPROC(wglGetSwapIntervalEXT);
 					_WGL_EXT_swap_control = wglSwapIntervalEXT && wglGetSwapIntervalEXT;
 				}
-				else if(!_WGL_I3D_image_buffer && strncmp(cur_ext, "WGL_I3D_image_buffer ", (len + 1)) == 0)
+				else if(!_WGL_I3D_image_buffer && strncmp(cur_ext, "WGL_I3D_image_buffer", len) == 0)
 				{
 					LOAD_WGLPROC(wglCreateImageBufferI3D);
 					LOAD_WGLPROC(wglDestroyImageBufferI3D);
@@ -412,14 +412,14 @@ bool load()
 					LOAD_WGLPROC(wglReleaseImageBufferEventsI3D);
 					_WGL_I3D_image_buffer = wglCreateImageBufferI3D && wglDestroyImageBufferI3D && wglAssociateImageBufferEventsI3D && wglReleaseImageBufferEventsI3D;
 				}
-				else if(!_WGL_NV_present_video && strncmp(cur_ext, "WGL_NV_present_video ", (len + 1)) == 0)
+				else if(!_WGL_NV_present_video && strncmp(cur_ext, "WGL_NV_present_video", len) == 0)
 				{
 					LOAD_WGLPROC(wglEnumerateVideoDevicesNV);
 					LOAD_WGLPROC(wglBindVideoDeviceNV);
 					LOAD_WGLPROC(wglQueryCurrentContextNV);
 					_WGL_NV_present_video = wglEnumerateVideoDevicesNV && wglBindVideoDeviceNV && wglQueryCurrentContextNV;
 				}
-				else if(!_WGL_NV_video_capture && strncmp(cur_ext, "WGL_NV_video_capture ", (len + 1)) == 0)
+				else if(!_WGL_NV_video_capture && strncmp(cur_ext, "WGL_NV_video_capture", len) == 0)
 				{
 					LOAD_WGLPROC(wglBindVideoCaptureDeviceNV);
 					LOAD_WGLPROC(wglEnumerateVideoCaptureDevicesNV);
@@ -428,7 +428,7 @@ bool load()
 					LOAD_WGLPROC(wglReleaseVideoCaptureDeviceNV);
 					_WGL_NV_video_capture = wglBindVideoCaptureDeviceNV && wglEnumerateVideoCaptureDevicesNV && wglLockVideoCaptureDeviceNV && wglQueryVideoCaptureDeviceNV && wglReleaseVideoCaptureDeviceNV;
 				}
-				else if(!_WGL_OML_sync_control && strncmp(cur_ext, "WGL_OML_sync_control ", (len + 1)) == 0)
+				else if(!_WGL_OML_sync_control && strncmp(cur_ext, "WGL_OML_sync_control", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetSyncValuesOML);
 					LOAD_WGLPROC(wglGetMscRateOML);
@@ -439,7 +439,7 @@ bool load()
 					_WGL_OML_sync_control = wglGetSyncValuesOML && wglGetMscRateOML && wglSwapBuffersMscOML && wglSwapLayerBuffersMscOML && wglWaitForMscOML && wglWaitForSbcOML;
 				}
 				break;
-			case 21: if(!_WGL_ARB_buffer_region && strncmp(cur_ext, "WGL_ARB_buffer_region ", (len + 1)) == 0)
+			case 21: if(!_WGL_ARB_buffer_region && strncmp(cur_ext, "WGL_ARB_buffer_region", len) == 0)
 				{
 					LOAD_WGLPROC(wglCreateBufferRegionARB);
 					LOAD_WGLPROC(wglDeleteBufferRegionARB);
@@ -447,25 +447,25 @@ bool load()
 					LOAD_WGLPROC(wglRestoreBufferRegionARB);
 					_WGL_ARB_buffer_region = wglCreateBufferRegionARB && wglDeleteBufferRegionARB && wglSaveBufferRegionARB && wglRestoreBufferRegionARB;
 				}
-			case 22: if(!_WGL_ARB_create_context && strncmp(cur_ext, "WGL_ARB_create_context ", (len + 1)) == 0)
+			case 22: if(!_WGL_ARB_create_context && strncmp(cur_ext, "WGL_ARB_create_context", len) == 0)
 				{
 					LOAD_WGLPROC(wglCreateContextAttribsARB);
 					_WGL_ARB_create_context = 0 != wglCreateContextAttribsARB;
 				}
-				else if(!_WGL_ARB_render_texture && strncmp(cur_ext, "WGL_ARB_render_texture ", (len + 1)) == 0)
+				else if(!_WGL_ARB_render_texture && strncmp(cur_ext, "WGL_ARB_render_texture", len) == 0)
 				{
 					LOAD_WGLPROC(wglBindTexImageARB);
 					LOAD_WGLPROC(wglReleaseTexImageARB);
 					LOAD_WGLPROC(wglSetPbufferAttribARB);
 					_WGL_ARB_render_texture = wglBindTexImageARB && wglReleaseTexImageARB && wglSetPbufferAttribARB;
 				}
-				else if(!_WGL_3DL_stereo_control && strncmp(cur_ext, "WGL_3DL_stereo_control ", (len + 1)) == 0)
+				else if(!_WGL_3DL_stereo_control && strncmp(cur_ext, "WGL_3DL_stereo_control", len) == 0)
 				{
 					LOAD_WGLPROC(wglSetStereoEmitterState3DL);
 					_WGL_3DL_stereo_control = 0 != wglSetStereoEmitterState3DL;
 				}
 				break;
-			case 23: if(!_WGL_AMD_gpu_association && strncmp(cur_ext, "WGL_AMD_gpu_association ", (len + 1)) == 0)
+			case 23: if(!_WGL_AMD_gpu_association && strncmp(cur_ext, "WGL_AMD_gpu_association", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetGPUIDsAMD);
 					LOAD_WGLPROC(wglGetGPUInfoAMD);
@@ -478,7 +478,7 @@ bool load()
 					LOAD_WGLPROC(wglBlitContextFramebufferAMD);
 					_WGL_AMD_gpu_association = wglGetGPUIDsAMD && wglGetGPUInfoAMD && wglGetContextGPUIDAMD && wglCreateAssociatedContextAMD && wglCreateAssociatedContextAttribsAMD && wglDeleteAssociatedContextAMD && wglMakeAssociatedContextCurrentAMD && wglGetCurrentAssociatedContextAMD && wglBlitContextFramebufferAMD;
 				}
-				else if(!_WGL_I3D_swap_frame_lock && strncmp(cur_ext, "WGL_I3D_swap_frame_lock ", (len + 1)) == 0)
+				else if(!_WGL_I3D_swap_frame_lock && strncmp(cur_ext, "WGL_I3D_swap_frame_lock", len) == 0)
 				{
 					LOAD_WGLPROC(wglEnableFrameLockI3D);
 					LOAD_WGLPROC(wglDisableFrameLockI3D);
@@ -486,11 +486,11 @@ bool load()
 					LOAD_WGLPROC(wglQueryFrameLockMasterI3D);
 					_WGL_I3D_swap_frame_lock = wglEnableFrameLockI3D && wglDisableFrameLockI3D && wglIsEnabledFrameLockI3D && wglQueryFrameLockMasterI3D;
 				}
-				else if(!_WGL_NV_multigpu_context && strncmp(cur_ext, "WGL_NV_multigpu_context ", (len + 1)) == 0) { _WGL_NV_multigpu_context = true; }
+				else if(!_WGL_NV_multigpu_context && strncmp(cur_ext, "WGL_NV_multigpu_context", len) == 0) { _WGL_NV_multigpu_context = true; }
 				break;
-			case 24: if(!_WGL_ARB_framebuffer_sRGB && strncmp(cur_ext, "WGL_ARB_framebuffer_sRGB ", (len + 1)) == 0) { _WGL_ARB_framebuffer_sRGB = true; }
-				else if(!_WGL_EXT_framebuffer_sRGB && strncmp(cur_ext, "WGL_EXT_framebuffer_sRGB ", (len + 1)) == 0) { _WGL_EXT_framebuffer_sRGB = true; }
-				else if(!_WGL_I3D_swap_frame_usage && strncmp(cur_ext, "WGL_I3D_swap_frame_usage ", (len + 1)) == 0)
+			case 24: if(!_WGL_ARB_framebuffer_sRGB && strncmp(cur_ext, "WGL_ARB_framebuffer_sRGB", len) == 0) { _WGL_ARB_framebuffer_sRGB = true; }
+				else if(!_WGL_EXT_framebuffer_sRGB && strncmp(cur_ext, "WGL_EXT_framebuffer_sRGB", len) == 0) { _WGL_EXT_framebuffer_sRGB = true; }
+				else if(!_WGL_I3D_swap_frame_usage && strncmp(cur_ext, "WGL_I3D_swap_frame_usage", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetFrameUsageI3D);
 					LOAD_WGLPROC(wglBeginFrameTrackingI3D);
@@ -498,46 +498,46 @@ bool load()
 					LOAD_WGLPROC(wglQueryFrameTrackingI3D);
 					_WGL_I3D_swap_frame_usage = wglGetFrameUsageI3D && wglBeginFrameTrackingI3D && wglEndFrameTrackingI3D && wglQueryFrameTrackingI3D;
 				}
-				else if(!_WGL_NV_delay_before_swap && strncmp(cur_ext, "WGL_NV_delay_before_swap ", (len + 1)) == 0)
+				else if(!_WGL_NV_delay_before_swap && strncmp(cur_ext, "WGL_NV_delay_before_swap", len) == 0)
 				{
 					LOAD_WGLPROC(wglDelayBeforeSwapNV);
 					_WGL_NV_delay_before_swap = 0 != wglDelayBeforeSwapNV;
 				}
 				break;
-			case 25: if(!_WGL_ARB_extensions_string && strncmp(cur_ext, "WGL_ARB_extensions_string ", (len + 1)) == 0)
+			case 25: if(!_WGL_ARB_extensions_string && strncmp(cur_ext, "WGL_ARB_extensions_string", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetExtensionsStringARB);
 					_WGL_ARB_extensions_string = 0 != wglGetExtensionsStringARB;
 				}
-				else if(!_WGL_ARB_make_current_read && strncmp(cur_ext, "WGL_ARB_make_current_read ", (len + 1)) == 0)
+				else if(!_WGL_ARB_make_current_read && strncmp(cur_ext, "WGL_ARB_make_current_read", len) == 0)
 				{
 					LOAD_WGLPROC(wglMakeContextCurrentARB);
 					LOAD_WGLPROC(wglGetCurrentReadDCARB);
 					_WGL_ARB_make_current_read = wglMakeContextCurrentARB && wglGetCurrentReadDCARB;
 				}
-				else if(!_WGL_EXT_extensions_string && strncmp(cur_ext, "WGL_EXT_extensions_string ", (len + 1)) == 0)
+				else if(!_WGL_EXT_extensions_string && strncmp(cur_ext, "WGL_EXT_extensions_string", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetExtensionsStringEXT);
 					_WGL_EXT_extensions_string = 0 != wglGetExtensionsStringEXT;
 				}
-				else if(!_WGL_EXT_make_current_read && strncmp(cur_ext, "WGL_EXT_make_current_read ", (len + 1)) == 0)
+				else if(!_WGL_EXT_make_current_read && strncmp(cur_ext, "WGL_EXT_make_current_read", len) == 0)
 				{
 					LOAD_WGLPROC(wglMakeContextCurrentEXT);
 					LOAD_WGLPROC(wglGetCurrentReadDCEXT);
 					_WGL_EXT_make_current_read = wglMakeContextCurrentEXT && wglGetCurrentReadDCEXT;
 				}
-				else if(!_WGL_EXT_swap_control_tear && strncmp(cur_ext, "WGL_EXT_swap_control_tear ", (len + 1)) == 0) { _WGL_EXT_swap_control_tear = true; }
-				else if(!_WGL_NV_vertex_array_range && strncmp(cur_ext, "WGL_NV_vertex_array_range ", (len + 1)) == 0)
+				else if(!_WGL_EXT_swap_control_tear && strncmp(cur_ext, "WGL_EXT_swap_control_tear", len) == 0) { _WGL_EXT_swap_control_tear = true; }
+				else if(!_WGL_NV_vertex_array_range && strncmp(cur_ext, "WGL_NV_vertex_array_range", len) == 0)
 				{
 					LOAD_WGLPROC(wglAllocateMemoryNV);
 					LOAD_WGLPROC(wglFreeMemoryNV);
 					_WGL_NV_vertex_array_range = wglAllocateMemoryNV && wglFreeMemoryNV;
 				}
 				break;
-			case 26: if(!_WGL_ARB_pixel_format_float && strncmp(cur_ext, "WGL_ARB_pixel_format_float ", (len + 1)) == 0) { _WGL_ARB_pixel_format_float = true; }
-				else if(!_WGL_ATI_pixel_format_float && strncmp(cur_ext, "WGL_ATI_pixel_format_float ", (len + 1)) == 0) { _WGL_ATI_pixel_format_float = true; }
+			case 26: if(!_WGL_ARB_pixel_format_float && strncmp(cur_ext, "WGL_ARB_pixel_format_float", len) == 0) { _WGL_ARB_pixel_format_float = true; }
+				else if(!_WGL_ATI_pixel_format_float && strncmp(cur_ext, "WGL_ATI_pixel_format_float", len) == 0) { _WGL_ATI_pixel_format_float = true; }
 				break;
-			case 27: if(!_WGL_EXT_display_color_table && strncmp(cur_ext, "WGL_EXT_display_color_table ", (len + 1)) == 0)
+			case 27: if(!_WGL_EXT_display_color_table && strncmp(cur_ext, "WGL_EXT_display_color_table", len) == 0)
 				{
 					LOAD_WGLPROC(wglCreateDisplayColorTableEXT);
 					LOAD_WGLPROC(wglLoadDisplayColorTableEXT);
@@ -545,31 +545,31 @@ bool load()
 					LOAD_WGLPROC(wglDestroyDisplayColorTableEXT);
 					_WGL_EXT_display_color_table = wglCreateDisplayColorTableEXT && wglLoadDisplayColorTableEXT && wglBindDisplayColorTableEXT && wglDestroyDisplayColorTableEXT;
 				}
-				else if(!_WGL_NV_multisample_coverage && strncmp(cur_ext, "WGL_NV_multisample_coverage ", (len + 1)) == 0) { _WGL_NV_multisample_coverage = true; }
-				else if(!_WGL_NV_render_depth_texture && strncmp(cur_ext, "WGL_NV_render_depth_texture ", (len + 1)) == 0) { _WGL_NV_render_depth_texture = true; }
+				else if(!_WGL_NV_multisample_coverage && strncmp(cur_ext, "WGL_NV_multisample_coverage", len) == 0) { _WGL_NV_multisample_coverage = true; }
+				else if(!_WGL_NV_render_depth_texture && strncmp(cur_ext, "WGL_NV_render_depth_texture", len) == 0) { _WGL_NV_render_depth_texture = true; }
 				break;
-			case 29: if(!_WGL_ARB_context_flush_control && strncmp(cur_ext, "WGL_ARB_context_flush_control ", (len + 1)) == 0) { _WGL_ARB_context_flush_control = true; }
-				else if(!_WGL_I3D_digital_video_control && strncmp(cur_ext, "WGL_I3D_digital_video_control ", (len + 1)) == 0)
+			case 29: if(!_WGL_ARB_context_flush_control && strncmp(cur_ext, "WGL_ARB_context_flush_control", len) == 0) { _WGL_ARB_context_flush_control = true; }
+				else if(!_WGL_I3D_digital_video_control && strncmp(cur_ext, "WGL_I3D_digital_video_control", len) == 0)
 				{
 					LOAD_WGLPROC(wglGetDigitalVideoParametersI3D);
 					LOAD_WGLPROC(wglSetDigitalVideoParametersI3D);
 					_WGL_I3D_digital_video_control = wglGetDigitalVideoParametersI3D && wglSetDigitalVideoParametersI3D;
 				}
 				break;
-			case 30: if(!_WGL_ARB_create_context_profile && strncmp(cur_ext, "WGL_ARB_create_context_profile ", (len + 1)) == 0) { _WGL_ARB_create_context_profile = true; }
+			case 30: if(!_WGL_ARB_create_context_profile && strncmp(cur_ext, "WGL_ARB_create_context_profile", len) == 0) { _WGL_ARB_create_context_profile = true; }
 				break;
-			case 31: if(!_WGL_ARB_create_context_no_error && strncmp(cur_ext, "WGL_ARB_create_context_no_error ", (len + 1)) == 0) { _WGL_ARB_create_context_no_error = true; }
-				else if(!_WGL_NV_render_texture_rectangle && strncmp(cur_ext, "WGL_NV_render_texture_rectangle ", (len + 1)) == 0) { _WGL_NV_render_texture_rectangle = true; }
+			case 31: if(!_WGL_ARB_create_context_no_error && strncmp(cur_ext, "WGL_ARB_create_context_no_error", len) == 0) { _WGL_ARB_create_context_no_error = true; }
+				else if(!_WGL_NV_render_texture_rectangle && strncmp(cur_ext, "WGL_NV_render_texture_rectangle", len) == 0) { _WGL_NV_render_texture_rectangle = true; }
 				break;
-			case 32: if(!_WGL_ATI_render_texture_rectangle && strncmp(cur_ext, "WGL_ATI_render_texture_rectangle ", (len + 1)) == 0) { _WGL_ATI_render_texture_rectangle = true; }
-				else if(!_WGL_ARB_create_context_robustness && strncmp(cur_ext, "WGL_ARB_create_context_robustness ", (len + 1)) == 0) { _WGL_ARB_create_context_robustness = true; }
-				else if(!_WGL_EXT_create_context_es_profile && strncmp(cur_ext, "WGL_EXT_create_context_es_profile ", (len + 1)) == 0) { _WGL_EXT_create_context_es_profile = true; }
-				else if(!_WGL_EXT_pixel_format_packed_float && strncmp(cur_ext, "WGL_EXT_pixel_format_packed_float ", (len + 1)) == 0) { _WGL_EXT_pixel_format_packed_float = true; }
+			case 32: if(!_WGL_ATI_render_texture_rectangle && strncmp(cur_ext, "WGL_ATI_render_texture_rectangle", len) == 0) { _WGL_ATI_render_texture_rectangle = true; }
+				else if(!_WGL_ARB_create_context_robustness && strncmp(cur_ext, "WGL_ARB_create_context_robustness", len) == 0) { _WGL_ARB_create_context_robustness = true; }
+				else if(!_WGL_EXT_create_context_es_profile && strncmp(cur_ext, "WGL_EXT_create_context_es_profile", len) == 0) { _WGL_EXT_create_context_es_profile = true; }
+				else if(!_WGL_EXT_pixel_format_packed_float && strncmp(cur_ext, "WGL_EXT_pixel_format_packed_float", len) == 0) { _WGL_EXT_pixel_format_packed_float = true; }
 				break;
-			case 34: if(!_WGL_EXT_create_context_es2_profile && strncmp(cur_ext, "WGL_EXT_create_context_es2_profile ", (len + 1)) == 0) { _WGL_EXT_create_context_es2_profile = true; }
+			case 34: if(!_WGL_EXT_create_context_es2_profile && strncmp(cur_ext, "WGL_EXT_create_context_es2_profile", len) == 0) { _WGL_EXT_create_context_es2_profile = true; }
 				break;
-			case 40: if(!_WGL_ARB_robustness_application_isolation && strncmp(cur_ext, "WGL_ARB_robustness_application_isolation ", (len + 1)) == 0) { _WGL_ARB_robustness_application_isolation = true; }
-				else if(!_WGL_ARB_robustness_share_group_isolation && strncmp(cur_ext, "WGL_ARB_robustness_share_group_isolation ", (len + 1)) == 0) { _WGL_ARB_robustness_share_group_isolation = true; }
+			case 40: if(!_WGL_ARB_robustness_application_isolation && strncmp(cur_ext, "WGL_ARB_robustness_application_isolation", len) == 0) { _WGL_ARB_robustness_application_isolation = true; }
+				else if(!_WGL_ARB_robustness_share_group_isolation && strncmp(cur_ext, "WGL_ARB_robustness_share_group_isolation", len) == 0) { _WGL_ARB_robustness_share_group_isolation = true; }
 				break;
 		} // switch(len)
 	} // while(!done)
