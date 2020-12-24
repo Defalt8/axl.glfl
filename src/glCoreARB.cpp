@@ -3205,26 +3205,38 @@ bool load()
 			}
 			switch(len)
 			{
-				case 11: if(!GLARB::_GL_ARB_sync && strncmp(cur_ext, "GL_ARB_sync", 11) == 0) { GLARB::_GL_ARB_sync = true; }
+				case 11: if(!GLARB::_GL_ARB_sync && strncmp(cur_ext, "GL_ARB_sync", len) == 0) { GLARB::_GL_ARB_sync = true; }
 					break;
-				case 14: if(!GLARB::_GL_ARB_imaging && strncmp(cur_ext, "GL_ARB_imaging", 14) == 0) { GLARB::_GL_ARB_imaging = true; }
+				case 12: if(!GLKHR::_GL_KHR_debug && strncmp(cur_ext, "GL_KHR_debug", len) == 0) { GLKHR::_GL_KHR_debug = true; }
 					break;
-				case 15: if(!GLARB::_GL_ARB_cl_event && strncmp(cur_ext, "GL_ARB_cl_event", 15) == 0)
+				case 14: if(!GLARB::_GL_ARB_imaging && strncmp(cur_ext, "GL_ARB_imaging", len) == 0) { GLARB::_GL_ARB_imaging = true; }
+					break;
+				case 15: if(!GLARB::_GL_ARB_cl_event && strncmp(cur_ext, "GL_ARB_cl_event", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glCreateSyncFromCLeventARB);
 						_GL_ARB_cl_event = 0 != glCreateSyncFromCLeventARB;
 					}
-					else if(!GLARB::_GL_ARB_gl_spirv && strncmp(cur_ext, "GL_ARB_gl_spirv", 15) == 0)
+					else if(!GLARB::_GL_ARB_gl_spirv && strncmp(cur_ext, "GL_ARB_gl_spirv", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glSpecializeShaderARB);
 						_GL_ARB_gl_spirv = 0 != glSpecializeShaderARB;
 					}
+					else if(!GLKHR::_GL_KHR_no_error && strncmp(cur_ext, "GL_KHR_no_error", len) == 0) { GLKHR::_GL_KHR_no_error = true; }
+					else if(!GLEXT::_GL_EXT_EGL_sync && strncmp(cur_ext, "GL_EXT_EGL_sync", len) == 0) { GLEXT::_GL_EXT_EGL_sync = true; }
 					break;
-				case 17: if(!GLARB::_GL_ARB_copy_image && strncmp(cur_ext, "GL_ARB_copy_image", 17) == 0) { GLARB::_GL_ARB_copy_image = true; }
-					else if(!GLARB::_GL_ARB_multi_bind && strncmp(cur_ext, "GL_ARB_multi_bind", 17) == 0) { GLARB::_GL_ARB_multi_bind = true; }
-					else if(!GLARB::_GL_ARB_robustness && strncmp(cur_ext, "GL_ARB_robustness", 17) == 0)
+				case 16: if(!GLAPPLE::_GL_APPLE_rgb_422 && strncmp(cur_ext, "GL_APPLE_rgb_422", len) == 0) { GLAPPLE::_GL_APPLE_rgb_422 = true; }
+					else if(!GLOVR::_GL_OVR_multiview && strncmp(cur_ext, "GL_OVR_multiview", len) == 0)
+					{
+						using namespace axl::glfl::core::GLOVR;
+						LOAD_GLPROC(glFramebufferTextureMultiviewOVR);
+						_GL_OVR_multiview = 0 != glFramebufferTextureMultiviewOVR;
+					}
+					break;
+				case 17: if(!GLARB::_GL_ARB_copy_image && strncmp(cur_ext, "GL_ARB_copy_image", len) == 0) { GLARB::_GL_ARB_copy_image = true; }
+					else if(!GLARB::_GL_ARB_multi_bind && strncmp(cur_ext, "GL_ARB_multi_bind", len) == 0) { GLARB::_GL_ARB_multi_bind = true; }
+					else if(!GLARB::_GL_ARB_robustness && strncmp(cur_ext, "GL_ARB_robustness", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glGetGraphicsResetStatusARB);
@@ -3237,8 +3249,8 @@ bool load()
 						LOAD_GLPROC(glGetnUniformdvARB);
 						_GL_ARB_robustness = glGetGraphicsResetStatusARB && glGetnTexImageARB && glReadnPixelsARB && glGetnCompressedTexImageARB && glGetnUniformfvARB && glGetnUniformivARB && glGetnUniformuivARB && glGetnUniformdvARB;
 					}
-					else if(!GLARB::_GL_ARB_texture_rg && strncmp(cur_ext, "GL_ARB_texture_rg", 17) == 0) { GLARB::_GL_ARB_texture_rg = true; }
-					else if(!GLNV::_GL_NV_gpu_shader5 && strncmp(cur_ext, "GL_NV_gpu_shader5", 17) == 0)
+					else if(!GLARB::_GL_ARB_texture_rg && strncmp(cur_ext, "GL_ARB_texture_rg", len) == 0) { GLARB::_GL_ARB_texture_rg = true; }
+					else if(!GLNV::_GL_NV_gpu_shader5 && strncmp(cur_ext, "GL_NV_gpu_shader5", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glUniform1i64NV);
@@ -3276,7 +3288,7 @@ bool load()
 						LOAD_GLPROC(glProgramUniform4ui64vNV);
 						_GL_NV_gpu_shader5 = glUniform1i64NV && glUniform2i64NV && glUniform3i64NV && glUniform4i64NV && glUniform1i64vNV && glUniform2i64vNV && glUniform3i64vNV && glUniform4i64vNV && glUniform1ui64NV && glUniform2ui64NV && glUniform3ui64NV && glUniform4ui64NV && glUniform1ui64vNV && glUniform2ui64vNV && glUniform3ui64vNV && glUniform4ui64vNV && glGetUniformi64vNV && glProgramUniform1i64NV && glProgramUniform2i64NV && glProgramUniform3i64NV && glProgramUniform4i64NV && glProgramUniform1i64vNV && glProgramUniform2i64vNV && glProgramUniform3i64vNV && glProgramUniform4i64vNV && glProgramUniform1ui64NV && glProgramUniform2ui64NV && glProgramUniform3ui64NV && glProgramUniform4ui64NV && glProgramUniform1ui64vNV && glProgramUniform2ui64vNV && glProgramUniform3ui64vNV && glProgramUniform4ui64vNV;
 					}
-					else if(!GLNV::_GL_NV_mesh_shader && strncmp(cur_ext, "GL_NV_mesh_shader", 17) == 0)
+					else if(!GLNV::_GL_NV_mesh_shader && strncmp(cur_ext, "GL_NV_mesh_shader", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glDrawMeshTasksNV);
@@ -3285,12 +3297,14 @@ bool load()
 						LOAD_GLPROC(glMultiDrawMeshTasksIndirectCountNV);
 						_GL_NV_mesh_shader = glDrawMeshTasksNV && glDrawMeshTasksIndirectNV && glMultiDrawMeshTasksIndirectNV && glMultiDrawMeshTasksIndirectCountNV;
 					}
+					else if(!GLKHR::_GL_KHR_robustness && strncmp(cur_ext, "GL_KHR_robustness", len) == 0) { GLKHR::_GL_KHR_robustness = true; }
+					else if(!GLOVR::_GL_OVR_multiview2 && strncmp(cur_ext, "GL_OVR_multiview2", len) == 0) { GLOVR::_GL_OVR_multiview2 = true; }
 					break;
-				case 18: if(!GLARB::_GL_ARB_copy_buffer && strncmp(cur_ext, "GL_ARB_copy_buffer", 18) == 0) { GLARB::_GL_ARB_copy_buffer = true; }
-					else if(!GLARB::_GL_ARB_depth_clamp && strncmp(cur_ext, "GL_ARB_depth_clamp", 18) == 0) { GLARB::_GL_ARB_depth_clamp = true; }
-					else if(!GLARB::_GL_ARB_gpu_shader5 && strncmp(cur_ext, "GL_ARB_gpu_shader5", 18) == 0) { GLARB::_GL_ARB_gpu_shader5 = true; }
-					else if(!GLARB::_GL_ARB_timer_query && strncmp(cur_ext, "GL_ARB_timer_query", 18) == 0) { GLARB::_GL_ARB_timer_query = true; }
-					else if(!GLNV::_GL_NV_command_list && strncmp(cur_ext, "GL_NV_command_list", 18) == 0)
+				case 18: if(!GLARB::_GL_ARB_copy_buffer && strncmp(cur_ext, "GL_ARB_copy_buffer", len) == 0) { GLARB::_GL_ARB_copy_buffer = true; }
+					else if(!GLARB::_GL_ARB_depth_clamp && strncmp(cur_ext, "GL_ARB_depth_clamp", len) == 0) { GLARB::_GL_ARB_depth_clamp = true; }
+					else if(!GLARB::_GL_ARB_gpu_shader5 && strncmp(cur_ext, "GL_ARB_gpu_shader5", len) == 0) { GLARB::_GL_ARB_gpu_shader5 = true; }
+					else if(!GLARB::_GL_ARB_timer_query && strncmp(cur_ext, "GL_ARB_timer_query", len) == 0) { GLARB::_GL_ARB_timer_query = true; }
+					else if(!GLNV::_GL_NV_command_list && strncmp(cur_ext, "GL_NV_command_list", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glCreateStatesNV);
@@ -3312,9 +3326,16 @@ bool load()
 						LOAD_GLPROC(glCallCommandListNV);
 						_GL_NV_command_list = glCreateStatesNV && glDeleteStatesNV && glIsStateNV && glStateCaptureNV && glGetCommandHeaderNV && glGetStageIndexNV && glDrawCommandsNV && glDrawCommandsAddressNV && glDrawCommandsStatesNV && glDrawCommandsStatesAddressNV && glCreateCommandListsNV && glDeleteCommandListsNV && glIsCommandListNV && glListDrawCommandsStatesClientNV && glCommandListSegmentsNV && glCompileCommandListNV && glCallCommandListNV;
 					}
+					else if(!GLEXT::_GL_EXT_debug_label && strncmp(cur_ext, "GL_EXT_debug_label", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glLabelObjectEXT);
+						LOAD_GLPROC(glGetObjectLabelEXT);
+						_GL_EXT_debug_label = true;
+					}
 					break;
-				case 19: if(!GLARB::_GL_ARB_clip_control && strncmp(cur_ext, "GL_ARB_clip_control", 19) == 0) { GLARB::_GL_ARB_clip_control = true; }
-					else if(!GLARB::_GL_ARB_debug_output && strncmp(cur_ext, "GL_ARB_debug_output", 19) == 0)
+				case 19: if(!GLARB::_GL_ARB_clip_control && strncmp(cur_ext, "GL_ARB_clip_control", len) == 0) { GLARB::_GL_ARB_clip_control = true; }
+					else if(!GLARB::_GL_ARB_debug_output && strncmp(cur_ext, "GL_ARB_debug_output", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glDebugMessageControlARB);
@@ -3323,15 +3344,23 @@ bool load()
 						LOAD_GLPROC(glGetDebugMessageLogARB);
 						_GL_ARB_debug_output = glDebugMessageControlARB && glDebugMessageInsertARB && glDebugMessageCallbackARB && glGetDebugMessageLogARB;
 					}
-					else if(!GLARB::_GL_ARB_shader_clock && strncmp(cur_ext, "GL_ARB_shader_clock", 19) == 0) { GLARB::_GL_ARB_shader_clock = true; }
-					else if(!GLARB::_GL_ARB_texture_view && strncmp(cur_ext, "GL_ARB_texture_view", 19) == 0) { GLARB::_GL_ARB_texture_view = true; }
+					else if(!GLARB::_GL_ARB_shader_clock && strncmp(cur_ext, "GL_ARB_shader_clock", len) == 0) { GLARB::_GL_ARB_shader_clock = true; }
+					else if(!GLARB::_GL_ARB_texture_view && strncmp(cur_ext, "GL_ARB_texture_view", len) == 0) { GLARB::_GL_ARB_texture_view = true; }
+					else if(!GLEXT::_GL_EXT_debug_marker && strncmp(cur_ext, "GL_EXT_debug_marker", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glInsertEventMarkerEXT);
+						LOAD_GLPROC(glPushGroupMarkerEXT);
+						LOAD_GLPROC(glPopGroupMarkerEXT);
+						_GL_EXT_debug_marker = true;
+					}
 					break;
-				case 20: if(!GLARB::_GL_ARB_base_instance && strncmp(cur_ext, "GL_ARB_base_instance", 20) == 0) { GLARB::_GL_ARB_base_instance = true; }
-					else if(!GLARB::_GL_ARB_clear_texture && strncmp(cur_ext, "GL_ARB_clear_texture", 20) == 0) { GLARB::_GL_ARB_clear_texture = true; }
-					else if(!GLARB::_GL_ARB_cull_distance && strncmp(cur_ext, "GL_ARB_cull_distance", 20) == 0) { GLARB::_GL_ARB_cull_distance = true; }
-					else if(!GLARB::_GL_ARB_draw_indirect && strncmp(cur_ext, "GL_ARB_draw_indirect", 20) == 0) { GLARB::_GL_ARB_draw_indirect = true; }
-					else if(!GLARB::_GL_ARB_shader_ballot && strncmp(cur_ext, "GL_ARB_shader_ballot", 20) == 0) { GLARB::_GL_ARB_shader_ballot = true; }
-					else if(!GLARB::_GL_ARB_sparse_buffer && strncmp(cur_ext, "GL_ARB_sparse_buffer", 20) == 0)
+				case 20: if(!GLARB::_GL_ARB_base_instance && strncmp(cur_ext, "GL_ARB_base_instance", len) == 0) { GLARB::_GL_ARB_base_instance = true; }
+					else if(!GLARB::_GL_ARB_clear_texture && strncmp(cur_ext, "GL_ARB_clear_texture", len) == 0) { GLARB::_GL_ARB_clear_texture = true; }
+					else if(!GLARB::_GL_ARB_cull_distance && strncmp(cur_ext, "GL_ARB_cull_distance", len) == 0) { GLARB::_GL_ARB_cull_distance = true; }
+					else if(!GLARB::_GL_ARB_draw_indirect && strncmp(cur_ext, "GL_ARB_draw_indirect", len) == 0) { GLARB::_GL_ARB_draw_indirect = true; }
+					else if(!GLARB::_GL_ARB_shader_ballot && strncmp(cur_ext, "GL_ARB_shader_ballot", len) == 0) { GLARB::_GL_ARB_shader_ballot = true; }
+					else if(!GLARB::_GL_ARB_sparse_buffer && strncmp(cur_ext, "GL_ARB_sparse_buffer", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glBufferPageCommitmentARB);
@@ -3341,8 +3370,8 @@ bool load()
 							glNamedBufferPageCommitmentARB = (PFN::glNamedBufferPageCommitmentARB)glNamedBufferPageCommitmentEXT;
 						_GL_ARB_sparse_buffer = glBufferPageCommitmentARB && glNamedBufferPageCommitmentEXT && glNamedBufferPageCommitmentARB;
 					}
-					else if(!GLNV::_GL_NV_fill_rectangle && strncmp(cur_ext, "GL_NV_fill_rectangle", 20) == 0) { GLNV::_GL_NV_fill_rectangle = true; }
-					else if(!GLNV::_GL_NV_path_rendering && strncmp(cur_ext, "GL_NV_path_rendering", 20) == 0)
+					else if(!GLNV::_GL_NV_fill_rectangle && strncmp(cur_ext, "GL_NV_fill_rectangle", len) == 0) { GLNV::_GL_NV_fill_rectangle = true; }
+					else if(!GLNV::_GL_NV_path_rendering && strncmp(cur_ext, "GL_NV_path_rendering", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glGenPathsNV);
@@ -3405,50 +3434,57 @@ bool load()
 						_GL_NV_path_rendering = glGenPathsNV && glDeletePathsNV && glIsPathNV && glPathCommandsNV && glPathCoordsNV && glPathSubCommandsNV && glPathSubCoordsNV && glPathStringNV && glPathGlyphsNV && glPathGlyphRangeNV && glWeightPathsNV && glCopyPathNV && glInterpolatePathsNV && glTransformPathNV && glPathParameterivNV && glPathParameteriNV && glPathParameterfvNV && glPathParameterfNV && glPathDashArrayNV && glPathStencilFuncNV && glPathStencilDepthOffsetNV && glStencilFillPathNV && glStencilStrokePathNV && glStencilFillPathInstancedNV && glStencilStrokePathInstancedNV && glPathCoverDepthFuncNV && glCoverFillPathNV && glCoverStrokePathNV && glCoverFillPathInstancedNV && glCoverStrokePathInstancedNV && glGetPathParameterivNV && glGetPathParameterfvNV && glGetPathCommandsNV && glGetPathCoordsNV && glGetPathDashArrayNV && glGetPathMetricsNV && glGetPathMetricRangeNV && glGetPathSpacingNV && glIsPointInFillPathNV && glIsPointInStrokePathNV && glGetPathLengthNV && glPointAlongPathNV && glMatrixLoad3x2fNV && glMatrixLoad3x3fNV && glMatrixLoadTranspose3x3fNV && glMatrixMult3x2fNV && glMatrixMult3x3fNV && glMatrixMultTranspose3x3fNV && glStencilThenCoverFillPathNV && glStencilThenCoverStrokePathNV && glStencilThenCoverFillPathInstancedNV && glStencilThenCoverStrokePathInstancedNV && glPathGlyphIndexRangeNV && glPathGlyphIndexArrayNV && glPathMemoryGlyphIndexArrayNV && glProgramPathFragmentInputGenNV && glGetProgramResourcefvNV;
 					}
 					break;
-				case 21: if(!GLARB::_GL_ARB_buffer_storage && strncmp(cur_ext, "GL_ARB_buffer_storage", 21) == 0) { GLARB::_GL_ARB_buffer_storage = true; }
-					else if(!GLARB::_GL_ARB_compute_shader && strncmp(cur_ext, "GL_ARB_compute_shader", 21) == 0) { GLARB::_GL_ARB_compute_shader = true; }
-					else if(!GLARB::_GL_ARB_draw_instanced && strncmp(cur_ext, "GL_ARB_draw_instanced", 21) == 0)
+				case 21: if(!GLARB::_GL_ARB_buffer_storage && strncmp(cur_ext, "GL_ARB_buffer_storage", len) == 0) { GLARB::_GL_ARB_buffer_storage = true; }
+					else if(!GLARB::_GL_ARB_compute_shader && strncmp(cur_ext, "GL_ARB_compute_shader", len) == 0) { GLARB::_GL_ARB_compute_shader = true; }
+					else if(!GLARB::_GL_ARB_draw_instanced && strncmp(cur_ext, "GL_ARB_draw_instanced", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glDrawArraysInstancedARB);
 						LOAD_GLPROC(glDrawElementsInstancedARB);
 						_GL_ARB_draw_instanced = glDrawArraysInstancedARB && glDrawElementsInstancedARB;
 					}
-					else if(!GLARB::_GL_ARB_sample_shading && strncmp(cur_ext, "GL_ARB_sample_shading", 21) == 0)
+					else if(!GLARB::_GL_ARB_sample_shading && strncmp(cur_ext, "GL_ARB_sample_shading", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glMinSampleShadingARB);
 						_GL_ARB_sample_shading = 0 != glMinSampleShadingARB;
 					}
-					else if(!GLARB::_GL_ARB_sparse_texture && strncmp(cur_ext, "GL_ARB_sparse_texture", 21) == 0)
+					else if(!GLARB::_GL_ARB_sparse_texture && strncmp(cur_ext, "GL_ARB_sparse_texture", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glTexPageCommitmentARB);
 						_GL_ARB_sparse_texture = 0 != glTexPageCommitmentARB;
 					}
-					else if(!GLARB::_GL_ARB_texture_gather && strncmp(cur_ext, "GL_ARB_texture_gather", 21) == 0) { GLARB::_GL_ARB_texture_gather = true; }
-					else if(!GLARB::_GL_ARB_viewport_array && strncmp(cur_ext, "GL_ARB_viewport_array", 21) == 0)
+					else if(!GLARB::_GL_ARB_texture_gather && strncmp(cur_ext, "GL_ARB_texture_gather", len) == 0) { GLARB::_GL_ARB_texture_gather = true; }
+					else if(!GLARB::_GL_ARB_viewport_array && strncmp(cur_ext, "GL_ARB_viewport_array", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glDepthRangeArraydvNV);
 						LOAD_GLPROC(glDepthRangeIndexeddNV);
 						_GL_ARB_viewport_array = glDepthRangeArraydvNV && glDepthRangeIndexeddNV;
 					}
-					else if(!GLNV::_GL_NV_texture_barrier && strncmp(cur_ext, "GL_NV_texture_barrier", 21) == 0)
+					else if(!GLNV::_GL_NV_texture_barrier && strncmp(cur_ext, "GL_NV_texture_barrier", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glTextureBarrierNV);
 						_GL_NV_texture_barrier = 0 != glTextureBarrierNV;
 					}
-					else if(!GLNV::_GL_NV_viewport_array2 && strncmp(cur_ext, "GL_NV_viewport_array2", 21) == 0) { GLNV::_GL_NV_viewport_array2 = true; }
+					else if(!GLNV::_GL_NV_viewport_array2 && strncmp(cur_ext, "GL_NV_viewport_array2", len) == 0) { GLNV::_GL_NV_viewport_array2 = true; }
+					else if(!GLEXT::_GL_EXT_draw_instanced && strncmp(cur_ext, "GL_EXT_draw_instanced", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glDrawArraysInstancedEXT);
+						LOAD_GLPROC(glDrawElementsInstancedEXT);
+						_GL_EXT_draw_instanced = true;
+					}
 					break;
-				case 22: if(!GLARB::_GL_ARB_gpu_shader_fp64 && strncmp(cur_ext, "GL_ARB_gpu_shader_fp64", 22) == 0) { GLARB::_GL_ARB_gpu_shader_fp64 = true; }
-					else if(!GLARB::_GL_ARB_sampler_objects && strncmp(cur_ext, "GL_ARB_sampler_objects", 22) == 0) { GLARB::_GL_ARB_sampler_objects = true; }
-					else if(!GLARB::_GL_ARB_sparse_texture2 && strncmp(cur_ext, "GL_ARB_sparse_texture2", 22) == 0) { GLARB::_GL_ARB_sparse_texture2 = true; }
-					else if(!GLARB::_GL_ARB_texture_barrier && strncmp(cur_ext, "GL_ARB_texture_barrier", 22) == 0) { GLARB::_GL_ARB_texture_barrier = true; }
-					else if(!GLARB::_GL_ARB_texture_storage && strncmp(cur_ext, "GL_ARB_texture_storage", 22) == 0) { GLARB::_GL_ARB_texture_storage = true; }
-					else if(!GLARB::_GL_ARB_texture_swizzle && strncmp(cur_ext, "GL_ARB_texture_swizzle", 22) == 0) { GLARB::_GL_ARB_texture_swizzle = true; }
-					else if(!GLNV::_GL_NV_bindless_texture && strncmp(cur_ext, "GL_NV_bindless_texture", 22) == 0)
+				case 22: if(!GLARB::_GL_ARB_gpu_shader_fp64 && strncmp(cur_ext, "GL_ARB_gpu_shader_fp64", len) == 0) { GLARB::_GL_ARB_gpu_shader_fp64 = true; }
+					else if(!GLARB::_GL_ARB_sampler_objects && strncmp(cur_ext, "GL_ARB_sampler_objects", len) == 0) { GLARB::_GL_ARB_sampler_objects = true; }
+					else if(!GLARB::_GL_ARB_sparse_texture2 && strncmp(cur_ext, "GL_ARB_sparse_texture2", len) == 0) { GLARB::_GL_ARB_sparse_texture2 = true; }
+					else if(!GLARB::_GL_ARB_texture_barrier && strncmp(cur_ext, "GL_ARB_texture_barrier", len) == 0) { GLARB::_GL_ARB_texture_barrier = true; }
+					else if(!GLARB::_GL_ARB_texture_storage && strncmp(cur_ext, "GL_ARB_texture_storage", len) == 0) { GLARB::_GL_ARB_texture_storage = true; }
+					else if(!GLARB::_GL_ARB_texture_swizzle && strncmp(cur_ext, "GL_ARB_texture_swizzle", len) == 0) { GLARB::_GL_ARB_texture_swizzle = true; }
+					else if(!GLNV::_GL_NV_bindless_texture && strncmp(cur_ext, "GL_NV_bindless_texture", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glGetTextureHandleNV);
@@ -3466,7 +3502,7 @@ bool load()
 						LOAD_GLPROC(glIsImageHandleResidentNV);
 						_GL_NV_bindless_texture = glGetTextureHandleNV && glGetTextureSamplerHandleNV && glMakeTextureHandleResidentNV && glMakeTextureHandleNonResidentNV && glGetImageHandleNV && glMakeImageHandleResidentNV && glMakeImageHandleNonResidentNV && glUniformHandleui64NV && glUniformHandleui64vNV && glProgramUniformHandleui64NV && glProgramUniformHandleui64vNV && glIsTextureHandleResidentNV && glIsImageHandleResidentNV;
 					}
-					else if(!GLNV::_GL_NV_sample_locations && strncmp(cur_ext, "GL_NV_sample_locations", 22) == 0)
+					else if(!GLNV::_GL_NV_sample_locations && strncmp(cur_ext, "GL_NV_sample_locations", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glFramebufferSampleLocationsfvNV);
@@ -3474,15 +3510,17 @@ bool load()
 						LOAD_GLPROC(glResolveDepthValuesNV);
 						_GL_NV_sample_locations = glFramebufferSampleLocationsfvNV && glNamedFramebufferSampleLocationsfvNV && glResolveDepthValuesNV;
 					}
-					else if(!GLNV::_GL_NV_viewport_swizzle && strncmp(cur_ext, "GL_NV_viewport_swizzle", 22) == 0)
+					else if(!GLNV::_GL_NV_viewport_swizzle && strncmp(cur_ext, "GL_NV_viewport_swizzle", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glViewportSwizzleNV);
 						_GL_NV_viewport_swizzle = 0 != glViewportSwizzleNV;
 					}
+					else if(!GLKHR::_GL_KHR_shader_subgroup && strncmp(cur_ext, "GL_KHR_shader_subgroup", len) == 0) { GLKHR::_GL_KHR_shader_subgroup = true; }
+					else if(!GLEXT::_GL_EXT_texture_sRGB_R8 && strncmp(cur_ext, "GL_EXT_texture_sRGB_R8", len) == 0) { GLEXT::_GL_EXT_texture_sRGB_R8 = true; }
 					break;
-				case 23: if(!GLARB::_GL_ARB_arrays_of_arrays && strncmp(cur_ext, "GL_ARB_arrays_of_arrays", 23) == 0) { GLARB::_GL_ARB_arrays_of_arrays = true; }
-					else if(!GLARB::_GL_ARB_bindless_texture && strncmp(cur_ext, "GL_ARB_bindless_texture", 23) == 0)
+				case 23: if(!GLARB::_GL_ARB_arrays_of_arrays && strncmp(cur_ext, "GL_ARB_arrays_of_arrays", len) == 0) { GLARB::_GL_ARB_arrays_of_arrays = true; }
+					else if(!GLARB::_GL_ARB_bindless_texture && strncmp(cur_ext, "GL_ARB_bindless_texture", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glGetTextureHandleARB);
@@ -3503,9 +3541,9 @@ bool load()
 						LOAD_GLPROC(glGetVertexAttribLui64vARB);
 						_GL_ARB_bindless_texture = glGetTextureHandleARB && glGetTextureSamplerHandleARB && glMakeTextureHandleResidentARB && glMakeTextureHandleNonResidentARB && glGetImageHandleARB && glMakeImageHandleResidentARB && glMakeImageHandleNonResidentARB && glUniformHandleui64ARB && glUniformHandleui64vARB && glProgramUniformHandleui64ARB && glProgramUniformHandleui64vARB && glIsTextureHandleResidentARB && glIsImageHandleResidentARB && glVertexAttribL1ui64ARB && glVertexAttribL1ui64vARB && glGetVertexAttribLui64vARB;
 					}
-					else if(!GLARB::_GL_ARB_enhanced_layouts && strncmp(cur_ext, "GL_ARB_enhanced_layouts", 23) == 0) { GLARB::_GL_ARB_enhanced_layouts = true; }
-					else if(!GLARB::_GL_ARB_framebuffer_sRGB && strncmp(cur_ext, "GL_ARB_framebuffer_sRGB", 23) == 0) { GLARB::_GL_ARB_framebuffer_sRGB = true; }
-					else if(!GLARB::_GL_ARB_geometry_shader4 && strncmp(cur_ext, "GL_ARB_geometry_shader4", 23) == 0)
+					else if(!GLARB::_GL_ARB_enhanced_layouts && strncmp(cur_ext, "GL_ARB_enhanced_layouts", len) == 0) { GLARB::_GL_ARB_enhanced_layouts = true; }
+					else if(!GLARB::_GL_ARB_framebuffer_sRGB && strncmp(cur_ext, "GL_ARB_framebuffer_sRGB", len) == 0) { GLARB::_GL_ARB_framebuffer_sRGB = true; }
+					else if(!GLARB::_GL_ARB_geometry_shader4 && strncmp(cur_ext, "GL_ARB_geometry_shader4", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glProgramParameteriARB);
@@ -3514,7 +3552,7 @@ bool load()
 						LOAD_GLPROC(glFramebufferTextureFaceARB);
 						_GL_ARB_geometry_shader4 = glProgramParameteriARB && glFramebufferTextureARB && glFramebufferTextureLayerARB && glFramebufferTextureFaceARB;
 					}
-					else if(!GLARB::_GL_ARB_gpu_shader_int64 && strncmp(cur_ext, "GL_ARB_gpu_shader_int64", 23) == 0)
+					else if(!GLARB::_GL_ARB_gpu_shader_int64 && strncmp(cur_ext, "GL_ARB_gpu_shader_int64", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glUniform1i64ARB);
@@ -3555,16 +3593,16 @@ bool load()
 						LOAD_GLPROC(glProgramUniform4ui64vARB);
 						_GL_ARB_gpu_shader_int64 = glUniform1i64ARB && glUniform2i64ARB && glUniform3i64ARB && glUniform4i64ARB && glUniform1i64vARB && glUniform2i64vARB && glUniform3i64vARB && glUniform4i64vARB && glUniform1ui64ARB && glUniform2ui64ARB && glUniform3ui64ARB && glUniform4ui64ARB && glUniform1ui64vARB && glUniform2ui64vARB && glUniform3ui64vARB && glUniform4ui64vARB && glGetUniformi64vARB && glGetUniformui64vARB && glGetnUniformi64vARB && glGetnUniformui64vARB && glProgramUniform1i64ARB && glProgramUniform2i64ARB && glProgramUniform3i64ARB && glProgramUniform4i64ARB && glProgramUniform1i64vARB && glProgramUniform2i64vARB && glProgramUniform3i64vARB && glProgramUniform4i64vARB && glProgramUniform1ui64ARB && glProgramUniform2ui64ARB && glProgramUniform3ui64ARB && glProgramUniform4ui64ARB && glProgramUniform1ui64vARB && glProgramUniform2ui64vARB && glProgramUniform3ui64vARB && glProgramUniform4ui64vARB;
 					}
-					else if(!GLARB::_GL_ARB_instanced_arrays && strncmp(cur_ext, "GL_ARB_instanced_arrays", 23) == 0)
+					else if(!GLARB::_GL_ARB_instanced_arrays && strncmp(cur_ext, "GL_ARB_instanced_arrays", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glVertexAttribDivisorARB);
 						_GL_ARB_instanced_arrays = 0 != glVertexAttribDivisorARB;
 					}
-					else if(!GLARB::_GL_ARB_map_buffer_range && strncmp(cur_ext, "GL_ARB_map_buffer_range", 23) == 0) { GLARB::_GL_ARB_map_buffer_range = true; }
-					else if(!GLARB::_GL_ARB_occlusion_query2 && strncmp(cur_ext, "GL_ARB_occlusion_query2", 23) == 0) { GLARB::_GL_ARB_occlusion_query2 = true; }
-					else if(!GLARB::_GL_ARB_provoking_vertex && strncmp(cur_ext, "GL_ARB_provoking_vertex", 23) == 0) { GLARB::_GL_ARB_provoking_vertex = true; }
-					else if(!GLARB::_GL_ARB_sample_locations && strncmp(cur_ext, "GL_ARB_sample_locations", 23) == 0)
+					else if(!GLARB::_GL_ARB_map_buffer_range && strncmp(cur_ext, "GL_ARB_map_buffer_range", len) == 0) { GLARB::_GL_ARB_map_buffer_range = true; }
+					else if(!GLARB::_GL_ARB_occlusion_query2 && strncmp(cur_ext, "GL_ARB_occlusion_query2", len) == 0) { GLARB::_GL_ARB_occlusion_query2 = true; }
+					else if(!GLARB::_GL_ARB_provoking_vertex && strncmp(cur_ext, "GL_ARB_provoking_vertex", len) == 0) { GLARB::_GL_ARB_provoking_vertex = true; }
+					else if(!GLARB::_GL_ARB_sample_locations && strncmp(cur_ext, "GL_ARB_sample_locations", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glFramebufferSampleLocationsfvARB);
@@ -3572,10 +3610,10 @@ bool load()
 						LOAD_GLPROC(glEvaluateDepthValuesARB);
 						_GL_ARB_sample_locations = glFramebufferSampleLocationsfvARB && glNamedFramebufferSampleLocationsfvARB && glEvaluateDepthValuesARB;
 					}
-					else if(!GLARB::_GL_ARB_shader_precision && strncmp(cur_ext, "GL_ARB_shader_precision", 23) == 0) { GLARB::_GL_ARB_shader_precision = true; }
-					else if(!GLARB::_GL_ARB_spirv_extensions && strncmp(cur_ext, "GL_ARB_spirv_extensions", 23) == 0) { GLARB::_GL_ARB_spirv_extensions = true; }
-					else if(!GLARB::_GL_ARB_texture_stencil8 && strncmp(cur_ext, "GL_ARB_texture_stencil8", 23) == 0) { GLARB::_GL_ARB_texture_stencil8 = true; }
-					else if(!GLNV::_GL_NV_draw_vulkan_image && strncmp(cur_ext, "GL_NV_draw_vulkan_image", 23) == 0)
+					else if(!GLARB::_GL_ARB_shader_precision && strncmp(cur_ext, "GL_ARB_shader_precision", len) == 0) { GLARB::_GL_ARB_shader_precision = true; }
+					else if(!GLARB::_GL_ARB_spirv_extensions && strncmp(cur_ext, "GL_ARB_spirv_extensions", len) == 0) { GLARB::_GL_ARB_spirv_extensions = true; }
+					else if(!GLARB::_GL_ARB_texture_stencil8 && strncmp(cur_ext, "GL_ARB_texture_stencil8", len) == 0) { GLARB::_GL_ARB_texture_stencil8 = true; }
+					else if(!GLNV::_GL_NV_draw_vulkan_image && strncmp(cur_ext, "GL_NV_draw_vulkan_image", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glDrawVkImageNV);
@@ -3585,7 +3623,7 @@ bool load()
 						LOAD_GLPROC(glSignalVkFenceNV);
 						_GL_NV_draw_vulkan_image = glDrawVkImageNV && glGetVkProcAddrNV && glWaitVkSemaphoreNV && glSignalVkSemaphoreNV && glSignalVkFenceNV;
 					}
-					else if(!GLNV::_GL_NV_memory_attachment && strncmp(cur_ext, "GL_NV_memory_attachment", 23) == 0)
+					else if(!GLNV::_GL_NV_memory_attachment && strncmp(cur_ext, "GL_NV_memory_attachment", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glGetMemoryObjectDetachedResourcesuivNV);
@@ -3596,7 +3634,7 @@ bool load()
 						LOAD_GLPROC(glNamedBufferAttachMemoryNV);
 						_GL_NV_memory_attachment = glGetMemoryObjectDetachedResourcesuivNV && glResetMemoryObjectParameterNV && glTexAttachMemoryNV && glBufferAttachMemoryNV && glTextureAttachMemoryNV && glNamedBufferAttachMemoryNV;
 					}
-					else if(!GLNV::_GL_NV_scissor_exclusive && strncmp(cur_ext, "GL_NV_scissor_exclusive", 23) == 0)
+					else if(!GLNV::_GL_NV_scissor_exclusive && strncmp(cur_ext, "GL_NV_scissor_exclusive", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glScissorExclusiveNV);
@@ -3604,24 +3642,24 @@ bool load()
 						_GL_NV_scissor_exclusive = glScissorExclusiveNV && glScissorExclusiveArrayvNV;
 					}
 					break;
-				case 24: if(!GLARB::_GL_ARB_ES2_compatibility && strncmp(cur_ext, "GL_ARB_ES2_compatibility", 24) == 0) { GLARB::_GL_ARB_ES2_compatibility = true; }
-					else if(!GLARB::_GL_ARB_ES3_compatibility && strncmp(cur_ext, "GL_ARB_ES3_compatibility", 24) == 0) { GLARB::_GL_ARB_ES3_compatibility = true; }
-					else if(!GLARB::_GL_ARB_half_float_vertex && strncmp(cur_ext, "GL_ARB_half_float_vertex", 24) == 0) { GLARB::_GL_ARB_half_float_vertex = true; }
-					else if(!GLARB::_GL_ARB_seamless_cube_map && strncmp(cur_ext, "GL_ARB_seamless_cube_map", 24) == 0) { GLARB::_GL_ARB_seamless_cube_map = true; }
-					else if(!GLARB::_GL_ARB_shader_group_vote && strncmp(cur_ext, "GL_ARB_shader_group_vote", 24) == 0) { GLARB::_GL_ARB_shader_group_vote = true; }
-					else if(!GLARB::_GL_ARB_shader_image_size && strncmp(cur_ext, "GL_ARB_shader_image_size", 24) == 0) { GLARB::_GL_ARB_shader_image_size = true; }
-					else if(!GLARB::_GL_ARB_shader_subroutine && strncmp(cur_ext, "GL_ARB_shader_subroutine", 24) == 0) { GLARB::_GL_ARB_shader_subroutine = true; }
-					else if(!GLARB::_GL_ARB_stencil_texturing && strncmp(cur_ext, "GL_ARB_stencil_texturing", 24) == 0) { GLARB::_GL_ARB_stencil_texturing = true; }
-					else if(!GLARB::_GL_ARB_texture_query_lod && strncmp(cur_ext, "GL_ARB_texture_query_lod", 24) == 0) { GLARB::_GL_ARB_texture_query_lod = true; }
-					else if(!GLARB::_GL_ARB_vertex_array_bgra && strncmp(cur_ext, "GL_ARB_vertex_array_bgra", 24) == 0) { GLARB::_GL_ARB_vertex_array_bgra = true; }
-					else if(!GLNV::_GL_NV_conditional_render && strncmp(cur_ext, "GL_NV_conditional_render", 24) == 0)
+				case 24: if(!GLARB::_GL_ARB_ES2_compatibility && strncmp(cur_ext, "GL_ARB_ES2_compatibility", len) == 0) { GLARB::_GL_ARB_ES2_compatibility = true; }
+					else if(!GLARB::_GL_ARB_ES3_compatibility && strncmp(cur_ext, "GL_ARB_ES3_compatibility", len) == 0) { GLARB::_GL_ARB_ES3_compatibility = true; }
+					else if(!GLARB::_GL_ARB_half_float_vertex && strncmp(cur_ext, "GL_ARB_half_float_vertex", len) == 0) { GLARB::_GL_ARB_half_float_vertex = true; }
+					else if(!GLARB::_GL_ARB_seamless_cube_map && strncmp(cur_ext, "GL_ARB_seamless_cube_map", len) == 0) { GLARB::_GL_ARB_seamless_cube_map = true; }
+					else if(!GLARB::_GL_ARB_shader_group_vote && strncmp(cur_ext, "GL_ARB_shader_group_vote", len) == 0) { GLARB::_GL_ARB_shader_group_vote = true; }
+					else if(!GLARB::_GL_ARB_shader_image_size && strncmp(cur_ext, "GL_ARB_shader_image_size", len) == 0) { GLARB::_GL_ARB_shader_image_size = true; }
+					else if(!GLARB::_GL_ARB_shader_subroutine && strncmp(cur_ext, "GL_ARB_shader_subroutine", len) == 0) { GLARB::_GL_ARB_shader_subroutine = true; }
+					else if(!GLARB::_GL_ARB_stencil_texturing && strncmp(cur_ext, "GL_ARB_stencil_texturing", len) == 0) { GLARB::_GL_ARB_stencil_texturing = true; }
+					else if(!GLARB::_GL_ARB_texture_query_lod && strncmp(cur_ext, "GL_ARB_texture_query_lod", len) == 0) { GLARB::_GL_ARB_texture_query_lod = true; }
+					else if(!GLARB::_GL_ARB_vertex_array_bgra && strncmp(cur_ext, "GL_ARB_vertex_array_bgra", len) == 0) { GLARB::_GL_ARB_vertex_array_bgra = true; }
+					else if(!GLNV::_GL_NV_conditional_render && strncmp(cur_ext, "GL_NV_conditional_render", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glBeginConditionalRenderNV);
 						LOAD_GLPROC(glEndConditionalRenderNV);
 						_GL_NV_conditional_render = glBeginConditionalRenderNV && glEndConditionalRenderNV;
 					}
-					else if(!GLNV::_GL_NV_depth_buffer_float && strncmp(cur_ext, "GL_NV_depth_buffer_float", 24) == 0)
+					else if(!GLNV::_GL_NV_depth_buffer_float && strncmp(cur_ext, "GL_NV_depth_buffer_float", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glDepthRangedNV);
@@ -3629,7 +3667,7 @@ bool load()
 						LOAD_GLPROC(glDepthBoundsdNV);
 						_GL_NV_depth_buffer_float = glDepthRangedNV && glClearDepthdNV && glDepthBoundsdNV;
 					}
-					else if(!GLNV::_GL_NV_shader_buffer_load && strncmp(cur_ext, "GL_NV_shader_buffer_load", 24) == 0)
+					else if(!GLNV::_GL_NV_shader_buffer_load && strncmp(cur_ext, "GL_NV_shader_buffer_load", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glMakeBufferResidentNV);
@@ -3648,7 +3686,7 @@ bool load()
 						LOAD_GLPROC(glProgramUniformui64vNV);
 						_GL_NV_shader_buffer_load = glMakeBufferResidentNV && glMakeBufferNonResidentNV && glIsBufferResidentNV && glMakeNamedBufferResidentNV && glMakeNamedBufferNonResidentNV && glIsNamedBufferResidentNV && glGetBufferParameterui64vNV && glGetNamedBufferParameterui64vNV && glGetIntegerui64vNV && glUniformui64NV && glUniformui64vNV && glGetUniformui64vNV && glProgramUniformui64NV && glProgramUniformui64vNV;
 					}
-					else if(!GLNV::_GL_NV_shading_rate_image && strncmp(cur_ext, "GL_NV_shading_rate_image", 24) == 0)
+					else if(!GLNV::_GL_NV_shading_rate_image && strncmp(cur_ext, "GL_NV_shading_rate_image", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glBindShadingRateImageNV);
@@ -3660,11 +3698,24 @@ bool load()
 						LOAD_GLPROC(glShadingRateSampleOrderCustomNV);
 						_GL_NV_shading_rate_image = glBindShadingRateImageNV && glGetShadingRateImagePaletteNV && glGetShadingRateSampleLocationivNV && glShadingRateImageBarrierNV && glShadingRateImagePaletteNV && glShadingRateSampleOrderNV && glShadingRateSampleOrderCustomNV;
 					}
+					else if(!GLEXT::_GL_EXT_EGL_image_storage && strncmp(cur_ext, "GL_EXT_EGL_image_storage", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glEGLImageTargetTexStorageEXT);
+						LOAD_GLPROC(glEGLImageTargetTextureStorageEXT);
+						_GL_EXT_EGL_image_storage = true;
+					}
+					else if(!GLEXT::_GL_EXT_window_rectangles && strncmp(cur_ext, "GL_EXT_window_rectangles", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glWindowRectanglesEXT);
+						_GL_EXT_window_rectangles = true;
+					}
 					break;
-				case 25: if(!GLARB::_GL_ARB_conservative_depth && strncmp(cur_ext, "GL_ARB_conservative_depth", 25) == 0) { GLARB::_GL_ARB_conservative_depth = true; }
-					else if(!GLARB::_GL_ARB_depth_buffer_float && strncmp(cur_ext, "GL_ARB_depth_buffer_float", 25) == 0) { GLARB::_GL_ARB_depth_buffer_float = true; }
-					else if(!GLARB::_GL_ARB_derivative_control && strncmp(cur_ext, "GL_ARB_derivative_control", 25) == 0) { GLARB::_GL_ARB_derivative_control = true; }
-					else if(!GLARB::_GL_ARB_draw_buffers_blend && strncmp(cur_ext, "GL_ARB_draw_buffers_blend", 25) == 0)
+				case 25: if(!GLARB::_GL_ARB_conservative_depth && strncmp(cur_ext, "GL_ARB_conservative_depth", len) == 0) { GLARB::_GL_ARB_conservative_depth = true; }
+					else if(!GLARB::_GL_ARB_depth_buffer_float && strncmp(cur_ext, "GL_ARB_depth_buffer_float", len) == 0) { GLARB::_GL_ARB_depth_buffer_float = true; }
+					else if(!GLARB::_GL_ARB_derivative_control && strncmp(cur_ext, "GL_ARB_derivative_control", len) == 0) { GLARB::_GL_ARB_derivative_control = true; }
+					else if(!GLARB::_GL_ARB_draw_buffers_blend && strncmp(cur_ext, "GL_ARB_draw_buffers_blend", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glBlendEquationiARB);
@@ -3673,57 +3724,72 @@ bool load()
 						LOAD_GLPROC(glBlendFuncSeparateiARB);
 						_GL_ARB_draw_buffers_blend = glBlendEquationiARB && glBlendEquationSeparateiARB && glBlendFunciARB && glBlendFuncSeparateiARB;
 					}
-					else if(!GLARB::_GL_ARB_framebuffer_object && strncmp(cur_ext, "GL_ARB_framebuffer_object", 25) == 0) { GLARB::_GL_ARB_framebuffer_object = true; }
-					else if(!GLARB::_GL_ARB_get_program_binary && strncmp(cur_ext, "GL_ARB_get_program_binary", 25) == 0) { GLARB::_GL_ARB_get_program_binary = true; }
-					else if(!GLARB::_GL_ARB_invalidate_subdata && strncmp(cur_ext, "GL_ARB_invalidate_subdata", 25) == 0) { GLARB::_GL_ARB_invalidate_subdata = true; }
-					else if(!GLARB::_GL_ARB_texture_rgb10_a2ui && strncmp(cur_ext, "GL_ARB_texture_rgb10_a2ui", 25) == 0) { GLARB::_GL_ARB_texture_rgb10_a2ui = true; }
-					else if(!GLNV::_GL_NV_blend_minmax_factor && strncmp(cur_ext, "GL_NV_blend_minmax_factor", 25) == 0) { GLNV::_GL_NV_blend_minmax_factor = true; }
-					else if(!GLNV::_GL_NV_conservative_raster && strncmp(cur_ext, "GL_NV_conservative_raster", 25) == 0)
+					else if(!GLARB::_GL_ARB_framebuffer_object && strncmp(cur_ext, "GL_ARB_framebuffer_object", len) == 0) { GLARB::_GL_ARB_framebuffer_object = true; }
+					else if(!GLARB::_GL_ARB_get_program_binary && strncmp(cur_ext, "GL_ARB_get_program_binary", len) == 0) { GLARB::_GL_ARB_get_program_binary = true; }
+					else if(!GLARB::_GL_ARB_invalidate_subdata && strncmp(cur_ext, "GL_ARB_invalidate_subdata", len) == 0) { GLARB::_GL_ARB_invalidate_subdata = true; }
+					else if(!GLARB::_GL_ARB_texture_rgb10_a2ui && strncmp(cur_ext, "GL_ARB_texture_rgb10_a2ui", len) == 0) { GLARB::_GL_ARB_texture_rgb10_a2ui = true; }
+					else if(!GLNV::_GL_NV_blend_minmax_factor && strncmp(cur_ext, "GL_NV_blend_minmax_factor", len) == 0) { GLNV::_GL_NV_blend_minmax_factor = true; }
+					else if(!GLNV::_GL_NV_conservative_raster && strncmp(cur_ext, "GL_NV_conservative_raster", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glSubpixelPrecisionBiasNV);
 						_GL_NV_conservative_raster = 0 != glSubpixelPrecisionBiasNV;
 					}
-					else if(!GLNV::_GL_NV_shader_atomic_float && strncmp(cur_ext, "GL_NV_shader_atomic_float", 25) == 0) { GLNV::_GL_NV_shader_atomic_float = true; }
-					else if(!GLNV::_GL_NV_shader_atomic_int64 && strncmp(cur_ext, "GL_NV_shader_atomic_int64", 25) == 0) { GLNV::_GL_NV_shader_atomic_int64 = true; }
-					else if(!GLNV::_GL_NV_shader_buffer_store && strncmp(cur_ext, "GL_NV_shader_buffer_store", 25) == 0) { GLNV::_GL_NV_shader_buffer_store = true; }
-					else if(!GLNV::_GL_NV_shader_thread_group && strncmp(cur_ext, "GL_NV_shader_thread_group", 25) == 0) { GLNV::_GL_NV_shader_thread_group = true; }
+					else if(!GLNV::_GL_NV_shader_atomic_float && strncmp(cur_ext, "GL_NV_shader_atomic_float", len) == 0) { GLNV::_GL_NV_shader_atomic_float = true; }
+					else if(!GLNV::_GL_NV_shader_atomic_int64 && strncmp(cur_ext, "GL_NV_shader_atomic_int64", len) == 0) { GLNV::_GL_NV_shader_atomic_int64 = true; }
+					else if(!GLNV::_GL_NV_shader_buffer_store && strncmp(cur_ext, "GL_NV_shader_buffer_store", len) == 0) { GLNV::_GL_NV_shader_buffer_store = true; }
+					else if(!GLNV::_GL_NV_shader_thread_group && strncmp(cur_ext, "GL_NV_shader_thread_group", len) == 0) { GLNV::_GL_NV_shader_thread_group = true; }
+					else if(!GLINTEL::_GL_INTEL_blackhole_render && strncmp(cur_ext, "GL_INTEL_blackhole_render", len) == 0) { GLINTEL::_GL_INTEL_blackhole_render = true; }
+					else if(!GLINTEL::_GL_INTEL_framebuffer_CMAA && strncmp(cur_ext, "GL_INTEL_framebuffer_CMAA", len) == 0)
+					{
+						using namespace axl::glfl::core::GLINTEL;
+						LOAD_GLPROC(glApplyFramebufferAttachmentCMAAINTEL);
+						_GL_INTEL_framebuffer_CMAA = 0 != glApplyFramebufferAttachmentCMAAINTEL;
+					}
+					else if(!GLEXT::_GL_EXT_raster_multisample && strncmp(cur_ext, "GL_EXT_raster_multisample", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glRasterSamplesEXT);
+						_GL_EXT_raster_multisample = true;
+					}
+					else if(!GLEXT::_GL_EXT_shader_integer_mix && strncmp(cur_ext, "GL_EXT_shader_integer_mix", len) == 0) { GLEXT::_GL_EXT_shader_integer_mix = true; }
+					else if(!GLEXT::_GL_EXT_texture_shadow_lod && strncmp(cur_ext, "GL_EXT_texture_shadow_lod", len) == 0) { GLEXT::_GL_EXT_texture_shadow_lod = true; }
 					break;
-				case 26: if(!GLARB::_GL_ARB_ES3_1_compatibility && strncmp(cur_ext, "GL_ARB_ES3_1_compatibility", 26) == 0) { GLARB::_GL_ARB_ES3_1_compatibility = true; }
-					else if(!GLARB::_GL_ARB_ES3_2_compatibility && strncmp(cur_ext, "GL_ARB_ES3_2_compatibility", 26) == 0)
+				case 26: if(!GLARB::_GL_ARB_ES3_1_compatibility && strncmp(cur_ext, "GL_ARB_ES3_1_compatibility", len) == 0) { GLARB::_GL_ARB_ES3_1_compatibility = true; }
+					else if(!GLARB::_GL_ARB_ES3_2_compatibility && strncmp(cur_ext, "GL_ARB_ES3_2_compatibility", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glPrimitiveBoundingBoxARB);
 						_GL_ARB_ES3_2_compatibility = 0 != glPrimitiveBoundingBoxARB;
 					}
-					else if(!GLARB::_GL_ARB_blend_func_extended && strncmp(cur_ext, "GL_ARB_blend_func_extended", 26) == 0) { GLARB::_GL_ARB_blend_func_extended = true; }
-					else if(!GLARB::_GL_ARB_clear_buffer_object && strncmp(cur_ext, "GL_ARB_clear_buffer_object", 26) == 0) { GLARB::_GL_ARB_clear_buffer_object = true; }
-					else if(!GLARB::_GL_ARB_direct_state_access && strncmp(cur_ext, "GL_ARB_direct_state_access", 26) == 0) { GLARB::_GL_ARB_direct_state_access = true; }
-					else if(!GLARB::_GL_ARB_indirect_parameters && strncmp(cur_ext, "GL_ARB_indirect_parameters", 26) == 0)
+					else if(!GLARB::_GL_ARB_blend_func_extended && strncmp(cur_ext, "GL_ARB_blend_func_extended", len) == 0) { GLARB::_GL_ARB_blend_func_extended = true; }
+					else if(!GLARB::_GL_ARB_clear_buffer_object && strncmp(cur_ext, "GL_ARB_clear_buffer_object", len) == 0) { GLARB::_GL_ARB_clear_buffer_object = true; }
+					else if(!GLARB::_GL_ARB_direct_state_access && strncmp(cur_ext, "GL_ARB_direct_state_access", len) == 0) { GLARB::_GL_ARB_direct_state_access = true; }
+					else if(!GLARB::_GL_ARB_indirect_parameters && strncmp(cur_ext, "GL_ARB_indirect_parameters", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glMultiDrawArraysIndirectCountARB);
 						LOAD_GLPROC(glMultiDrawElementsIndirectCountARB);
 						_GL_ARB_indirect_parameters = glMultiDrawArraysIndirectCountARB && glMultiDrawElementsIndirectCountARB;
 					}
-					else if(!GLARB::_GL_ARB_multi_draw_indirect && strncmp(cur_ext, "GL_ARB_multi_draw_indirect", 26) == 0) { GLARB::_GL_ARB_multi_draw_indirect = true; }
-					else if(!GLARB::_GL_ARB_pixel_buffer_object && strncmp(cur_ext, "GL_ARB_pixel_buffer_object", 26) == 0) { GLARB::_GL_ARB_pixel_buffer_object = true; }
-					else if(!GLARB::_GL_ARB_post_depth_coverage && strncmp(cur_ext, "GL_ARB_post_depth_coverage", 26) == 0) { GLARB::_GL_ARB_post_depth_coverage = true; }
-					else if(!GLARB::_GL_ARB_query_buffer_object && strncmp(cur_ext, "GL_ARB_query_buffer_object", 26) == 0) { GLARB::_GL_ARB_query_buffer_object = true; }
-					else if(!GLARB::_GL_ARB_shader_bit_encoding && strncmp(cur_ext, "GL_ARB_shader_bit_encoding", 26) == 0) { GLARB::_GL_ARB_shader_bit_encoding = true; }
-					else if(!GLARB::_GL_ARB_tessellation_shader && strncmp(cur_ext, "GL_ARB_tessellation_shader", 26) == 0) { GLARB::_GL_ARB_tessellation_shader = true; }
-					else if(!GLARB::_GL_ARB_texture_multisample && strncmp(cur_ext, "GL_ARB_texture_multisample", 26) == 0) { GLARB::_GL_ARB_texture_multisample = true; }
-					else if(!GLARB::_GL_ARB_transform_feedback2 && strncmp(cur_ext, "GL_ARB_transform_feedback2", 26) == 0) { GLARB::_GL_ARB_transform_feedback2 = true; }
-					else if(!GLARB::_GL_ARB_transform_feedback3 && strncmp(cur_ext, "GL_ARB_transform_feedback3", 26) == 0) { GLARB::_GL_ARB_transform_feedback3 = true; }
-					else if(!GLARB::_GL_ARB_vertex_array_object && strncmp(cur_ext, "GL_ARB_vertex_array_object", 26) == 0) { GLARB::_GL_ARB_vertex_array_object = true; }
-					else if(!GLARB::_GL_ARB_vertex_attrib_64bit && strncmp(cur_ext, "GL_ARB_vertex_attrib_64bit", 26) == 0) { GLARB::_GL_ARB_vertex_attrib_64bit = true; }
-					else if(!GLNV::_GL_NV_clip_space_w_scaling && strncmp(cur_ext, "GL_NV_clip_space_w_scaling", 26) == 0)
+					else if(!GLARB::_GL_ARB_multi_draw_indirect && strncmp(cur_ext, "GL_ARB_multi_draw_indirect", len) == 0) { GLARB::_GL_ARB_multi_draw_indirect = true; }
+					else if(!GLARB::_GL_ARB_pixel_buffer_object && strncmp(cur_ext, "GL_ARB_pixel_buffer_object", len) == 0) { GLARB::_GL_ARB_pixel_buffer_object = true; }
+					else if(!GLARB::_GL_ARB_post_depth_coverage && strncmp(cur_ext, "GL_ARB_post_depth_coverage", len) == 0) { GLARB::_GL_ARB_post_depth_coverage = true; }
+					else if(!GLARB::_GL_ARB_query_buffer_object && strncmp(cur_ext, "GL_ARB_query_buffer_object", len) == 0) { GLARB::_GL_ARB_query_buffer_object = true; }
+					else if(!GLARB::_GL_ARB_shader_bit_encoding && strncmp(cur_ext, "GL_ARB_shader_bit_encoding", len) == 0) { GLARB::_GL_ARB_shader_bit_encoding = true; }
+					else if(!GLARB::_GL_ARB_tessellation_shader && strncmp(cur_ext, "GL_ARB_tessellation_shader", len) == 0) { GLARB::_GL_ARB_tessellation_shader = true; }
+					else if(!GLARB::_GL_ARB_texture_multisample && strncmp(cur_ext, "GL_ARB_texture_multisample", len) == 0) { GLARB::_GL_ARB_texture_multisample = true; }
+					else if(!GLARB::_GL_ARB_transform_feedback2 && strncmp(cur_ext, "GL_ARB_transform_feedback2", len) == 0) { GLARB::_GL_ARB_transform_feedback2 = true; }
+					else if(!GLARB::_GL_ARB_transform_feedback3 && strncmp(cur_ext, "GL_ARB_transform_feedback3", len) == 0) { GLARB::_GL_ARB_transform_feedback3 = true; }
+					else if(!GLARB::_GL_ARB_vertex_array_object && strncmp(cur_ext, "GL_ARB_vertex_array_object", len) == 0) { GLARB::_GL_ARB_vertex_array_object = true; }
+					else if(!GLARB::_GL_ARB_vertex_attrib_64bit && strncmp(cur_ext, "GL_ARB_vertex_attrib_64bit", len) == 0) { GLARB::_GL_ARB_vertex_attrib_64bit = true; }
+					else if(!GLNV::_GL_NV_clip_space_w_scaling && strncmp(cur_ext, "GL_NV_clip_space_w_scaling", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glViewportPositionWScaleNV);
 						_GL_NV_clip_space_w_scaling = 0 != glViewportPositionWScaleNV;
 					}
-					else if(!GLNV::_GL_NV_memory_object_sparse && strncmp(cur_ext, "GL_NV_memory_object_sparse", 26) == 0)
+					else if(!GLNV::_GL_NV_memory_object_sparse && strncmp(cur_ext, "GL_NV_memory_object_sparse", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glBufferPageCommitmentMemNV);
@@ -3732,38 +3798,349 @@ bool load()
 						LOAD_GLPROC(glTexturePageCommitmentMemNV);
 						_GL_NV_memory_object_sparse = glBufferPageCommitmentMemNV && glTexPageCommitmentMemNV && glNamedBufferPageCommitmentMemNV && glTexturePageCommitmentMemNV;
 					}
+					else if(!GLINTEL::_GL_INTEL_performance_query && strncmp(cur_ext, "GL_INTEL_performance_query", len) == 0)
+					{
+						using namespace axl::glfl::core::GLINTEL;
+						LOAD_GLPROC(glBeginPerfQueryINTEL);
+						LOAD_GLPROC(glCreatePerfQueryINTEL);
+						LOAD_GLPROC(glDeletePerfQueryINTEL);
+						LOAD_GLPROC(glEndPerfQueryINTEL);
+						LOAD_GLPROC(glGetFirstPerfQueryIdINTEL);
+						LOAD_GLPROC(glGetNextPerfQueryIdINTEL);
+						LOAD_GLPROC(glGetPerfCounterInfoINTEL);
+						LOAD_GLPROC(glGetPerfQueryDataINTEL);
+						LOAD_GLPROC(glGetPerfQueryIdByNameINTEL);
+						LOAD_GLPROC(glGetPerfQueryInfoINTEL);
+						_GL_INTEL_performance_query = glBeginPerfQueryINTEL && glCreatePerfQueryINTEL && glDeletePerfQueryINTEL && glEndPerfQueryINTEL && glGetFirstPerfQueryIdINTEL && glGetNextPerfQueryIdINTEL && glGetPerfCounterInfoINTEL && glGetPerfQueryDataINTEL && glGetPerfQueryIdByNameINTEL && glGetPerfQueryInfoINTEL;
+					}
+					else if(!GLAMD::_GL_AMD_performance_monitor && strncmp(cur_ext, "GL_AMD_performance_monitor", len) == 0)
+					{
+						using namespace axl::glfl::core::GLAMD;
+						LOAD_GLPROC(glGetPerfMonitorGroupsAMD);
+						LOAD_GLPROC(glGetPerfMonitorCountersAMD);
+						LOAD_GLPROC(glGetPerfMonitorGroupStringAMD);
+						LOAD_GLPROC(glGetPerfMonitorCounterStringAMD);
+						LOAD_GLPROC(glGetPerfMonitorCounterInfoAMD);
+						LOAD_GLPROC(glGenPerfMonitorsAMD);
+						LOAD_GLPROC(glDeletePerfMonitorsAMD);
+						LOAD_GLPROC(glSelectPerfMonitorCountersAMD);
+						LOAD_GLPROC(glBeginPerfMonitorAMD);
+						LOAD_GLPROC(glEndPerfMonitorAMD);
+						LOAD_GLPROC(glGetPerfMonitorCounterDataAMD);
+						_GL_AMD_performance_monitor = glGetPerfMonitorGroupsAMD && glGetPerfMonitorCountersAMD && glGetPerfMonitorGroupStringAMD && glGetPerfMonitorCounterStringAMD && glGetPerfMonitorCounterInfoAMD && glGenPerfMonitorsAMD && glDeletePerfMonitorsAMD && glSelectPerfMonitorCountersAMD && glBeginPerfMonitorAMD && glEndPerfMonitorAMD && glGetPerfMonitorCounterDataAMD;
+					}
+					else if(!GLMESA::_GL_MESA_framebuffer_flip_x && strncmp(cur_ext, "GL_MESA_framebuffer_flip_x", len) == 0) { GLMESA::_GL_MESA_framebuffer_flip_x = true; }
+					else if(!GLMESA::_GL_MESA_framebuffer_flip_y && strncmp(cur_ext, "GL_MESA_framebuffer_flip_y", len) == 0)
+					{
+						using namespace axl::glfl::core::GLMESA;
+						LOAD_GLPROC(glFramebufferParameteriMESA);
+						LOAD_GLPROC(glGetFramebufferParameterivMESA);
+						_GL_MESA_framebuffer_flip_y = glFramebufferParameteriMESA && glGetFramebufferParameterivMESA;
+					}
+					else if(!GLEXT::_GL_EXT_direct_state_access && strncmp(cur_ext, "GL_EXT_direct_state_access", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glMatrixLoadfEXT);
+						LOAD_GLPROC(glMatrixLoaddEXT);
+						LOAD_GLPROC(glMatrixMultfEXT);
+						LOAD_GLPROC(glMatrixMultdEXT);
+						LOAD_GLPROC(glMatrixLoadIdentityEXT);
+						LOAD_GLPROC(glMatrixRotatefEXT);
+						LOAD_GLPROC(glMatrixRotatedEXT);
+						LOAD_GLPROC(glMatrixScalefEXT);
+						LOAD_GLPROC(glMatrixScaledEXT);
+						LOAD_GLPROC(glMatrixTranslatefEXT);
+						LOAD_GLPROC(glMatrixTranslatedEXT);
+						LOAD_GLPROC(glMatrixFrustumEXT);
+						LOAD_GLPROC(glMatrixOrthoEXT);
+						LOAD_GLPROC(glMatrixPopEXT);
+						LOAD_GLPROC(glMatrixPushEXT);
+						LOAD_GLPROC(glClientAttribDefaultEXT);
+						LOAD_GLPROC(glPushClientAttribDefaultEXT);
+						LOAD_GLPROC(glTextureParameterfEXT);
+						LOAD_GLPROC(glTextureParameterfvEXT);
+						LOAD_GLPROC(glTextureParameteriEXT);
+						LOAD_GLPROC(glTextureParameterivEXT);
+						LOAD_GLPROC(glTextureImage1DEXT);
+						LOAD_GLPROC(glTextureImage2DEXT);
+						LOAD_GLPROC(glTextureSubImage1DEXT);
+						LOAD_GLPROC(glTextureSubImage2DEXT);
+						LOAD_GLPROC(glCopyTextureImage1DEXT);
+						LOAD_GLPROC(glCopyTextureImage2DEXT);
+						LOAD_GLPROC(glCopyTextureSubImage1DEXT);
+						LOAD_GLPROC(glCopyTextureSubImage2DEXT);
+						LOAD_GLPROC(glGetTextureImageEXT);
+						LOAD_GLPROC(glGetTextureParameterfvEXT);
+						LOAD_GLPROC(glGetTextureParameterivEXT);
+						LOAD_GLPROC(glGetTextureLevelParameterfvEXT);
+						LOAD_GLPROC(glGetTextureLevelParameterivEXT);
+						LOAD_GLPROC(glTextureImage3DEXT);
+						LOAD_GLPROC(glTextureSubImage3DEXT);
+						LOAD_GLPROC(glCopyTextureSubImage3DEXT);
+						LOAD_GLPROC(glBindMultiTextureEXT);
+						LOAD_GLPROC(glMultiTexCoordPointerEXT);
+						LOAD_GLPROC(glMultiTexEnvfEXT);
+						LOAD_GLPROC(glMultiTexEnvfvEXT);
+						LOAD_GLPROC(glMultiTexEnviEXT);
+						LOAD_GLPROC(glMultiTexEnvivEXT);
+						LOAD_GLPROC(glMultiTexGendEXT);
+						LOAD_GLPROC(glMultiTexGendvEXT);
+						LOAD_GLPROC(glMultiTexGenfEXT);
+						LOAD_GLPROC(glMultiTexGenfvEXT);
+						LOAD_GLPROC(glMultiTexGeniEXT);
+						LOAD_GLPROC(glMultiTexGenivEXT);
+						LOAD_GLPROC(glGetMultiTexEnvfvEXT);
+						LOAD_GLPROC(glGetMultiTexEnvivEXT);
+						LOAD_GLPROC(glGetMultiTexGendvEXT);
+						LOAD_GLPROC(glGetMultiTexGenfvEXT);
+						LOAD_GLPROC(glGetMultiTexGenivEXT);
+						LOAD_GLPROC(glMultiTexParameteriEXT);
+						LOAD_GLPROC(glMultiTexParameterivEXT);
+						LOAD_GLPROC(glMultiTexParameterfEXT);
+						LOAD_GLPROC(glMultiTexParameterfvEXT);
+						LOAD_GLPROC(glMultiTexImage1DEXT);
+						LOAD_GLPROC(glMultiTexImage2DEXT);
+						LOAD_GLPROC(glMultiTexSubImage1DEXT);
+						LOAD_GLPROC(glMultiTexSubImage2DEXT);
+						LOAD_GLPROC(glCopyMultiTexImage1DEXT);
+						LOAD_GLPROC(glCopyMultiTexImage2DEXT);
+						LOAD_GLPROC(glCopyMultiTexSubImage1DEXT);
+						LOAD_GLPROC(glCopyMultiTexSubImage2DEXT);
+						LOAD_GLPROC(glGetMultiTexImageEXT);
+						LOAD_GLPROC(glGetMultiTexParameterfvEXT);
+						LOAD_GLPROC(glGetMultiTexParameterivEXT);
+						LOAD_GLPROC(glGetMultiTexLevelParameterfvEXT);
+						LOAD_GLPROC(glGetMultiTexLevelParameterivEXT);
+						LOAD_GLPROC(glMultiTexImage3DEXT);
+						LOAD_GLPROC(glMultiTexSubImage3DEXT);
+						LOAD_GLPROC(glCopyMultiTexSubImage3DEXT);
+						LOAD_GLPROC(glEnableClientStateIndexedEXT);
+						LOAD_GLPROC(glDisableClientStateIndexedEXT);
+						LOAD_GLPROC(glGetFloatIndexedvEXT);
+						LOAD_GLPROC(glGetDoubleIndexedvEXT);
+						LOAD_GLPROC(glGetPointerIndexedvEXT);
+						LOAD_GLPROC(glEnableIndexedEXT);
+						LOAD_GLPROC(glDisableIndexedEXT);
+						LOAD_GLPROC(glIsEnabledIndexedEXT);
+						LOAD_GLPROC(glGetIntegerIndexedvEXT);
+						LOAD_GLPROC(glGetBooleanIndexedvEXT);
+						LOAD_GLPROC(glCompressedTextureImage3DEXT);
+						LOAD_GLPROC(glCompressedTextureImage2DEXT);
+						LOAD_GLPROC(glCompressedTextureImage1DEXT);
+						LOAD_GLPROC(glCompressedTextureSubImage3DEXT);
+						LOAD_GLPROC(glCompressedTextureSubImage2DEXT);
+						LOAD_GLPROC(glCompressedTextureSubImage1DEXT);
+						LOAD_GLPROC(glGetCompressedTextureImageEXT);
+						LOAD_GLPROC(glCompressedMultiTexImage3DEXT);
+						LOAD_GLPROC(glCompressedMultiTexImage2DEXT);
+						LOAD_GLPROC(glCompressedMultiTexImage1DEXT);
+						LOAD_GLPROC(glCompressedMultiTexSubImage3DEXT);
+						LOAD_GLPROC(glCompressedMultiTexSubImage2DEXT);
+						LOAD_GLPROC(glCompressedMultiTexSubImage1DEXT);
+						LOAD_GLPROC(glGetCompressedMultiTexImageEXT);
+						LOAD_GLPROC(glMatrixLoadTransposefEXT);
+						LOAD_GLPROC(glMatrixLoadTransposedEXT);
+						LOAD_GLPROC(glMatrixMultTransposefEXT);
+						LOAD_GLPROC(glMatrixMultTransposedEXT);
+						LOAD_GLPROC(glNamedBufferDataEXT);
+						LOAD_GLPROC(glNamedBufferSubDataEXT);
+						LOAD_GLPROC(glMapNamedBufferEXT);
+						LOAD_GLPROC(glUnmapNamedBufferEXT);
+						LOAD_GLPROC(glGetNamedBufferParameterivEXT);
+						LOAD_GLPROC(glGetNamedBufferPointervEXT);
+						LOAD_GLPROC(glGetNamedBufferSubDataEXT);
+						LOAD_GLPROC(glProgramUniform1fEXT);
+						LOAD_GLPROC(glProgramUniform2fEXT);
+						LOAD_GLPROC(glProgramUniform3fEXT);
+						LOAD_GLPROC(glProgramUniform4fEXT);
+						LOAD_GLPROC(glProgramUniform1iEXT);
+						LOAD_GLPROC(glProgramUniform2iEXT);
+						LOAD_GLPROC(glProgramUniform3iEXT);
+						LOAD_GLPROC(glProgramUniform4iEXT);
+						LOAD_GLPROC(glProgramUniform1fvEXT);
+						LOAD_GLPROC(glProgramUniform2fvEXT);
+						LOAD_GLPROC(glProgramUniform3fvEXT);
+						LOAD_GLPROC(glProgramUniform4fvEXT);
+						LOAD_GLPROC(glProgramUniform1ivEXT);
+						LOAD_GLPROC(glProgramUniform2ivEXT);
+						LOAD_GLPROC(glProgramUniform3ivEXT);
+						LOAD_GLPROC(glProgramUniform4ivEXT);
+						LOAD_GLPROC(glProgramUniformMatrix2fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix3fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix4fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix2x3fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix3x2fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix2x4fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix4x2fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix3x4fvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix4x3fvEXT);
+						LOAD_GLPROC(glTextureBufferEXT);
+						LOAD_GLPROC(glMultiTexBufferEXT);
+						LOAD_GLPROC(glTextureParameterIivEXT);
+						LOAD_GLPROC(glTextureParameterIuivEXT);
+						LOAD_GLPROC(glGetTextureParameterIivEXT);
+						LOAD_GLPROC(glGetTextureParameterIuivEXT);
+						LOAD_GLPROC(glMultiTexParameterIivEXT);
+						LOAD_GLPROC(glMultiTexParameterIuivEXT);
+						LOAD_GLPROC(glGetMultiTexParameterIivEXT);
+						LOAD_GLPROC(glGetMultiTexParameterIuivEXT);
+						LOAD_GLPROC(glProgramUniform1uiEXT);
+						LOAD_GLPROC(glProgramUniform2uiEXT);
+						LOAD_GLPROC(glProgramUniform3uiEXT);
+						LOAD_GLPROC(glProgramUniform4uiEXT);
+						LOAD_GLPROC(glProgramUniform1uivEXT);
+						LOAD_GLPROC(glProgramUniform2uivEXT);
+						LOAD_GLPROC(glProgramUniform3uivEXT);
+						LOAD_GLPROC(glProgramUniform4uivEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameters4fvEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameterI4iEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameterI4ivEXT);
+						LOAD_GLPROC(glNamedProgramLocalParametersI4ivEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameterI4uiEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameterI4uivEXT);
+						LOAD_GLPROC(glNamedProgramLocalParametersI4uivEXT);
+						LOAD_GLPROC(glGetNamedProgramLocalParameterIivEXT);
+						LOAD_GLPROC(glGetNamedProgramLocalParameterIuivEXT);
+						LOAD_GLPROC(glEnableClientStateiEXT);
+						LOAD_GLPROC(glDisableClientStateiEXT);
+						LOAD_GLPROC(glGetFloati_vEXT);
+						LOAD_GLPROC(glGetDoublei_vEXT);
+						LOAD_GLPROC(glGetPointeri_vEXT);
+						LOAD_GLPROC(glNamedProgramStringEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameter4dEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameter4dvEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameter4fEXT);
+						LOAD_GLPROC(glNamedProgramLocalParameter4fvEXT);
+						LOAD_GLPROC(glGetNamedProgramLocalParameterdvEXT);
+						LOAD_GLPROC(glGetNamedProgramLocalParameterfvEXT);
+						LOAD_GLPROC(glGetNamedProgramivEXT);
+						LOAD_GLPROC(glGetNamedProgramStringEXT);
+						LOAD_GLPROC(glNamedRenderbufferStorageEXT);
+						LOAD_GLPROC(glGetNamedRenderbufferParameterivEXT);
+						LOAD_GLPROC(glNamedRenderbufferStorageMultisampleEXT);
+						LOAD_GLPROC(glNamedRenderbufferStorageMultisampleCoverageEXT);
+						LOAD_GLPROC(glCheckNamedFramebufferStatusEXT);
+						LOAD_GLPROC(glNamedFramebufferTexture1DEXT);
+						LOAD_GLPROC(glNamedFramebufferTexture2DEXT);
+						LOAD_GLPROC(glNamedFramebufferTexture3DEXT);
+						LOAD_GLPROC(glNamedFramebufferRenderbufferEXT);
+						LOAD_GLPROC(glGetNamedFramebufferAttachmentParameterivEXT);
+						LOAD_GLPROC(glGenerateTextureMipmapEXT);
+						LOAD_GLPROC(glGenerateMultiTexMipmapEXT);
+						LOAD_GLPROC(glFramebufferDrawBufferEXT);
+						LOAD_GLPROC(glFramebufferDrawBuffersEXT);
+						LOAD_GLPROC(glFramebufferReadBufferEXT);
+						LOAD_GLPROC(glGetFramebufferParameterivEXT);
+						LOAD_GLPROC(glNamedCopyBufferSubDataEXT);
+						LOAD_GLPROC(glNamedFramebufferTextureEXT);
+						LOAD_GLPROC(glNamedFramebufferTextureLayerEXT);
+						LOAD_GLPROC(glNamedFramebufferTextureFaceEXT);
+						LOAD_GLPROC(glTextureRenderbufferEXT);
+						LOAD_GLPROC(glMultiTexRenderbufferEXT);
+						LOAD_GLPROC(glVertexArrayVertexOffsetEXT);
+						LOAD_GLPROC(glVertexArrayColorOffsetEXT);
+						LOAD_GLPROC(glVertexArrayEdgeFlagOffsetEXT);
+						LOAD_GLPROC(glVertexArrayIndexOffsetEXT);
+						LOAD_GLPROC(glVertexArrayNormalOffsetEXT);
+						LOAD_GLPROC(glVertexArrayTexCoordOffsetEXT);
+						LOAD_GLPROC(glVertexArrayMultiTexCoordOffsetEXT);
+						LOAD_GLPROC(glVertexArrayFogCoordOffsetEXT);
+						LOAD_GLPROC(glVertexArraySecondaryColorOffsetEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribOffsetEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribIOffsetEXT);
+						LOAD_GLPROC(glEnableVertexArrayEXT);
+						LOAD_GLPROC(glDisableVertexArrayEXT);
+						LOAD_GLPROC(glEnableVertexArrayAttribEXT);
+						LOAD_GLPROC(glDisableVertexArrayAttribEXT);
+						LOAD_GLPROC(glGetVertexArrayIntegervEXT);
+						LOAD_GLPROC(glGetVertexArrayPointervEXT);
+						LOAD_GLPROC(glGetVertexArrayIntegeri_vEXT);
+						LOAD_GLPROC(glGetVertexArrayPointeri_vEXT);
+						LOAD_GLPROC(glMapNamedBufferRangeEXT);
+						LOAD_GLPROC(glFlushMappedNamedBufferRangeEXT);
+						LOAD_GLPROC(glNamedBufferStorageEXT);
+						LOAD_GLPROC(glClearNamedBufferDataEXT);
+						LOAD_GLPROC(glClearNamedBufferSubDataEXT);
+						LOAD_GLPROC(glNamedFramebufferParameteriEXT);
+						LOAD_GLPROC(glGetNamedFramebufferParameterivEXT);
+						LOAD_GLPROC(glProgramUniform1dEXT);
+						LOAD_GLPROC(glProgramUniform2dEXT);
+						LOAD_GLPROC(glProgramUniform3dEXT);
+						LOAD_GLPROC(glProgramUniform4dEXT);
+						LOAD_GLPROC(glProgramUniform1dvEXT);
+						LOAD_GLPROC(glProgramUniform2dvEXT);
+						LOAD_GLPROC(glProgramUniform3dvEXT);
+						LOAD_GLPROC(glProgramUniform4dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix2dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix3dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix4dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix2x3dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix2x4dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix3x2dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix3x4dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix4x2dvEXT);
+						LOAD_GLPROC(glProgramUniformMatrix4x3dvEXT);
+						LOAD_GLPROC(glTextureBufferRangeEXT);
+						LOAD_GLPROC(glTextureStorage1DEXT);
+						LOAD_GLPROC(glTextureStorage2DEXT);
+						LOAD_GLPROC(glTextureStorage3DEXT);
+						LOAD_GLPROC(glTextureStorage2DMultisampleEXT);
+						LOAD_GLPROC(glTextureStorage3DMultisampleEXT);
+						LOAD_GLPROC(glVertexArrayBindVertexBufferEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribFormatEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribIFormatEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribLFormatEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribBindingEXT);
+						LOAD_GLPROC(glVertexArrayVertexBindingDivisorEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribLOffsetEXT);
+						LOAD_GLPROC(glTexturePageCommitmentEXT);
+						LOAD_GLPROC(glVertexArrayVertexAttribDivisorEXT);
+						_GL_EXT_direct_state_access = true;
+					}
+					else if(!GLEXT::_GL_EXT_texture_sRGB_decode && strncmp(cur_ext, "GL_EXT_texture_sRGB_decode", len) == 0) { GLEXT::_GL_EXT_texture_sRGB_decode = true; }
+					else if(!GLEXT::_GL_EXT_post_depth_coverage && strncmp(cur_ext, "GL_EXT_post_depth_coverage", len) == 0) { GLEXT::_GL_EXT_post_depth_coverage = true; }
 					break;
-				case 27: if(!GLARB::_GL_ARB_internalformat_query && strncmp(cur_ext, "GL_ARB_internalformat_query", 27) == 0) { GLARB::_GL_ARB_internalformat_query = true; }
-					else if(!GLARB::_GL_ARB_map_buffer_alignment && strncmp(cur_ext, "GL_ARB_map_buffer_alignment", 27) == 0) { GLARB::_GL_ARB_map_buffer_alignment = true; }
-					else if(!GLARB::_GL_ARB_polygon_offset_clamp && strncmp(cur_ext, "GL_ARB_polygon_offset_clamp", 27) == 0) { GLARB::_GL_ARB_polygon_offset_clamp = true; }
-					else if(!GLARB::_GL_ARB_robustness_isolation && strncmp(cur_ext, "GL_ARB_robustness_isolation", 27) == 0) { GLARB::_GL_ARB_robustness_isolation = true; }
-					else if(!GLARB::_GL_ARB_sparse_texture_clamp && strncmp(cur_ext, "GL_ARB_sparse_texture_clamp", 27) == 0) { GLARB::_GL_ARB_sparse_texture_clamp = true; }
-					else if(!GLARB::_GL_ARB_texture_border_clamp && strncmp(cur_ext, "GL_ARB_texture_border_clamp", 27) == 0) { GLARB::_GL_ARB_texture_border_clamp = true; }
-					else if(!GLARB::_GL_ARB_texture_buffer_range && strncmp(cur_ext, "GL_ARB_texture_buffer_range", 27) == 0) { GLARB::_GL_ARB_texture_buffer_range = true; }
-					else if(!GLARB::_GL_ARB_texture_query_levels && strncmp(cur_ext, "GL_ARB_texture_query_levels", 27) == 0) { GLARB::_GL_ARB_texture_query_levels = true; }
-					else if(!GLNV::_GL_NV_shader_atomic_float64 && strncmp(cur_ext, "GL_NV_shader_atomic_float64", 27) == 0) { GLNV::_GL_NV_shader_atomic_float64 = true; }
-					else if(!GLNV::_GL_NV_shader_thread_shuffle && strncmp(cur_ext, "GL_NV_shader_thread_shuffle", 27) == 0) { GLNV::_GL_NV_shader_thread_shuffle = true; }
-					else if(!GLNV::_GL_NV_stereo_view_rendering && strncmp(cur_ext, "GL_NV_stereo_view_rendering", 27) == 0) { GLNV::_GL_NV_stereo_view_rendering = true; }
+				case 27: if(!GLARB::_GL_ARB_internalformat_query && strncmp(cur_ext, "GL_ARB_internalformat_query", len) == 0) { GLARB::_GL_ARB_internalformat_query = true; }
+					else if(!GLARB::_GL_ARB_map_buffer_alignment && strncmp(cur_ext, "GL_ARB_map_buffer_alignment", len) == 0) { GLARB::_GL_ARB_map_buffer_alignment = true; }
+					else if(!GLARB::_GL_ARB_polygon_offset_clamp && strncmp(cur_ext, "GL_ARB_polygon_offset_clamp", len) == 0) { GLARB::_GL_ARB_polygon_offset_clamp = true; }
+					else if(!GLARB::_GL_ARB_robustness_isolation && strncmp(cur_ext, "GL_ARB_robustness_isolation", len) == 0) { GLARB::_GL_ARB_robustness_isolation = true; }
+					else if(!GLARB::_GL_ARB_sparse_texture_clamp && strncmp(cur_ext, "GL_ARB_sparse_texture_clamp", len) == 0) { GLARB::_GL_ARB_sparse_texture_clamp = true; }
+					else if(!GLARB::_GL_ARB_texture_border_clamp && strncmp(cur_ext, "GL_ARB_texture_border_clamp", len) == 0) { GLARB::_GL_ARB_texture_border_clamp = true; }
+					else if(!GLARB::_GL_ARB_texture_buffer_range && strncmp(cur_ext, "GL_ARB_texture_buffer_range", len) == 0) { GLARB::_GL_ARB_texture_buffer_range = true; }
+					else if(!GLARB::_GL_ARB_texture_query_levels && strncmp(cur_ext, "GL_ARB_texture_query_levels", len) == 0) { GLARB::_GL_ARB_texture_query_levels = true; }
+					else if(!GLNV::_GL_NV_shader_atomic_float64 && strncmp(cur_ext, "GL_NV_shader_atomic_float64", len) == 0) { GLNV::_GL_NV_shader_atomic_float64 = true; }
+					else if(!GLNV::_GL_NV_shader_thread_shuffle && strncmp(cur_ext, "GL_NV_shader_thread_shuffle", len) == 0) { GLNV::_GL_NV_shader_thread_shuffle = true; }
+					else if(!GLNV::_GL_NV_stereo_view_rendering && strncmp(cur_ext, "GL_NV_stereo_view_rendering", len) == 0) { GLNV::_GL_NV_stereo_view_rendering = true; }
+					else if(!GLMESA::_GL_MESA_framebuffer_swap_xy && strncmp(cur_ext, "GL_MESA_framebuffer_swap_xy", len) == 0) { GLMESA::_GL_MESA_framebuffer_swap_xy = true; }
+					else if(!GLEXT::_GL_EXT_polygon_offset_clamp && strncmp(cur_ext, "GL_EXT_polygon_offset_clamp", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glPolygonOffsetClampEXT);
+						_GL_EXT_polygon_offset_clamp = true;
+					}
 					break;
-				case 28: if(!GLARB::_GL_ARB_get_texture_sub_image && strncmp(cur_ext, "GL_ARB_get_texture_sub_image", 28) == 0) { GLARB::_GL_ARB_get_texture_sub_image = true; }
-					else if(!GLARB::_GL_ARB_internalformat_query2 && strncmp(cur_ext, "GL_ARB_internalformat_query2", 28) == 0) { GLARB::_GL_ARB_internalformat_query2 = true; }
-					else if(!GLARB::_GL_ARB_shader_stencil_export && strncmp(cur_ext, "GL_ARB_shader_stencil_export", 28) == 0) { GLARB::_GL_ARB_shader_stencil_export = true; }
-					else if(!GLARB::_GL_ARB_texture_buffer_object && strncmp(cur_ext, "GL_ARB_texture_buffer_object", 28) == 0)
+				case 28: if(!GLARB::_GL_ARB_get_texture_sub_image && strncmp(cur_ext, "GL_ARB_get_texture_sub_image", len) == 0) { GLARB::_GL_ARB_get_texture_sub_image = true; }
+					else if(!GLARB::_GL_ARB_internalformat_query2 && strncmp(cur_ext, "GL_ARB_internalformat_query2", len) == 0) { GLARB::_GL_ARB_internalformat_query2 = true; }
+					else if(!GLARB::_GL_ARB_shader_stencil_export && strncmp(cur_ext, "GL_ARB_shader_stencil_export", len) == 0) { GLARB::_GL_ARB_shader_stencil_export = true; }
+					else if(!GLARB::_GL_ARB_texture_buffer_object && strncmp(cur_ext, "GL_ARB_texture_buffer_object", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glTexBufferARB);
 						_GL_ARB_texture_buffer_object = 0 != glTexBufferARB;
 					}
-					else if(!GLARB::_GL_ARB_texture_filter_minmax && strncmp(cur_ext, "GL_ARB_texture_filter_minmax", 28) == 0) { GLARB::_GL_ARB_texture_filter_minmax = true; }
-					else if(!GLARB::_GL_ARB_uniform_buffer_object && strncmp(cur_ext, "GL_ARB_uniform_buffer_object", 28) == 0) { GLARB::_GL_ARB_uniform_buffer_object = true; }
-					else if(!GLARB::_GL_ARB_vertex_attrib_binding && strncmp(cur_ext, "GL_ARB_vertex_attrib_binding", 28) == 0) { GLARB::_GL_ARB_vertex_attrib_binding = true; }
-					else if(!GLNV::_GL_NV_primitive_shading_rate && strncmp(cur_ext, "GL_NV_primitive_shading_rate", 28) == 0) { GLNV::_GL_NV_primitive_shading_rate = true; }
-					else if(!GLNV::_GL_NV_shader_atomic_counters && strncmp(cur_ext, "GL_NV_shader_atomic_counters", 28) == 0) { GLNV::_GL_NV_shader_atomic_counters = true; }
+					else if(!GLARB::_GL_ARB_texture_filter_minmax && strncmp(cur_ext, "GL_ARB_texture_filter_minmax", len) == 0) { GLARB::_GL_ARB_texture_filter_minmax = true; }
+					else if(!GLARB::_GL_ARB_uniform_buffer_object && strncmp(cur_ext, "GL_ARB_uniform_buffer_object", len) == 0) { GLARB::_GL_ARB_uniform_buffer_object = true; }
+					else if(!GLARB::_GL_ARB_vertex_attrib_binding && strncmp(cur_ext, "GL_ARB_vertex_attrib_binding", len) == 0) { GLARB::_GL_ARB_vertex_attrib_binding = true; }
+					else if(!GLNV::_GL_NV_primitive_shading_rate && strncmp(cur_ext, "GL_NV_primitive_shading_rate", len) == 0) { GLNV::_GL_NV_primitive_shading_rate = true; }
+					else if(!GLNV::_GL_NV_shader_atomic_counters && strncmp(cur_ext, "GL_NV_shader_atomic_counters", len) == 0) { GLNV::_GL_NV_shader_atomic_counters = true; }
+					else if(!GLKHR::_GL_KHR_context_flush_control && strncmp(cur_ext, "GL_KHR_context_flush_control", len) == 0) { GLKHR::_GL_KHR_context_flush_control = true; }
+					else if(!GLEXT::_GL_EXT_multiview_timer_query && strncmp(cur_ext, "GL_EXT_multiview_timer_query", len) == 0) { GLEXT::_GL_EXT_multiview_timer_query = true; }
+					else if(!GLEXT::_GL_EXT_texture_filter_minmax && strncmp(cur_ext, "GL_EXT_texture_filter_minmax", len) == 0) { GLEXT::_GL_EXT_texture_filter_minmax = true; }
 					break;
-				case 29: if(!GLARB::_GL_ARB_shader_atomic_counters && strncmp(cur_ext, "GL_ARB_shader_atomic_counters", 29) == 0) { GLARB::_GL_ARB_shader_atomic_counters = true; }
-					else if(!GLARB::_GL_ARB_shader_draw_parameters && strncmp(cur_ext, "GL_ARB_shader_draw_parameters", 29) == 0) { GLARB::_GL_ARB_shader_draw_parameters = true; }
-					else if(!GLARB::_GL_ARB_texture_cube_map_array && strncmp(cur_ext, "GL_ARB_texture_cube_map_array", 29) == 0) { GLARB::_GL_ARB_texture_cube_map_array = true; }
-					else if(!GLNV::_GL_NV_blend_equation_advanced && strncmp(cur_ext, "GL_NV_blend_equation_advanced", 29) == 0)
+				case 29: if(!GLARB::_GL_ARB_shader_atomic_counters && strncmp(cur_ext, "GL_ARB_shader_atomic_counters", len) == 0) { GLARB::_GL_ARB_shader_atomic_counters = true; }
+					else if(!GLARB::_GL_ARB_shader_draw_parameters && strncmp(cur_ext, "GL_ARB_shader_draw_parameters", len) == 0) { GLARB::_GL_ARB_shader_draw_parameters = true; }
+					else if(!GLARB::_GL_ARB_texture_cube_map_array && strncmp(cur_ext, "GL_ARB_texture_cube_map_array", len) == 0) { GLARB::_GL_ARB_texture_cube_map_array = true; }
+					else if(!GLNV::_GL_NV_blend_equation_advanced && strncmp(cur_ext, "GL_NV_blend_equation_advanced", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glBlendParameteriNV);
@@ -3771,22 +4148,42 @@ bool load()
 						_GL_NV_blend_equation_advanced = glBlendParameteriNV && glBlendBarrierNV;
 					}
 					break;
-				case 30: if(!GLARB::_GL_ARB_fragment_layer_viewport && strncmp(cur_ext, "GL_ARB_fragment_layer_viewport", 30) == 0) { GLARB::_GL_ARB_fragment_layer_viewport = true; }
-					else if(!GLARB::_GL_ARB_parallel_shader_compile && strncmp(cur_ext, "GL_ARB_parallel_shader_compile", 30) == 0)
+				case 30: if(!GLARB::_GL_ARB_fragment_layer_viewport && strncmp(cur_ext, "GL_ARB_fragment_layer_viewport", len) == 0) { GLARB::_GL_ARB_fragment_layer_viewport = true; }
+					else if(!GLARB::_GL_ARB_parallel_shader_compile && strncmp(cur_ext, "GL_ARB_parallel_shader_compile", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glMaxShaderCompilerThreadsARB);
 						_GL_ARB_parallel_shader_compile = 0 != glMaxShaderCompilerThreadsARB;
 					}
-					else if(!GLARB::_GL_ARB_program_interface_query && strncmp(cur_ext, "GL_ARB_program_interface_query", 30) == 0) { GLARB::_GL_ARB_program_interface_query = true; }
-					else if(!GLARB::_GL_ARB_separate_shader_objects && strncmp(cur_ext, "GL_ARB_separate_shader_objects", 30) == 0) { GLARB::_GL_ARB_separate_shader_objects = true; }
-					else if(!GLARB::_GL_ARB_shader_image_load_store && strncmp(cur_ext, "GL_ARB_shader_image_load_store", 30) == 0) { GLARB::_GL_ARB_shader_image_load_store = true; }
-					else if(!GLARB::_GL_ARB_texture_mirrored_repeat && strncmp(cur_ext, "GL_ARB_texture_mirrored_repeat", 30) == 0) { GLARB::_GL_ARB_texture_mirrored_repeat = true; }
-					else if(!GLNV::_GL_NV_shader_texture_footprint && strncmp(cur_ext, "GL_NV_shader_texture_footprint", 30) == 0) { GLNV::_GL_NV_shader_texture_footprint = true; }
+					else if(!GLARB::_GL_ARB_program_interface_query && strncmp(cur_ext, "GL_ARB_program_interface_query", len) == 0) { GLARB::_GL_ARB_program_interface_query = true; }
+					else if(!GLARB::_GL_ARB_separate_shader_objects && strncmp(cur_ext, "GL_ARB_separate_shader_objects", len) == 0) { GLARB::_GL_ARB_separate_shader_objects = true; }
+					else if(!GLARB::_GL_ARB_shader_image_load_store && strncmp(cur_ext, "GL_ARB_shader_image_load_store", len) == 0) { GLARB::_GL_ARB_shader_image_load_store = true; }
+					else if(!GLARB::_GL_ARB_texture_mirrored_repeat && strncmp(cur_ext, "GL_ARB_texture_mirrored_repeat", len) == 0) { GLARB::_GL_ARB_texture_mirrored_repeat = true; }
+					else if(!GLNV::_GL_NV_shader_texture_footprint && strncmp(cur_ext, "GL_NV_shader_texture_footprint", len) == 0) { GLNV::_GL_NV_shader_texture_footprint = true; }
+					else if(!GLKHR::_GL_KHR_blend_equation_advanced && strncmp(cur_ext, "GL_KHR_blend_equation_advanced", len) == 0)
+					{
+						using namespace axl::glfl::core::GLKHR;
+						LOAD_GLPROC(glBlendBarrierKHR);
+						_GL_KHR_blend_equation_advanced = 0 != glBlendBarrierKHR;
+					}
+					else if(!GLKHR::_GL_KHR_parallel_shader_compile && strncmp(cur_ext, "GL_KHR_parallel_shader_compile", len) == 0)
+					{
+						using namespace axl::glfl::core::GLKHR;
+						LOAD_GLPROC(glMaxShaderCompilerThreadsKHR);
+						_GL_KHR_parallel_shader_compile = 0 != glMaxShaderCompilerThreadsKHR;
+					}
+					else if(!GLEXT::_GL_EXT_separate_shader_objects && strncmp(cur_ext, "GL_EXT_separate_shader_objects", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glUseShaderProgramEXT);
+						LOAD_GLPROC(glActiveProgramEXT);
+						LOAD_GLPROC(glCreateShaderProgramEXT);
+						_GL_EXT_separate_shader_objects = true;
+					}
 					break;
-				case 31: if(!GLARB::_GL_ARB_explicit_attrib_location && strncmp(cur_ext, "GL_ARB_explicit_attrib_location", 31) == 0) { GLARB::_GL_ARB_explicit_attrib_location = true; }
-					else if(!GLARB::_GL_ARB_shading_language_420pack && strncmp(cur_ext, "GL_ARB_shading_language_420pack", 31) == 0) { GLARB::_GL_ARB_shading_language_420pack = true; }
-					else if(!GLARB::_GL_ARB_shading_language_include && strncmp(cur_ext, "GL_ARB_shading_language_include", 31) == 0)
+				case 31: if(!GLARB::_GL_ARB_explicit_attrib_location && strncmp(cur_ext, "GL_ARB_explicit_attrib_location", len) == 0) { GLARB::_GL_ARB_explicit_attrib_location = true; }
+					else if(!GLARB::_GL_ARB_shading_language_420pack && strncmp(cur_ext, "GL_ARB_shading_language_420pack", len) == 0) { GLARB::_GL_ARB_shading_language_420pack = true; }
+					else if(!GLARB::_GL_ARB_shading_language_include && strncmp(cur_ext, "GL_ARB_shading_language_include", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glNamedStringARB);
@@ -3797,12 +4194,12 @@ bool load()
 						LOAD_GLPROC(glGetNamedStringivARB);
 						_GL_ARB_shading_language_include = glNamedStringARB && glDeleteNamedStringARB && glCompileShaderIncludeARB && glIsNamedStringARB && glGetNamedStringARB && glGetNamedStringivARB;
 					}
-					else if(!GLARB::_GL_ARB_shading_language_packing && strncmp(cur_ext, "GL_ARB_shading_language_packing", 31) == 0) { GLARB::_GL_ARB_shading_language_packing = true; }
-					else if(!GLARB::_GL_ARB_texture_compression_bptc && strncmp(cur_ext, "GL_ARB_texture_compression_bptc", 31) == 0) { GLARB::_GL_ARB_texture_compression_bptc = true; }
-					else if(!GLARB::_GL_ARB_texture_compression_rgtc && strncmp(cur_ext, "GL_ARB_texture_compression_rgtc", 31) == 0) { GLARB::_GL_ARB_texture_compression_rgtc = true; }
-					else if(!GLARB::_GL_ARB_texture_non_power_of_two && strncmp(cur_ext, "GL_ARB_texture_non_power_of_two", 31) == 0) { GLARB::_GL_ARB_texture_non_power_of_two = true; }
-					else if(!GLNV::_GL_NV_fragment_shader_interlock && strncmp(cur_ext, "GL_NV_fragment_shader_interlock", 31) == 0) { GLNV::_GL_NV_fragment_shader_interlock = true; }
-					else if(!GLNV::_GL_NV_framebuffer_mixed_samples && strncmp(cur_ext, "GL_NV_framebuffer_mixed_samples", 31) == 0)
+					else if(!GLARB::_GL_ARB_shading_language_packing && strncmp(cur_ext, "GL_ARB_shading_language_packing", len) == 0) { GLARB::_GL_ARB_shading_language_packing = true; }
+					else if(!GLARB::_GL_ARB_texture_compression_bptc && strncmp(cur_ext, "GL_ARB_texture_compression_bptc", len) == 0) { GLARB::_GL_ARB_texture_compression_bptc = true; }
+					else if(!GLARB::_GL_ARB_texture_compression_rgtc && strncmp(cur_ext, "GL_ARB_texture_compression_rgtc", len) == 0) { GLARB::_GL_ARB_texture_compression_rgtc = true; }
+					else if(!GLARB::_GL_ARB_texture_non_power_of_two && strncmp(cur_ext, "GL_ARB_texture_non_power_of_two", len) == 0) { GLARB::_GL_ARB_texture_non_power_of_two = true; }
+					else if(!GLNV::_GL_NV_fragment_shader_interlock && strncmp(cur_ext, "GL_NV_fragment_shader_interlock", len) == 0) { GLNV::_GL_NV_fragment_shader_interlock = true; }
+					else if(!GLNV::_GL_NV_framebuffer_mixed_samples && strncmp(cur_ext, "GL_NV_framebuffer_mixed_samples", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glCoverageModulationTableNV);
@@ -3810,42 +4207,44 @@ bool load()
 						LOAD_GLPROC(glCoverageModulationNV);
 						_GL_NV_framebuffer_mixed_samples = glCoverageModulationTableNV && glGetCoverageModulationTableNV && glCoverageModulationNV;
 					}
-					else if(!GLNV::_GL_NV_shader_atomic_fp16_vector && strncmp(cur_ext, "GL_NV_shader_atomic_fp16_vector", 31) == 0) { GLNV::_GL_NV_shader_atomic_fp16_vector = true; }
+					else if(!GLNV::_GL_NV_shader_atomic_fp16_vector && strncmp(cur_ext, "GL_NV_shader_atomic_fp16_vector", len) == 0) { GLNV::_GL_NV_shader_atomic_fp16_vector = true; }
+					else if(!GLEXT::_GL_EXT_shader_framebuffer_fetch && strncmp(cur_ext, "GL_EXT_shader_framebuffer_fetch", len) == 0) { GLEXT::_GL_EXT_shader_framebuffer_fetch = true; }
+					else if(!GLEXT::_GL_EXT_texture_compression_s3tc && strncmp(cur_ext, "GL_EXT_texture_compression_s3tc", len) == 0) { GLEXT::_GL_EXT_texture_compression_s3tc = true; }
 					break;
-				case 32: if(!GLARB::_GL_ARB_draw_elements_base_vertex && strncmp(cur_ext, "GL_ARB_draw_elements_base_vertex", 32) == 0) { GLARB::_GL_ARB_draw_elements_base_vertex = true; }
-					else if(!GLARB::_GL_ARB_explicit_uniform_location && strncmp(cur_ext, "GL_ARB_explicit_uniform_location", 32) == 0) { GLARB::_GL_ARB_explicit_uniform_location = true; }
-					else if(!GLARB::_GL_ARB_fragment_shader_interlock && strncmp(cur_ext, "GL_ARB_fragment_shader_interlock", 32) == 0) { GLARB::_GL_ARB_fragment_shader_interlock = true; }
-					else if(!GLARB::_GL_ARB_pipeline_statistics_query && strncmp(cur_ext, "GL_ARB_pipeline_statistics_query", 32) == 0) { GLARB::_GL_ARB_pipeline_statistics_query = true; }
-					else if(!GLARB::_GL_ARB_shader_atomic_counter_ops && strncmp(cur_ext, "GL_ARB_shader_atomic_counter_ops", 32) == 0) { GLARB::_GL_ARB_shader_atomic_counter_ops = true; }
-					else if(!GLARB::_GL_ARB_fragment_coord_conventions && strncmp(cur_ext, "GL_ARB_fragment_coord_conventions", 33) == 0) { GLARB::_GL_ARB_fragment_coord_conventions = true; }
-					else if(!GLARB::_GL_ARB_framebuffer_no_attachments && strncmp(cur_ext, "GL_ARB_framebuffer_no_attachments", 33) == 0) { GLARB::_GL_ARB_framebuffer_no_attachments = true; }
-					else if(!GLARB::_GL_ARB_texture_filter_anisotropic && strncmp(cur_ext, "GL_ARB_texture_filter_anisotropic", 33) == 0) { GLARB::_GL_ARB_texture_filter_anisotropic = true; }
-					else if(!GLARB::_GL_ARB_vertex_type_2_10_10_10_rev && strncmp(cur_ext, "GL_ARB_vertex_type_2_10_10_10_rev", 33) == 0) { GLARB::_GL_ARB_vertex_type_2_10_10_10_rev = true; }
-					else if(!GLNV::_GL_NV_compute_shader_derivatives && strncmp(cur_ext, "GL_NV_compute_shader_derivatives", 32) == 0) { GLNV::_GL_NV_compute_shader_derivatives = true; }
-					else if(!GLNV::_GL_NV_conservative_raster_dilate && strncmp(cur_ext, "GL_NV_conservative_raster_dilate", 32) == 0)
+				case 32: if(!GLARB::_GL_ARB_draw_elements_base_vertex && strncmp(cur_ext, "GL_ARB_draw_elements_base_vertex", len) == 0) { GLARB::_GL_ARB_draw_elements_base_vertex = true; }
+					else if(!GLARB::_GL_ARB_explicit_uniform_location && strncmp(cur_ext, "GL_ARB_explicit_uniform_location", len) == 0) { GLARB::_GL_ARB_explicit_uniform_location = true; }
+					else if(!GLARB::_GL_ARB_fragment_shader_interlock && strncmp(cur_ext, "GL_ARB_fragment_shader_interlock", len) == 0) { GLARB::_GL_ARB_fragment_shader_interlock = true; }
+					else if(!GLARB::_GL_ARB_pipeline_statistics_query && strncmp(cur_ext, "GL_ARB_pipeline_statistics_query", len) == 0) { GLARB::_GL_ARB_pipeline_statistics_query = true; }
+					else if(!GLARB::_GL_ARB_shader_atomic_counter_ops && strncmp(cur_ext, "GL_ARB_shader_atomic_counter_ops", len) == 0) { GLARB::_GL_ARB_shader_atomic_counter_ops = true; }
+					else if(!GLNV::_GL_NV_compute_shader_derivatives && strncmp(cur_ext, "GL_NV_compute_shader_derivatives", len) == 0) { GLNV::_GL_NV_compute_shader_derivatives = true; }
+					else if(!GLNV::_GL_NV_conservative_raster_dilate && strncmp(cur_ext, "GL_NV_conservative_raster_dilate", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glConservativeRasterParameterfNV);
 						_GL_NV_conservative_raster_dilate = 0 != glConservativeRasterParameterfNV;
 					}
-					else if(!GLNV::_GL_NV_fragment_coverage_to_color && strncmp(cur_ext, "GL_NV_fragment_coverage_to_color", 32) == 0)
+					else if(!GLNV::_GL_NV_fragment_coverage_to_color && strncmp(cur_ext, "GL_NV_fragment_coverage_to_color", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glFragmentCoverageColorNV);
 						_GL_NV_fragment_coverage_to_color = 0 != glFragmentCoverageColorNV;
 					}
-					else if(!GLNV::_GL_NV_path_rendering_shared_edge && strncmp(cur_ext, "GL_NV_path_rendering_shared_edge", 32) == 0) { GLNV::_GL_NV_path_rendering_shared_edge = true; }
+					else if(!GLNV::_GL_NV_path_rendering_shared_edge && strncmp(cur_ext, "GL_NV_path_rendering_shared_edge", len) == 0) { GLNV::_GL_NV_path_rendering_shared_edge = true; }
 					break;
-				case 33: if(!GLNV::_GL_NV_fragment_shader_barycentric && strncmp(cur_ext, "GL_NV_fragment_shader_barycentric", 33) == 0) { GLNV::_GL_NV_fragment_shader_barycentric = true; }
-					else if(!GLNV::_GL_NV_geometry_shader_passthrough && strncmp(cur_ext, "GL_NV_geometry_shader_passthrough", 33) == 0) { GLNV::_GL_NV_geometry_shader_passthrough = true; }
-					else if(!GLNV::_GL_NV_internalformat_sample_query && strncmp(cur_ext, "GL_NV_internalformat_sample_query", 33) == 0)
+				case 33: if(!GLARB::_GL_ARB_fragment_coord_conventions && strncmp(cur_ext, "GL_ARB_fragment_coord_conventions", len) == 0) { GLARB::_GL_ARB_fragment_coord_conventions = true; }
+					else if(!GLARB::_GL_ARB_framebuffer_no_attachments && strncmp(cur_ext, "GL_ARB_framebuffer_no_attachments", len) == 0) { GLARB::_GL_ARB_framebuffer_no_attachments = true; }
+					else if(!GLARB::_GL_ARB_texture_filter_anisotropic && strncmp(cur_ext, "GL_ARB_texture_filter_anisotropic", len) == 0) { GLARB::_GL_ARB_texture_filter_anisotropic = true; }
+					else if(!GLARB::_GL_ARB_vertex_type_2_10_10_10_rev && strncmp(cur_ext, "GL_ARB_vertex_type_2_10_10_10_rev", len) == 0) { GLARB::_GL_ARB_vertex_type_2_10_10_10_rev = true; }
+					else if(!GLNV::_GL_NV_fragment_shader_barycentric && strncmp(cur_ext, "GL_NV_fragment_shader_barycentric", len) == 0) { GLNV::_GL_NV_fragment_shader_barycentric = true; }
+					else if(!GLNV::_GL_NV_geometry_shader_passthrough && strncmp(cur_ext, "GL_NV_geometry_shader_passthrough", len) == 0) { GLNV::_GL_NV_geometry_shader_passthrough = true; }
+					else if(!GLNV::_GL_NV_internalformat_sample_query && strncmp(cur_ext, "GL_NV_internalformat_sample_query", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glGetInternalformatSampleivNV);
 						_GL_NV_internalformat_sample_query = 0 != glGetInternalformatSampleivNV;
 					}
-					else if(!GLNV::_GL_NV_shader_subgroup_partitioned && strncmp(cur_ext, "GL_NV_shader_subgroup_partitioned", 33) == 0) { GLNV::_GL_NV_shader_subgroup_partitioned = true; }
-					else if(!GLNV::_GL_NV_vertex_attrib_integer_64bit && strncmp(cur_ext, "GL_NV_vertex_attrib_integer_64bit", 33) == 0)
+					else if(!GLNV::_GL_NV_shader_subgroup_partitioned && strncmp(cur_ext, "GL_NV_shader_subgroup_partitioned", len) == 0) { GLNV::_GL_NV_shader_subgroup_partitioned = true; }
+					else if(!GLNV::_GL_NV_vertex_attrib_integer_64bit && strncmp(cur_ext, "GL_NV_vertex_attrib_integer_64bit", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glVertexAttribL1i64NV);
@@ -3870,28 +4269,28 @@ bool load()
 						_GL_NV_vertex_attrib_integer_64bit = glVertexAttribL1i64NV && glVertexAttribL2i64NV && glVertexAttribL3i64NV && glVertexAttribL4i64NV && glVertexAttribL1i64vNV && glVertexAttribL2i64vNV && glVertexAttribL3i64vNV && glVertexAttribL4i64vNV && glVertexAttribL1ui64NV && glVertexAttribL2ui64NV && glVertexAttribL3ui64NV && glVertexAttribL4ui64NV && glVertexAttribL1ui64vNV && glVertexAttribL2ui64vNV && glVertexAttribL3ui64vNV && glVertexAttribL4ui64vNV && glGetVertexAttribLi64vNV && glGetVertexAttribLui64vNV && glVertexAttribLFormatNV;
 					}
 					break;
-				case 34: if(!GLARB::_GL_ARB_compute_variable_group_size && strncmp(cur_ext, "GL_ARB_compute_variable_group_size", 34) == 0)
+				case 34: if(!GLARB::_GL_ARB_compute_variable_group_size && strncmp(cur_ext, "GL_ARB_compute_variable_group_size", len) == 0)
 					{
 						using namespace axl::glfl::core::GLARB;
 						LOAD_GLPROC(glDispatchComputeGroupSizeARB);
 						_GL_ARB_compute_variable_group_size = 0 != glDispatchComputeGroupSizeARB;
 					}
-					else if(!GLARB::_GL_ARB_conditional_render_inverted && strncmp(cur_ext, "GL_ARB_conditional_render_inverted", 34) == 0) { GLARB::_GL_ARB_conditional_render_inverted = true; }
-					else if(!GLARB::_GL_ARB_shader_viewport_layer_array && strncmp(cur_ext, "GL_ARB_shader_viewport_layer_array", 34) == 0) { GLARB::_GL_ARB_shader_viewport_layer_array = true; }
-					else if(!GLARB::_GL_ARB_texture_buffer_object_rgb32 && strncmp(cur_ext, "GL_ARB_texture_buffer_object_rgb32", 34) == 0) { GLARB::_GL_ARB_texture_buffer_object_rgb32 = true; }
-					else if(!GLARB::_GL_ARB_texture_storage_multisample && strncmp(cur_ext, "GL_ARB_texture_storage_multisample", 34) == 0) { GLARB::_GL_ARB_texture_storage_multisample = true; }
-					else if(!GLARB::_GL_ARB_vertex_type_10f_11f_11f_rev && strncmp(cur_ext, "GL_ARB_vertex_type_10f_11f_11f_rev", 34) == 0) { GLARB::_GL_ARB_vertex_type_10f_11f_11f_rev = true; }
-					else if(!GLNV::_GL_NV_bindless_multi_draw_indirect && strncmp(cur_ext, "GL_NV_bindless_multi_draw_indirect", 34) == 0)
+					else if(!GLARB::_GL_ARB_conditional_render_inverted && strncmp(cur_ext, "GL_ARB_conditional_render_inverted", len) == 0) { GLARB::_GL_ARB_conditional_render_inverted = true; }
+					else if(!GLARB::_GL_ARB_shader_viewport_layer_array && strncmp(cur_ext, "GL_ARB_shader_viewport_layer_array", len) == 0) { GLARB::_GL_ARB_shader_viewport_layer_array = true; }
+					else if(!GLARB::_GL_ARB_texture_buffer_object_rgb32 && strncmp(cur_ext, "GL_ARB_texture_buffer_object_rgb32", len) == 0) { GLARB::_GL_ARB_texture_buffer_object_rgb32 = true; }
+					else if(!GLARB::_GL_ARB_texture_storage_multisample && strncmp(cur_ext, "GL_ARB_texture_storage_multisample", len) == 0) { GLARB::_GL_ARB_texture_storage_multisample = true; }
+					else if(!GLARB::_GL_ARB_vertex_type_10f_11f_11f_rev && strncmp(cur_ext, "GL_ARB_vertex_type_10f_11f_11f_rev", len) == 0) { GLARB::_GL_ARB_vertex_type_10f_11f_11f_rev = true; }
+					else if(!GLNV::_GL_NV_bindless_multi_draw_indirect && strncmp(cur_ext, "GL_NV_bindless_multi_draw_indirect", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glMultiDrawArraysIndirectBindlessNV);
 						LOAD_GLPROC(glMultiDrawElementsIndirectBindlessNV);
 						_GL_NV_bindless_multi_draw_indirect = glMultiDrawArraysIndirectBindlessNV && glMultiDrawElementsIndirectBindlessNV;
 					}
-					else if(!GLNV::_GL_NV_conservative_raster_pre_snap && strncmp(cur_ext, "GL_NV_conservative_raster_pre_snap", 34) == 0) { GLNV::_GL_NV_conservative_raster_pre_snap = true; }
-					else if(!GLNV::_GL_NV_representative_fragment_test && strncmp(cur_ext, "GL_NV_representative_fragment_test", 34) == 0) { GLNV::_GL_NV_representative_fragment_test = true; }
-					else if(!GLNV::_GL_NV_texture_rectangle_compressed && strncmp(cur_ext, "GL_NV_texture_rectangle_compressed", 34) == 0) { GLNV::_GL_NV_texture_rectangle_compressed = true; }
-					else if(!GLNV::_GL_NV_vertex_buffer_unified_memory && strncmp(cur_ext, "GL_NV_vertex_buffer_unified_memory", 34) == 0)
+					else if(!GLNV::_GL_NV_conservative_raster_pre_snap && strncmp(cur_ext, "GL_NV_conservative_raster_pre_snap", len) == 0) { GLNV::_GL_NV_conservative_raster_pre_snap = true; }
+					else if(!GLNV::_GL_NV_representative_fragment_test && strncmp(cur_ext, "GL_NV_representative_fragment_test", len) == 0) { GLNV::_GL_NV_representative_fragment_test = true; }
+					else if(!GLNV::_GL_NV_texture_rectangle_compressed && strncmp(cur_ext, "GL_NV_texture_rectangle_compressed", len) == 0) { GLNV::_GL_NV_texture_rectangle_compressed = true; }
+					else if(!GLNV::_GL_NV_vertex_buffer_unified_memory && strncmp(cur_ext, "GL_NV_vertex_buffer_unified_memory", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glBufferAddressRangeNV);
@@ -3909,28 +4308,41 @@ bool load()
 						_GL_NV_vertex_buffer_unified_memory = glBufferAddressRangeNV && glVertexFormatNV && glNormalFormatNV && glColorFormatNV && glIndexFormatNV && glTexCoordFormatNV && glEdgeFlagFormatNV && glSecondaryColorFormatNV && glFogCoordFormatNV && glVertexAttribFormatNV && glVertexAttribIFormatNV && glGetIntegerui64i_vNV;
 					}
 					break;
-				case 35: if(!GLARB::_GL_ARB_seamless_cubemap_per_texture && strncmp(cur_ext, "GL_ARB_seamless_cubemap_per_texture", 35) == 0) { GLARB::_GL_ARB_seamless_cubemap_per_texture = true; }
-					else if(!GLARB::_GL_ARB_shader_storage_buffer_object && strncmp(cur_ext, "GL_ARB_shader_storage_buffer_object", 35) == 0) { GLARB::_GL_ARB_shader_storage_buffer_object = true; }
-					else if(!GLARB::_GL_ARB_shader_texture_image_samples && strncmp(cur_ext, "GL_ARB_shader_texture_image_samples", 35) == 0) { GLARB::_GL_ARB_shader_texture_image_samples = true; }
-					else if(!GLARB::_GL_ARB_texture_mirror_clamp_to_edge && strncmp(cur_ext, "GL_ARB_texture_mirror_clamp_to_edge", 35) == 0) { GLARB::_GL_ARB_texture_mirror_clamp_to_edge = true; }
-					else if(!GLARB::_GL_ARB_transform_feedback_instanced && strncmp(cur_ext, "GL_ARB_transform_feedback_instanced", 35) == 0) { GLARB::_GL_ARB_transform_feedback_instanced = true; }
-					else if(!GLNV::_GL_NV_sample_mask_override_coverage && strncmp(cur_ext, "GL_NV_sample_mask_override_coverage", 35) == 0) { GLNV::_GL_NV_sample_mask_override_coverage = true; }
-					else if(!GLNV::_GL_NV_uniform_buffer_unified_memory && strncmp(cur_ext, "GL_NV_uniform_buffer_unified_memory", 35) == 0) { GLNV::_GL_NV_uniform_buffer_unified_memory = true; }
+				case 35: if(!GLARB::_GL_ARB_seamless_cubemap_per_texture && strncmp(cur_ext, "GL_ARB_seamless_cubemap_per_texture", len) == 0) { GLARB::_GL_ARB_seamless_cubemap_per_texture = true; }
+					else if(!GLARB::_GL_ARB_shader_storage_buffer_object && strncmp(cur_ext, "GL_ARB_shader_storage_buffer_object", len) == 0) { GLARB::_GL_ARB_shader_storage_buffer_object = true; }
+					else if(!GLARB::_GL_ARB_shader_texture_image_samples && strncmp(cur_ext, "GL_ARB_shader_texture_image_samples", len) == 0) { GLARB::_GL_ARB_shader_texture_image_samples = true; }
+					else if(!GLARB::_GL_ARB_texture_mirror_clamp_to_edge && strncmp(cur_ext, "GL_ARB_texture_mirror_clamp_to_edge", len) == 0) { GLARB::_GL_ARB_texture_mirror_clamp_to_edge = true; }
+					else if(!GLARB::_GL_ARB_transform_feedback_instanced && strncmp(cur_ext, "GL_ARB_transform_feedback_instanced", len) == 0) { GLARB::_GL_ARB_transform_feedback_instanced = true; }
+					else if(!GLNV::_GL_NV_sample_mask_override_coverage && strncmp(cur_ext, "GL_NV_sample_mask_override_coverage", len) == 0) { GLNV::_GL_NV_sample_mask_override_coverage = true; }
+					else if(!GLNV::_GL_NV_uniform_buffer_unified_memory && strncmp(cur_ext, "GL_NV_uniform_buffer_unified_memory", len) == 0) { GLNV::_GL_NV_uniform_buffer_unified_memory = true; }
+					else if(!GLKHR::_GL_KHR_texture_compression_astc_hdr && strncmp(cur_ext, "GL_KHR_texture_compression_astc_hdr", len) == 0) { GLKHR::_GL_KHR_texture_compression_astc_hdr = true; }
+					else if(!GLKHR::_GL_KHR_texture_compression_astc_ldr && strncmp(cur_ext, "GL_KHR_texture_compression_astc_ldr", len) == 0) { GLKHR::_GL_KHR_texture_compression_astc_ldr = true; }
+					else if(!GLINTEL::_GL_INTEL_conservative_rasterization && strncmp(cur_ext, "GL_INTEL_conservative_rasterization", len) == 0) { GLINTEL::_GL_INTEL_conservative_rasterization = true; }
 					break;
-				case 36: if(!GLARB::_GL_ARB_robust_buffer_access_behavior && strncmp(cur_ext, "GL_ARB_robust_buffer_access_behavior", 36) == 0) { GLARB::_GL_ARB_robust_buffer_access_behavior = true; }
+				case 36: if(!GLARB::_GL_ARB_robust_buffer_access_behavior && strncmp(cur_ext, "GL_ARB_robust_buffer_access_behavior", len) == 0) { GLARB::_GL_ARB_robust_buffer_access_behavior = true; }
+					else if(!GLKHR::_GL_KHR_robust_buffer_access_behavior && strncmp(cur_ext, "GL_KHR_robust_buffer_access_behavior", len) == 0) { GLKHR::_GL_KHR_robust_buffer_access_behavior = true; }
+					else if(!GLEXT::_GL_EXT_multiview_texture_multisample && strncmp(cur_ext, "GL_EXT_multiview_texture_multisample", len) == 0) { GLEXT::_GL_EXT_multiview_texture_multisample = true; }
 					break;
-				case 38: if(!GLNV::_GL_NV_blend_equation_advanced_coherent && strncmp(cur_ext, "GL_NV_blend_equation_advanced_coherent", 38) == 0) { GLNV::_GL_NV_blend_equation_advanced_coherent = true; }
-					else if(!GLNV::_GL_NV_framebuffer_multisample_coverage && strncmp(cur_ext, "GL_NV_framebuffer_multisample_coverage", 38) == 0)
+				case 38: if(!GLNV::_GL_NV_blend_equation_advanced_coherent && strncmp(cur_ext, "GL_NV_blend_equation_advanced_coherent", len) == 0) { GLNV::_GL_NV_blend_equation_advanced_coherent = true; }
+					else if(!GLNV::_GL_NV_framebuffer_multisample_coverage && strncmp(cur_ext, "GL_NV_framebuffer_multisample_coverage", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glRenderbufferStorageMultisampleCoverageNV);
 						_GL_NV_framebuffer_multisample_coverage = 0 != glRenderbufferStorageMultisampleCoverageNV;
 					}
 					break;
-				case 39: if(!GLARB::_GL_ARB_compressed_texture_pixel_storage && strncmp(cur_ext, "GL_ARB_compressed_texture_pixel_storage", 39) == 0) { GLARB::_GL_ARB_compressed_texture_pixel_storage = true; }
+				case 39: if(!GLARB::_GL_ARB_compressed_texture_pixel_storage && strncmp(cur_ext, "GL_ARB_compressed_texture_pixel_storage", len) == 0) { GLARB::_GL_ARB_compressed_texture_pixel_storage = true; }
+					else if(!GLKHR::_GL_KHR_blend_equation_advanced_coherent && strncmp(cur_ext, "GL_KHR_blend_equation_advanced_coherent", len) == 0) { GLKHR::_GL_KHR_blend_equation_advanced_coherent = true; }
+					else if(!GLAMD::_GL_AMD_framebuffer_multisample_advanced && strncmp(cur_ext, "GL_AMD_framebuffer_multisample_advanced", len) == 0)
+					{
+						using namespace axl::glfl::core::GLAMD;
+						LOAD_GLPROC(glRenderbufferStorageMultisampleAdvancedAMD);
+						LOAD_GLPROC(glNamedRenderbufferStorageMultisampleAdvancedAMD);
+						_GL_AMD_framebuffer_multisample_advanced = glRenderbufferStorageMultisampleAdvancedAMD && glNamedRenderbufferStorageMultisampleAdvancedAMD;
+					}
 					break;
-				case 40: if(!GLARB::_GL_ARB_transform_feedback_overflow_query && strncmp(cur_ext, "GL_ARB_transform_feedback_overflow_query", 40) == 0) { GLARB::_GL_ARB_transform_feedback_overflow_query = true; }
-					else if(!GLNV::_GL_NV_bindless_multi_draw_indirect_count && strncmp(cur_ext, "GL_NV_bindless_multi_draw_indirect_count", 40) == 0)
+				case 40: if(!GLARB::_GL_ARB_transform_feedback_overflow_query && strncmp(cur_ext, "GL_ARB_transform_feedback_overflow_query", len) == 0) { GLARB::_GL_ARB_transform_feedback_overflow_query = true; }
+					else if(!GLNV::_GL_NV_bindless_multi_draw_indirect_count && strncmp(cur_ext, "GL_NV_bindless_multi_draw_indirect_count", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glMultiDrawArraysIndirectBindlessCountNV);
@@ -3938,570 +4350,27 @@ bool load()
 						_GL_NV_bindless_multi_draw_indirect_count = glMultiDrawArraysIndirectBindlessCountNV && glMultiDrawElementsIndirectBindlessCountNV;
 					}
 					break;
-				case 41: if(!GLNV::_GL_NV_conservative_raster_underestimation && strncmp(cur_ext, "GL_NV_conservative_raster_underestimation", 41) == 0) { GLNV::_GL_NV_conservative_raster_underestimation = true; }
+				case 41: if(!GLNV::_GL_NV_conservative_raster_underestimation && strncmp(cur_ext, "GL_NV_conservative_raster_underestimation", len) == 0) { GLNV::_GL_NV_conservative_raster_underestimation = true; }
+					else if(!GLKHR::_GL_KHR_texture_compression_astc_sliced_3d && strncmp(cur_ext, "GL_KHR_texture_compression_astc_sliced_3d", len) == 0) { GLKHR::_GL_KHR_texture_compression_astc_sliced_3d = true; }
 					break;
-				case 44: if(!GLNV::_GL_NV_conservative_raster_pre_snap_triangles && strncmp(cur_ext, "GL_NV_conservative_raster_pre_snap_triangles", 44) == 0)
+				case 44: if(!GLNV::_GL_NV_conservative_raster_pre_snap_triangles && strncmp(cur_ext, "GL_NV_conservative_raster_pre_snap_triangles", len) == 0)
 					{
 						using namespace axl::glfl::core::GLNV;
 						LOAD_GLPROC(glConservativeRasterParameteriNV);
 						_GL_NV_conservative_raster_pre_snap_triangles = 0 != glConservativeRasterParameteriNV;
 					}
+					else if(!GLEXT::_GL_EXT_shader_framebuffer_fetch_non_coherent && strncmp(cur_ext, "GL_EXT_shader_framebuffer_fetch_non_coherent", len) == 0)
+					{
+						using namespace axl::glfl::core::GLEXT;
+						LOAD_GLPROC(glFramebufferFetchBarrierEXT);
+						_GL_EXT_shader_framebuffer_fetch_non_coherent = true;
+					}
+					break;	
+				case 45: if(!GLEXT::_GL_EXT_multiview_tessellation_geometry_shader && strncmp(cur_ext, "GL_EXT_multiview_tessellation_geometry_shader", len) == 0) { GLEXT::_GL_EXT_multiview_tessellation_geometry_shader = true; }
 					break;
 			}
 		}
 	}
-	{ // namespace KHR
-		using namespace axl::glfl::core::GLKHR; 
-		// GL_KHR_blend_equation_advanced
-		if(!_GL_KHR_blend_equation_advanced && checkExtension("GL_KHR_blend_equation_advanced"))
-		{
-			LOAD_GLPROC(glBlendBarrierKHR);
-			_GL_KHR_blend_equation_advanced = true;
-		}
-		// GL_KHR_blend_equation_advanced_coherent
-		if(!_GL_KHR_blend_equation_advanced_coherent && checkExtension("GL_KHR_blend_equation_advanced_coherent"))
-		{
-			_GL_KHR_blend_equation_advanced_coherent = true;
-		}
-		// GL_KHR_context_flush_control
-		if(!_GL_KHR_context_flush_control && checkExtension("GL_KHR_context_flush_control"))
-		{
-			_GL_KHR_context_flush_control = true;
-		}
-		// GL_KHR_debug
-		if(!_GL_KHR_debug && checkExtension("GL_KHR_debug"))
-		{
-			_GL_KHR_debug = true;
-		}
-		// GL_KHR_no_error
-		if(!_GL_KHR_no_error && checkExtension("GL_KHR_no_error"))
-		{
-			_GL_KHR_no_error = true;
-		}
-		// GL_KHR_parallel_shader_compile
-		if(!_GL_KHR_parallel_shader_compile && checkExtension("GL_KHR_parallel_shader_compile"))
-		{
-			LOAD_GLPROC(glMaxShaderCompilerThreadsKHR);
-			_GL_KHR_parallel_shader_compile = true;
-		}
-		// GL_KHR_robust_buffer_access_behavior
-		if(!_GL_KHR_robust_buffer_access_behavior && checkExtension("GL_KHR_robust_buffer_access_behavior"))
-		{
-			_GL_KHR_robust_buffer_access_behavior = true;
-		}
-		// GL_KHR_robustness
-		if(!_GL_KHR_robustness && checkExtension("GL_KHR_robustness"))
-		{
-			_GL_KHR_robustness = true;
-		}
-		// GL_KHR_shader_subgroup
-		if(!_GL_KHR_shader_subgroup && checkExtension("GL_KHR_shader_subgroup"))
-		{
-			_GL_KHR_shader_subgroup = true;
-		}
-		// GL_KHR_texture_compression_astc_hdr
-		if(!_GL_KHR_texture_compression_astc_hdr && checkExtension("GL_KHR_texture_compression_astc_hdr"))
-		{
-			_GL_KHR_texture_compression_astc_hdr = true;
-		}
-		// GL_KHR_texture_compression_astc_ldr
-		if(!_GL_KHR_texture_compression_astc_ldr && checkExtension("GL_KHR_texture_compression_astc_ldr"))
-		{
-			_GL_KHR_texture_compression_astc_ldr = true;
-		}
-		// GL_KHR_texture_compression_astc_sliced_3d
-		if(!_GL_KHR_texture_compression_astc_sliced_3d && checkExtension("GL_KHR_texture_compression_astc_sliced_3d"))
-		{
-			_GL_KHR_texture_compression_astc_sliced_3d = true;
-		}
-	} // namespace GLKHR
-	{
-		using namespace axl::glfl::core::GLAMD;
-		// GL_AMD_framebuffer_multisample_advanced
-		if(!_GL_AMD_framebuffer_multisample_advanced && checkExtension("GL_AMD_framebuffer_multisample_advanced"))
-		{
-			LOAD_GLPROC(glRenderbufferStorageMultisampleAdvancedAMD);
-			LOAD_GLPROC(glNamedRenderbufferStorageMultisampleAdvancedAMD);
-			_GL_AMD_framebuffer_multisample_advanced = true;
-		}
-		// GL_AMD_performance_monitor
-		if(!_GL_AMD_performance_monitor && checkExtension("GL_AMD_performance_monitor"))
-		{
-			LOAD_GLPROC(glGetPerfMonitorGroupsAMD);
-			LOAD_GLPROC(glGetPerfMonitorCountersAMD);
-			LOAD_GLPROC(glGetPerfMonitorGroupStringAMD);
-			LOAD_GLPROC(glGetPerfMonitorCounterStringAMD);
-			LOAD_GLPROC(glGetPerfMonitorCounterInfoAMD);
-			LOAD_GLPROC(glGenPerfMonitorsAMD);
-			LOAD_GLPROC(glDeletePerfMonitorsAMD);
-			LOAD_GLPROC(glSelectPerfMonitorCountersAMD);
-			LOAD_GLPROC(glBeginPerfMonitorAMD);
-			LOAD_GLPROC(glEndPerfMonitorAMD);
-			LOAD_GLPROC(glGetPerfMonitorCounterDataAMD);
-			_GL_AMD_performance_monitor = true;
-		}
-	} // namespace GLAMD
-	{
-		using namespace axl::glfl::core::GLAPPLE;
-		// GL_APPLE_rgb_422
-		if(!_GL_APPLE_rgb_422 && checkExtension("GL_APPLE_rgb_422"))
-		{
-			_GL_APPLE_rgb_422 = true;
-		}
-	} // namespace GLAPPLE
-	{
-		using namespace axl::glfl::core::GLEXT;
-		// GL_EXT_EGL_image_storage
-		if(!_GL_EXT_EGL_image_storage && checkExtension("GL_EXT_EGL_image_storage"))
-		{
-			LOAD_GLPROC(glEGLImageTargetTexStorageEXT);
-			LOAD_GLPROC(glEGLImageTargetTextureStorageEXT);
-			_GL_EXT_EGL_image_storage = true;
-		}
-		// GL_EXT_EGL_sync
-		if(!_GL_EXT_EGL_sync && checkExtension("GL_EXT_EGL_sync"))
-		{
-			_GL_EXT_EGL_sync = true;
-		}
-		// GL_EXT_debug_label
-		if(!_GL_EXT_debug_label && checkExtension("GL_EXT_debug_label"))
-		{
-			LOAD_GLPROC(glLabelObjectEXT);
-			LOAD_GLPROC(glGetObjectLabelEXT);
-			_GL_EXT_debug_label = true;
-		}
-		// GL_EXT_debug_marker
-		if(!_GL_EXT_debug_marker && checkExtension("GL_EXT_debug_marker"))
-		{
-			LOAD_GLPROC(glInsertEventMarkerEXT);
-			LOAD_GLPROC(glPushGroupMarkerEXT);
-			LOAD_GLPROC(glPopGroupMarkerEXT);
-			_GL_EXT_debug_marker = true;
-		}
-		// GL_EXT_direct_state_access
-		if(!_GL_EXT_direct_state_access && checkExtension("GL_EXT_direct_state_access"))
-		{
-			LOAD_GLPROC(glMatrixLoadfEXT);
-			LOAD_GLPROC(glMatrixLoaddEXT);
-			LOAD_GLPROC(glMatrixMultfEXT);
-			LOAD_GLPROC(glMatrixMultdEXT);
-			LOAD_GLPROC(glMatrixLoadIdentityEXT);
-			LOAD_GLPROC(glMatrixRotatefEXT);
-			LOAD_GLPROC(glMatrixRotatedEXT);
-			LOAD_GLPROC(glMatrixScalefEXT);
-			LOAD_GLPROC(glMatrixScaledEXT);
-			LOAD_GLPROC(glMatrixTranslatefEXT);
-			LOAD_GLPROC(glMatrixTranslatedEXT);
-			LOAD_GLPROC(glMatrixFrustumEXT);
-			LOAD_GLPROC(glMatrixOrthoEXT);
-			LOAD_GLPROC(glMatrixPopEXT);
-			LOAD_GLPROC(glMatrixPushEXT);
-			LOAD_GLPROC(glClientAttribDefaultEXT);
-			LOAD_GLPROC(glPushClientAttribDefaultEXT);
-			LOAD_GLPROC(glTextureParameterfEXT);
-			LOAD_GLPROC(glTextureParameterfvEXT);
-			LOAD_GLPROC(glTextureParameteriEXT);
-			LOAD_GLPROC(glTextureParameterivEXT);
-			LOAD_GLPROC(glTextureImage1DEXT);
-			LOAD_GLPROC(glTextureImage2DEXT);
-			LOAD_GLPROC(glTextureSubImage1DEXT);
-			LOAD_GLPROC(glTextureSubImage2DEXT);
-			LOAD_GLPROC(glCopyTextureImage1DEXT);
-			LOAD_GLPROC(glCopyTextureImage2DEXT);
-			LOAD_GLPROC(glCopyTextureSubImage1DEXT);
-			LOAD_GLPROC(glCopyTextureSubImage2DEXT);
-			LOAD_GLPROC(glGetTextureImageEXT);
-			LOAD_GLPROC(glGetTextureParameterfvEXT);
-			LOAD_GLPROC(glGetTextureParameterivEXT);
-			LOAD_GLPROC(glGetTextureLevelParameterfvEXT);
-			LOAD_GLPROC(glGetTextureLevelParameterivEXT);
-			LOAD_GLPROC(glTextureImage3DEXT);
-			LOAD_GLPROC(glTextureSubImage3DEXT);
-			LOAD_GLPROC(glCopyTextureSubImage3DEXT);
-			LOAD_GLPROC(glBindMultiTextureEXT);
-			LOAD_GLPROC(glMultiTexCoordPointerEXT);
-			LOAD_GLPROC(glMultiTexEnvfEXT);
-			LOAD_GLPROC(glMultiTexEnvfvEXT);
-			LOAD_GLPROC(glMultiTexEnviEXT);
-			LOAD_GLPROC(glMultiTexEnvivEXT);
-			LOAD_GLPROC(glMultiTexGendEXT);
-			LOAD_GLPROC(glMultiTexGendvEXT);
-			LOAD_GLPROC(glMultiTexGenfEXT);
-			LOAD_GLPROC(glMultiTexGenfvEXT);
-			LOAD_GLPROC(glMultiTexGeniEXT);
-			LOAD_GLPROC(glMultiTexGenivEXT);
-			LOAD_GLPROC(glGetMultiTexEnvfvEXT);
-			LOAD_GLPROC(glGetMultiTexEnvivEXT);
-			LOAD_GLPROC(glGetMultiTexGendvEXT);
-			LOAD_GLPROC(glGetMultiTexGenfvEXT);
-			LOAD_GLPROC(glGetMultiTexGenivEXT);
-			LOAD_GLPROC(glMultiTexParameteriEXT);
-			LOAD_GLPROC(glMultiTexParameterivEXT);
-			LOAD_GLPROC(glMultiTexParameterfEXT);
-			LOAD_GLPROC(glMultiTexParameterfvEXT);
-			LOAD_GLPROC(glMultiTexImage1DEXT);
-			LOAD_GLPROC(glMultiTexImage2DEXT);
-			LOAD_GLPROC(glMultiTexSubImage1DEXT);
-			LOAD_GLPROC(glMultiTexSubImage2DEXT);
-			LOAD_GLPROC(glCopyMultiTexImage1DEXT);
-			LOAD_GLPROC(glCopyMultiTexImage2DEXT);
-			LOAD_GLPROC(glCopyMultiTexSubImage1DEXT);
-			LOAD_GLPROC(glCopyMultiTexSubImage2DEXT);
-			LOAD_GLPROC(glGetMultiTexImageEXT);
-			LOAD_GLPROC(glGetMultiTexParameterfvEXT);
-			LOAD_GLPROC(glGetMultiTexParameterivEXT);
-			LOAD_GLPROC(glGetMultiTexLevelParameterfvEXT);
-			LOAD_GLPROC(glGetMultiTexLevelParameterivEXT);
-			LOAD_GLPROC(glMultiTexImage3DEXT);
-			LOAD_GLPROC(glMultiTexSubImage3DEXT);
-			LOAD_GLPROC(glCopyMultiTexSubImage3DEXT);
-			LOAD_GLPROC(glEnableClientStateIndexedEXT);
-			LOAD_GLPROC(glDisableClientStateIndexedEXT);
-			LOAD_GLPROC(glGetFloatIndexedvEXT);
-			LOAD_GLPROC(glGetDoubleIndexedvEXT);
-			LOAD_GLPROC(glGetPointerIndexedvEXT);
-			LOAD_GLPROC(glEnableIndexedEXT);
-			LOAD_GLPROC(glDisableIndexedEXT);
-			LOAD_GLPROC(glIsEnabledIndexedEXT);
-			LOAD_GLPROC(glGetIntegerIndexedvEXT);
-			LOAD_GLPROC(glGetBooleanIndexedvEXT);
-			LOAD_GLPROC(glCompressedTextureImage3DEXT);
-			LOAD_GLPROC(glCompressedTextureImage2DEXT);
-			LOAD_GLPROC(glCompressedTextureImage1DEXT);
-			LOAD_GLPROC(glCompressedTextureSubImage3DEXT);
-			LOAD_GLPROC(glCompressedTextureSubImage2DEXT);
-			LOAD_GLPROC(glCompressedTextureSubImage1DEXT);
-			LOAD_GLPROC(glGetCompressedTextureImageEXT);
-			LOAD_GLPROC(glCompressedMultiTexImage3DEXT);
-			LOAD_GLPROC(glCompressedMultiTexImage2DEXT);
-			LOAD_GLPROC(glCompressedMultiTexImage1DEXT);
-			LOAD_GLPROC(glCompressedMultiTexSubImage3DEXT);
-			LOAD_GLPROC(glCompressedMultiTexSubImage2DEXT);
-			LOAD_GLPROC(glCompressedMultiTexSubImage1DEXT);
-			LOAD_GLPROC(glGetCompressedMultiTexImageEXT);
-			LOAD_GLPROC(glMatrixLoadTransposefEXT);
-			LOAD_GLPROC(glMatrixLoadTransposedEXT);
-			LOAD_GLPROC(glMatrixMultTransposefEXT);
-			LOAD_GLPROC(glMatrixMultTransposedEXT);
-			LOAD_GLPROC(glNamedBufferDataEXT);
-			LOAD_GLPROC(glNamedBufferSubDataEXT);
-			LOAD_GLPROC(glMapNamedBufferEXT);
-			LOAD_GLPROC(glUnmapNamedBufferEXT);
-			LOAD_GLPROC(glGetNamedBufferParameterivEXT);
-			LOAD_GLPROC(glGetNamedBufferPointervEXT);
-			LOAD_GLPROC(glGetNamedBufferSubDataEXT);
-			LOAD_GLPROC(glProgramUniform1fEXT);
-			LOAD_GLPROC(glProgramUniform2fEXT);
-			LOAD_GLPROC(glProgramUniform3fEXT);
-			LOAD_GLPROC(glProgramUniform4fEXT);
-			LOAD_GLPROC(glProgramUniform1iEXT);
-			LOAD_GLPROC(glProgramUniform2iEXT);
-			LOAD_GLPROC(glProgramUniform3iEXT);
-			LOAD_GLPROC(glProgramUniform4iEXT);
-			LOAD_GLPROC(glProgramUniform1fvEXT);
-			LOAD_GLPROC(glProgramUniform2fvEXT);
-			LOAD_GLPROC(glProgramUniform3fvEXT);
-			LOAD_GLPROC(glProgramUniform4fvEXT);
-			LOAD_GLPROC(glProgramUniform1ivEXT);
-			LOAD_GLPROC(glProgramUniform2ivEXT);
-			LOAD_GLPROC(glProgramUniform3ivEXT);
-			LOAD_GLPROC(glProgramUniform4ivEXT);
-			LOAD_GLPROC(glProgramUniformMatrix2fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix3fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix4fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix2x3fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix3x2fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix2x4fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix4x2fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix3x4fvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix4x3fvEXT);
-			LOAD_GLPROC(glTextureBufferEXT);
-			LOAD_GLPROC(glMultiTexBufferEXT);
-			LOAD_GLPROC(glTextureParameterIivEXT);
-			LOAD_GLPROC(glTextureParameterIuivEXT);
-			LOAD_GLPROC(glGetTextureParameterIivEXT);
-			LOAD_GLPROC(glGetTextureParameterIuivEXT);
-			LOAD_GLPROC(glMultiTexParameterIivEXT);
-			LOAD_GLPROC(glMultiTexParameterIuivEXT);
-			LOAD_GLPROC(glGetMultiTexParameterIivEXT);
-			LOAD_GLPROC(glGetMultiTexParameterIuivEXT);
-			LOAD_GLPROC(glProgramUniform1uiEXT);
-			LOAD_GLPROC(glProgramUniform2uiEXT);
-			LOAD_GLPROC(glProgramUniform3uiEXT);
-			LOAD_GLPROC(glProgramUniform4uiEXT);
-			LOAD_GLPROC(glProgramUniform1uivEXT);
-			LOAD_GLPROC(glProgramUniform2uivEXT);
-			LOAD_GLPROC(glProgramUniform3uivEXT);
-			LOAD_GLPROC(glProgramUniform4uivEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameters4fvEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameterI4iEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameterI4ivEXT);
-			LOAD_GLPROC(glNamedProgramLocalParametersI4ivEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameterI4uiEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameterI4uivEXT);
-			LOAD_GLPROC(glNamedProgramLocalParametersI4uivEXT);
-			LOAD_GLPROC(glGetNamedProgramLocalParameterIivEXT);
-			LOAD_GLPROC(glGetNamedProgramLocalParameterIuivEXT);
-			LOAD_GLPROC(glEnableClientStateiEXT);
-			LOAD_GLPROC(glDisableClientStateiEXT);
-			LOAD_GLPROC(glGetFloati_vEXT);
-			LOAD_GLPROC(glGetDoublei_vEXT);
-			LOAD_GLPROC(glGetPointeri_vEXT);
-			LOAD_GLPROC(glNamedProgramStringEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameter4dEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameter4dvEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameter4fEXT);
-			LOAD_GLPROC(glNamedProgramLocalParameter4fvEXT);
-			LOAD_GLPROC(glGetNamedProgramLocalParameterdvEXT);
-			LOAD_GLPROC(glGetNamedProgramLocalParameterfvEXT);
-			LOAD_GLPROC(glGetNamedProgramivEXT);
-			LOAD_GLPROC(glGetNamedProgramStringEXT);
-			LOAD_GLPROC(glNamedRenderbufferStorageEXT);
-			LOAD_GLPROC(glGetNamedRenderbufferParameterivEXT);
-			LOAD_GLPROC(glNamedRenderbufferStorageMultisampleEXT);
-			LOAD_GLPROC(glNamedRenderbufferStorageMultisampleCoverageEXT);
-			LOAD_GLPROC(glCheckNamedFramebufferStatusEXT);
-			LOAD_GLPROC(glNamedFramebufferTexture1DEXT);
-			LOAD_GLPROC(glNamedFramebufferTexture2DEXT);
-			LOAD_GLPROC(glNamedFramebufferTexture3DEXT);
-			LOAD_GLPROC(glNamedFramebufferRenderbufferEXT);
-			LOAD_GLPROC(glGetNamedFramebufferAttachmentParameterivEXT);
-			LOAD_GLPROC(glGenerateTextureMipmapEXT);
-			LOAD_GLPROC(glGenerateMultiTexMipmapEXT);
-			LOAD_GLPROC(glFramebufferDrawBufferEXT);
-			LOAD_GLPROC(glFramebufferDrawBuffersEXT);
-			LOAD_GLPROC(glFramebufferReadBufferEXT);
-			LOAD_GLPROC(glGetFramebufferParameterivEXT);
-			LOAD_GLPROC(glNamedCopyBufferSubDataEXT);
-			LOAD_GLPROC(glNamedFramebufferTextureEXT);
-			LOAD_GLPROC(glNamedFramebufferTextureLayerEXT);
-			LOAD_GLPROC(glNamedFramebufferTextureFaceEXT);
-			LOAD_GLPROC(glTextureRenderbufferEXT);
-			LOAD_GLPROC(glMultiTexRenderbufferEXT);
-			LOAD_GLPROC(glVertexArrayVertexOffsetEXT);
-			LOAD_GLPROC(glVertexArrayColorOffsetEXT);
-			LOAD_GLPROC(glVertexArrayEdgeFlagOffsetEXT);
-			LOAD_GLPROC(glVertexArrayIndexOffsetEXT);
-			LOAD_GLPROC(glVertexArrayNormalOffsetEXT);
-			LOAD_GLPROC(glVertexArrayTexCoordOffsetEXT);
-			LOAD_GLPROC(glVertexArrayMultiTexCoordOffsetEXT);
-			LOAD_GLPROC(glVertexArrayFogCoordOffsetEXT);
-			LOAD_GLPROC(glVertexArraySecondaryColorOffsetEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribOffsetEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribIOffsetEXT);
-			LOAD_GLPROC(glEnableVertexArrayEXT);
-			LOAD_GLPROC(glDisableVertexArrayEXT);
-			LOAD_GLPROC(glEnableVertexArrayAttribEXT);
-			LOAD_GLPROC(glDisableVertexArrayAttribEXT);
-			LOAD_GLPROC(glGetVertexArrayIntegervEXT);
-			LOAD_GLPROC(glGetVertexArrayPointervEXT);
-			LOAD_GLPROC(glGetVertexArrayIntegeri_vEXT);
-			LOAD_GLPROC(glGetVertexArrayPointeri_vEXT);
-			LOAD_GLPROC(glMapNamedBufferRangeEXT);
-			LOAD_GLPROC(glFlushMappedNamedBufferRangeEXT);
-			LOAD_GLPROC(glNamedBufferStorageEXT);
-			LOAD_GLPROC(glClearNamedBufferDataEXT);
-			LOAD_GLPROC(glClearNamedBufferSubDataEXT);
-			LOAD_GLPROC(glNamedFramebufferParameteriEXT);
-			LOAD_GLPROC(glGetNamedFramebufferParameterivEXT);
-			LOAD_GLPROC(glProgramUniform1dEXT);
-			LOAD_GLPROC(glProgramUniform2dEXT);
-			LOAD_GLPROC(glProgramUniform3dEXT);
-			LOAD_GLPROC(glProgramUniform4dEXT);
-			LOAD_GLPROC(glProgramUniform1dvEXT);
-			LOAD_GLPROC(glProgramUniform2dvEXT);
-			LOAD_GLPROC(glProgramUniform3dvEXT);
-			LOAD_GLPROC(glProgramUniform4dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix2dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix3dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix4dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix2x3dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix2x4dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix3x2dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix3x4dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix4x2dvEXT);
-			LOAD_GLPROC(glProgramUniformMatrix4x3dvEXT);
-			LOAD_GLPROC(glTextureBufferRangeEXT);
-			LOAD_GLPROC(glTextureStorage1DEXT);
-			LOAD_GLPROC(glTextureStorage2DEXT);
-			LOAD_GLPROC(glTextureStorage3DEXT);
-			LOAD_GLPROC(glTextureStorage2DMultisampleEXT);
-			LOAD_GLPROC(glTextureStorage3DMultisampleEXT);
-			LOAD_GLPROC(glVertexArrayBindVertexBufferEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribFormatEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribIFormatEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribLFormatEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribBindingEXT);
-			LOAD_GLPROC(glVertexArrayVertexBindingDivisorEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribLOffsetEXT);
-			LOAD_GLPROC(glTexturePageCommitmentEXT);
-			LOAD_GLPROC(glVertexArrayVertexAttribDivisorEXT);
-			_GL_EXT_direct_state_access = true;
-		}
-		// GL_EXT_draw_instanced
-		if(!_GL_EXT_draw_instanced && checkExtension("GL_EXT_draw_instanced"))
-		{
-			LOAD_GLPROC(glDrawArraysInstancedEXT);
-			LOAD_GLPROC(glDrawElementsInstancedEXT);
-			_GL_EXT_draw_instanced = true;
-		}
-		// GL_EXT_multiview_tessellation_geometry_shader
-		if(!_GL_EXT_multiview_tessellation_geometry_shader && checkExtension("GL_EXT_multiview_tessellation_geometry_shader"))
-		{
-			_GL_EXT_multiview_tessellation_geometry_shader = true;
-		}
-		// GL_EXT_multiview_texture_multisample
-		if(!_GL_EXT_multiview_texture_multisample && checkExtension("GL_EXT_multiview_texture_multisample"))
-		{
-			_GL_EXT_multiview_texture_multisample = true;
-		}
-		// GL_EXT_multiview_timer_query
-		if(!_GL_EXT_multiview_timer_query && checkExtension("GL_EXT_multiview_timer_query"))
-		{
-			_GL_EXT_multiview_timer_query = true;
-		}
-		// GL_EXT_polygon_offset_clamp
-		if(!_GL_EXT_polygon_offset_clamp && checkExtension("GL_EXT_polygon_offset_clamp"))
-		{
-			LOAD_GLPROC(glPolygonOffsetClampEXT);
-			_GL_EXT_polygon_offset_clamp = true;
-		}
-		// GL_EXT_post_depth_coverage
-		if(!_GL_EXT_post_depth_coverage && checkExtension("GL_EXT_post_depth_coverage"))
-		{
-			_GL_EXT_post_depth_coverage = true;
-		}
-		// GL_EXT_raster_multisample
-		if(!_GL_EXT_raster_multisample && checkExtension("GL_EXT_raster_multisample"))
-		{
-			LOAD_GLPROC(glRasterSamplesEXT);
-			_GL_EXT_raster_multisample = true;
-		}
-		// GL_EXT_separate_shader_objects
-		if(!_GL_EXT_separate_shader_objects && checkExtension("GL_EXT_separate_shader_objects"))
-		{
-			LOAD_GLPROC(glUseShaderProgramEXT);
-			LOAD_GLPROC(glActiveProgramEXT);
-			LOAD_GLPROC(glCreateShaderProgramEXT);
-			_GL_EXT_separate_shader_objects = true;
-		}
-		// GL_EXT_shader_framebuffer_fetch
-		if(!_GL_EXT_shader_framebuffer_fetch && checkExtension("GL_EXT_shader_framebuffer_fetch"))
-		{
-			_GL_EXT_shader_framebuffer_fetch = true;
-		}
-		// GL_EXT_shader_framebuffer_fetch_non_coherent
-		if(!_GL_EXT_shader_framebuffer_fetch_non_coherent && checkExtension("GL_EXT_shader_framebuffer_fetch_non_coherent"))
-		{
-			LOAD_GLPROC(glFramebufferFetchBarrierEXT);
-			_GL_EXT_shader_framebuffer_fetch_non_coherent = true;
-		}
-		// GL_EXT_shader_integer_mix
-		if(!_GL_EXT_shader_integer_mix && checkExtension("GL_EXT_shader_integer_mix"))
-		{
-			_GL_EXT_shader_integer_mix = true;
-		}
-		// GL_EXT_texture_compression_s3tc
-		if(!_GL_EXT_texture_compression_s3tc && checkExtension("GL_EXT_texture_compression_s3tc"))
-		{
-			_GL_EXT_texture_compression_s3tc = true;
-		}
-		// GL_EXT_texture_filter_minmax
-		if(!_GL_EXT_texture_filter_minmax && checkExtension("GL_EXT_texture_filter_minmax"))
-		{
-			_GL_EXT_texture_filter_minmax = true;
-		}
-		// GL_EXT_texture_sRGB_R8
-		if(!_GL_EXT_texture_sRGB_R8 && checkExtension("GL_EXT_texture_sRGB_R8"))
-		{
-			_GL_EXT_texture_sRGB_R8 = true;
-		}
-		// GL_EXT_texture_sRGB_decode
-		if(!_GL_EXT_texture_sRGB_decode && checkExtension("GL_EXT_texture_sRGB_decode"))
-		{
-			_GL_EXT_texture_sRGB_decode = true;
-		}
-		// GL_EXT_texture_shadow_lod
-		if(!_GL_EXT_texture_shadow_lod && checkExtension("GL_EXT_texture_shadow_lod"))
-		{
-			_GL_EXT_texture_shadow_lod = true;
-		}
-		// GL_EXT_window_rectangles
-		if(!_GL_EXT_window_rectangles && checkExtension("GL_EXT_window_rectangles"))
-		{
-			LOAD_GLPROC(glWindowRectanglesEXT);
-			_GL_EXT_window_rectangles = true;
-		}
-
-	} // namespace GLEXT
-	{
-		using namespace axl::glfl::core::GLINTEL;
-		// GL_INTEL_blackhole_render
-		if(!_GL_INTEL_blackhole_render && checkExtension("GL_INTEL_blackhole_render"))
-		{
-			_GL_INTEL_blackhole_render = true;
-		}
-		// GL_INTEL_conservative_rasterization
-		if(!_GL_INTEL_conservative_rasterization && checkExtension("GL_INTEL_conservative_rasterization"))
-		{
-			_GL_INTEL_conservative_rasterization = true;
-		}
-		// GL_INTEL_framebuffer_CMAA
-		if(!_GL_INTEL_framebuffer_CMAA && checkExtension("GL_INTEL_framebuffer_CMAA"))
-		{
-			LOAD_GLPROC(glApplyFramebufferAttachmentCMAAINTEL);
-			_GL_INTEL_framebuffer_CMAA = true;
-		}
-		// GL_INTEL_performance_query
-		if(!_GL_INTEL_performance_query && checkExtension("GL_INTEL_performance_query"))
-		{
-			LOAD_GLPROC(glBeginPerfQueryINTEL);
-			LOAD_GLPROC(glCreatePerfQueryINTEL);
-			LOAD_GLPROC(glDeletePerfQueryINTEL);
-			LOAD_GLPROC(glEndPerfQueryINTEL);
-			LOAD_GLPROC(glGetFirstPerfQueryIdINTEL);
-			LOAD_GLPROC(glGetNextPerfQueryIdINTEL);
-			LOAD_GLPROC(glGetPerfCounterInfoINTEL);
-			LOAD_GLPROC(glGetPerfQueryDataINTEL);
-			LOAD_GLPROC(glGetPerfQueryIdByNameINTEL);
-			LOAD_GLPROC(glGetPerfQueryInfoINTEL);
-			_GL_INTEL_performance_query = true;
-		}
-	} // namespace GLINTEL
-	{
-		using namespace axl::glfl::core::GLMESA;
-		// GL_MESA_framebuffer_flip_x
-		if(!_GL_MESA_framebuffer_flip_x && checkExtension("GL_MESA_framebuffer_flip_x"))
-		{
-			_GL_MESA_framebuffer_flip_x = true;
-		}
-		// GL_MESA_framebuffer_flip_y
-		if(!_GL_MESA_framebuffer_flip_y && checkExtension("GL_MESA_framebuffer_flip_y"))
-		{
-			LOAD_GLPROC(glFramebufferParameteriMESA);
-			LOAD_GLPROC(glGetFramebufferParameterivMESA);
-			_GL_MESA_framebuffer_flip_y = true;
-		}
-		// GL_MESA_framebuffer_swap_xy
-		if(!_GL_MESA_framebuffer_swap_xy && checkExtension("GL_MESA_framebuffer_swap_xy"))
-		{
-			_GL_MESA_framebuffer_swap_xy = true;
-		}
-	} // namespace GLMESA
-	{
-	} // namespace GLNV
-	{
-		using namespace axl::glfl::core::GLOVR;
-		if(!_GL_OVR_multiview && checkExtension("GL_OVR_multiview"))
-		{
-			LOAD_GLPROC(glFramebufferTextureMultiviewOVR);
-			_GL_OVR_multiview = true;
-		}
-		if(!_GL_OVR_multiview2 && checkExtension("GL_OVR_multiview2"))
-		{
-			_GL_OVR_multiview2 = true;
-		}
-	} // namespace GLOVR
 	return (initialized = true);
 }
 
