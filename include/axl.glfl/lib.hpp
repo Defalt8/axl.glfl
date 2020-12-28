@@ -20,6 +20,9 @@
 #elif defined(AXLGLFL_STATIC)
 #	define AXLGLFLAPI extern
 #	define AXLGLFLCXXAPI
+#else // defaults to AXLGLFL_STATIC
+#	define AXLGLFLAPI extern
+#	define AXLGLFLCXXAPI
 #endif
 
 #if __cplusplus >= 201103L
