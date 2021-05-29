@@ -11,31 +11,28 @@ endif()
 set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED true )
 set( CMAKE_BUILD_TYPE Debug CACHE STRING "Build configuration type: ${CMAKE_CONFIGURATION_TYPES}." )
-set( BUILD_TESTS OFF CACHE BOOL "General build tests flag." )
 set( AXLGLFL_BUILD_TESTS ${AXLGLFL_STANDALONE} CACHE BOOL "Library specific build tests flag." )
 set( AXLGLFL_ARCHIVE_DIR "${CMAKE_BINARY_DIR}/lib" CACHE PATH "Path to build library archives." )
 set( AXLGLFL_RUNTIME_DIR "${CMAKE_BINARY_DIR}/bin" CACHE PATH "Path to build runtime files like shared library binaries and executables to." )
 set( AXLGLFL_INSTALL_HEADERS ${AXLGLFL_STANDALONE} CACHE BOOL "" )
-set( AXLGLFL_INSTALL_ARCHIVES TRUE CACHE BOOL "" )
-set( AXLGLFL_INSTALL_RUNTIMES TRUE CACHE BOOL "" )
+set( AXLGLFL_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include" )
 
-add_subdirectory( "src" "axl_glfl" )
-if( AXLGLFL_BUILD_TESTS )
-	add_subdirectory( "tests" "${AXLGLFL_RUNTIME_DIR}" )
+add_subdirectory( src axl.glfl )
+if( ${AXLGLFL_BUILD_TESTS} )
+	add_subdirectory( tests axl.glfl.tests )
 endif()
 
-# install headers
 if( AXLGLFL_INSTALL_HEADERS )
 	install( FILES
-		"include/axl.glfl/platform.h"
-		"include/axl.glfl/Dummy.hpp"
-		"include/axl.glfl/gl.hpp"
-		"include/axl.glfl/lib.hpp"
-		"include/axl.glfl/glCoreARB.hpp"
-		DESTINATION "${AXLGLFL_HEADER_INSTALL_DIR}/axl.glfl"
+		"${AXLGLFL_INCLUDE_DIR}/axl.glfl/platform.h"
+		"${AXLGLFL_INCLUDE_DIR}/axl.glfl/Dummy.hpp"
+		"${AXLGLFL_INCLUDE_DIR}/axl.glfl/gl.hpp"
+		"${AXLGLFL_INCLUDE_DIR}/axl.glfl/lib.hpp"
+		"${AXLGLFL_INCLUDE_DIR}/axl.glfl/glCoreARB.hpp"
+		DESTINATION "include/axl.glfl"
 	)
 	install( FILES
 		"include/axl.glfl/win/wglext.hpp"
-		DESTINATION "${AXLGLFL_HEADER_INSTALL_DIR}/axl.glfl/win"
+		DESTINATION "include/axl.glfl/win"
 	)
 endif()

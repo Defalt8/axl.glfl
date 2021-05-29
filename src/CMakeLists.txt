@@ -1,10 +1,17 @@
-cmake_minimum_required( VERSION 3.8 )
+set( CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE )
+set( DEBUG_SUFFIX "" )
+set( TYPE_SUFFIX "" )
 
-set( AXLGLFL_TYPE "STATIC" CACHE STRING "{STATIC|SHARED}" )
-if( BUILD_SHARED_LIBS )
-	set( AXLGLFL_TYPE "SHARED" )
+if( "${AXLGLFL_TYPE}" MATCHES "^[Ss][Hh][Aa][Rr][Ee][Dd]$" OR BUILD_SHARED_LIBS )
+	set( AXLGLFL_TYPE SHARED )
+else()
+	set( AXLGLFL_TYPE STATIC )
+	set( TYPE_SUFFIX s )
 endif()
-set( AXLGLFL_LIB_SUFFIX "" )
+
+if( "${CMAKE_BUILD_TYPE}" MATCHES "^[Dd][Ee][Bb][Uu][Gg]$" )
+	set( DEBUG_SUFFIX d )
+endif()
 
 add_library( axl.glfl ${AXLGLFL_TYPE}
 	"glfl.cpp"
@@ -12,19 +19,26 @@ add_library( axl.glfl ${AXLGLFL_TYPE}
 	"glCoreARB.cpp"
 	"pfm.cpp"
 )
-target_include_directories( axl.glfl PUBLIC "${PROJECT_SOURCE_DIR}/include" )
+target_include_directories( axl.glfl PUBLIC "${AXLGLFL_INCLUDE_DIR}" )
 target_compile_definitions( axl.glfl
-	PRIVATE AXLGLFL_BUILD=1
+	PRIVATE AXLGLFL_BUILD
 	PRIVATE AXLGLFL_VERSION_MAJOR=${PROJECT_VERSION_MAJOR}
 	PRIVATE AXLGLFL_VERSION_MINOR=${PROJECT_VERSION_MINOR}
 	PRIVATE AXLGLFL_VERSION_PATCH=${PROJECT_VERSION_PATCH}
 )
-if( "${AXLGLFL_TYPE}" MATCHES "^[Ss][Hh][Aa][Rr][Ee][Dd]$" )
-	target_compile_definitions( axl.glfl PUBLIC AXLGLFL_SHARED=1 )
+
+if( "${AXLGLFL_TYPE}" STREQUAL "SHARED" )
+	target_compile_definitions( axl.glfl PUBLIC AXLGLFL_SHARED )
 else()
-	target_compile_definitions( axl.glfl PUBLIC AXLGLFL_STATIC=1 )
-	set( AXLGLFL_LIB_SUFFIX s )
+	target_compile_definitions( axl.glfl PUBLIC AXLGLFL_STATIC )
 endif()
+
+if( "${CMAKE_BUILD_TYPE}" MATCHES "[Dd][Ee][Bb][Uu][Gg]" )
+	target_compile_definitions( axl.glfl PRIVATE DEBUG )
+elseif( "${CMAKE_BUILD_TYPE}" MATCHES "[Rr][Ee][Ll]" )
+	target_compile_definitions( axl.glfl PRIVATE NDEBUG )
+endif()
+
 if( WIN32 )
 	if(MSVC)
 		target_link_libraries( axl.glfl PUBLIC gdi32.lib opengl32.lib )
@@ -34,18 +48,15 @@ if( WIN32 )
 elseif( UNIX AND NOT APPLE )
 	target_link_libraries( axl.glfl PUBLIC -lGL -lX11 )
 endif()
-if( "${CMAKE_BUILD_TYPE}" MATCHES "^[Dd][Ee][Bb][Uu][Gg]$" )
-	set( AXLGLFL_LIB_SUFFIX "${AXLGLFL_LIB_SUFFIX}d" )
-endif()
+
 set_target_properties( axl.glfl PROPERTIES
-	ARCHIVE_OUTPUT_NAME "axl.glfl${AXLGLFL_LIB_SUFFIX}"
-	RUNTIME_OUTPUT_NAME "axl.glfl${AXLGLFL_LIB_SUFFIX}"
+	ARCHIVE_OUTPUT_NAME "axl.glfl${TYPE_SUFFIX}${DEBUG_SUFFIX}"
+	RUNTIME_OUTPUT_NAME "axl.glfl${TYPE_SUFFIX}${DEBUG_SUFFIX}"
 	ARCHIVE_OUTPUT_DIRECTORY "${AXLGLFL_ARCHIVE_DIR}"
 	RUNTIME_OUTPUT_DIRECTORY "${AXLGLFL_RUNTIME_DIR}"
 )
 
-# install library files
-install( TARGETS axl.glfl 
-	ARCHIVE DESTINATION "${AXLGLFL_ARCHIVE_INSTALL_DIR}"
-	RUNTIME DESTINATION "${AXLGLFL_RUNTIME_INSTALL_DIR}"
+install( TARGETS axl.glfl
+	ARCHIVE DESTINATION "lib"
+	RUNTIME DESTINATION "bin"
 )
