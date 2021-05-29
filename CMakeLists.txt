@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 3.8 )
 
 project( AXL_GLFL VERSION 1.4.8 DESCRIPTION "OpenGL function loader library." )
 
-if( "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}" )
+if( "${CMAKE_SOURCE_DIR}" STREQUAL "${PROJECT_SOURCE_DIR}" )
 	set( AXLGLFL_STANDALONE TRUE )
 else()
 	set( AXLGLFL_STANDALONE FALSE )
@@ -16,8 +16,8 @@ set( AXLGLFL_BUILD_TESTS ${AXLGLFL_STANDALONE} CACHE BOOL "Library specific buil
 set( AXLGLFL_ARCHIVE_DIR "${CMAKE_BINARY_DIR}/lib" CACHE PATH "Path to build library archives." )
 set( AXLGLFL_RUNTIME_DIR "${CMAKE_BINARY_DIR}/bin" CACHE PATH "Path to build runtime files like shared library binaries and executables to." )
 set( AXLGLFL_INSTALL_HEADERS ${AXLGLFL_STANDALONE} CACHE BOOL "" )
-set( AXLGLFL_INSTALL_ARCHIVES ${AXLGLFL_STANDALONE} CACHE BOOL "" )
-set( AXLGLFL_INSTALL_RUNTIMES ${AXLGLFL_STANDALONE} CACHE BOOL "" )
+set( AXLGLFL_INSTALL_ARCHIVES TRUE CACHE BOOL "" )
+set( AXLGLFL_INSTALL_RUNTIMES TRUE CACHE BOOL "" )
 
 add_subdirectory( "src" "axl_glfl" )
 if( AXLGLFL_BUILD_TESTS )
