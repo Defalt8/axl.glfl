@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.8 )
 
-project( AXL_GLFL VERSION 1.4.8 DESCRIPTION "OpenGL function loader library." )
+project( AXL_GLFL VERSION 1.34.69 DESCRIPTION "A multiplatform C++ OpenGL function loader library." )
 
 if( "${CMAKE_SOURCE_DIR}" STREQUAL "${PROJECT_SOURCE_DIR}" )
 	set( AXLGLFL_STANDALONE TRUE )

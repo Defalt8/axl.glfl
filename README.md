@@ -4,7 +4,7 @@ An organized multiplatform OpenGL function loader.
 
 ## Version and supported platforms
 
-- **Latest version**: 1.4.8 beta
+- **Latest version**: 1.34.69 beta
 - **Supported platforms**: Windows, Linux
 
 ## Requirements and Dependencies
