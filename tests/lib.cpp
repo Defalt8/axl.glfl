@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 		Assertv((BUILD == Build::STATIC), verbose);
 #endif
 	}
-	if(axl::Assert::_num_failed_tests) puts("----------------------------------------");
-	printf("%c> %d/%d Passed!\n", (axl::Assert::_num_failed_tests ? '*' : '\r'), (axl::Assert::_num_total_tests - axl::Assert::_num_failed_tests), axl::Assert::_num_total_tests);
-	return axl::Assert::_num_failed_tests;
+	if(axl::assert::_num_failed_tests) puts("----------------------------------------");
+	printf("%c> %d/%d Passed!\n", (axl::assert::_num_failed_tests ? '*' : '\r'), (axl::assert::_num_total_tests - axl::assert::_num_failed_tests), axl::assert::_num_total_tests);
+	return axl::assert::_num_failed_tests;
 }

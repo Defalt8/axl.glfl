@@ -13,7 +13,7 @@ namespace WGL {
 
 bool test(bool verbose)
 {
-	int failes_so_far = axl::Assert::_num_failed_tests;
+	int failes_so_far = axl::assert::_num_failed_tests;
 	if(WGL_ARB_buffer_region)
 	{
 		LOG_B(WGL_ARB_buffer_region);
@@ -361,7 +361,7 @@ bool test(bool verbose)
 		Assertv((wglWaitForMscOML), verbose);
 		Assertv((wglWaitForSbcOML), verbose);
 	}
-	return (axl::Assert::_num_failed_tests - failes_so_far) == 0;
+	return (axl::assert::_num_failed_tests - failes_so_far) == 0;
 }
 
 } // axl::glfl::WGL
